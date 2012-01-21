@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document */
+
+/**--<| element - [begin] |>---------------------------------------------------------------------------**/
+body {text-align:left;font-family:SimSun,Arial, Helvetica, sans-serif;background:#ffffff;font-size:12px;color:#666;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote{padding:0; margin:0;}
+fieldset{ border:none; }
+table,td,tr,th{font-size:12px; vertical-align:top;}
+td p{ margin:0; }
+li{list-style-type:none;}
+table{ margin:0;}
+img{vertical-align:middle;border:0;}
+ol,ul {list-style:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:12px;font-family:Microsoft YaHei,STXihei,Verdana,Geneva,sans-serif; color:#0099FF;}
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-family:Microsoft YaHei,STXihei,Verdana,Geneva,sans-serif; color:#0099FF;}
+q:before,q:after {content:'';}
+abbr,acronym {border:0;}
+address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}
+a{color:#333;text-decoration:none;}
+a:hover {text-decoration:underline;color:#0099FF;}
+select,b{vertical-align:middle;}
+input[type='radio']{ vertical-align:middle; height:22px; }
+
+h1{font-size:24px;}
+h2{font-size:18px;}
+h3{font-size:16px;}
+h4{font-size:14px;}
+h5{font-size:12px;}
+h6{font-size:10px;}
+
+li p{ margin:0; }
+p{margin:10px 0;}
+
+/**--<| element - [end] |>---------------------------------------------------------------------------**/
+
+
+
+
+
+
+/**--<| applocation_class - [begin] |>---------------------------------------------------------------------------**/
+
+.crumb{ margin-bottom: 10px; }
+.crumb:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.crumb li{ float: left; margin-right: 5px; }
+
+.top a{ float:right; padding:5px; -moz-border-radius-topright:5px; -webkit-border-top-right-radius:5px; -moz-border-radius-topleft:5px; -webkit-border-top-left-radius:5px; border:#ddd solid 1px; background:#f5f5f5; margin-bottom:-1px; margin-right:10px; margin-top:10px; }
+.boxstyle{ -moz-border-radius:5px; -webkit-border-radius:5px; background:#f5f5f5; color:#666px; height:25px; line-height:25px; border:#ddd solid 1px; padding:0 10px; }
+
+.page{ -moz-border-radius:5px; -webkit-border-radius:5px; background:#ddd; height:25px; line-height:25px; padding:0 10px; margin-top:10px; }
+.page a{ padding:0 10px; display:inline-block; }
+.page .selected{ padding:0 10px; background:#fff; margin-top:-0.3em; -moz-border-radius:5px; -webkit-border-radius:5px; border:#ddd solid 3px; }
+
+.calendar th{ border:#ddd solid 1px; }
+.calendar td{ text-align:right; padding:2px; }
+.calendar td a{ -moz-border-radius:5px; -webkit-border-radius:5px; display:block; padding:5px 0; text-align:center; }
+.calendar td span{ -moz-border-radius:5px; -webkit-border-radius:5px; display:block; padding:5px 0; text-align:center; }
+.calendar .holiday a{ background:#FFEDED; }
+.calendar .holiday span{ background:#FFEDED; }
+.calendar .now a{ -moz-box-shadow:0px 1px 5px #ccc; -webkit-box-shadow:0px 1px 5px #ccc; border:#dfdfdf solid 1px; }
+.calendar .now span{ -moz-box-shadow:0px 1px 5px #ccc; -webkit-box-shadow:0px 1px 5px #ccc; border:#dfdfdf solid 1px; }
+
+/**title**/
+.main .title{ border-left:#09F solid 7px; padding:0 0 0 10px; text-shadow:none; }
+
+.side .title{ background:url(../images/menu_top.png) center left repeat-x; padding:10px; margin:0; border-bottom:#ddd solid 1px; }
+.side .title a{ display:block; background:url(../images/menu_ico.png) right center no-repeat; }
+.side .title span{ display:block; background:url(../images/menu_ico.png) right center no-repeat; }
+.side .title a:hover{ color:#666; }
+
+/**box**/
+.shadowbox{ border:#ddd solid 1px; -moz-border-radius:5px; -webkit-border-radius:5px; -moz-box-shadow:0px 0px 3px #ccc; -webkit-box-shadow:0px 0px 3px #ccc; background:url(../images/bg_1.png) bottom left repeat-x; }
+
+/**--<| applocation_class - [end] |>---------------------------------------------------------------------------**/
+
+
+
+
+
+
+/**--<| class - [begin] |>---------------------------------------------------------------------------**/
+
+/**width && height**/
+.w150{ width:150px; }
+.w300{ width:300px; }
+.w100p{ width:100%; }
+.h25{ height:25px; line-height:25px; }
+
+/**list**/
+.li_disc{ list-style:disc; }
+.li_disc li{ list-style:disc; }
+
+/**space**/
+.space1{ background:url(../images/space1.gif) scroll right center no-repeat; padding-right:10px; margin-right:10px;}
+.space2{ background:url(../images/space2.gif) scroll right center no-repeat; padding-right:10px; margin-right:10px;}
+
+/**line**/
+.topline{ border-top:#ddd solid 1px; }
+.bottomline{ border-bottom:#ddd solid 1px; }
+.bottomline2{ border-bottom:#ddd dashed 1px; }
+.rightline2{ border-right:#ddd dashed 1px; }
+.leftline{ border-left:#ddd solid 4px; }
+
+/**color**/
+.black3{ color:#333; }
+.black6{ color:#666; }
+.black9{ color:#999; }
+
+/**layout**/
+.wrap{ margin:0 auto; width:940px; padding:0 10px; }
+.main{width:690px;}
+.side{width:240px;}
+.submain{width:400px;}
+.subside{width:290px;}
+
+/**display**/
+.inline{ display:inline; }
+.block{ display:block; }
+.hidden{ display:none; }
+
+/**font**/
+.size12{ font-size:12px; }
+.size14{ font-size:14px; }
+.size16{ font-size:16px; }
+.size18{ font-size:18px; }
+.size20{ font-size:20px; }
+.size36{ font-size:36px; }
+
+.fnormal{ font-weight:normal; }
+.fbold{ font-weight:bold; }
+.ff_yahei{font-family:Microsoft YaHei,STXihei,Verdana,Geneva,sans-serif;}
+
+/**text**/
+.tleft{ text-align:left; }
+.tright{ text-align:right; }
+.tcenter{ text-align:center; }
+.t2em{text-indent:2em;}
+.tinherit{text-indent:inherit;}
+
+/**float**/
+.fleft{ float:left; }
+.fright{ float:right; }
+.clear{ clear:both; }
+.clearbr{ clear:both; display: inline; }
+.clearfix:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+
+/**padding**/
+.ptop10{ padding-top:10px; }
+.pbottom10{ padding-bottom:10px; }
+.pleft10{ padding-left:10px; }
+.pleft25{ padding-left:25px; }
+.pright10{ padding-right:10px; }
+.ptb10{ padding-top:10px; padding-bottom:10px; }
+.plr10{ padding-left:10px; padding-right:10px; }
+.p10{ padding:10px; }
+.p3{ padding:3px; }
+
+/**margin**/
+.top10{ margin-top:10px; }
+.top5{ margin-top:5px; }
+.bottom10{ margin-bottom:10px; }
+.bottom5{ margin-bottom:5px; }
+.left10{ margin-left:10px; }
+.left20{ margin-left:20px; }
+.right10{ margin-right:10px; }
+.tb10{ margin-top:10px; margin-bottom:10px; }
+.lr10{ margin-left:10px; margin-right:10px; }
+.m10{ margin:10px; }
+/**--<| class - [end] |>---------------------------------------------------------------------------**/
