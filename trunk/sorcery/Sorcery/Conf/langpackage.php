@@ -6,6 +6,7 @@ $handle = @ opendir($path) or die("无法打开目录");
 while($file = readdir($handle)){
 	//var_dump($file);测试
 	if($file=="." || $file==".."){continue;}
+	if(substr($file,strripos($file,".")+1)!='php'){continue;}
 	$langpackage=array_merge($langpackage,require $path.$file);
 }
 
