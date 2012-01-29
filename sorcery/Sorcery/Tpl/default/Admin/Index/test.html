@@ -8,9 +8,28 @@
 {load:__PUBLIC__/css/grids.css}
 {load:__PUBLIC__/css/content.css}
 {load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
+{load:__PUBLIC__/js/sorcery_debug/lbi/sorcery.js}
 </head>
 
 <body>
-	
+	<script>
+	;(function($){
+		$(document).ready(function(){
+			var d = new Object();
+			d.a="a";
+			d.b="b";
+			d.c=function(){return "c";};
+
+			d.prototype = {
+				a:"a1",
+				d:function(){return "d";}
+			};
+
+			for(var pro in d){
+				$(document.body).append("<div>"+pro+":"+typeof(d[pro])=="function"?d[pro]():d[pro]+"</div>");
+			}
+		});
+	})(jQuery);
+	</script>
 </body>
 </html>

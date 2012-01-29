@@ -5,8 +5,7 @@ $sorcery_config = array(
 	'DEFAULT_GROUP'=>'Admin',//测试默认为Admin，行为默认为Home
 
 	//扩展配置（设置了后将加载数组内的配置文件）
-	//'APP_CONFIG_LIST'=>array('langpackage','routes'),
-	'APP_CONFIG_LIST'=>array('langpackage'),
+	'APP_CONFIG_LIST'=>array('langpackage','routes'),
 	
 	//URL重写设置
 	'URL_MODEL'=>'2',

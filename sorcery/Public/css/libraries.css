@@ -17,7 +17,8 @@ q:before,q:after {content:'';}
 abbr,acronym {border:0;}
 address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}
 a{color:#333;text-decoration:none;}
-a:hover {text-decoration:underline;color:#09F;}
+a:hover{color:#09F; text-decoration:none;}
+a:hover span{ color:#000; }
 select,b{vertical-align:middle;}
 input[type='radio'],input[type='checkbox']{ vertical-align:middle; height:22px; }
 
