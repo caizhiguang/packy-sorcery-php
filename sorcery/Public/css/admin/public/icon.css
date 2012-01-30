@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+/**icon**/
+i.i{ display:inline-block; width:16px; height:16px; vertical-align:text-bottom; }
+i.iDrop,i.iDate,i.iType,i.iCenter,i.iArticle,i.iComment,i.iMedia{ background-image:url(../../../images/icon.png); background-repeat:no-repeat; }
+i.iDrop{ background-position:-16px 0; }
+i.iDate{ background-position:-48px 0; }
+i.iType{ background-position:-64px 0; }
+i.iCenter{ background-position:0 0; }
+i.iArticle{ background-position:0 -16px; }
+i.iMedia{ background-position:0 -32px; }
+i.iComment{ background-position:0 -48px; }
