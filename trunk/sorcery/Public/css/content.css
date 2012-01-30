@@ -9,15 +9,15 @@
 .tab .current{ background:#fff; border:#d5d5d5 solid 2px; }
 
 /**table**/
-.table{ width:100%; background:#ddd; }
+/*.table{ width:100%; background:#ddd; }
 .table input[type="checkbox"]{ height:auto; }
 .table thead td{ background:#eee; padding:3px; }
-.table tbody td{ background:#fff; padding:3px; }
+.table tbody td{ background:#fff; padding:3px; }*/
 
 /**input**/
 input.text{ background:url(../images/text_bg.png) #fff repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }
 textarea.text{background:url(../images/text_bg.png) #fff repeat-x;line-height:25px; border:#ccc solid 1px; font-size:12px;}
-select.select{ background:url(../images/text_bg.png) repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }
+/*select.select{ background:url(../images/text_bg.png) repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }*/
 
 /**icon**/
 .i{ width:16px; height:16px; display:inline-block; }
