@@ -8,6 +8,7 @@
 {load:__PUBLIC__/css/grids.css}
 {load:__PUBLIC__/css/content.css}
 {load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
+{load:__PUBLIC__/js/sorcery_debug/lbi/extend.js}
 {load:__PUBLIC__/js/sorcery_debug/lbi/sorcery.js}
 </head>
 
@@ -15,6 +16,7 @@
 	<script>
 	;(function($){
 		$(document).ready(function(){
+			/*
 			var d = new Object();
 			d.a="a";
 			d.b="b";
@@ -28,6 +30,30 @@
 			for(var pro in d){
 				$(document.body).append("<div>"+pro+":"+typeof(d[pro])=="function"?d[pro]():d[pro]+"</div>");
 			}
+			*/
+			var printObj = function(obj){
+				for(var pro in obj){
+					if(pro=="toString"||pro=="valueOf"||pro=="init"){continue;}
+					$(document.body).append("<div></div>").find("div:last").append(pro+":"+typeof(obj[pro])=="function"?obj[pro]():obj[pro]);
+				}
+			};
+			var parent = $.sorcery.class({
+				init:function(){
+					this.name = "233";
+				},
+				callMyName:function(){
+					return "My name is "+this.name;
+				}
+			});
+			var sub = $.sorcery.class(parent,{
+				callMyName:function($super){
+					return $super()+"....Fuck!!!!";
+				}
+			});
+
+			alert((new parent()).callMyName());
+			alert((new sub()).callMyName());
+			//printObj(new parent());
 		});
 	})(jQuery);
 	</script>
