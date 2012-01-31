@@ -13,6 +13,7 @@ $config['URL']=array(
 		'article_edit'=>array('编辑文章',false),
 	),
 );
+$config['APP_DEBUG']=true;//设置测试环境(true进入测试环境,false退出测试环境)
 
 //var_dump($config);
 

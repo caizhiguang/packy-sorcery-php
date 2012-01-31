@@ -4,15 +4,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>测试页</title>
 {load:__PUBLIC__/css/libraries.css}
-{load:__PUBLIC__/css/mod.css}
 {load:__PUBLIC__/css/grids.css}
 {load:__PUBLIC__/css/content.css}
+{load:__PUBLIC__/css/mod.css}
+{load:__PUBLIC__/css/form-test/mod_form.css}
 {load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
-{load:__PUBLIC__/js/sorcery_debug/lbi/extend.js}
-{load:__PUBLIC__/js/sorcery_debug/lbi/sorcery.js}
+{load:__PUBLIC__/js/plug-in/drag.js}
+{load:__PUBLIC__/js/plug-in/dragdrop.js}
+{load:__PUBLIC__/js/salvia_debug/lbi/extend.js}
+{load:__PUBLIC__/js/salvia_debug/lbi/salvia.js}
+{load:__PUBLIC__/js/salvia_debug/class/util/events.js}
+{load:__PUBLIC__/js/salvia_debug/class/base.js}
+{load:__PUBLIC__/js/salvia_debug/class/form.js}
+{load:__PUBLIC__/js/salvia_debug/config.js}
+{load:__PUBLIC__/js/salvia_debug/init.js}
 </head>
 
 <body>
+	<div id="wrap">
+		
+	</div>
 	<script>
 	;(function($){
 		$(document).ready(function(){
@@ -30,14 +41,14 @@
 			for(var pro in d){
 				$(document.body).append("<div>"+pro+":"+typeof(d[pro])=="function"?d[pro]():d[pro]+"</div>");
 			}
-			*/
+			
 			var printObj = function(obj){
 				for(var pro in obj){
 					if(pro=="toString"||pro=="valueOf"||pro=="init"){continue;}
 					$(document.body).append("<div></div>").find("div:last").append(pro+":"+typeof(obj[pro])=="function"?obj[pro]():obj[pro]);
 				}
 			};
-			var parent = $.sorcery.class({
+			var parent = $.salvia.Class({
 				init:function(){
 					this.name = "233";
 				},
@@ -45,15 +56,25 @@
 					return "My name is "+this.name;
 				}
 			});
-			var sub = $.sorcery.class(parent,{
+			var sub = $.salvia.Class(parent,{
 				callMyName:function($super){
 					return $super()+"....Fuck!!!!";
 				}
 			});
 
-			alert((new parent()).callMyName());
-			alert((new sub()).callMyName());
-			//printObj(new parent());
+			var parentObj = new parent();
+			var subObj = new sub();
+			
+			alert(parentObj.callMyName());
+			alert(subObj.callMyName());
+			*/
+			var form = new $.classes.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
+			form.datasource({text:"测试用窗体"},{
+				text:function(text){
+					this.text(text);
+				}
+			});
+			//form.addListener("actived",function(){alert("test");});
 		});
 	})(jQuery);
 	</script>
