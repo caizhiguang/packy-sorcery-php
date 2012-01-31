@@ -17,7 +17,7 @@
 			//event
 			this.dom.find(".iMini").bind("click",$.proxy(function(){this.hide();},this));
 			this.dom.find(".iClose").bind("click",$.proxy(function(){this.close();},this));
-			this.dom.bind("click",$.proxy(function(){this.onActived()},this));
+			this.dom.bind("click",$.proxy(function(){this.onActived();},this));
 			
 			dom.data("salvia-obj",this);
 			dom.drag({handle:".hd,.menu"});
