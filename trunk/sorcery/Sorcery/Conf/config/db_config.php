@@ -8,7 +8,6 @@ return array(
 	'DB_PWD'=>'123456',
 	'DB_PORT'=>'3306',
 	'DB_PREFIX'=>'pcool_',//表前序
-	'APP_DEBUG'=>true,
 /*============DEBUG===============*/
 	/*'DB_TYPE'=>'mysql',
 	'DB_HOST'=>'localhost',
