@@ -5,23 +5,29 @@
 	/**base(基类)**/
 	$.classes.base = $.salvia.Class({
 		init:function(){
+			this.id = $.md5((new Date()).ToString());
+			this._data = {};
 			this._events = new $.classes.util.events();
 		},
 		binding:function(setting){
-			for(var pro in setting)
-			{
-				if(this._data[pro]==undefined){continue;}
-				if(!$.isFunction(setting[pro])){continue;}
-				setting[pro].apply(this,[this._data[pro]]);
+			if($.isFunction(setting)){
+				setting.apply(this,[this._data]);
+			}else{
+				for(var pro in setting)
+				{
+					if(this._data[pro]==undefined){continue;}
+					if(!$.isFunction(setting[pro])){continue;}
+					setting[pro].apply(this,[this._data[pro]]);
+				}
 			}
 		},
 		datasource:function(datasource,setting){
 			this._data = datasource;
 			if(setting!=undefined){ this.binding(setting); }
 		},
-		addListener:function(key,fun){
+		addListener:function(key,fun,other){
 			if(this._events.contains(key)){return "This has "+key+" listener!";}
-			this._events.add(key,fun);
+			this._events.add(key,fun,this,other);
 		}
 	});
 	

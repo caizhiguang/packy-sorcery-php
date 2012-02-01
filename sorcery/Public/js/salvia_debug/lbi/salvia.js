@@ -204,10 +204,11 @@
 			type:"get",
 			dataType:"text",
 			success:function(data, textStatus){
-				this.packet.Add(name,$(data));
+				this.packets.Add(name,$(data));
 			},
-			packet:packets
+			packets:packets
 		});
+		$(document).data("packets",packets);
 		return packets.Items(name).clone();
 	};
 	
