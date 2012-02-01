@@ -31,11 +31,29 @@ function HashTable(){
 	}
 };
 
+
 ;(function($){
+	/**==Date.extend===================================================================**/
+	$.extend(Date.prototype,{
+		ToString:function(){
+			return this.getFullYear()+"-"+(this.getMonth()+1)+"-"+this.getDate()+" "+this.getHours()+":"+this.getMinutes()+":"+this.getSeconds()+"."+this.getMilliseconds();
+		}
+	});
+	
+	
+	
+	
 	/**==Array.extend===================================================================**/
 	$.extend(Array.prototype,{
-		first: function() {
+		first:function(){
         	return this[0];
+    	},
+    	indexOf:function(item){
+    		for(var i in this)
+    		{
+    			if(item==this[i]){return i;}
+    		}
+    		return -1;
     	}
 	});
 	

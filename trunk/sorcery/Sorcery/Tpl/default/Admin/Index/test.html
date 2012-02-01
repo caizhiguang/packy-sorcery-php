@@ -8,21 +8,28 @@
 {load:__PUBLIC__/css/content.css}
 {load:__PUBLIC__/css/mod.css}
 {load:__PUBLIC__/css/form-test/mod_form.css}
+{load:__PUBLIC__/css/form-test/index.css}
 {load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
+{load:__PUBLIC__/js/plug-in/jquery.md5.js}
 {load:__PUBLIC__/js/plug-in/drag.js}
 {load:__PUBLIC__/js/plug-in/dragdrop.js}
 {load:__PUBLIC__/js/salvia_debug/lbi/extend.js}
 {load:__PUBLIC__/js/salvia_debug/lbi/salvia.js}
 {load:__PUBLIC__/js/salvia_debug/class/util/events.js}
+{load:__PUBLIC__/js/salvia_debug/class/util/formManager.js}
 {load:__PUBLIC__/js/salvia_debug/class/base.js}
-{load:__PUBLIC__/js/salvia_debug/class/form.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/form.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/taskbar.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/list.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/list.item.js}
 {load:__PUBLIC__/js/salvia_debug/config.js}
 {load:__PUBLIC__/js/salvia_debug/init.js}
 </head>
 
 <body>
 	<div id="wrap">
-		
+		<a href="javascript:;" id="newForm">新增窗体</a>
+		<a id="newtalkform" href="javascript:;">新建聊天窗口</a>
 	</div>
 	<script>
 	;(function($){
@@ -68,15 +75,36 @@
 			alert(parentObj.callMyName());
 			alert(subObj.callMyName());
 			*/
-			var form = new $.classes.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
+			/*var form = new $.classes.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
 			form.datasource({text:"测试用窗体"},{
 				text:function(text){
 					this.text(text);
 				}
 			});
+			form.show();*/
 
-			
-			//form.addListener("actived",function(){alert("test");});
+			var ids = 0;
+			var formManager = $.formManager = new $.classes.util.formManager();
+			$("#newForm").click(function(){
+				var form = new $.classes.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
+				formManager.add(form);
+				
+				form.datasource({text:"测试用窗体"+ids},{
+					text:function(text){
+						this.text(text);
+					}
+				});
+				form.show();
+				ids++;
+			});
+
+			var taskbar = new $.classes.taskbar(formManager,"#wrap");
+
+			var list_data = [{name:"1"},{name:"2"},{name:"3"},{name:"4"},{name:"5"}];
+			var list = new $.classes.list($(document.createElement("ul")).appendTo($("#wrap")));
+			list.datasource(list_data,function(data){
+				this.text(data.name);
+			});
 		});
 	})(jQuery);
 	</script>
