@@ -42,6 +42,7 @@
 			$super(datasource);
 			for(var i in datasource)
 			{
+				if($.isFunction(datasource[i])){continue;}
 				var item = this.addItem();
 				item.datasource(datasource[i],setting);
 			}
