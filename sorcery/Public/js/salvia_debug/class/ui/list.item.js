@@ -18,19 +18,15 @@
 			this.hasAvatar(true);
 			this.hasCheckBox(false);
 			
-			this.dom.click($.proxy(function(){this._events.run("click");}));
+			this.dom.click($.proxy(function(){this._events.run("click");},this));
 		},
 		createDOM:function(){
-			var checkbox = document.createElement("input");
-			checkbox.type="checkbox";
-			$(checkbox).attr({
-				id:"checkbox-"+this.id
-			});
+			var checkbox = $(document.createElement("input")).attr({type:"checkbox",id:"checkbox-"+this.id});
 			var dom = $(document.createElement("li")).append(checkbox).append(document.createElement("label"));
 			var avatar = $(document.createElement("span")).addClass("avatar").append(document.createElement("img"));
 			var name = $(document.createElement("span")).addClass("name");
 			dom.find("label").append(avatar).append(name).attr({
-				for:"checkbox-"+this.id
+				'for':"checkbox-"+this.id
 			});
 			return dom;
 		},
@@ -52,16 +48,16 @@
 			if(val==undefined){
 				return this.dom.find("input[type='checkbox']").attr("checked")!=undefined;
 			}else{
-				if(val){
-					this.dom.find(".avatar").removeAttr("checked");
+				if(!val){
+					this.dom.find("input[type='checkbox']").removeAttr("checked");
 				}else{
-					this.dom.find(".avatar").attr("checked",val);
+					this.dom.find("input[type='checkbox']").attr("checked",val);
 				}
 			}
 		},
 		hasCheckBox:function(val){
 			if(val==undefined){
-				return this.dom.attr("data-hasCheckBox");
+				return this.dom.attr("data-hasCheckBox")=="true";
 			}else{
 				this.dom.attr("data-hasCheckBox",val);
 				this.dom.find("input[type='checkbox']").toggle(val);
@@ -69,7 +65,7 @@
 		},
 		hasAvatar:function(val){
 			if(val==undefined){
-				return this.dom.attr("data-hasAvatar");
+				return this.dom.attr("data-hasAvatar")=="true";
 			}else{
 				this.dom.attr("data-hasAvatar",val);
 				this.dom.find(".avatar").toggle(val);

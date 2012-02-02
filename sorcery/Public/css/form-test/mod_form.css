@@ -28,6 +28,7 @@
 .modNewsForm .content .i{ padding:0; vertical-align:text-bottom; }
 .modNewsForm .ft{ padding:0px 10px 10px 10px; text-align:right; }
 
+.modMessageForm{ width:auto; height:auto; }
 .modMessageForm .content{ padding:10px; }
 .modMessageForm .ft{ padding:10px; text-align:center; }
 .modMessageForm .ft input{ margin-left:10px; padding:0 5px; }

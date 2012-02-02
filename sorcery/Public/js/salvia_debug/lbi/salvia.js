@@ -62,7 +62,7 @@
 
         for (var i = 0, length = properties.length; i < length; i++) {
             var property = properties[i], value = source[property];
-            if (ancestor && $.isFunction(value) && value.argumentNames().first() == "$super") {
+            if (ancestor && $.isFunction(value) && value.argumentNames()[0] == "$super") {
                 var method = value;
                 value = (function(m){
                     return function(){return ancestor[m].apply(this, arguments)};

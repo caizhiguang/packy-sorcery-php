@@ -44,7 +44,7 @@ function HashTable(){
 	
 	
 	/**==Array.extend===================================================================**/
-	$.extend(Array.prototype,{
+	/*$.extend(Array.prototype,{
 		first:function(){
         	return this[0];
     	},
@@ -55,7 +55,7 @@ function HashTable(){
     		}
     		return -1;
     	}
-	});
+	});*/
 	
 	
 	
@@ -112,6 +112,30 @@ function HashTable(){
 			var prePath=strFullPath.substring(0,pos);
 			var postPath="";
 			return(prePath+postPath);
+		},
+		list:{
+			add:function(list,item){
+				list.push(item);
+			},
+			remove:function(list,item){
+				return list.splice(this.indexOf(list, item),1);
+			},
+			count:function(list){
+				return list.length;
+			},
+			contains:function(list,item){
+				return this.indexOf(list,item)!=-1;
+			},
+			clear:function(list){
+				list=[];
+			},
+			indexOf:function(list,item){
+				for(var i in list)
+	    		{
+	    			if(item==list[i]){return i;}
+	    		}
+	    		return -1;
+			}
 		}
 	});
 })(jQuery);

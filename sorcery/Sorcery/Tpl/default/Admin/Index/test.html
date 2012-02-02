@@ -18,7 +18,9 @@
 {load:__PUBLIC__/js/salvia_debug/class/util/events.js}
 {load:__PUBLIC__/js/salvia_debug/class/util/formManager.js}
 {load:__PUBLIC__/js/salvia_debug/class/base.js}
+{load:__PUBLIC__/js/salvia_debug/class/base.list.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/form.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/msgbox.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/taskbar.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/list.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/list.item.js}
@@ -30,6 +32,7 @@
 	<div id="wrap">
 		<a href="javascript:;" id="newForm">新增窗体</a>
 		<a id="newtalkform" href="javascript:;">新建聊天窗口</a>
+		<a href="javascript:;" id="msgbox">提示窗口</a>
 	</div>
 	<script>
 	;(function($){
@@ -98,13 +101,24 @@
 				ids++;
 			});
 
+			$("#msgbox").click(function(){
+				var msg = new $.classes.msgbox($.salvia.packet("Form.lbi"));
+				msg.addListener("return",function(result){
+					alert();
+				});
+				msg.show("提示","内容测试测试",["Yes","No"]);
+			});
+
 			var taskbar = new $.classes.taskbar(formManager,"#wrap");
 
 			var list_data = [{name:"1"},{name:"2"},{name:"3"},{name:"4"},{name:"5"}];
 			var list = new $.classes.list($(document.createElement("ul")).appendTo($("#wrap")));
 			list.datasource(list_data,function(data){
+				this.hasCheckBox(true);
 				this.text(data.name);
 			});
+			list.remove(list.items(list.count()-1));
+			list.selectAll();
 		});
 	})(jQuery);
 	</script>
