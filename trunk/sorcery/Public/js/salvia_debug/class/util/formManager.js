@@ -20,7 +20,7 @@
 		remove:function(form){
 			if(!this.forms.Contains(form.id)){return false;}
 			this.forms.Remove(form.id);
-			this._forms.splice(this._forms.indexOf(form),1);
+			this._forms.splice($.list.indexOf(this._forms,form),1);
 			this._events.run("removed",form);
 			return true;
 		},
@@ -66,8 +66,9 @@
 			this.remove(form);
 		},
 		onActived:function(form){
-			if(this._forms.indexOf(form)!=-1){
-				this._forms.splice(this._forms.indexOf(form),1);
+			var index = $.list.indexOf(this._forms,form);
+			if(index!=-1){
+				this._forms.splice(index,1);
 				this._forms.push(form);
 				$.each(this._forms,function(i,n){
 					n.dom.css({zIndex:i});

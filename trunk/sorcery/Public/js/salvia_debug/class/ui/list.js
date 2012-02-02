@@ -2,8 +2,8 @@
 	
 	if($.classes==undefined){ $.classes={}; }
 	
-	/**form(窗体类)**/
-	$.classes.list = $.salvia.Class($.classes.base,{
+	/**list(列表类)**/
+	$.classes.list = $.salvia.Class($.classes.base.list,{
 		init:function($super,dom,attr){
 			$super();
 			if(dom==undefined){return;}
@@ -18,33 +18,46 @@
 				this.dom.attr("data-"+pro,attr[pro]);
 			}
 			this.attr = attr;
-			
-			this.list = [];
 		},
-		addItem:function(attr){
+		add:function($super,attr){
 			var item = new $.classes.list.item(attr);
 			this.dom.append(item.dom);
-			this.list.push(item);
+			$super(item);
 			return item;
 		},
-		removeItem:function(id){
-			var item = '';
+		remove:function($super,item){
 			var removeIndex = -1;
-			for(var i in this.list)
-			{
-				if(this.list[i].id==id){item=this.list[i];removeIndex = i;}
-			}
-			if(item==''){return false;}
-			this.list.splice(removeIndex,1);
 			item.dom.remove();
+			return $super(item);
 		},
 		datasource:function($super,datasource,setting){
 			$super(datasource);
 			for(var i in datasource)
 			{
 				if($.isFunction(datasource[i])){continue;}
-				var item = this.addItem();
+				var item = this.add();
 				item.datasource(datasource[i],setting);
+			}
+		},
+		selectAll:function(){
+			for(var i in this.list)
+			{
+				if(!this.list[i].hasCheckBox()){continue;}
+				this.list[i].checked(true);
+			}
+		},
+		selectInvert:function(){
+			for(var i in this.list)
+			{
+				if(!this.list[i].hasCheckBox()){continue;}
+				this.list[i].checked(!this.list[i].checked());
+			}
+		},
+		selectNone:function(){
+			for(var i in this.list)
+			{
+				if(!this.list[i].hasCheckBox()){continue;}
+				this.list[i].checked(false);
 			}
 		}
 	});
