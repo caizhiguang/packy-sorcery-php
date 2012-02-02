@@ -11,6 +11,7 @@
 {load:__PUBLIC__/css/form-test/index.css}
 {load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
 {load:__PUBLIC__/js/plug-in/jquery.md5.js}
+{load:__PUBLIC__/js/plug-in/jquery.xml2json.js}
 {load:__PUBLIC__/js/plug-in/drag.js}
 {load:__PUBLIC__/js/plug-in/dragdrop.js}
 {load:__PUBLIC__/js/salvia_debug/lbi/extend.js}
@@ -19,6 +20,7 @@
 {load:__PUBLIC__/js/salvia_debug/class/util/formManager.js}
 {load:__PUBLIC__/js/salvia_debug/class/base.js}
 {load:__PUBLIC__/js/salvia_debug/class/base.list.js}
+{load:__PUBLIC__/js/salvia_debug/class/mvc/mode.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/form.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/msgbox.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/taskbar.js}
@@ -33,6 +35,8 @@
 		<a href="javascript:;" id="newForm">新增窗体</a>
 		<a id="newtalkform" href="javascript:;">新建聊天窗口</a>
 		<a href="javascript:;" id="msgbox">提示窗口</a>
+		
+		<div id="ajaxLoad"></div>
 	</div>
 	<script>
 	;(function($){
@@ -119,6 +123,24 @@
 			});
 			list.remove(list.items(list.count()-1));
 			list.selectAll();
+
+			var mode = new $.classes.mvc.mode({
+				url:"/Index/test_data/",
+				dataType:"json"
+			},{
+				data:function(data){
+					$.list.remove(data,data[0]);
+					return data
+				}
+			});
+			mode.addListener("success",function(m){
+				/*for(var i in m.f_data){
+					$("#ajaxLoad").append();
+				}*/
+				$(document).data("data111",m);
+			});
+			mode.load();
+			
 		});
 	})(jQuery);
 	</script>
