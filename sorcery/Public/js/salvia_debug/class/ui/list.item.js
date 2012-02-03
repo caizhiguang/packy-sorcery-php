@@ -1,9 +1,10 @@
 ;(function(){
 	
 	if($.classes==undefined){ $.classes={}; }
+	if($.classes.ui==undefined){ $.classes.ui={}; }
 	
 	/**form(窗体类)**/
-	$.classes.list.item = $.salvia.Class($.classes.base,{
+	$.classes.ui.list.item = $.salvia.Class($.classes.ui.base,{
 		init:function($super,attr){
 			$super();
 			this.dom = this.createDOM();

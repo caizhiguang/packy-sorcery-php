@@ -1,9 +1,10 @@
 ;(function(){
 	
 	if($.classes==undefined){ $.classes={}; }
+	if($.classes.ui==undefined){ $.classes.ui={}; }
 	
 	/**list(列表类)**/
-	$.classes.list = $.salvia.Class($.classes.base.list,{
+	$.classes.ui.list = $.salvia.Class($.classes.ui.base.list,{
 		init:function($super,dom,attr){
 			$super();
 			if(dom==undefined){return;}
@@ -20,7 +21,7 @@
 			this.attr = attr;
 		},
 		add:function($super,attr){
-			var item = new $.classes.list.item(attr);
+			var item = new $.classes.ui.list.item(attr);
 			this.dom.append(item.dom);
 			$super(item);
 			return item;

@@ -1,9 +1,10 @@
 ;(function(){
 	
 	if($.classes==undefined){ $.classes={}; }
+	if($.classes.ui==undefined){ $.classes.ui={}; }
 	
 	/**taskbar(任务栏)**/
-	$.classes.taskbar = $.salvia.Class($.classes.base,{
+	$.classes.ui.taskbar = $.salvia.Class($.classes.ui.base,{
 		init:function($super,formManager,parent){
 			$super();
 			this.dom = $(document.createElement("div")).attr("id","TaskBar").appendTo(parent==undefined?document.body:$(parent));
