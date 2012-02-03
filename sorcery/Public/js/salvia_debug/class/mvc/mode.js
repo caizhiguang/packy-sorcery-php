@@ -14,9 +14,10 @@
 				context:this,//所有方法作用域指向当前对像
 				dataFilter:function(data,type){
 					switch(type){
-						case "json":
 						case "xml":
 							return $.xml2json(data);//xml转换成json
+						default:
+							return data;
 					}
 				},
 				complete:function(XMLHttpRequest, textStatus){
@@ -28,9 +29,9 @@
 					this.onError(XMLHttpRequest, textStatus, errorThrown);
 				},
 				success:function(data){
-					this.data = data;
+					this.datasource(data);
 					this.tofilter();
-					this._events.run("success",this);
+					this._events.run("success",this,this.returnData);
 					this.onSuccess(data);
 				}
 			};
@@ -52,12 +53,13 @@
 		 **/
 		tofilter:function(){
 			if(this.filter==undefined){return;}
-			for(var pro in this.data){
-				var prefix = "f_";//默认前缀是'f_'
+			this.returnData = {};
+			for(var pro in this._data){
+				var prefix = "";//默认前缀是''
 				/*if(!$.isFunction(this.filter[prefix+pro])){//如果过滤器不是方法则直接赋值到当前mode类
 					if($.isEmptyObject(this.filter[pro])||this.filter[pro]==""){
-						if(this.data[pro]==undefined){continue;};
-						this[pro]=$.extend($.isArray(this.data[pro])?[]:{},this.data[pro]);
+						if(this._data[pro]==undefined){continue;};
+						this[pro]=$.extend($.isArray(this._data[pro])?[]:{},this._data[pro]);
 					}else{
 						this[pro]=this.filter[pro];
 					};
@@ -65,9 +67,9 @@
 				}*/
 				if(this.filter[pro]!=undefined){
 					if(!$.isFunction(this.filter[pro])){continue;}
-					this[prefix+pro]=this.filter[pro].apply(this,[$.extend({},this.data)]);//过滤器是方法时，运行其方法取得值并赋予当前mode类
+					this.returnData[prefix+pro]=this.filter[pro].apply(this,[$.extend(true,{},this._data)]);//过滤器是方法时，运行其方法取得值并赋予当前mode类
 				}else{
-					this[prefix+pro]=this.data[pro];
+					this.returnData[prefix+pro]=this._data[pro];
 				}
 			}
 		},
