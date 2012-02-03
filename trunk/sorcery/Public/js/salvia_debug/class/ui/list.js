@@ -4,7 +4,7 @@
 	if($.classes.ui==undefined){ $.classes.ui={}; }
 	
 	/**list(列表类)**/
-	$.classes.ui.list = $.salvia.Class($.classes.ui.base.list,{
+	$.classes.ui.list = $.salvia.Class($.classes.base.list,{
 		init:function($super,dom,attr){
 			$super();
 			if(dom==undefined){return;}
