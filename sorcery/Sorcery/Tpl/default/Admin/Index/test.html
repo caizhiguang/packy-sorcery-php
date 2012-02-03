@@ -21,6 +21,7 @@
 {load:__PUBLIC__/js/salvia_debug/class/base.js}
 {load:__PUBLIC__/js/salvia_debug/class/base.list.js}
 {load:__PUBLIC__/js/salvia_debug/class/mvc/mode.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/base.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/form.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/msgbox.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/taskbar.js}
@@ -82,7 +83,7 @@
 			alert(parentObj.callMyName());
 			alert(subObj.callMyName());
 			*/
-			/*var form = new $.classes.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
+			/*var form = new $.classes.ui.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
 			form.datasource({text:"测试用窗体"},{
 				text:function(text){
 					this.text(text);
@@ -93,7 +94,7 @@
 			var ids = 0;
 			var formManager = $.formManager = new $.classes.util.formManager();
 			$("#newForm").click(function(){
-				var form = new $.classes.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
+				var form = new $.classes.ui.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
 				formManager.add(form);
 				
 				form.datasource({text:"测试用窗体"+ids},{
@@ -106,17 +107,17 @@
 			});
 
 			$("#msgbox").click(function(){
-				var msg = new $.classes.msgbox($.salvia.packet("Form.lbi"));
+				var msg = new $.classes.ui.msgbox($.salvia.packet("Form.lbi"));
 				msg.addListener("return",function(result){
 					alert();
 				});
 				msg.show("提示","内容测试测试",["Yes","No"]);
 			});
 
-			var taskbar = new $.classes.taskbar(formManager,"#wrap");
+			var taskbar = new $.classes.ui.taskbar(formManager,"#wrap");
 
 			var list_data = [{name:"1"},{name:"2"},{name:"3"},{name:"4"},{name:"5"}];
-			var list = new $.classes.list($(document.createElement("ul")).appendTo($("#wrap")));
+			var list = new $.classes.ui.list($(document.createElement("ul")).appendTo($("#wrap")));
 			list.datasource(list_data,function(data){
 				this.hasCheckBox(true);
 				this.text(data.name);
