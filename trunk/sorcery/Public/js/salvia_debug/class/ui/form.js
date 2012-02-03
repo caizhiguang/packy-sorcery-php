@@ -1,9 +1,10 @@
 ;(function(){
 	
 	if($.classes==undefined){ $.classes={}; }
+	if($.classes.ui==undefined){ $.classes.ui={}; }
 	
 	/**form(窗体类)**/
-	$.classes.form = $.salvia.Class($.classes.base,{
+	$.classes.ui.form = $.salvia.Class($.classes.ui.base,{
 		init:function($super,dom,attr){
 			$super();
 			if(dom==undefined){return;}

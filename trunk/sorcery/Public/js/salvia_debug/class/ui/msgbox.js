@@ -1,9 +1,10 @@
 ;(function(){
 	
 	if($.classes==undefined){ $.classes={}; }
+	if($.classes.ui==undefined){ $.classes.ui={}; }
 	
 	/**msgbox(信息提示窗体)**/
-	$.classes.msgbox = $.salvia.Class($.classes.form,{
+	$.classes.ui.msgbox = $.salvia.Class($.classes.ui.form,{
 		init:function($super,dom,attr){
 			this.screen = $("#Screen").length!=0?$("#Screen"):$(document.createElement("div")).append(document.createElement("iframe"));
 			this.screen.attr({id:"Screen"}).css({
