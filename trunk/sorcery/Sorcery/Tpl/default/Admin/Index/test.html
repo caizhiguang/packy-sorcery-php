@@ -11,7 +11,7 @@
 {load:__PUBLIC__/css/form-test/index.css}
 {load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
 {load:__PUBLIC__/js/plug-in/jquery.md5.js}
-{load:__PUBLIC__/js/plug-in/jquery.xml2json.js}
+{load:__PUBLIC__/js/plug-in/jquery.xml2json.pack.js}
 {load:__PUBLIC__/js/plug-in/drag.js}
 {load:__PUBLIC__/js/plug-in/dragdrop.js}
 {load:__PUBLIC__/js/salvia_debug/lbi/extend.js}
@@ -129,18 +129,20 @@
 				dataType:"json"
 			},{
 				data:function(data){
-					$.list.remove(data,data[0]);
-					return data
+					$.list.remove(data.data.data,data.data.data[0]);
+					return data.data;
 				}
 			});
-			mode.addListener("success",function(m){
+			var d = {d:1};
+			mode.addListener("success",function(e,m,returndata){
 				/*for(var i in m.f_data){
 					$("#ajaxLoad").append();
 				}*/
-				$(document).data("data111",m);
-			});
+				$(document).data("data111",returndata);
+				e.other.f = m;
+			},d);
 			mode.load();
-			
+			$(document).data("data222",d);
 		});
 	})(jQuery);
 	</script>
