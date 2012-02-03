@@ -10,6 +10,7 @@
 			if(dom==undefined){return;}
 			//default setting
 			this.dom = dom;
+			if(options==undefined){return;}
 			//css
 			if(options["css"]!=undefined){this.onCssChanged(options.css);}
 			//attr
