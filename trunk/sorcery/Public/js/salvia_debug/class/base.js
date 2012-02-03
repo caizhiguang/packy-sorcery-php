@@ -24,11 +24,13 @@
 		datasource:function(datasource,setting){
 			this._data = datasource;
 			if(setting!=undefined){ this.binding(setting); }
+			this.onDatasource(datasource);
 		},
 		addListener:function(key,fun,other){
 			if(this._events.contains(key)){return "This has "+key+" listener!";}
 			this._events.add(key,fun,this,other);
-		}
+		},
+		onDatasource:function(datasource){}
 	});
 	
 })(jQuery);
