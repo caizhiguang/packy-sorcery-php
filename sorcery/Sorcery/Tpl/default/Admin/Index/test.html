@@ -29,6 +29,13 @@
 {load:__PUBLIC__/js/salvia_debug/class/ui/list.item.js}
 {load:__PUBLIC__/js/salvia_debug/config.js}
 {load:__PUBLIC__/js/salvia_debug/init.js}
+
+<!-- TalkCenter -->
+{load:__PUBLIC__/js/TalkCenter/class/ui/talkForm.js}
+{load:__PUBLIC__/js/TalkCenter/class/ui/talkForm.talkInforList.js}
+<style type="text/css">
+a{cursor: pointer;}
+</style>
 </head>
 
 <body>
@@ -38,6 +45,45 @@
 		<a href="javascript:;" id="msgbox">提示窗口</a>
 		
 		<div id="ajaxLoad"></div>
+		
+		<div id="talkForm">
+			<div id="talkInforList">
+				<a class="btnAdd">添加言论</a>
+				<a class="btnRemove">删除言论</a>
+				<div class="infores"></div>
+				<script type="text/javascript">
+				;(function($){
+					var talkInforList = new $.classes.ui.talkForm.talkInforList($("#talkInforList>.infores"));
+					$("#talkInforList>.btnAdd").click(function(){
+						var talkInfor = new $.classes.ui.base($.salvia.packet("TalkInfo.lbi"));
+						talkInfor.datasource({name:"packy",time:(new Date()).ToString(),content:"233"},
+						{name:function(name){
+							this.dom.find(".name").text(name);
+						},
+						time:function(time){
+							this.dom.find(".time").text(time);
+						},
+						content:function(content){
+							this.dom.find(".message").text(this.id);
+						}});
+						talkInforList.add(talkInfor);
+					});
+					$("#talkInforList>.btnRemove").click(function(){
+						talkInforList.remove(talkInforList.items(0));
+					});
+				})(jQuery)
+				</script>
+			</div>
+			<a id="btnAddTalkForm">添加聊天窗体</a>
+			<script type="text/javascript">
+				;(function($){
+					$("#btnAddTalkForm").click(function(){
+						var talkForm = new $.classes.ui.talkForm($.salvia.packet("TalkForm.lbi").appendTo("#talkForm"));
+						talkForm.show();
+					});
+				})(jQuery)
+				</script>
+		</div>
 	</div>
 	<script>
 	;(function($){
@@ -109,7 +155,7 @@
 			$("#msgbox").click(function(){
 				var msg = new $.classes.ui.msgbox($.salvia.packet("Form.lbi"));
 				msg.addListener("return",function(result){
-					alert();
+					//alert();
 				});
 				msg.show("提示","内容测试测试",["Yes","No"]);
 			});
