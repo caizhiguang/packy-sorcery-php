@@ -47,15 +47,53 @@ a{cursor: pointer;}
 		<div id="ajaxLoad"></div>
 		
 		<div id="talkForm">
+			<a id="btnAddTalkForm">添加聊天窗体</a>
+			<script type="text/javascript">
+				var talkForms = [];
+				;(function($){
+					$("#btnAddTalkForm").click(function(){
+						var talkForm = new $.classes.ui.talkForm($.salvia.packet("TalkForm.lbi").appendTo("#talkForm"));
+						talkForm.datasource({name:"聊天窗口"+talkForms.length},{name:function(name){this.text(name);}});
+						talkForm.show();
+						$.list.add(talkForms,talkForm);
+					});
+				})(jQuery)
+			</script>
 			<div id="talkInforList">
 				<a class="btnAdd">添加言论</a>
+				<a class="btnAddMe">添加本人言论</a>
 				<a class="btnRemove">删除言论</a>
 				<div class="infores"></div>
 				<script type="text/javascript">
 				;(function($){
-					var talkInforList = new $.classes.ui.talkForm.talkInforList($("#talkInforList>.infores"));
-					$("#talkInforList>.btnAdd").click(function(){
-						var talkInfor = new $.classes.ui.base($.salvia.packet("TalkInfo.lbi"));
+					//var talkInforList = new $.classes.ui.talkForm.talkInforList($("#talkInforList>.infores"));
+					$("#talkInforList .btnAddMe").click(function(){
+						var talkForm = talkForms[talkForms.length-1];
+						talkForm.addMeTalking({name:"packy",time:(new Date()).ToString(),content:"233"},
+						{name:function(name){
+							this.dom.find(".name").text(name);
+						},
+						time:function(time){
+							this.dom.find(".time").text(time);
+						},
+						content:function(content){
+							this.dom.find(".message").text(this.id);
+						}});
+					});
+					$("#talkInforList .btnAdd").click(function(){
+						var talkForm = talkForms[talkForms.length-1];
+						talkForm.addTalking({name:"packy",time:(new Date()).ToString(),content:"233"},
+						{name:function(name){
+							this.dom.find(".name").text(name);
+						},
+						time:function(time){
+							this.dom.find(".time").text(time);
+						},
+						content:function(content){
+							this.dom.find(".message").text(this.id);
+						}});
+						
+						/*var talkInfor = new $.classes.ui.base($.salvia.packet("TalkInfo.lbi"));
 						talkInfor.datasource({name:"packy",time:(new Date()).ToString(),content:"233"},
 						{name:function(name){
 							this.dom.find(".name").text(name);
@@ -66,23 +104,15 @@ a{cursor: pointer;}
 						content:function(content){
 							this.dom.find(".message").text(this.id);
 						}});
-						talkInforList.add(talkInfor);
+						talkInforList.add(talkInfor);*/
 					});
-					$("#talkInforList>.btnRemove").click(function(){
+					$("#talkInforList .btnRemove").click(function(){
+						var talkInforList = (talkForms[talkForms.length-1]).TalkInforList;
 						talkInforList.remove(talkInforList.items(0));
 					});
 				})(jQuery)
 				</script>
 			</div>
-			<a id="btnAddTalkForm">添加聊天窗体</a>
-			<script type="text/javascript">
-				;(function($){
-					$("#btnAddTalkForm").click(function(){
-						var talkForm = new $.classes.ui.talkForm($.salvia.packet("TalkForm.lbi").appendTo("#talkForm"));
-						talkForm.show();
-					});
-				})(jQuery)
-				</script>
 		</div>
 	</div>
 	<script>
