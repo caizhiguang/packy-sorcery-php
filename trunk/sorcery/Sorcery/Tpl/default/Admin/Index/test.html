@@ -33,6 +33,7 @@
 <!-- TalkCenter -->
 {load:__PUBLIC__/js/TalkCenter/class/ui/talkForm.js}
 {load:__PUBLIC__/js/TalkCenter/class/ui/talkForm.talkInforList.js}
+{load:__PUBLIC__/js/TalkCenter/class/ui/talkCenter.js}
 <style type="text/css">
 a{cursor: pointer;}
 </style>
@@ -114,6 +115,52 @@ a{cursor: pointer;}
 				</script>
 			</div>
 		</div>
+		
+		<div id="pnlTalkCenter">
+			<a id="btnTalkCenter" href="javascript:;">打开聊天中心</a>
+			<script>
+				(function($){
+					$("#btnTalkCenter").click(function(){
+						$.TalkCenter = new $.classes.ui.talkCenter($.salvia.packet("TalkCenter.lbi").appendTo("#pnlTalkCenter"));
+						$.TalkCenter.show();
+						$.TalkCenter.datasource({
+								name:"233小姐",
+								friends:[
+								    {
+									    id:0,
+									    name:"gb2312",
+									    avatar:"1"
+									},
+									{
+									    id:1,
+									    name:"B君",
+									    avatar:"1"
+									},
+									{
+									    id:2,
+									    name:"A君",
+									    avatar:"1"
+									},
+								]
+							},
+							{
+								name:function(name){
+									this.text(name);
+								},
+								friends:function(friends){
+									for(var i in friends){
+										var friend = this.addContact({},"friend");
+										friend.datasource(friends[i],{name:function(name){this.text(name);}});
+									}
+								}
+							}
+							);
+					});
+				})(jQuery);
+			</script>
+		</div>
+		
+		
 	</div>
 	<script>
 	;(function($){

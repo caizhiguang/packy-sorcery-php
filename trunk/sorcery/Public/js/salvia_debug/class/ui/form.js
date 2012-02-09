@@ -48,6 +48,16 @@
 				this.dom.attr("data-actived",actived);
 			}
 		},
+		inTaskBar:function(inBar){
+			if(inBar==undefined){
+				return this.dom.attr("data-inTaskBar");
+			}else{
+				this.dom.attr("data-inTaskBar",inTaskBar);
+			}
+		},
+		isShow:function(){
+			return this.dom.css("display")!="none";
+		},
 		show:function(){
 			this.dom.show();
 			this.onActived();
