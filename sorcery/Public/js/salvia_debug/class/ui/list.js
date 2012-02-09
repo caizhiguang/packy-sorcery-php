@@ -12,7 +12,7 @@
 			this.dom = dom;
 			
 			//attr
-			this.dom.attr("data-id",this._id);
+			this.dom.attr("data-id",this.id);
 			if(attr==undefined){attr={};}
 			for(var pro in attr)
 			{
