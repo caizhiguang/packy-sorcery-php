@@ -31,3 +31,5 @@ h6{font-size:10px;}
 
 li p{ margin:0; }
 p{margin:10px 0;}
+
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block}//html5兼容
