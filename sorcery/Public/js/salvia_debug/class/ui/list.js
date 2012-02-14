@@ -21,7 +21,7 @@
 			this.attr = attr;
 		},
 		add:function($super,attr){
-			var item = new $.classes.ui.list.item(parent,attr);
+			var item = new $.classes.ui.list.item(this.dom,attr);
 			this.dom.append(item.dom);
 			$super(item);
 			return item;
