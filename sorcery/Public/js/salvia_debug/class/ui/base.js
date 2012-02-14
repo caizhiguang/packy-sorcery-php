@@ -21,14 +21,6 @@
 		},
 		onAttrChanged:function(attr){
 			this.dom.attr(attr);
-		},
-		destruct:function(){
-			//自销毁
-			for(var i in this)
-			{
-				this[i] = null;
-				delete this[i]
-			}
 		}
 	});
 	
