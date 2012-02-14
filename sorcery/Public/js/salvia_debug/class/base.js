@@ -36,6 +36,7 @@
 			//自销毁
 			for(var i in this)
 			{
+				if(this[i]["destruct"]!=undefined){this[i].destruct();}				
 				this[i] = null;
 				delete this[i]
 			}
