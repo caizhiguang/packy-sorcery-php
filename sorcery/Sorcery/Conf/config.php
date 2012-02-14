@@ -1,6 +1,6 @@
 <?php
 $db_config = require dirname(__FILE__).'/config/db_config.php';
-$sorcery_config = require dirname(__FILE__).'/config/sorcery-config.php';
+$sorcery_config = require dirname(__FILE__).'/config/sorcery_config.php';
 $config = array_merge($db_config,$sorcery_config);
 
 $config['URL']=array(
