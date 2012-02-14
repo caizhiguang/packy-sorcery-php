@@ -30,7 +30,16 @@
 			if(this._events.contains(key)){return "This has "+key+" listener!";}
 			this._events.add(key,fun,this,other);
 		},
-		onDatasource:function(datasource){}
+		onDatasource:function(datasource){},
+		
+		destruct:function(){
+			//自销毁
+			for(var i in this)
+			{
+				this[i] = null;
+				delete this[i]
+			}
+		}
 	});
 	
 })(jQuery);
