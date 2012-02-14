@@ -42,8 +42,9 @@
 		 @returns {void} 无
 		 @author Packy
 		 **/
-		load:function(){
+		load:function(data){
 			var options = $.extend({},this.options);
+			options.data = data;
 			$.ajax(options);
 		},
 		/**

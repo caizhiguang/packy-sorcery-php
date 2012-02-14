@@ -30,7 +30,16 @@
 			this.list=[];
 		},
 		onAdded:function(item){},
-		onRemoved:function(item){}
+		onRemoved:function(item){},
+		
+		destruct:function($super){
+			for(var i in this.list)
+			{
+				if(this.list[i]["destruct"]==undefined){continue;}
+				this.list[i].destruct();
+			}
+			$super();
+		}
 	});
 	
 })(jQuery);
