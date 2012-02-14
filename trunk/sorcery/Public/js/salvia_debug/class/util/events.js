@@ -16,6 +16,7 @@
 			return true;
 		},
 		remove:function(key){
+			this.hashtable[key]=null;
 			return delete (this.hashtable[key]);
 		},
 		contains:function(key){
@@ -35,7 +36,7 @@
 			return i;
 		},
 		clear:function(){
-			for (var k in this.hashtable){ delete this.hashtable[k]; }
+			for (var k in this.hashtable){ this.hashtable[k]=null; delete this.hashtable[k]; }
 			return true;
 		}
 	});

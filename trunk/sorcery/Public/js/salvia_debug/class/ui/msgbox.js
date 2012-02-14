@@ -6,8 +6,8 @@
 	/**msgbox(信息提示窗体)**/
 	$.classes.ui.msgbox = $.salvia.Class($.classes.ui.form,{
 		init:function($super,dom,attr){
-			this.screen = $("#Screen").length!=0?$("#Screen"):$(document.createElement("div")).append(document.createElement("iframe"));
-			this.screen.attr({id:"Screen"}).css({
+			this.screen = $("#Screen").length!=0?$("#Screen"):$(document.createElement("div")));
+			this.screen.appendTo(document.body).append(document.createElement("iframe").attr({id:"Screen"}).css({
 				width:$(window).width(),
 				height:$(window).height(),
 				zIndex:"998",
@@ -21,7 +21,7 @@
 			});
 			
 			if(dom==undefined){return;}
-			this.screen.append(dom).appendTo(document.body).hide();
+			this.screen.append(dom).hide();
 			$super(dom,attr);
 			this.createButton();
 			this.dom.addClass("modMessageForm").css({
@@ -55,6 +55,7 @@
 				this._events.run("return","Cancel");
 				this.close();
 			},this));
+			btn = null;
 		},
 		show:function($super,title,content,buttons){
 			this.text(title);
