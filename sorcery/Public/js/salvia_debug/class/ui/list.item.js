@@ -5,9 +5,9 @@
 	
 	/**form(窗体类)**/
 	$.classes.ui.list.item = $.salvia.Class($.classes.ui.base,{
-		init:function($super,attr){
+		init:function($super,parent,attr){
 			$super();
-			this.dom = this.createDOM();
+			this.dom = this.createDOM(parent);
 			//attr
 			this.dom.attr("data-id",this.id);
 			if(attr==undefined){attr={};}
@@ -21,9 +21,9 @@
 			
 			this.dom.click($.proxy(function(){this._events.run("click");},this));
 		},
-		createDOM:function(){
+		createDOM:function(parent){
 			var checkbox = $(document.createElement("input")).attr({type:"checkbox",id:"checkbox-"+this.id});
-			var dom = $(document.createElement("li")).append(checkbox).append(document.createElement("label"));
+			var dom = $(document.createElement("li")).appendTo(parent).append(checkbox).append(document.createElement("label"));
 			var avatar = $(document.createElement("span")).addClass("avatar").append(document.createElement("img"));
 			var name = $(document.createElement("span")).addClass("name");
 			dom.find("label").append(avatar).append(name).attr({

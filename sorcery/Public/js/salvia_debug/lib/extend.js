@@ -3,13 +3,14 @@ function HashTable(){
 	this._hashtable = new Object();
 	if (typeof (_hashtable_initialized) == "undefined") {
 		HashTable.prototype.Add = function(key, value) {
-		if (key in this._hashtable) {
-			return false;
-		}
-		this._hashtable[key] = value;
+			if (key in this._hashtable) {
+				return false;
+			}
+			this._hashtable[key] = value;
 			return true;
 		}
 		HashTable.prototype.Remove = function(key) {
+			this._hashtable[key] = null;
 			return delete (this._hashtable[key]);
 		}
 		HashTable.prototype.Count = function() {

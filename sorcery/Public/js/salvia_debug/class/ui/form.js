@@ -69,6 +69,10 @@
 		close:function(){
 			this.dom.remove();
 			this._events.run("closed",this);
+			
+			//关闭后销毁对象
+			this.destruct();//销毁
+			if(CollectGarbage){CollectGarbage();}//只适用于IE系列，用于释放内存
 		},
 		onActived:function(){
 			this.actived(true);
