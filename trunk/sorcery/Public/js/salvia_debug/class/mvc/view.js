@@ -1,4 +1,4 @@
-;(function(){
+;(function($){
 	
 	if($.classes==undefined){ $.classes={}; }
 	if($.classes.mvc==undefined){ $.classes.mvc={}; }

@@ -1,4 +1,4 @@
-;(function(){
+;(function($){
 	
 	if($.classes==undefined){ $.classes={}; }
 	if($.classes.ui==undefined){ $.classes.ui={}; }
@@ -72,7 +72,11 @@
 			
 			//关闭后销毁对象
 			this.destruct();//销毁
-			if(CollectGarbage){CollectGarbage();}//只适用于IE系列，用于释放内存
+			try{
+				CollectGarbage();//只适用于IE系列，用于释放内存
+			}catch(e){
+				
+			}
 		},
 		onActived:function(){
 			this.actived(true);
