@@ -1,4 +1,4 @@
-;(function(){
+;(function($){
 	
 	if($.classes==undefined){ $.classes={}; }
 	if($.classes.mvc==undefined){ $.classes.mvc={}; }
@@ -31,7 +31,7 @@
 				success:function(data){
 					this.datasource(data);
 					this.tofilter();
-					this._events.run("success",this,this.returnData);
+					this._events.run("success",this,this.returnData==undefined?data:this.returnData);
 					this.onSuccess(data);
 				}
 			};

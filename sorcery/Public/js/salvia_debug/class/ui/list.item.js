@@ -1,4 +1,4 @@
-;(function(){
+;(function($){
 	
 	if($.classes==undefined){ $.classes={}; }
 	if($.classes.ui==undefined){ $.classes.ui={}; }
@@ -19,7 +19,7 @@
 			this.hasAvatar(true);
 			this.hasCheckBox(false);
 			
-			this.dom.click($.proxy(function(){this._events.run("click");},this));
+			this.dom.bind("click",this,function(e){e.data._events.run("click");return false;});
 		},
 		createDOM:function(parent){
 			var checkbox = $(document.createElement("input")).attr({type:"checkbox",id:"checkbox-"+this.id});
