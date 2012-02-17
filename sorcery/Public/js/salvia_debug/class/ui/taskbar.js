@@ -22,13 +22,13 @@
 			itemDom.attr({
 				"data-for":form.id,
 				"href":"javascript:;"
-			}).text(form.text()).click(function(){
+			}).click(function(){
 				if($(this).data("form-obj").actived()=="true"){
 					$(this).data("form-obj").hide();
 				}else{
 					$(this).data("form-obj").show();
 				}
-			});
+			}).text(form.text());
 			itemDom.data("form-obj",form);
 			this.list.push(itemDom);
 			this.dom.append(itemDom);
