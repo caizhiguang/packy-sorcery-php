@@ -6,8 +6,8 @@
 	/**msgbox(信息提示窗体)**/
 	$.classes.ui.msgbox = $.salvia.Class($.classes.ui.form,{
 		init:function($super,dom,attr){
-			this.screen = $("#Screen").length!=0?$("#Screen"):$(document.createElement("div"));
-			this.screen.appendTo(document.body).append(document.createElement("iframe").attr({id:"Screen"})).css({
+			this.screen = $("#Screen").length!=0?$("#Screen"):$(document.createElement("div")).appendTo(document.body).append($(document.createElement("iframe")));
+			this.screen.attr({id:"Screen"}).css({
 				width:$(window).width(),
 				height:$(window).height(),
 				zIndex:"998",
