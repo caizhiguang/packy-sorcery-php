@@ -56,22 +56,19 @@
 		tofilter:function(){
 			if(this.filter==undefined){return;}
 			this.returnData = {};
-			for(var pro in this._data){
-				var prefix = "";//默认前缀是''
-				/*if(!$.isFunction(this.filter[prefix+pro])){//如果过滤器不是方法则直接赋值到当前mode类
-					if($.isEmptyObject(this.filter[pro])||this.filter[pro]==""){
-						if(this._data[pro]==undefined){continue;};
-						this[pro]=$.extend($.isArray(this._data[pro])?[]:{},this._data[pro]);
+			
+			if($.isFunction(this.filter))
+			{
+				this.returnData = this.filter.call(this,$.extend(true,{},this._data));
+			}else{
+				for(var pro in this._data){
+					var prefix = "";//默认前缀是''
+					if(this.filter[pro]!=undefined){
+						if(!$.isFunction(this.filter[pro])){continue;}
+						this.returnData[prefix+pro]=this.filter[pro].apply(this,[$.extend(true,{},this._data)]);//过滤器是方法时，运行其方法取得值并赋予当前mode类
 					}else{
-						this[pro]=this.filter[pro];
-					};
-					continue;
-				}*/
-				if(this.filter[pro]!=undefined){
-					if(!$.isFunction(this.filter[pro])){continue;}
-					this.returnData[prefix+pro]=this.filter[pro].apply(this,[$.extend(true,{},this._data)]);//过滤器是方法时，运行其方法取得值并赋予当前mode类
-				}else{
-					this.returnData[prefix+pro]=this._data[pro];
+						this.returnData[prefix+pro]=this._data[pro];
+					}
 				}
 			}
 		},

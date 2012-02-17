@@ -27,6 +27,7 @@
 {load:__PUBLIC__/js/salvia_debug/class/ui/taskbar.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/list.js}
 {load:__PUBLIC__/js/salvia_debug/class/ui/list.item.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/menu.js}
 {load:__PUBLIC__/js/salvia_debug/config.js}
 {load:__PUBLIC__/js/salvia_debug/init.js}
 
@@ -36,12 +37,19 @@
 {load:__PUBLIC__/js/TalkCenter/class/ui/talkCenter.js}
 <style type="text/css">
 a{cursor: pointer;}
+html{ filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); }
+body {filter: gray;}
+
+#menuPlane{ padding:5px; border:#ddd solid 1px; }
+#menuPlane label{ padding:5px; display:block; }
+#menuPlane label:hover{ background: #f5f5f5; }
 </style>
 </head>
 
 <body>
 	<div id="wrap">
 		{search action="index"}{/search}
+		<!-- <img src="__PUBLIC__/images/icon.png" /> -->
 	
 		<a href="javascript:;" id="newForm">新增窗体</a>
 		<a id="newtalkform" href="javascript:;">新建聊天窗口</a>
@@ -167,6 +175,8 @@ a{cursor: pointer;}
 	<script>
 	;(function($){
 		$(document).ready(function(){
+			
+			
 			/*
 			var d = new Object();
 			d.a="a";
@@ -241,14 +251,7 @@ a{cursor: pointer;}
 
 			var taskbar = new $.classes.ui.taskbar(formManager,"#wrap");
 
-			var list_data = [{name:"1"},{name:"2"},{name:"3"},{name:"4"},{name:"5"}];
-			var list = new $.classes.ui.list($(document.createElement("ul")).appendTo($("#wrap")));
-			list.datasource(list_data,function(data){
-				this.hasCheckBox(true);
-				this.text(data.name);
-			});
-			list.remove(list.items(list.count()-1));
-			list.selectAll();
+			
 
 			var mode = new $.classes.mvc.mode({
 				url:"/Index/test_data/",
@@ -269,6 +272,28 @@ a{cursor: pointer;}
 			},d);
 			mode.load();
 			$(document).data("data222",d);
+
+
+			
+			var list_data = [{name:"加为好友"},{name:"加关注"},{name:"3"},{name:"4"},{name:"5"}];
+			var list = new $.classes.ui.list($(document.createElement("ul")).appendTo($("#wrap")));
+			list.datasource(list_data,function(data){
+				//this.hasCheckBox(true);
+				this.text(data.name);
+			});
+			list.remove(list.items(list.count()-1));
+			//list.selectAll();
+			var docMenu = new $.classes.ui.menu($(window));
+			docMenu.menuPlane.find("#menuPlane_inner").append(list.dom);
+			
+			for(var i in list.list)
+			{
+				var item = list.list[i];
+				item.addListener("click",function(e){
+					e.other.hide();
+					alert(this._data.name);
+				},docMenu);
+			}
 		});
 	})(jQuery);
 	</script>

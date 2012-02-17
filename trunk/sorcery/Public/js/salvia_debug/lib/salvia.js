@@ -243,6 +243,11 @@
 	
 	
 	/**==jQuery扩展============================================================================**/
+	$.extend({
+		c:function(options){
+			return $.salvia.createDOM(options);
+		}
+	});
 	$.fn.extend({
 		markData:function(data){
 			$.salvia.markData(this,data);

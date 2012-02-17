@@ -19,7 +19,11 @@
 			this.hasAvatar(true);
 			this.hasCheckBox(false);
 			
-			this.dom.bind("click",this,function(e){e.data._events.run("click");return false;});
+			this.dom.bind("click",this,function(e){
+				e.data.checked(!e.data.checked());
+				e.data._events.run("click");
+				return false;
+			});
 		},
 		createDOM:function(parent){
 			var checkbox = $(document.createElement("input")).attr({type:"checkbox",id:"checkbox-"+this.id});
@@ -47,7 +51,7 @@
 		},
 		checked:function(val){
 			if(val==undefined){
-				return this.dom.find("input[type='checkbox']").attr("checked")!=undefined;
+				return this.dom.find("input[type='checkbox']").attr("checked");
 			}else{
 				if(!val){
 					this.dom.find("input[type='checkbox']").removeAttr("checked");
