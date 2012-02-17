@@ -11,7 +11,7 @@
 			this.options={
 				dataType:"xml",
 				type:"POST",
-				context:this,//所有方法作用域指向当前对像
+				//context:this,//所有方法作用域指向当前对像
 				dataFilter:function(data,type){
 					switch(type){
 						case "xml":
@@ -21,19 +21,20 @@
 					}
 				},
 				complete:function(XMLHttpRequest, textStatus){
-					this._events.run("complete",this,XMLHttpRequest, textStatus);
-					this.onComplete(XMLHttpRequest, textStatus);
+					this.mode._events.run("complete",this,XMLHttpRequest, textStatus);
+					this.mode.onComplete(XMLHttpRequest, textStatus);
 				},
 				error:function(XMLHttpRequest, textStatus, errorThrown){
-					this._events.run("error",this,XMLHttpRequest, textStatus, errorThrown);
-					this.onError(XMLHttpRequest, textStatus, errorThrown);
+					this.mode._events.run("error",this,XMLHttpRequest, textStatus, errorThrown);
+					this.mode.onError(XMLHttpRequest, textStatus, errorThrown);
 				},
 				success:function(data){
-					this.datasource(data);
-					this.tofilter();
-					this._events.run("success",this,this.returnData==undefined?data:this.returnData);
-					this.onSuccess(data);
-				}
+					this.mode.datasource(data);
+					this.mode.tofilter();
+					this.mode._events.run("success",this,this.mode.returnData==undefined?data:this.mode.returnData);
+					this.mode.onSuccess(data);
+				},
+				mode:this
 			};
 			this.options = $.extend({},this.options,options);
 		},
@@ -42,9 +43,9 @@
 		 @returns {void} 无
 		 @author Packy
 		 **/
-		load:function(data){
-			var options = $.extend({},this.options);
-			options.data = data;
+		load:function(options){
+			var options = $.extend({},options,this.options);
+			options._data = $.extend({},{},options.data);
 			$.ajax(options);
 		},
 		/**
