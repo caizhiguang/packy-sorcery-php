@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>测试页</title>
-{include:Admin:Public:defaultCss}
+{include:Admin:Lib:defaultCss}
 {load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
@@ -12,20 +12,21 @@
 
 <body>
 <div id="wrap">
-{include:Admin:Public:topbar}
-{include:Admin:Public:header}
+{include:Admin:Lib:topbar}
+{include:Admin:Lib:header}
 <div class="body">
+	<div id="side_bg"></div>
     <section class="side">
-    	<form class="search">
+    	<!-- <form class="search">
         	<input type="text" class="search_txt" id="search_content" name="search" value="搜索模块，如：写文章" />
             <input type="submit" class="search_btn" id="search_btn" value="搜索" />
-        </form>
+        </form> -->
         <nav>
             <dl class="current">
                 <dt><a href="javascript:;"><i class="i iArticle right5"></i>文章</a><a href="javascript:;" class="btnDrop"><i class="i iDrop"></i></a></dt>
                 <dd>
                     <ul>
-                        <li><a href="javascript:;">所有文章</a></li>
+                        <li><a href="javascript:;" class="current">所有文章</a></li>
                         <li><a href="javascript:;">写文章</a></li>
                         <li><a href="javascript:;">分类目录</a></li>
                         <li><a href="javascript:;">标签</a></li>
@@ -48,16 +49,7 @@
         </nav>
     </section>
     <section class="main">
-    	<div class="menu">
-        	<div>
-            	<div>123</div>
-                <div>123</div>
-            </div>
-            <ul>
-            	<li><a href="javascript:;">显示选项<i class="i iDrop"></i></a></li>
-                <li><a href="javascript:;">显示选项<i class="i iDrop"></i></a></li>
-            </ul>
-        </div>
+    	{include:Admin:Lib:options}
     	<header>
    	    <h2>文章</h2>
             <div class="header_bar"><a href="javascript:;">写文章</a></div>
@@ -106,7 +98,39 @@
         </form>
     </section>
 </div>
-{include:Admin:Public:footer}
+{include:Admin:Lib:footer}
 </div>
+<script type="text/javascript">
+;(function($){
+	$(document).ready(function(){
+		$(".menu li").each(function(i){
+			$(this).css({width:$(".menu li>a").eq(i).outerWidth()});
+		});
+		$(".menu li>a").each(function(i){
+			$(this).bind("click",i,function(e){
+				var isShow = $(".menu>div").css("display")=="block";
+				$(".menu li>a").toggle(isShow);
+				$(".menu div>div").hide(isShow);
+				if(!isShow)
+				{
+					$(".menu li>a").eq(e.data).toggle(!isShow);
+					$(".menu div>div").eq(e.data).toggle(!isShow);
+				}
+				$(".menu>div").slideToggle(250);
+			});
+		});
+		$(".menu>div").hide();
+
+		$(".side nav .btnDrop").each(function(i){
+			$(this).bind("click",i,function(e){
+				$(".side nav dd").slideUp(250);
+				$(".side nav dd").eq(e.data).slideToggle(250);
+			});
+		});
+		$(".side nav dd").hide();
+		$(".side nav .current>dd").show();
+	});
+})(jQuery);
+</script>
 </body>
 </html>

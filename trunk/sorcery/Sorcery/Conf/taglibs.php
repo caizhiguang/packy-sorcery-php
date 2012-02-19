@@ -1,4 +1,4 @@
 <?php
 return array(
-	//'salvia'=>'@.TagLib.Salvia',
+	'salvia'=>'@.TagLib.SalviaTag',
 );

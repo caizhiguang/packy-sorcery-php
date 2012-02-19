@@ -1,7 +1,7 @@
 <section class="topbar">
     <div class="websites">
-    	{volist name="websites" id="website"}
-        <a href="{$website.url}">{$website.name}</a>
+    	{volist name="websites" id="item"}
+        <a href="{$website.url}">{$item.name}</a>
         {/volist}
     </div>
     <dl class="userInfo">
