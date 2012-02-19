@@ -19,6 +19,7 @@ $sorcery_config = array(
 	//'TAG_BUILD_IN'=>'cx,salvia',
 	//'TAGLIB_PRE_LOAD' =>'salvia',
 	//'APP_AUTOLOAD_PATH'=>'Think.Util.,@.Mylibs.Tag.',
+	//'APP_AUTOLOAD_PATH'=>'Think.Util.,@.TagLib.',
 );
 return $sorcery_config;
 ?>

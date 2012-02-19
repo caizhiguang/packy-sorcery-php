@@ -20,7 +20,7 @@ textarea.text{background:url(../images/text_bg.png) #fff repeat-x;line-height:25
 /*select.select{ background:url(../images/text_bg.png) repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }*/
 
 /**icon**/
-.i{ width:16px; height:16px; display:inline-block; }
+.i{ width:16px; height:16px; /*display:inline-block;*/ }
 .iMini,.iDisableMini,.iClose,.iDisableClose{ background-image:url(../images/icon.png); background-repeat:no-repeat; }
 .iMini{ background-position:0 0; }
 .iMini:hover{ background-position:0 -16px; }

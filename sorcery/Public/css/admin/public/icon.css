@@ -2,8 +2,8 @@
 /* CSS Document */
 
 /**icon**/
-i.i{ display:inline-block; width:16px; height:16px; vertical-align:text-bottom; }
-i.iDrop,i.iDate,i.iType,i.iCenter,i.iArticle,i.iComment,i.iMedia{ background-image:url(../../../images/icon.png); background-repeat:no-repeat; }
+i.i{ width:16px; height:16px; vertical-align:text-bottom; }
+i.iDrop,i.iDate,i.iType,i.iCenter,i.iArticle,i.iComment,i.iMedia{ display:inline-block; background-image:url(../../../images/icon.png); background-repeat:no-repeat; }
 i.iDrop{ background-position:-16px 0; }
 i.iDate{ background-position:-48px 0; }
 i.iType{ background-position:-64px 0; }
