@@ -137,6 +137,46 @@ function HashTable(){
 	    		}
 	    		return -1;
 			}
+		},
+		bubbleSort:function (arr,compare) { //交换排序->冒泡排序
+			//var st = new Date();
+			var temp;
+			var exchange;
+			for(var i=0; i<arr.length; i++) {
+				exchange = false;
+				for(var j=arr.length-2; j>=i; j--) {
+					if(compare(arr[j+1],arr[j])>0){
+						temp = arr[j+1];
+						arr[j+1] = arr[j];
+						arr[j] = temp;
+						exchange = true;
+					}
+				}
+				if(!exchange) break;
+			}
+			//status = (new Date() - st) + ' ms';
+			return arr;
+		},
+		sort:function (arr,compare) { //交换排序->冒泡排序
+			//var st = new Date();
+			var temp;
+			var exchange;
+			for(var i=0; i<arr.length; i++) {
+				exchange = false;
+				for(var j=arr.length-2; j>=i; j--) {
+					if(compare(arr[j+1],arr[j])>0){
+						temp = $(arr[j+1]).clone(true);
+						temp.insertBefore(arr[j]);
+						$(arr[j+1]).remove();
+						arr[j+1] = arr[j];
+						arr[j] = temp;
+						exchange = true;
+					}
+				}
+				if(!exchange) break;
+			}
+			//status = (new Date() - st) + ' ms';
+			return arr;
 		}
 	});
 })(jQuery);
