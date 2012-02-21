@@ -291,7 +291,7 @@ body {filter: gray;}
 				var item = list.list[i];
 				item.addListener("click",function(e){
 					e.other.hide();
-					alert(this._data.name);
+					alert(e.other.target.localName+" "+this._data.name);
 				},docMenu);
 			}
 		});
