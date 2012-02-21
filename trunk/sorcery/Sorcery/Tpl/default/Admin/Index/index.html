@@ -17,36 +17,11 @@
 <div class="body">
 	<div id="side_bg"></div>
     <section class="side">
-    	<!-- <form class="search">
-        	<input type="text" class="search_txt" id="search_content" name="search" value="搜索模块，如：写文章" />
+    	<form class="search">
+        	<input type="text" class="search_txt" id="search_content" name="search" value="输入模块名称" />
             <input type="submit" class="search_btn" id="search_btn" value="搜索" />
-        </form> -->
-        <nav>
-            <dl class="current">
-                <dt><a href="javascript:;"><i class="i iArticle right5"></i>文章</a><a href="javascript:;" class="btnDrop"><i class="i iDrop"></i></a></dt>
-                <dd>
-                    <ul>
-                        <li><a href="javascript:;" class="current">所有文章</a></li>
-                        <li><a href="javascript:;">写文章</a></li>
-                        <li><a href="javascript:;">分类目录</a></li>
-                        <li><a href="javascript:;">标签</a></li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl>
-                <dt><a href="javascript:;"><i class="i iComment right5"></i>评论</a><a href="javascript:;" class="btnDrop"><i class="i iDrop"></i></a></dt>
-                <dd></dd>
-            </dl>
-            <dl>
-                <dt><a href="javascript:;"><i class="i iMedia right5"></i>媒体</a><a href="javascript:;" class="btnDrop"><i class="i iDrop"></i></a></dt>
-                <dd>
-                    <ul>
-                        <li><a href="javascript:;">媒体库</a></li>
-                        <li><a href="javascript:;">添加媒体</a></li>
-                    </ul>
-                </dd>
-            </dl>
-        </nav>
+        </form>
+        {include:Admin:Lib:appnav}
     </section>
     <section class="main">
     	{include:Admin:Lib:options}
@@ -121,8 +96,8 @@
 		});
 		$(".menu>div").hide();
 
-		$(".side nav .btnDrop").each(function(i){
-			$(this).bind("click",i,function(e){
+		$(".side nav dl").each(function(i){
+			$(this).find(".btnDrop").bind("click",i,function(e){
 				$(".side nav dd").slideUp(250);
 				$(".side nav dd").eq(e.data).slideToggle(250);
 			});
