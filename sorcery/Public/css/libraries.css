@@ -16,7 +16,7 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-family:Microsoft YaHei,Arial, Helvetica, sans
 q:before,q:after {content:'';}
 abbr,acronym {border:0;}
 address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}
-a{color:#333;text-decoration:none;}
+a{color:#0084b4;text-decoration:none;}
 a:hover{color:#09F; text-decoration:none;}
 a:hover span{ color:#000; }
 select,b{vertical-align:middle;}

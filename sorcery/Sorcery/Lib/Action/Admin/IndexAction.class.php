@@ -22,6 +22,19 @@ class IndexAction extends BaseAction
     		array('name'=>'设置','iconClass'=>'','url'=>'','current'=>''),
     		array('name'=>'工具','iconClass'=>'','url'=>'','current'=>'')
     	));
+    	$this->assign('appnav',array(
+    		array('name'=>'文章','iconClass'=>'iCenter','url'=>'','current'=>'current','items'=>array(
+    			array('name'=>'所有文章','url'=>'','current'=>'current'),
+    			array('name'=>'写文章','url'=>'','current'=>''),
+    			array('name'=>'分类目录','url'=>'','current'=>''),
+    			array('name'=>'标签','url'=>'','current'=>''),
+    		)),
+    		array('name'=>'评论','iconClass'=>'iComment','url'=>'','current'=>''),
+    		array('name'=>'媒体','iconClass'=>'iMedia','url'=>'','current'=>'','items'=>array(
+    			array('name'=>'媒体库','url'=>'','current'=>''),
+    			array('name'=>'添加媒体','url'=>'','current'=>''),
+    		)),
+    	));
     	$this->display();
     }
     public function test_data()
