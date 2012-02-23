@@ -26,10 +26,15 @@
 			$super(item);
 			return item;
 		},
-		remove:function($super,item){
-			var removeIndex = -1;
+		remove:function($super,item){			
 			item.dom.remove();
 			return $super(item);
+		},
+		clear:function($super){
+			for(var i=this.list.length-1;i>=0;--i){
+				this.remove(this.list[i]);
+			}
+			$super();
 		},
 		datasource:function($super,datasource,setting){
 			$super(datasource);

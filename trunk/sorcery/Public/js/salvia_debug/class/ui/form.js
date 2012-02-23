@@ -78,6 +78,18 @@
 				
 			}
 		},
+		tip:function(dom,options){
+			var options = $.extend(
+				{}/* new object */,
+				{
+					tip:this.dom,
+					overflow:"auto",
+					limit:$(window)
+				},
+				options || {} /* just-in-time options */
+			);
+			this._tip = dom.tip(options)[0];
+		},
 		onActived:function(){
 			this.actived(true);
 			this._events.run("actived",this);

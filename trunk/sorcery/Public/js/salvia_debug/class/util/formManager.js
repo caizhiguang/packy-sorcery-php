@@ -24,6 +24,9 @@
 			this._events.run("removed",form);
 			return true;
 		},
+		contains:function(form){
+			return this.forms.Contains(form.id);
+		},
 		addListener:function(key,fun,other){
 			if(this._events.contains(key)){return "This has "+key+" listener!";}
 			this._events.add(key,fun,this,other);
