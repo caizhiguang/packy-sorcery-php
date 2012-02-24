@@ -30,6 +30,10 @@
 			if(this._events.contains(key)){return "This has "+key+" listener!";}
 			this._events.add(key,fun,this,other);
 		},
+		removeListener:function(key){
+			if(this._events.contains(key)){return "This has "+key+" listener!";}
+			this._events.remove(key);
+		},
 		onDatasource:function(datasource){},
 		
 		destruct:function(){
