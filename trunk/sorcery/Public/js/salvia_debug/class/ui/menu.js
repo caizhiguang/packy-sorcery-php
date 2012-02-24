@@ -15,7 +15,7 @@
 			});
 			$(document.body).bind("click",this,function(e){
 				e.data.hide();
-				return false;
+				//return false;
 			});
 		},
 		createMenuPlane:function(){

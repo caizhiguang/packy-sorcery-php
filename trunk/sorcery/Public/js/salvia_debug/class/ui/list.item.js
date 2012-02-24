@@ -20,9 +20,8 @@
 			this.hasCheckBox(false);
 			
 			this.dom.bind("click",this,function(e){
-				e.data.checked(!e.data.checked());
+				if(e.target == this){e.data.checked(!e.data.checked());}
 				e.data._events.run("click");
-				return false;
 			});
 		},
 		createDOM:function(parent){
