@@ -297,5 +297,51 @@ body {filter: gray;}
 		});
 	})(jQuery);
 	</script>
+	
+	
+	<style>
+	body{background: #fff;}
+	#animate{ text-align: center; }
+	.wrap{ display:inline-block; }
+	</style>
+	<div id="animate">
+		<div>
+			<img src="__PUBLIC__/photo/ggg.jpg" />
+			<img src="__PUBLIC__/photo/fff.jpg" />
+		</div>
+		<script type="text/javascript">
+			(function($){
+				$("#animate img").hide();
+				window.onload = function(){
+					var row = 5;
+					var col = 7;
+					$("#animate img").each(function(i){
+						var height = $(this).height();
+						var width = $(this).width();
+						var wrap = $(this).hide().wrap("<div class='wrap'></div>").parent();
+						wrap.css({
+							position:"relative"
+						}).height(height).width(width);
+
+						for(var i=0;i<row*col;++i)
+						{
+							var r_index = i==0?0:(i>=col?((i/col).toString().indexOf(".")==-1?Math.ceil(i/col):Math.ceil(i/col)-1):0);
+							var top = (height/row)*r_index;
+							var left = (width/col)*(i-r_index*col);
+							var item = $("<div></div>").css({
+								display:"inline-block",
+								position:"absolute",
+								top:top,
+								left:left,
+								background:"url("+$(this).attr("src")+") -"+left+"px -"+top+"px no-repeat",
+							}).width(0).height(0).appendTo(wrap);
+						}
+						
+						wrap.find("div").animate({height:height/row+1,width:width/col+1},1500);
+					});
+				};
+			})(jQuery);
+		</script>
+	</div>
 </body>
 </html>
