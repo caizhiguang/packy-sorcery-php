@@ -21,9 +21,13 @@
 			this.attr = attr;
 		},
 		add:function($super,attr){
+			var item = this.onAdd(attr);
+			$super(item);
+			return item;
+		},
+		onAdd:function(attr){
 			var item = new $.classes.ui.list.item(this.dom,attr);
 			this.dom.append(item.dom);
-			$super(item);
 			return item;
 		},
 		remove:function($super,item){			
@@ -65,6 +69,9 @@
 				if(!this.list[i].hasCheckBox()){continue;}
 				this.list[i].checked(false);
 			}
+		},
+		sort:function(compare){
+			$.sort(this.dom.find("li"),compare);
 		}
 	});
 	
