@@ -9,14 +9,19 @@
 			$super();
 			
 			//this.menuPlane.find("#menuPlane_inner").text("123123123");//测试用
-			this.parent.bind("contextmenu",this,function(e){
-				e.data.show(e);
-				return false;
-			});
-			$(document.body).bind("click",this,function(e){
-				e.data.hide();
-				//return false;
-			});
+			
+			this._eventsFun={
+				contextmenu:function(e){
+					e.data.show(e);
+					return false;
+				},
+				click:function(e){
+					e.data.hide();
+					//return false;
+				}
+			};
+			this.parent.bind("contextmenu",this,this._eventsFun.contextmenu);
+			$(document.body).bind("click",this,this._eventsFun.click);
 		},
 		createMenuPlane:function(){
 			var creator = $.c([
@@ -40,18 +45,19 @@
 						id:"menuPlane_inner"
 					},
 					css:{
-						
+						overflow: "hidden"
 					}
 				},
 				{
 					element:"iframe",
 					attr:{
 						id:"menuPlane_iframe",
-						frameborder:"0"
+						frameborder:"0",
+						scrolling: "no"
 					},
 					css:{
 						width:"100%",
-						heigth:"100%",
+						height:"100%",
 						top:0,
 						left:0,
 						position:"absolute",
@@ -65,13 +71,23 @@
 			return plane.append(planeInner.append(iframe)).hide();
 		},
 		show:function(e){
-			this.menuPlane.show().offset({top:e.clientY,left:e.clientX});
+			this.menuPlane.hide();
 			this.target = e.target;
+			var result = this._events.run("show");
+			if(result==undefined?true:result){
+				this.menuPlane.show().offset({top:e.clientY,left:e.clientX});
+			}
 		},
 		hide:function(){
 			this.menuPlane.hide();
 			this.target = null;
 			delete this.target;
+		},
+		destruct:function($super){
+			this.parent.unbind("contextmenu",this._eventsFun.contextmenu);
+			$(document.body).unbind("click",this._eventsFun.click);
+			this.menuPlane.remove();
+			$super();
 		}
 	});
 

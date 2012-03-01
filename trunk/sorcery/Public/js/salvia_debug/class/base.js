@@ -27,11 +27,9 @@
 			this.onDatasource(datasource);
 		},
 		addListener:function(key,fun,other){
-			if(this._events.contains(key)){return "This has "+key+" listener!";}
 			this._events.add(key,fun,this,other);
 		},
 		removeListener:function(key){
-			if(this._events.contains(key)){return "This has "+key+" listener!";}
 			this._events.remove(key);
 		},
 		onDatasource:function(datasource){},
@@ -40,7 +38,9 @@
 			//自销毁
 			for(var i in this)
 			{
-				if(this[i]["destruct"]!=undefined){this[i].destruct();}				
+				if(this[i]!=undefined){
+					if(this[i]["destruct"]!=undefined){this[i].destruct();}
+				}
 				this[i] = null;
 				delete this[i]
 			}
