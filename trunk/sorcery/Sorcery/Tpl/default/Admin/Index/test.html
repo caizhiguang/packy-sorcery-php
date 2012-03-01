@@ -241,12 +241,20 @@ body {filter: gray;}
 				ids++;
 			});
 
+			var msgFormManager = $.msgFormManager = new $.classes.util.formManager();
 			$("#msgbox").click(function(){
 				var msg = new $.classes.ui.msgbox($.salvia.packet("Form.lbi"));
 				msg.addListener("return",function(result){
 					//alert();
 				});
+				msgFormManager.add(msg);
 				msg.show("提示","内容测试测试",["Yes","No"]);
+				var msg2 = new $.classes.ui.msgbox($.salvia.packet("Form.lbi"));
+				msg2.addListener("return",function(result){
+					//alert();
+				});
+				msgFormManager.add(msg2);
+				msg2.show("提示","内容测试测试",["Yes","No"]);
 			});
 
 			var taskbar = new $.classes.ui.taskbar(formManager,"#wrap");
