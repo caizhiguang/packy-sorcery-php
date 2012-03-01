@@ -59,20 +59,20 @@
 		},
 		show:function($super,title,content,buttons){
 			this.text(title);
-			this.dom.find(".content").text(content);
-			if($.isArray(buttons))
+			this.dom.find(".content").html(content);
+			for(var i in buttons)
 			{
-				for(var i in buttons)
-				{
-					if(typeof buttons[i] == "string"){
-						this.buttons[buttons[i]].show();
-					}else{
-						this.buttons[i].val(buttons[i]);
-						this.buttons[i].show();
-					}
+				if(typeof buttons[i] == "string"&&$.isArray(buttons)){
+					this.buttons[buttons[i]].show();
+				}else{
+					this.buttons[i].val(buttons[i]);
+					this.buttons[i].show();
 				}
 			}
 			this.screen.show();
+			var use_state = this.screen.data("UseState");
+			use_state = use_state==undefined?0:use_state;
+			this.screen.data("UseState",++use_state);
 			this.dom.css({
 				top:$(window).height()/2-this.dom.outerHeight()/2,
 				left:$(window).width()/2-this.dom.outerWidth()/2
@@ -80,7 +80,10 @@
 			$super();
 		},
 		close:function($super){
-			this.screen.hide();
+			var use_state = this.screen.data("UseState");
+			this.screen.data("UseState",--use_state);
+			if(this.screen.data("UseState")==0)
+				this.screen.hide();
 			$super();
 		}
 	});

@@ -72,6 +72,10 @@
 		},
 		sort:function(compare){
 			$.sort(this.dom.find("li"),compare);
+			for(var i in this.list)
+			{
+				this.list[i].dom = $("[data-id='"+this.list[i].id+"']");
+			}
 		}
 	});
 	

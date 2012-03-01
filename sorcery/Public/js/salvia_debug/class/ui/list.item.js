@@ -20,17 +20,17 @@
 			this.hasCheckBox(false);
 			
 			this.dom.bind("click",this,function(e){
-				if(e.target == this){e.data.checked(!e.data.checked());}
-				e.data._events.run("click");
+				if(e.target.tagName != "INPUT" && e.data.hasCheckBox() && e.data.enable()){e.data.checked(!e.data.checked());}
+				return e.data._events.run("click",e);
 			});
 		},
 		createDOM:function(parent){
-			var checkbox = $(document.createElement("input")).attr({type:"checkbox",id:"checkbox-"+this.id});
+			var checkbox = $(document.createElement("input")).attr({type:"checkbox",id:"checkbox-"+this.id}).addClass("right5");
 			var dom = $(document.createElement("li")).appendTo(parent).append(checkbox).append(document.createElement("label"));
 			var avatar = $(document.createElement("span")).addClass("avatar").append(document.createElement("img"));
 			var name = $(document.createElement("span")).addClass("name");
 			dom.find("label").append(avatar).append(name).attr({
-				'for':"checkbox-"+this.id
+				'for':this.id
 			});
 			return dom;
 		},
@@ -59,9 +59,21 @@
 				}
 			}
 		},
+		enable:function(val){
+			if(val==undefined){
+				return this.dom.attr("data-enable")!="false";
+			}else{
+				this.dom.attr("data-enable",val);
+				if(val){
+					this.dom.find("input[type='checkbox']").removeAttr("disabled");
+				}else{
+					this.dom.find("input[type='checkbox']").attr("disabled","disabled");
+				}
+			}
+		},
 		hasCheckBox:function(val){
 			if(val==undefined){
-				return this.dom.attr("data-hasCheckBox")=="true";
+				return this.dom.attr("data-hasCheckBox")!="false";
 			}else{
 				this.dom.attr("data-hasCheckBox",val);
 				this.dom.find("input[type='checkbox']").toggle(val);

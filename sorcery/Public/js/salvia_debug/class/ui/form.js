@@ -46,6 +46,17 @@
 				return this.dom.attr("data-actived");
 			}else{
 				this.dom.attr("data-actived",actived);
+				if(actived){
+					this.dom.css({
+						opacity:"1",
+						filter:"alpha(opacity=100)"
+					});
+				}else{
+					this.dom.css({
+						opacity:"0.8",
+						filter:"alpha(opacity=80)"
+					});
+				}
 			}
 		},
 		inTaskBar:function(inBar){
