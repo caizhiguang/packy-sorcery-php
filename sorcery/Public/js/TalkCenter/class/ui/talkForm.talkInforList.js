@@ -1,10 +1,9 @@
-;(function(){
+;(function($){
 	
-	if($.classes==undefined){ $.classes={}; }
-	if($.classes.ui==undefined){ $.classes.ui={}; }
+	$.salvia.Class.namespace("$.TalkCenter.classes.ui");
 	
 	/**talkForm.talkInforList**/
-	$.classes.ui.talkForm.talkInforList = $.salvia.Class($.classes.base.list,{
+	$.TalkCenter.classes.ui.talkForm.talkInforList = $.salvia.Class($.classes.base.list,{
 		init:function($super,dom){
 			$super();
 			(new $.classes.ui.base()).init.apply(this,[dom]);
@@ -27,7 +26,7 @@
 			{
 				++index;
 				if(index>this.limit){
-					this.list[i].dom.remove();
+					this.remove(this.list[i]);
 				}
 			}
 		},
@@ -37,24 +36,11 @@
 			this.runFilter(this._runFilter);
 		},
 		runFilter:function(on){
-			if(!on){
-				for(var j in this.list)
-				{
-					this.dom.append(this.list[j].dom);
-				}
-				this.scrollToBottom(this.canScroll);
-				return;
-			}
-			if(this.filterKeys==undefined){return;}
-			this.dom.html("");
-			for(var i in this.filterKeys)
+			for(var j in this.list)
 			{
-				for(var j in this.list)
-				{
-					if(this.filterKeys[i]==this.list[j].id){
-						this.dom.append(this.list[j].dom);
-					}
-				}
+				var isShow=false;
+				for(var i in this.filterKeys){isShow = this.filterKeys[i]==this.list[j].id; if(isShow) break;}
+				this.list[j].dom.toggle(on?isShow:!on);
 			}
 			this.scrollToBottom(this.canScroll);
 		},
