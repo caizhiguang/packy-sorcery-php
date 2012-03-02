@@ -5,8 +5,11 @@
 	
 	/**controller(mvc控制器基类)**/
 	$.classes.mvc.controller = $.salvia.Class($.classes.base,{
-		init:function($super){
+		init:function($super,key){
 			$super();
+			var controllers = $(document).data("Controllers")==undefined?{}:$(document).data("Controllers");
+			controllers[key]=this;
+			$(document).data("Controllers",controllers);
 		}
 	});
 	

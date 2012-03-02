@@ -9,8 +9,8 @@
 			this._data = {};
 			this._events = new $.classes.util.events();
 		},
-		binding:function(setting){
-			if($.isFunction(setting)){
+		binding:function(binding){
+			/*if($.isFunction(setting)){
 				setting.apply(this,[this._data]);
 			}else{
 				for(var pro in setting)
@@ -19,7 +19,8 @@
 					if(!$.isFunction(setting[pro])){continue;}
 					setting[pro].apply(this,[this._data[pro]]);
 				}
-			}
+			}*/
+			$.salvia.data.binding(this,this._data,binding);
 		},
 		datasource:function(datasource,setting){
 			this._data = datasource;

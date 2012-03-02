@@ -1,6 +1,6 @@
 ;(function($){
 	
-	$.salvia.namespace("$.classes.ui");
+	$.salvia.Class.namespace("$.classes.ui");
 	/**ui.base(可视基类)**/
 	$.classes.ui.menu = $.salvia.Class($.classes.ui.base,{
 		init:function($super,dom,options){

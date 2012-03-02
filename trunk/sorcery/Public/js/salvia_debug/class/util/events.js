@@ -6,11 +6,11 @@
 	/**base(基类)**/
 	$.classes.util.events = $.salvia.Class({
 		init:function(){this.hashtable={};},
-		add:function(key,fun,runObj,other){
+		add:function(key,fun,scope,other){
 			if(!(key in this.hashtable)){this.hashtable[key]=[];}
 			this.hashtable[key].push({
 				fun:fun,
-				runObj:runObj,
+				scope:scope,
 				other:other
 			});
 			return true;
@@ -39,11 +39,11 @@
 			for(var i in this.hashtable[key])
 			{
 				if(this.hashtable[key][i].other!=undefined){arg.unshift({other:this.hashtable[key][i].other});}
-				result = this.hashtable[key][i].fun.apply(this.hashtable[key][i].runObj,arg);
+				result = this.hashtable[key][i].fun.apply(this.hashtable[key][i].scope,arg);
 				if(result==false){return result;}
 			}
 			
-			//var result = this.hashtable[key].fun.apply(this.hashtable[key].runObj,arg);
+			//var result = this.hashtable[key].fun.apply(this.hashtable[key].scope,arg);
 			return result==undefined?true:result;
 		},
 		count:function(){
