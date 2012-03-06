@@ -15,7 +15,7 @@
 			if(ctrl[requestContent]==undefined){$.error("No find "+ctrlName+"."+requestContent);return false;}
 			if($.isFunction(ctrl[requestContent])){
 				try{
-					return ctrl[requestContent](args);
+					return ctrl[requestContent].apply(ctrl,args);
 				}catch(e){
 					$.error(e.message);
 				}

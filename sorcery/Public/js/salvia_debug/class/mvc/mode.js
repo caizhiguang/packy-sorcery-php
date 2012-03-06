@@ -32,7 +32,7 @@
 					this.mode.datasource(data);
 					this.mode.tofilter();
 					this.mode._events.run("success",this,this.mode.returnData==undefined?data:this.mode.returnData);
-					this.mode.onSuccess(data);
+					this.mode.onSuccess(this.mode.returnData==undefined?data:this.mode.returnData,this);
 				},
 				mode:this
 			};
@@ -75,7 +75,23 @@
 		
 		onComplete:function(XMLHttpRequest, textStatus){},
 		onError:function(XMLHttpRequest, textStatus, errorThrown){},
-		onSuccess:function(data){}
+		onSuccess:function(data){},
+		
+		request:function(ctrlName,requestContent,args){
+			var controllers = $(document).data("Controllers",controllers);
+			var ctrl = controllers[ctrlName];
+			if(ctrl==undefined){$.error("No find "+ctrlName);return false;}
+			if(ctrl[requestContent]==undefined){$.error("No find "+ctrlName+"."+requestContent);return false;}
+			if($.isFunction(ctrl[requestContent])){
+				try{
+					return ctrl[requestContent].apply(ctrl,args);
+				}catch(e){
+					$.error(e.message);
+				}
+			}else{
+				return ctrl[requestContent];
+			}
+		}
 	});
 	
 })(jQuery);
