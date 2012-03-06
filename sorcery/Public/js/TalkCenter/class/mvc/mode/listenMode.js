@@ -11,6 +11,17 @@
 					return Number(data.text)>0;
 				}
 			});
+		},
+		onSuccess:function(data,ajax_options){
+			var content = "加关注成功";
+			if(data)
+			{
+				this.request("TalkCenter","addToFriends",[options._data]);
+			}else{
+				content="加关注失败"
+			}
+			
+			this.request("TalkCenter","msgBox",["提示信息",content,["Ok"]]);
 		}
 	});
 })(jQuery);

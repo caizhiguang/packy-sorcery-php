@@ -169,6 +169,32 @@
 				this.dom.find(".name").text(text);
 			}
 		},
+		
+		news:function(data){
+			this._news = data;
+			var isNew = this.dom.find("#news").length==0;
+			if(isNew){
+				this._newsDOM = $.c("div").attr({
+					id:"news"
+				}).append($.c("div").addClass("planes")).append($.c("i").addClass("news").addClass("i")).append($.c("span").text("专家发言："));
+				this.dom.find(".tmain>.bar").after(this._newsDOM);
+			}else{
+				this._newsDOM.find(".planes").text("加载中...");
+				this._newsDOM.data("scrollable").end();
+			}
+			for(var i in data){
+				this._newsDOM.find(".planes").append($.c("div").text(data[i].Content))
+				.click($.proxy(function(){this._events.run("newsItemClick");return false;},this));
+			}
+			if(isNew){
+				this._newsDOM.scrollable({ items: ".planes",vertical:true,circular:true }).autoscroll({
+					autoplay: true,
+					autopause: true
+				});
+			}
+			this._newsDOM.data("scrollable").begin();
+		},
+		
 		isGroup:function(val){
 			if(val==undefined){
 				return this.dom.attr("data-isGroup");
