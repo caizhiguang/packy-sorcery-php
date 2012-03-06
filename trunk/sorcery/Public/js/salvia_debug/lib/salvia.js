@@ -115,7 +115,9 @@
 	//创建DOM(jQuery DOM)
 	$.salvia.dom.createDOM=function(options){
 		var result = new Array();
-		if($.isArray(options))
+		if(typeof options=="string"){
+			return $(document.createElement(options));
+		}else if($.isArray(options))
 		{
 			for(var i in options)
 			{
