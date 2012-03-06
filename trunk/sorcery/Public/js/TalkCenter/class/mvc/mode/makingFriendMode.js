@@ -11,6 +11,13 @@
 					return Number(data.text)>0;
 				}
 			});
+		},
+		onSuccess:function(data,ajax_options){
+			var content = "发送好友请求失败，请稍后再试！";
+			if(data){
+				content="已发送好友请求，请等待对方确认！";
+			}
+			this.request("TalkCenter","msgBox",["提示信息",content,["Ok"]]);
 		}
 	});
 })(jQuery);

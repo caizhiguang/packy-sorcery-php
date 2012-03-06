@@ -96,170 +96,75 @@
 				}
 			};
 			
-			this.createLoginMode();
-			this.createPollingMode();
-			this.createMessageMode();
-			this.createRequestMode();
-			this.createFriendMode();
-			this.createOnlineUsersMode();
-			this.createResponeFriendRequsetMode();
-		},
-		
-		createLoginMode:function(){
-			var loginMode = new $.TalkCenter.classes.mvc.mode.loginMode();
-			loginMode.addListener("success",function(e,mode,data){
-				//登录
-				if(data.Request!=undefined)
-				{
-					alert("登录失败！\n密码或用户名有误，请再试一次！");
-				}else
-				{
-					e.other.onAfterLogin(data);
-				}
-			},this);
+			this.mode.loginMode=new $.TalkCenter.classes.mvc.mode.loginMode();//登陆mode
+			this.mode.pollingMode=new $.TalkCenter.classes.mvc.mode.pollingMode();//轮询mode
+			this.mode.messageMode=new $.TalkCenter.classes.mvc.mode.messageMode();//取通讯信息mode
+			this.mode.requestMode=new $.TalkCenter.classes.mvc.mode.requestMode();//取请求信息mode
+			this.mode.onlineUsersMode = new $.TalkCenter.classes.mvc.mode.onlineUserMode();//取在线成员信息mode
+			this.mode.getProChatTopMode = new $.TalkCenter.classes.mvc.mode.getProChatTopMode();//取得专家在线前N条信息mode
 			
-			this.mode.loginMode=loginMode;
-		},
-		
-		createPollingMode:function(){
-			//创建  轮询  模型(创建AJAX询问模型)
-			var pollingMode = new $.TalkCenter.classes.mvc.mode.pollingMode();
-			pollingMode.addListener("success",function(e,mode,data){
-				if(data==""){return;}
-				//this作用于options
-				var messageCount = data.Check.Item.Message;
-				var requestCount = data.Check.Item.Request;
-				var noticeCount = data.Check.Item.Notice;
-				var fRequestCount = data.Check.Item.FRespone;
-				var expertGroupCount = data.Check.Item.Pro;
-				
-				if(Number(messageCount)!=0){e.other.mode.messageMode.load({data:{To:e.other.data.userId,Start:mode._data.start,End:mode._data.end,group:$(document).data("TalkCenter").data.groupIds}});}
-				if(Number(requestCount)!=0){e.other.mode.requestMode.load({data:{myId:e.other.data.userId}});}
-				//if(Number(noticeCount)!=0){e.other.mode.loadNotice();}
-				if(Number(fRequestCount)!=0){e.other.mode.friendMode.load({data:{Uid:e.other.data.userId}});}
-			},this);
+			this.mode.friendMode=new $.TalkCenter.classes.mvc.mode.accpetFriendMode();//取好友请求被同意后信息mode
+			this.mode.responeFriendRequsetMode=new $.TalkCenter.classes.mvc.mode.responeFriendRequsetMode();//反馈好友请求信息mode
+			this.mode.listenMode=new $.TalkCenter.classes.mvc.mode.listenMode();//添加关注mode
+			this.mode.makingFriendMode=new $.TalkCenter.classes.mvc.mode.makingFriendMode();//添加好友mode
 			
-			this.mode.pollingMode=pollingMode;
-		},
-		//创建  聊天信息  模型(创建AJAX询问模型)
-		createMessageMode:function(){
-			var messageMode = new $.TalkCenter.classes.mvc.mode.messageMode();
-			messageMode.addListener("success",function(e,mode,returndata){
-				//e.other.
-				var messages = e.other.data.messages;
-				e.other.data.newMessagesContent = returndata.length;
-				for(var i in returndata)
-				{
-					returndata[i]._IsNew = true;
-					returndata[i]._md5Id = $.md5(returndata[i].Gcid+returndata[i].Uid+returndata[i].Content+returndata[i].Datetime);
-					var has = false;
-					for(var j in messages){
-						if(returndata[i]._md5Id==messages[j]._md5Id)
-						{
-							has = true;
+			this.mode.groupUsersMode=new $.TalkCenter.classes.mvc.mode.groupUserMode();//取群成员mode
+			
+			//发送通讯信息mode
+			this.mode.pushMessageMode=new $.classes.mvc.mode({dataType:"xml"});
+			this.mode.pushMessageMode.addListener("success",function(e,options,data){
+				if(Boolean(data.text)){
+					//id,name,time,content
+					var id,name,time,content;
+					switch(options.form._data._SentTo)
+					{
+						case "friend":
+							id = options._data.Fromuid;
+							name = options._data.FromName;
+							time = options._data.Posttime;
+							content = options._data.Message;
 							break;
-						}
+						case "group":
+							id = options._data.Uid;
+							name = options._data.RealName;
+							time = options._data.Posttime;
+							content = options._data.Content;
+							break;
 					}
-					if(has){continue;}
-					messages.push(returndata[i]);
+					options.form.addMeTalking(id,name,time,content);
+					options.form.dom.find(".input .TalkInput").focus();
 				}
-				e.other.updataTalkingToForms();
-				e.other.view.communView.updateMsgForm();
 			},this);
-			
-			this.mode.messageMode=messageMode;
 		},
-		//创建  请求信息  模型(创建AJAX询问模型)
-		createRequestMode:function(){
-			var requestMode = new $.TalkCenter.classes.mvc.mode.requestMode();
-			requestMode.addListener("success",function(e,mode,returndata){
-				var request = e.other.data.requests;
-				e.other.data.newRequestContent = returndata.length;
-				for(var i in returndata)
+		
+		//发生好友请求
+		makingFriend:function(data){
+			this.view.talkCenterView.msgBox(
+				"加好友请求 - "+data.GroupName,
+				"<div class='pbottom10'>向 "+data.GroupName+" 邀请成为好友</div><div>附加说明：<input id='msgForm_comment' class='text' type='text' /></div>",
 				{
-					if(request[i]!=undefined){continue;}
-					request.push(returndata[i]);
-				}
-				e.other.updataTalkingToForms();
-				e.other.view.communView.updateMsgForm();
-			},this);
-			
-			this.mode.requestMode=requestMode;
+					Ok:"发送",
+					Cancel:"取消"
+				},
+				function(e,result){
+					if(result=="Cancel"){return;}
+					var comments = this.dom.find("#msgForm_comment").val();
+					e.other.view.mode.makingFriendMode.load({data:{
+						/*Uid:$(document).data("TalkCenter").data.loginData.User_Info.Item.Uid,
+						UserName:$(document).data("TalkCenter").data.loginData.User_Info.Item.NickName,*/
+						Uid:e.other.view.data.loginData.User_Info.Item.Uid,
+						UserName:e.other.view.data.loginData.User_Info.Item.NickName,
+						Fuid:e.other.data.Uid,
+						FUserName:e.other.data.GroupName,
+						Comments:comments,
+						TypeRela:"1"
+					}});
+				},{view:this,data:data}
+			);
 		},
-		//创建  添加好友信息  模型(创建AJAX询问模型)
-		createFriendMode:function(){
-			var friendMode = new $.TalkCenter.classes.mvc.mode.accpetFriendMode();
-			friendMode.addListener("success",function(e,mode,returndata){
-				//添加新友到好友栏
-				$(document).data("TalkCenter").view.talkCenterView.addToFriends(returndata);
-				
-				e.other.msgBox(
-					"提示信息 ",
-					"对方 "+returndata.FUserName+" 已同意加你为好友！",
-					["Ok"]
-				);
-			},this);
-			
-			this.mode.friendMode=friendMode;
-		},
-		
-		createOnlineUsersMode:function(){
-			var onlineUsersMode = new $.TalkCenter.classes.mvc.mode.onlineUserMode();
-			onlineUsersMode.addListener("success",function(mode,reurndata){
-				var ctrlTalkCenter = $(document).data("TalkCenter");
-				var onlineUsers = ctrlTalkCenter.data.onlineUserIds = reurndata.text==undefined?"":reurndata.text;
-				var compare = function(a,b){
-					return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
-				};
-				for(var i in ctrlTalkCenter.view.talkCenterView.talkCenter.friendContactList.list){
-					var item = ctrlTalkCenter.view.talkCenterView.talkCenter.friendContactList.items(i);
-					if(onlineUsers.indexOf(item._data.Fuid)!=-1){item.online(false);continue;}
-					item.online(true);
-				}
-				for(var i in ctrlTalkCenter.view.talkCenterView.talkCenter.followContactList.list){
-					var item = ctrlTalkCenter.view.talkCenterView.talkCenter.followContactList.items(i);
-					if(onlineUsers.indexOf(item._data.Fuid)!=-1){item.online(false);continue;}
-					item.online(true);
-				}
-				for(var i in ctrlTalkCenter.view.talkCenterView.formManager._forms){
-					var item = ctrlTalkCenter.view.talkCenterView.formManager._forms[i];
-					item.dom.toggleClass("off",onlineUsers.indexOf(item._data.Uid)!=-1);
-					
-					if(item.isGroup==undefined){continue;}
-					if(item.isGroup()){
-						//GroupUsers
-						for(var i in item.GroupUsers.list){
-							if(onlineUsers.indexOf(item.GroupUsers.list[i]._data.Uid)!=-1){item.GroupUsers.list[i].online(false);continue;}
-							item.GroupUsers.list[i].online(true);
-						}
-						item.GroupUsers.sort(compare);
-					}
-				}
-				ctrlTalkCenter.view.talkCenterView.talkCenter.friendContactList.sort(compare);
-				ctrlTalkCenter.view.talkCenterView.talkCenter.followContactList.sort(compare);
-			});
-			this.mode.onlineUsersMode = onlineUsersMode;
-		},
-		
-		createResponeFriendRequsetMode:function(){
-			var responeFriendRequsetMode = new $.TalkCenter.classes.mvc.mode.responeFriendRequsetMode();
-			responeFriendRequsetMode.addListener("success",function(e,mode,returndata){
-				var returndata = Number(returndata.text);
-				if(returndata==0){
-					e.other.msgBox(
-						"提示信息 ",
-						"访问信息发生错误，请稍后再试！",
-						["Ok"]
-					);
-				}else{
-					if(mode._data.IsAgree!=1){return;}
-					mode._data.TypeRela="1";
-					$(document).data("TalkCenter").view.talkCenterView.addToFriends(mode._data);
-					$(document).data("TalkCenter").view.communView.updataOnlineUser();
-				}
-			},this);
-			
-			this.mode.responeFriendRequsetMode=responeFriendRequsetMode;
+		//发生关注请求
+		listen:function(data){
+			this.mode.listenMode.load(data);
 		},
 		
 		login:function(){
@@ -286,6 +191,9 @@
 			this.view.talkCenterView.talkCenter.addListener("closed",function(e){
 				e.other.logout();
 			},this);
+		},
+		initNewsView:function(){
+			this.view.newsView = new $.TalkCenter.classes.mvc.view.newsView();
 		},
 		
 		updataTalkingToForms:function(){
@@ -318,6 +226,44 @@
 			}
 		},
 		
+		updateMsgForm:function(){
+			this.view.communView.updateMsgForm();
+		},
+		updataOnlineUser:function(){
+			this.view.communView.updataOnlineUser();
+		},
+		addToFriends:function(friend){
+			this.view.talkCenterView.addToFriends(friend);
+		},
+		msgBox:function(ctrlName,requestContent,args){
+			this.view.talkCenterView.msgBox(ctrlName,requestContent,args);
+		},
+		showTalkForm:function(data){
+			return this.view.talkCenterView.showTalkForm(data);
+		},
+		responeFriendRequset:function(data){
+			this.mode.responeFriendRequsetMode.load(data);
+		},
+		updateTopNews:function(data){
+			/*for(var i in data)
+			{
+				$("#topNews .planes>div:not(.cloned)").eq(i).text(data[i].Content);
+			}*/
+			this.data.topNews = data;
+			this.view.talkCenterView.updateTopNews(data);
+		},
+		
+		modeLoad:function(modeName,data){
+			if(this.mode[modeName]==undefined){
+				$.error(modeName+" is not find!");
+			}else{
+				this.mode[modeName].load(data);
+			}
+		},
+		initExperInline:function(){
+			this.view.talkCenterView.initExperInlineForm();
+		},
+		
 		
 		onAfterLogin:function(data){
 			this.data.loginData = data;
@@ -331,8 +277,11 @@
 			this.setGroupIds(groups);
 			
 			this.initTalkCenterView(this.data.loginData.User_Info.Item,friends,groups);
-			//if("")initExperInlineForm
 			this.initCommunView();
+			this.initNewsView();
+			this.mode.getProChatTopMode.load({data:{n:5}});
+			
+			if(window.location.hash=="#expert"){this.initExperInline();}
 			if(window.location.search!="")
 			{
 				var search = eval("({"+window.location.search.replace(/[(?&)](\w*)=([^=]\w*)/g,"$1:'$2',").replace(/,$/,'')+"})");
@@ -349,7 +298,7 @@
 					}
 				}
 			}else{
-				this.view.talkCenterView.initExperInlineForm();
+				this.initExperInline();
 			}
 			this.view.communView.runTimer();
 		},
