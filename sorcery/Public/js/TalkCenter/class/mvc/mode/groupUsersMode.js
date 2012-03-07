@@ -12,43 +12,51 @@
 				}
 			});
 		},
+		onBeforeSend:function(ajax_options){
+			ajax_options.form.GroupUsers.dom.html("<div class='loading'>加载中...</div>");
+		},
+		onComplete:function(ajax_options){
+			ajax_options.form.GroupUsers.dom.find(".loading").hide();
+		},
 		onSuccess:function(data,ajax_options){
 			var docMenu = new $.classes.ui.menu(ajax_options.form.GroupUsers.dom);
 			
 			var ctrl_view = this.request("TalkCenter","view");
 			var ctrl_data = this.request("TalkCenter","data");
 			
-			for(var i in data.GroupUser)
-			{
-				var userCon = ajax_options.form.GroupUsers.add({});
+			ajax_options.form.GroupUsers.datasource(data.GroupUser,function(data){
 				for(var j in ctrl_view.talkCenterView.talkCenter.contactList.list){
 					var item = ctrl_view.talkCenterView.talkCenter.contactList.list[j];
-					if(item.contact._data.Fuid==data.GroupUser[i].Uid)
-					{
-						data.GroupUser[i]._isFriend = item.type=="friend";
-						data.GroupUser[i]._isListen = item.type=="follow";
-						break;
-					}
+					data.Avatar = "../photo/avatar/3.png";
+					if(item.type=="group"){break;}
+					if(item.contact._data.Fuid!=data.Uid){continue;}
+					if(item.type=="friend"){data._isFriend = true;}
+					if(item.type=="follow"){data._isListen = true;}
+					if(data._isFriend&&data._isListen){break;}
 				}
-				if(data.GroupUser[i].Uid==ctrl_data.userId){
-					ctrl_data.groupNameList[data.GroupUser[i].Uid]=data.GroupUser[i].GroupName;
-					data.GroupUser[i]._isFriend = data.GroupUser[i]._isListen = true;
+				if(data.Uid==ctrl_data.userId){
+					ctrl_data.groupNameList[data.Uid]=data.GroupName;
+					data._isFriend = data._isListen = true;
+					data._isMyself=true;
 				}
-				userCon.datasource(data.GroupUser[i],{
-					GroupName:function(name){
-						this.dom.find(".name").text(name);
-					},
-					Uid:function(uid){
-						this.dom.data("uid",uid);
-					}
-				});
-				userCon.dom.data("obj",userCon);
+				
+				this.dom.find(".name").text(data.GroupName);
+				this.dom.data("uid",data.Uid);
+				this.dom.find(".avatar img").attr({src:data.Avatar});
+				this.dom.data("obj",this);
+				var title = "右键点击-可添加好友或关注";
+				if(data._isListen){title = "已关注，右键点击-可添加好友";}
+				if(data._isFriend){title = "已加为好友，右键点击-可添加关注";}
+				if((!data._isMyself)&&data._isFriend&&data._isListen){title="你加了他(她)为好友,和关注了他(她)！";}
+				if(data._isMyself){title="这是你自己！";}
+				this.dom.find("label").attr({title:title});
 				/*userCon.addListener("click",function(e,_e){
 					_e.target = _e.target.localName!="li"?$(_e.target).parents("li"):$(_e.target);
 					e.other.show(_e);
 					return false;
 				},docMenu);*/
-			}
+			});
+			
 			this.request("TalkCenter","setUserIds",[data.GroupUser,"Uid"]);
 			this.request("TalkCenter","updataOnlineUser");			
 			

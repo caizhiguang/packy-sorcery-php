@@ -16,7 +16,7 @@
 			var content = "加关注成功";
 			if(data)
 			{
-				this.request("TalkCenter","addToFriends",[options._data]);
+				this.request("TalkCenter","addToFriends",[ajax_options._data]);
 			}else{
 				content="加关注失败"
 			}

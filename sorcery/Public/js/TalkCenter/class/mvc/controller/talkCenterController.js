@@ -167,7 +167,8 @@
 			this.mode.listenMode.load(data);
 		},
 		
-		login:function(){
+		login:function(afterAction){
+			this.afterAction = afterAction;
 			var name,pwt;
 			var loginInfo = $.cookie("LoginInfo");
 			if(loginInfo!="")
@@ -192,8 +193,8 @@
 				e.other.logout();
 			},this);
 		},
-		initNewsView:function(){
-			this.view.newsView = new $.TalkCenter.classes.mvc.view.newsView();
+		initGroupManageView:function(){
+			this.view.groupManageView = new $.TalkCenter.classes.mvc.view.groupManageView();
 		},
 		
 		updataTalkingToForms:function(){
@@ -263,7 +264,51 @@
 		initExperInline:function(){
 			this.view.talkCenterView.initExperInlineForm();
 		},
+		showManageForm:function(data){
+			if(!this.view.talkCenterView.formManager.contains({id:$.md5("manager-"+data.Gid)})){
+				var form = this.view.groupManageView.showManageForm(data);
+				this.view.talkCenterView.formManager.add(form);
+			}else{
+				this.view.talkCenterView.formManager.forms.Items($.md5("manager-"+data.Gid)).show();
+			}
+		},
 		
+		loginLoading:function(){
+			var screen = $("#Screen").length!=0?$("#Screen"):$.c("div").appendTo(document.body).append($.c("div").addClass("bgiframe")).append($.c("iframe"));
+			var iframeCss = {
+				border:"none",
+				width:$(window).width(),
+				height:$(window).height()
+			};
+			screen.attr({id:"Screen"}).css({
+				width:$(window).width(),
+				height:$(window).height(),
+				zIndex:"998",
+				position:"absolute",
+				top:0,
+				left:0
+			}).find("iframe").css($.extend({},{zIndex:-1},iframeCss));
+			screen.find(".bgiframe").css($.extend({},{zIndex:-2},iframeCss));
+			
+			screen.append($.c("div").css({
+				height:"auto",
+				width:400,
+				left:$(window).width()/2 - 200,
+				top:$(window).height()/2 -20,
+				position:"absolute",
+				/*background:"#fff",*/
+				fontSize:"24px",
+				textAlign:"center",
+				color:"#fff"
+			}).text("加载中..."));
+			
+			$(document).data("screen",screen);
+		},
+		loginComplete:function(){
+			var screen = $(document).data("screen");
+			screen.remove();
+			$(document).data("screen",null);
+		},
 		
 		onAfterLogin:function(data){
 			this.data.loginData = data;
@@ -278,8 +323,10 @@
 			
 			this.initTalkCenterView(this.data.loginData.User_Info.Item,friends,groups);
 			this.initCommunView();
-			this.initNewsView();
+			this.initGroupManageView();
 			this.mode.getProChatTopMode.load({data:{n:5}});
+			
+			this.afterAction();
 			
 			if(window.location.hash=="#expert"){this.initExperInline();}
 			if(window.location.search!="")
@@ -301,6 +348,8 @@
 				this.initExperInline();
 			}
 			this.view.communView.runTimer();
+			
+			
 		},
 		
 		

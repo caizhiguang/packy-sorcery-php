@@ -8,6 +8,12 @@
 				dataType:"xml"
 			},filter);
 		},
+		onBeforeSend:function(ajax_options){
+			this.request("TalkCenter","loginLoading");
+		},
+		onComplete:function(ajax_options){
+			this.request("TalkCenter","loginComplete");
+		},
 		onSuccess:function(data){
 			//登录
 			if(data.Request!=undefined)
