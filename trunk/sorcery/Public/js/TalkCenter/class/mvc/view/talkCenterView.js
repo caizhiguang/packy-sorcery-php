@@ -108,14 +108,14 @@
 			talkForm.datasource(data,this.request("TalkCenter","setting").binding.form);
 			if(this.formManager.contains(talkForm)){return;}
 			var ctrl_data = this.request("TalkCenter","data");
-			talkForm.news(ctrl_data.topNews);			
+			talkForm.news(ctrl_data.topNews);
 			talkForm.dom.find(".content .bar a").eq(1).bind("click",{form:talkForm,view:this},function(e){
 				e.data.form.dom.find(".content .bar a").removeClass("current");
 				$(this).addClass("current");
 				var isFilter = e.data.form.TalkInforList._runFilter;				
 				for(var i in e.data.form.GroupUsers.list){
 					e.data.form.GroupUsers.list[i].hasCheckBox(!isFilter);
-					if(e.data.form.GroupUsers.list[i]._data.Uid==this.request("TalkCenter","data").userId)
+					if(e.data.form.GroupUsers.list[i]._data.Uid==e.data.view.request("TalkCenter","data").userId)
 					{
 						e.data.form.GroupUsers.list[i].checked(true);
 						e.data.form.GroupUsers.list[i].enable(false);
@@ -125,6 +125,10 @@
 					},e.data);
 				}
 				e.data.form.TalkInforList.filter(!isFilter,e.data.view.getTalkInforWhiteKey(e.data.form.GroupUsers.list,e.data.form.TalkInforList.list));
+			});
+			talkForm.dom.find(".content .bar a").eq(3).bind("click",{form:talkForm,view:this},function(e){
+				e.data.view.request("TalkCenter","showManageForm",[e.data.form._data]);
+				return false;
 			});
 			talkForm.show();
 			talkForm.addListener("sent",function(e,form,message){

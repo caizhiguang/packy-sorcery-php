@@ -32,8 +32,10 @@ function HashTable(){
 	}
 };
 
-
 ;(function($){
+	$.doc = $(document);
+	$.win = $(window);
+	
 	/**==Date.extend===================================================================**/
 	$.extend(Date.prototype,{
 		ToString:function(){

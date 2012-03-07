@@ -20,13 +20,16 @@
 							return data;
 					}
 				},
+				beforeSend:function(XHR){
+					this.mode.onBeforeSend(this,XHR);
+				},
 				complete:function(XMLHttpRequest, textStatus){
 					this.mode._events.run("complete",this,XMLHttpRequest, textStatus);
-					this.mode.onComplete(XMLHttpRequest, textStatus);
+					this.mode.onComplete(this,XMLHttpRequest, textStatus);
 				},
 				error:function(XMLHttpRequest, textStatus, errorThrown){
 					this.mode._events.run("error",this,XMLHttpRequest, textStatus, errorThrown);
-					this.mode.onError(XMLHttpRequest, textStatus, errorThrown);
+					this.mode.onError(this,XMLHttpRequest, textStatus, errorThrown);
 				},
 				success:function(data){
 					this.mode.datasource(data);
@@ -73,9 +76,10 @@
 			}
 		},
 		
-		onComplete:function(XMLHttpRequest, textStatus){},
-		onError:function(XMLHttpRequest, textStatus, errorThrown){},
-		onSuccess:function(data){},
+		onBeforeSend:function(ajax_options,XHR){},
+		onComplete:function(ajax_options,XMLHttpRequest, textStatus){},
+		onError:function(ajax_options,XMLHttpRequest, textStatus, errorThrown){},
+		onSuccess:function(data,ajax_options){},
 		
 		request:function(ctrlName,requestContent,args){
 			var controllers = $(document).data("Controllers",controllers);
@@ -84,7 +88,7 @@
 			if(ctrl[requestContent]==undefined){$.error("No find "+ctrlName+"."+requestContent);return false;}
 			if($.isFunction(ctrl[requestContent])){
 				try{
-					return ctrl[requestContent].apply(ctrl,args);
+					return ctrl[requestContent].apply(ctrl,args==undefined?[]:args);
 				}catch(e){
 					$.error(e.message);
 				}
