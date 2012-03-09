@@ -10,6 +10,7 @@
 			this.TalkInforList = new $.TalkCenter.classes.ui.talkForm.talkInforList(this.dom.find(".content .info"));
 			this.GroupUsers = new $.TalkCenter.classes.ui.list($(document.createElement("ul")).addClass("contacts").appendTo(dom.find(".contact_list")));
 			
+			this.dom.find(".avatar").hide();
 			this.dom.find("#btnClose").click($.proxy(function(){this.close()},this));
 			this.dom.find(".input>form").submit($.proxy(function(){
 				var content = this.dom.find(".input textarea").val();
@@ -27,6 +28,17 @@
                 }
                 window.open(href);
             });
+			this.dom.find("form .TalkInput").bind("keypress",this,function(e){
+				if(($.browser.mozilla?e.keyCode==13:e.keyCode==10) && e.ctrlKey)
+				{
+					$(this).submit();
+					return false;
+				}
+				if(e.altKey && e.charCode == 115){
+					$(this).submit();
+					return false;
+				}
+			});
 			
 			this.config={
 				facesPath:$.getRootPath()+$.browser.msie&&$.browser.version=="6.0"?$.TalkCenter.config.facesPathByIE6:$.TalkCenter.config.facesPath,
@@ -187,7 +199,7 @@
 				.click($.proxy(function(){this._events.run("newsItemClick");return false;},this));
 			}
 			if(isNew){
-				this._newsDOM.scrollable({ items: ".planes",vertical:true,circular:true }).autoscroll({
+				this._newsDOM.scrollable({ items: ".planes",vertical:true }).autoscroll({
 					autoplay: true,
 					autopause: true
 				});
@@ -202,11 +214,11 @@
 				if(!val){
 					this.dom.find(".content .bar").hide();
 					this.dom.find(".content .tside").hide();
-					this.dom.css({height:366,width:407});
+					this.dom.css({height:"auto",width:407});
 				}else{
 					this.dom.find(".content .bar").show();
 					this.dom.find(".content .tside").show();
-					this.dom.css({height:392,width:608});
+					this.dom.css({height:"auto",width:608});
 					this.dom.attr("data-isGroup",val);
 				}
 			}

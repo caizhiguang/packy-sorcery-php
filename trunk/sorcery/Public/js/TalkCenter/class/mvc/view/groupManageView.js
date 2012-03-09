@@ -5,10 +5,12 @@
 			this.forms = [];
 		},
 		showManageForm:function(data){
-			var manageForm = new $.TalkCenter.classes.ui.groupManageForm($.salvia.packet("Form.lbi").appendTo("#wrap"));
+			var manageForm = this.createForm();
+			var ctrl_data = this.request("TalkCenter","data");
 			manageForm.datasource(data,{
 				GroupName:function(name){
 					this.text("群管理 "+name);
+					this.dom.find("h5.name").text(name);
 				},
 				Gid:function(id){
 					this.text(this.text()+" ("+id+")");
@@ -16,9 +18,18 @@
 				}
 			});
 			manageForm.show();
+			manageForm.member(ctrl_data.groupMember[data.Gid],{
+				name:function(data){
+					return data.GroupName;
+				}
+			});
 			this.forms.push(manageForm);
 			
 			return manageForm;
+		},
+		createForm:function(){
+			var form = new $.TalkCenter.classes.ui.groupManageForm($.salvia.packet("Form.lbi").addClass("modTalkManageForm").appendTo("#wrap"));
+			return form;
 		}
 	});
 })(jQuery);

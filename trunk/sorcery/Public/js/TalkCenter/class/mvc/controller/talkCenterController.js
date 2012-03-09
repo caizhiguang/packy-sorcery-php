@@ -66,7 +66,7 @@
 					form:{
 						Avatar:function(avatar){
 							//this.dom.find(".avatar img").attr({src:$.getRootPath()+$.TalkCenter.config.avatarPath+avatar+".png"});
-							this.dom.find(".avatar img").attr({src:avatar});
+							this.dom.find(".avatar").show().find("img").attr({src:avatar});
 						},
 						NickName:function(name){
 							this.text(name);
@@ -78,6 +78,7 @@
 						Fuid:function(uid){
 							this.dom.attr("data-uid",uid);
 							this.id = $.md5(uid);
+							this.text(this.text()+"("+uid+")");
 						},
 						Gbrief:function(brief){
 							this.dom.find(".affiche").html("<h4>群公告：</h4>"+brief);
@@ -88,6 +89,7 @@
 						Gid:function(gid){
 							this.dom.attr("data-gid",gid);
 							this.id = $.md5(gid);
+							this.text(this.text()+"("+gid+")");
 						},
 						_SentTo:function(sentTo){
 							this.isGroup(sentTo=="group");
@@ -189,9 +191,7 @@
 		},
 		initTalkCenterView:function(userInfo,friends,groups){
 			this.view.talkCenterView = new $.TalkCenter.classes.mvc.view.talkCenterView(userInfo,friends,groups);
-			this.view.talkCenterView.talkCenter.addListener("closed",function(e){
-				e.other.logout();
-			},this);
+			
 		},
 		initGroupManageView:function(){
 			this.view.groupManageView = new $.TalkCenter.classes.mvc.view.groupManageView();
