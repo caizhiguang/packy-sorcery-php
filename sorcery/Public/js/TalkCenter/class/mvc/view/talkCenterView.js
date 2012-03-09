@@ -19,6 +19,15 @@
 				}
 			});
 			this.formManager.add(this.talkCenter);
+			this.talkCenter.addListener("closed",function(e){
+				e.other.request("TalkCenter","logout");
+			},this);
+			this.talkCenter.dom.find("#btnSetting").click(function(){
+				window.open($.getRootPath()+"/User/PerInfo.aspx");
+			});
+			this.talkCenter.dom.find("#btnSearch").click(function(){
+				window.open($.getRootPath()+"/Search/SearcharGroup.aspx");
+			});
 			
 			for(var i in friends)
 			{
@@ -205,6 +214,7 @@
 			}else{
 				var groupType = form._data.GroupType1;
 				var groupFunction = "";
+				var groupNames = this.request("TalkCenter","data").groupNameList;
 				switch(groupType)
 				{
 					case "0":
@@ -223,7 +233,7 @@
 				}
 				data={
 					Uid:this.talkCenter._data.Uid,
-					RealName:this.talkCenter._data.NickName,//未改：取回群昵称
+					RealName:groupNames[form._data.Gid]==undefined?this.talkCenter._data.NickName:groupNames[form._data.Gid],
 					Ip:"127.0.0.1",
 					Gid:form._data.Gid,
 					Content:message,

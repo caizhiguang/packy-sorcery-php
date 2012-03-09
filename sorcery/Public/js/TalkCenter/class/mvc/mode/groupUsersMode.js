@@ -24,6 +24,9 @@
 			var ctrl_view = this.request("TalkCenter","view");
 			var ctrl_data = this.request("TalkCenter","data");
 			
+			ctrl_data.groupMember = ctrl_data.groupMember==undefined?{}:ctrl_data.groupMember;
+			ctrl_data.groupMember[ajax_options._data.gid]=data.GroupUser;
+			
 			ajax_options.form.GroupUsers.datasource(data.GroupUser,function(data){
 				for(var j in ctrl_view.talkCenterView.talkCenter.contactList.list){
 					var item = ctrl_view.talkCenterView.talkCenter.contactList.list[j];
@@ -35,7 +38,7 @@
 					if(data._isFriend&&data._isListen){break;}
 				}
 				if(data.Uid==ctrl_data.userId){
-					ctrl_data.groupNameList[data.Uid]=data.GroupName;
+					ctrl_data.groupNameList[data.Gid]=data.GroupName;
 					data._isFriend = data._isListen = true;
 					data._isMyself=true;
 				}

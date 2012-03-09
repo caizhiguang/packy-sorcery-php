@@ -16,6 +16,15 @@
 			this.friendContactList = new $.TalkCenter.classes.ui.list($(document.createElement("ul")).addClass("contacts").appendTo(dom.find(".Friends")));
 			this.groupsContactList = new $.TalkCenter.classes.ui.list(dom.find(".Groups .contacts"));
 			this.followContactList = new $.TalkCenter.classes.ui.list(dom.find(".Follow .contacts"));
+			this.dom.find(".ft").append(
+				$.c("a").attr({id:"btnSearch",href:"javascript:;"}).append(
+						$.c("i").addClass("i iSearch")
+					).append("查找").addClass("right5")
+			).append(
+				$.c("a").attr({id:"btnSetting",href:"javascript:;"}).append(
+						$.c("i").addClass("i iSetting")
+					).append("设置")
+			);
 		},
 		text:function(text){
 			if(text!=undefined){
