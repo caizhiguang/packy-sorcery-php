@@ -16,7 +16,7 @@
 			this.dom.css({position:"absolute"});
 			
 			//attr
-			this.dom.attr("data-id",this._id);
+			this.dom.attr("data-id",this.id);
 			if(attr==undefined){attr={};}
 			if(attr.disposition==undefined){attr.disposition="Default";}
 			for(var pro in attr)
