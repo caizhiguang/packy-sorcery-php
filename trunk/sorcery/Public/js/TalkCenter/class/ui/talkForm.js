@@ -28,12 +28,20 @@
                 }
                 window.open(href);
             });
-			this.dom.find("form .TalkInput").bind("keypress",this,function(e){
-				if(($.browser.mozilla?e.keyCode==13:e.keyCode==10) && e.ctrlKey)
+			this.dom.find("form .TalkInput").bind("keydown",this,function(e){
+				//if(($.browser.mozilla?e.keyCode==13:e.keyCode==17) && e.ctrlKey)
+				if(e.keyCode==13 && e.ctrlKey)
 				{
 					$(this).submit();
 					return false;
 				}
+				if(e.altKey && e.keyCode == 83)
+				{
+					$(this).submit();
+					return false;
+				}
+			});
+			this.dom.find("form .TalkInput").bind("keypress",this,function(e){
 				if(e.altKey && e.charCode == 115){
 					$(this).submit();
 					return false;

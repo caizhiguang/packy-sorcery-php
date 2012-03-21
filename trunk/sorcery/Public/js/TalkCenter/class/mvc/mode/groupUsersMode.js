@@ -39,9 +39,11 @@
 				}
 				if(data.Uid==ctrl_data.userId){
 					ctrl_data.groupNameList[data.Gid]=data.GroupName;
+					ctrl_data.groupUser[data.Gid] = data;
 					data._isFriend = data._isListen = true;
 					data._isMyself=true;
 				}
+				this.dom.attr("data-uid",data.Uid);
 				
 				this.dom.find(".name").text(data.GroupName);
 				this.dom.data("uid",data.Uid);
