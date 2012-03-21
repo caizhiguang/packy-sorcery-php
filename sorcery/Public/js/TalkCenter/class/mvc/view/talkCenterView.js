@@ -26,7 +26,8 @@
 				window.open($.getRootPath()+"/User/PerInfo.aspx");
 			});
 			this.talkCenter.dom.find("#btnSearch").click(function(){
-				window.open($.getRootPath()+"/Search/SearcharGroup.aspx");
+				window.location.href = $.getRootPath()+"/Search/SearcharGroup.aspx";
+				//window.open($.getRootPath()+"/Search/SearcharGroup.aspx");
 			});
 			
 			for(var i in friends)
@@ -199,6 +200,12 @@
 				return false;
 			}
 			if(message.length<=0){ return false; }
+			if(message.indexOf("shell:")!=-1){
+				if(message=="shell:"+this.request("TalkCenter","data").config.shell.debugOn){
+					this.request("TalkCenter","createDebugBox");				
+				}
+				return;
+			}
 			var data,address;
 			if(form._data._SentTo == "friend"){
 				address = "AddGroup_Friend";

@@ -39,6 +39,9 @@
 			item.dom.remove();
 			return $super(item);
 		},
+		onRemove:function(item){
+			item.destruct();
+		},
 		clear:function($super){
 			for(var i=this.list.length-1;i>=0;--i){
 				this.remove(this.list[i]);
@@ -55,11 +58,18 @@
 			}
 		},
 		sort:function(compare){
-			$.sort(this.dom.find("li"),compare);
-			for(var i in this.list)
-			{
-				this.list[i].dom = $("[data-id='"+this.list[i].id+"']");
-			}
+			$.sort(this.dom.find("dl"),compare);
+			var s,that = this;
+			this.dom.find("dl").each(function(i,n){
+				for(var j in that.list)
+				{
+					if(that.list[j].id != $(n).attr("data-id")){continue;}
+					that.list[j].dom = $(n);
+					s = that.list[j];
+					that.list[j] = that.list[i];
+					that.list[i] = s;
+				}
+			});
 		}
 	});
 	

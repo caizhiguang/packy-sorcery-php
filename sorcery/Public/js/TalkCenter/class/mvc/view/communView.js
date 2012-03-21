@@ -22,14 +22,38 @@
 			this.view.newsForm.updateView();
 			this.view.newsForm.showDiscription();
 			
+			var server_timer = {
+				time:new Date(this.data.config.serverTime),
+				space:500,
+				run:function(){
+					var server_timer = $.doc.data("ServerTimer");
+					server_timer.time.setMilliseconds(server_timer.time.getMilliseconds()+500);
+					setTimeout(server_timer.run,server_timer.space);
+					
+					/*if($.doc.data("Controllers").TalkCenter.data.config.debug){
+						var i = $.doc.data("messageIndex");
+						var debug_msgBox = $("#debug_message").find(".messageBox");
+						var title = "服务器时间：";
+						var content = "<div>"+server_timer.time.ToString()+"</div>";
+						debug_msgBox.append("<dl class='p10'><dt>("+i+") "+title+"</dt><dd>"+content+"</dd></dl>");
+						if(!($("#debug_message").data("isOver")==true)){
+							debug_msgBox.scrollTop(debug_msgBox[0].scrollHeight);
+						}
+						i++;
+						$.doc.data("messageIndex",i);
+					}*/
+				}
+			};
+			$.doc.data("ServerTimer",server_timer);
+			server_timer.run();
+			
 			var timer = $(document).data("Timer")==undefined?new $.TalkCenter.classes.util.timer():$(document).data("Timer");
 			timer.addAction({
 				polling:{
 					space:2000,
 					fun:function(timer,tag){
-						var time = new Date(this.data.config.serverTime);
-						time.setSeconds(time.getSeconds()+tag.count/1000+this.data.config.space/1000);
-		
+						var time = new Date($.doc.data("ServerTimer").time);
+						//time.setSeconds(time.getSeconds()+tag.count/1000+this.data.config.space/1000);
 						$(document).data("TimeNow",time);
 						
 						var start = new Date(time);
@@ -37,11 +61,12 @@
 						start.setSeconds(end.getSeconds()-this.data.config.space/1000-5);
 						end.setSeconds(end.getSeconds()+5);
 						
+						$.doc.data("LocalTime",new Date());
 						this.request("TalkCenter","modeLoad",["pollingMode",{data:{
 							start:start.ToString(),
 							end:end.ToString(),
 							To:this.data.userId,
-							group:this.data.groupIds
+							group:this.data.groupIds==undefined?"":this.data.groupIds
 						}}]);
 					},
 					scope:this
@@ -61,6 +86,14 @@
 					scope:this
 				}
 			});
+			var nowTime = new Date(this.data.config.serverTime);
+			this.request("TalkCenter","modeLoad",["pollingMode",{data:{
+				start:$.cookie("last_time")==undefined?nowTime.setHours(nowTime.getHours()+1).ToString():$.cookie("last_time"),
+				end:this.data.config.serverTime.ToString(),
+				To:this.data.userId,
+				group:this.data.groupIds==undefined?"":this.data.groupIds
+			}}]);
+			$.cookie("last_time");
 			this.updataOnlineUser();
 		},
 		runTimer:function(){
@@ -81,7 +114,7 @@
 			for(var j in contactList.list)
 			{
 				var item = contactList.list[j].contact._data;
-				if(contactList.list[j].type=="friend"){if(item.TypeRela!="1"){continue;}}
+				if(contactList.list[j].type=="follow"){continue;}
 				
 				var copyData = $.extend({},{},item);
 				var messages = this.data.messages;
@@ -144,8 +177,7 @@
 					case "message":
 						var talkForm = e.other.request("TalkCenter","showTalkForm",[data]);
 						e.other.request("TalkCenter","updataTalkingToForms");
-						e.other.newsForm.updateView();
-						e.other.newsForm.showDiscription();
+						e.other.updateMsgForm();
 						break;
 					case "request":
 						for(var i in ctrl_data.requests){							

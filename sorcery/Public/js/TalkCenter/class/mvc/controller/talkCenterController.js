@@ -9,10 +9,15 @@
 			this.view={};
 			this.data={
 				config:{
-					space:3000
+					space:3000,
+					debug:false,
+					shell:{
+						debugOn:"run debug on"
+					}
 				},
 				userIds:[],
 				groupNameList:{},
+				groupUser:{},
 				messages:[],
 				newMessagesContent:0,
 				requests:[],
@@ -32,7 +37,7 @@
 						},
 						Fuid:function(fuid){
 							this.dom.find(".name").text(this.dom.find(".name").text()+"("+fuid+")");
-							this.dom.attr("data-id",fuid);
+							this.dom.attr("data-uid",fuid);
 						},
 						FUserName:function(name){
 							this.dom.find(".name").text(name);
@@ -61,6 +66,7 @@
 						},
 						Gid:function(gid){
 							this.dom.find(".name").text(this.dom.find(".name").text()+"("+gid+")");
+							this.dom.attr("data-gid",gid);
 						}
 					},
 					form:{
@@ -111,6 +117,9 @@
 			this.mode.makingFriendMode=new $.TalkCenter.classes.mvc.mode.makingFriendMode();//添加好友mode
 			
 			this.mode.groupUsersMode=new $.TalkCenter.classes.mvc.mode.groupUserMode();//取群成员mode
+			this.mode.exitGroupMode=new $.TalkCenter.classes.mvc.mode.exitGroupMode();//清退成员mode
+			this.mode.noticeMode = new $.TalkCenter.classes.mvc.mode.noticeMode();
+			this.mode.createNoticeMode = new $.TalkCenter.classes.mvc.mode.createNoticeMode();
 			
 			//发送通讯信息mode
 			this.mode.pushMessageMode=new $.classes.mvc.mode({dataType:"xml"});
@@ -197,6 +206,36 @@
 			this.view.groupManageView = new $.TalkCenter.classes.mvc.view.groupManageView();
 		},
 		
+		removeMember:function(gid,uids){
+			var form = this.view.talkCenterView.formManager.forms.Items(this.view.groupManageView.formsObj[gid]);
+			var uids = uids.split(",");
+			var removeKeys = [];
+			for(var i in this.data.groupMember[gid])
+			{
+				if($.inArray(this.data.groupMember[gid][i].Uid,uids)!=-1){
+					removeKeys.push(i);
+				}
+			}
+			
+			for(var i in removeKeys){
+				this.data.groupMember[gid].splice(removeKeys[i],1);
+			}
+			
+			if(form){
+				for(var i in uids){
+					form.dom.find("#"+$.md5(uids[i])).remove();
+				}
+			}
+			if($(".modTalkForm[data-gid='"+gid+"']").length>0)
+			{
+				for(var i in uids){
+					$(".modTalkForm[data-gid='"+gid+"']").find(".contacts li[data-uid='"+uids[i]+"']").remove();
+				}
+			}
+			
+			//this.mode.groupUsersMode.load({data:{gid:data.Gid},form:$("[data-gid='"+data.Gid+"']")});
+		},
+		
 		updataTalkingToForms:function(){
 			for(var j in this.view.talkCenterView.formManager._forms)
 			{
@@ -254,6 +293,61 @@
 			this.view.talkCenterView.updateTopNews(data);
 		},
 		
+		createNotice:function(result,data){
+			if(result){
+				this.mode.noticeMode.load({data:{
+					fromuId:this.data.userId,
+					groupId:data.GroupID,
+					start:0,
+					end:10
+				}});
+				
+				this.view.talkCenterView.msgBox("提示","发送成功！",["Ok"]);
+				var formId = this.view.groupManageView.formsObj[data.GroupID];
+				var groupManageForm = this.view.talkCenterView.formManager.forms.Items(formId);
+				this.view.groupManageView.createNoticeAfter(groupManageForm,data);
+			}else{
+				this.view.talkCenterView.msgBox("提示","发送失败，请刷新页面再继续！",["Ok"]);
+			}
+		},
+		updateNotice:function(gid,notice,noticesCount){
+			var formId = this.view.groupManageView.formsObj[gid];
+			var form = this.view.talkCenterView.formManager.forms.Items(formId);
+			form.notice(notice,
+				{
+					Subject:function(title){
+						this.dom.addClass("notice");
+						this.title("<a href='javascript:;' title='点击展开'>"+title+"</a>");
+					},
+					Message:function(content){
+						this.dom.find("dd").append($.c("div").addClass("notice_content").append(content));
+					},
+					FromName:function(name){
+						this.dom.find("dd").append("<div class='notice_fd'><span class='name'> "+name+"</span> 于 <span class='time'></span> 时间发布</div>");
+					},
+					Posttime:function(time){
+						this.title(this.title()+"<span class='left10 time'>"+time+"</span>");
+						this.dom.find("dd .time").text(time);
+					},
+					Fromuid:function(uid){
+						this.dom.find(".notice_fd .name").attr("data-uid",uid);
+					},
+					Receipt:function(receipt){
+						if(receipt=="0"){return;}
+						var receiptForm = $.c("form").submit($.proxy(function(e){
+							//this.request("TalkCenter","modeLoad",["noticeMode",{data:{fromuId:ctrl_data.userId,groupId:data.Gid,start:0,end:30}}]);
+							return false;
+						},this));
+						$.c("input").attr({
+							type:"text",
+							name:"receipt"
+						}).addClass("text right10 tb10").appendTo(receiptForm);
+						$.c("input").attr("type","submit").addClass("btn btn1").val("提交回执").appendTo(receiptForm);
+						this.dom.find(".notice_fd").before(receiptForm);
+					}
+				},noticesCount);
+		},
+		
 		modeLoad:function(modeName,data){
 			if(this.mode[modeName]==undefined){
 				$.error(modeName+" is not find!");
@@ -265,11 +359,12 @@
 			this.view.talkCenterView.initExperInlineForm();
 		},
 		showManageForm:function(data){
-			if(!this.view.talkCenterView.formManager.contains({id:$.md5("manager-"+data.Gid)})){
-				var form = this.view.groupManageView.showManageForm(data);
+			var form = this.view.groupManageView.showManageForm(data);
+			if(form){
 				this.view.talkCenterView.formManager.add(form);
 			}else{
-				this.view.talkCenterView.formManager.forms.Items($.md5("manager-"+data.Gid)).show();
+				var formId = this.view.groupManageView.getFormIdByGid(data.Gid);
+				this.view.talkCenterView.formManager.forms.Items(formId).show();
 			}
 		},
 		
@@ -310,7 +405,26 @@
 			$(document).data("screen",null);
 		},
 		
+		createDebugBox:function(){
+			$.doc.data("messageIndex",0);
+			$("#wrap").append('<div id="debug_message" style="position:absolute;bottom:37px;border:#ddd solid 1px; background:#fff;width:500px; height:300px; z-index:999;right:10px;"></div>');
+			$("#debug_message").append("<div class='p10' style='position:absolute;top:0;left;0;background:#fff;height:30px;'><span class='right10'>debug内容</span><a href='javascript:;' class='btnClose'>关闭</a></div>");
+			$("#debug_message").append("<div class='messageBox' style='position:absolute; top:30px;left:0; height:270px; right:0; overflow:auto;'></div>");
+			$("#debug_message").hover(function(){
+				$(this).data("isOver",true);
+			},function(){
+				$(this).data("isOver",false);
+			});
+			
+			$("#debug_message .btnClose").click($.proxy(function(){
+				this.data.config.debug=false;
+				$("#debug_message").remove();
+			},this));
+			this.data.config.debug = true;
+		},
+		
 		onAfterLogin:function(data){
+			
 			this.data.loginData = data;
 			this.data.config.serverTime = $.ToDateTime(data.NowTime);
 			this.data.userId = data.User_Info.Item.Uid;
@@ -348,8 +462,6 @@
 				this.initExperInline();
 			}
 			this.view.communView.runTimer();
-			
-			
 		},
 		
 		

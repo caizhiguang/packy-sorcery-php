@@ -9,6 +9,7 @@
 			});
 		},
 		onSuccess:function(data,ajax_options){
+			if(data.ProChat.Item==undefined){return;}
 			var data = [].concat(data.ProChat.Item);
 			this.request("TalkCenter","updateTopNews",[data]);
 		}
