@@ -51,8 +51,8 @@
 					}
 					var lastOffset = lastForm==""?{}:lastForm.dom.offset();
 					css={
-						top:lastForm==""?45:lastOffset.top+15,
-						left:lastForm==""?85:lastOffset.left+15
+						top:lastForm==""?55:lastOffset.top+15,
+						left:lastForm==""?120:lastOffset.left+15
 					};
 					break;
 				case "Customer":
