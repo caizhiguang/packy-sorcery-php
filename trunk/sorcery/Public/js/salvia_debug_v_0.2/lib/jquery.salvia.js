@@ -55,6 +55,17 @@
 			var postPath="";
 			return(prePath+postPath);
 		},
+		dateToString:function(date,format){
+			var result = format;
+			result = result.replace(/Y/,date.getFullYear());
+			result = result.replace(/M/,date.getMonth()+1);
+			result = result.replace(/D/,date.getDate());
+			result = result.replace(/h/,date.getHours());
+			result = result.replace(/m/,date.getMinutes());
+			result = result.replace(/s/,date.getSeconds());
+			result = result.replace(/z/,date.getMilliseconds());
+			return result;
+		},
 		list:{
 			add:function(list,item){
 				list.push(item);
@@ -69,7 +80,8 @@
 				return this.indexOf(list,item)!=-1;
 			},
 			clear:function(list){
-				list=[];
+				for(var i in list){list[i]==null;delete list[i];}
+				return list;
 			},
 			indexOf:function(list,item){
 				for(var i in list)
@@ -79,24 +91,31 @@
 	    		return -1;
 			}
 		},
-		bubbleSort:function (arr,compare) { //交换排序->冒泡排序
-			//var st = new Date();
-			var temp;
-			var exchange;
-			for(var i=0; i<arr.length; i++) {
-				exchange = false;
-				for(var j=arr.length-2; j>=i; j--) {
-					if(compare(arr[j+1],arr[j])>0){
-						temp = arr[j+1];
-						arr[j+1] = arr[j];
-						arr[j] = temp;
-						exchange = true;
-					}
-				}
-				if(!exchange) break;
+		hash:{
+			add:function(hash,key,item){
+				hash[key]=item;
+				return item;
+			},
+			remove:function(hash,key){
+				if(hash[key]==undefined){return false;}
+				var _remove_item = hash[key];
+				hash[key]=null;
+				delete hash[key];
+				return _remove_item;
+			},
+			count:function(hash){
+				var count=0;
+				for(var pro in hash){count++;}
+				return count;
+			},
+			contains:function(hash,key){
+				if(key in hash){return true};
+				return false;
+			},
+			clear:function(hash){
+				for(var pro in hash){hash[pro]=null;delete hash[pro];}
+				return hash;
 			}
-			//status = (new Date() - st) + ' ms';
-			return arr;
 		},
 		sort:function (arr,compare) { //交换排序->冒泡排序
 			//var st = new Date();
@@ -280,6 +299,19 @@
 				});
 				return result;
 			}
+		}
+	});
+	
+	$.extend({
+		c:function(options){
+			return $.salvia.dom.create(options);
+		}
+	});
+	
+	$.fn.extend({
+		binding:function(data,binding,scope){
+			if(scope==undefined){scope=this;}
+			$.salvia.data.binding(scope,data,binding);
 		}
 	});
 	
