@@ -5,7 +5,7 @@
 	/**form(窗体类)**/
 	$.classes.ui.form = $.salvia.object.class($.classes.ui.base,{
 		init:function($super,dom,attr){
-			$super();
+			$super(dom,attr);
 			if(attr==undefined){
 				this.disposition("Default");
 			}
