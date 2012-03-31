@@ -31,16 +31,27 @@
 		contains:function(key,fun){
 			return fun!=undefined?$.hash.contains(this.hashtable[key],$.md5(fun)):$.hash.contains(this.hashtable,key);
 		},
-		run:function(key){//key和runObj是必需的
+		run:function(key,scope){
 			//运行事件
 			if(!this.contains(key)){return;}
-			var result,arg = $.argToArray(arguments);
-			arg.splice(0,1);
+			
+			var result,scope,arg=$.argToArray(arguments);
+			if($.isArray(scope)){
+				arg.splice(0,1);scope=null;
+			}else{
+				arg.splice(0,2);scope = scope;
+			}
+			
+			
 			for(var subKey in this.hashtable[key])
 			{
-				var event = {data:this.hashtable[key][subKey].data,target:this.hashtable[key][subKey].scope};
+				if(scope==null){scope=this.hashtable[key][subKey].scope;}
+				var event = {
+					data:this.hashtable[key][subKey].data,
+					target:scope
+				};
 				arg.unshift(event);
-				result = this.hashtable[key][subKey].fun.apply(this.hashtable[key][subKey].scope,arg);
+				result = this.hashtable[key][subKey].fun.apply(scope,arg);
 				return result;
 			}
 		},
