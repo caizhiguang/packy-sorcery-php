@@ -12,6 +12,7 @@
 <script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/ui/base.js"></script>
 <script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/ui/contextmenu.js"></script>
 <script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/ui/form.js"></script>
+<script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/ui/msgbox.js"></script>
 <script type="text/javascript">
 
 ;(function($){
@@ -36,9 +37,13 @@
 			//alert(e.data);
 		},"data");
 
-		var form = new $.classes.ui.form($("#form"));
+		/*var form = new $.classes.ui.form($("#form"));
 		form.drag();
-		form.show();
+		form.show();*/
+
+		/*var msgbox = new $.classes.ui.msgbox($("#form"),{showScreen:true});
+		msgbox.drag();
+		msgbox.show("测试标题","测试内容",{Ok:"确认提交",Cancel:"取消"});*/
 		
 		var date = new Date();
 		var str = $.dateToString(date,"Y-M-D h:m:s.z");
@@ -47,6 +52,9 @@
 })(jQuery);
 
 </script>
+<style>
+#Screen{ /*background: #333;*/ }
+</style>
 </head>
 <body>
 
@@ -54,7 +62,7 @@
 	<div class="inner">
 		<div class="hd">标题</div>
 		<div class="content">内容</div>
-		<div class="fd">状态栏</div>
+		<div class="ft"></div>
 	</div>
 </div>
 
