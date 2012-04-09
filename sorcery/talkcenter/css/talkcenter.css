@@ -1,5 +1,49 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{ background:#eee; }
-.wrap{ width:1024px; height:626px; /*background:#fff; position:absolute;*/ margin:0 auto; }
+body{ background:#ddd; }
+a{ color:#666; }
+a:hover{ color:#000; }
+.wrap{ width:1024px; height:626px; /*background:#fff; position:absolute;*/ margin:50px auto; }
+	.context{ width:1024px; }
+		.main{ width:700px; height:601px; float:left; }
+			.forms{ height:601px; width:700px; }
+		.side{ width:324px; height:601px; overflow:hidden; zoom:1; }
+	.footer{ height:25px; color:#555; text-shadow: 1px 1px 0px #fff; font-family:Arial, Helvetica, sans-serif; line-height:25px; text-align:right; }
+	
+.modPanelBox{ height:445px; }
+
+.offline{ color:#999; }
+.offline .avatar{ opacity:0.5; }
+
+.contacts .offline{color:#999;}
+.contacts .avatar,.contacts .avatar img{ height:22px; width:22px; }
+.contacts .avatar{ margin:0 10px 0 0;}
+.contacts li{ cursor:pointer; padding:5px; color:#333; }
+.contacts li:hover{ background:#f5f5f5; }
+
+.taskbar{ height:30px; line-height:30px; }
+.taskbar a{ height:100%; padding:0 10px; display:inline-block; -moz-border-radius-bottomleft:3px;-moz-border-radius-bottomright:3px; -webkit-border-bottom-left-radius:3px;-webkit-border-bottom-right-radius:3px; border-bottom-left-radius:3px;border-bottom-right-radius:3px }
+.taskbar a:hover{ background:#d5d5d5; }
+.taskbar .current{ background:#f5f5f5; }
+.taskbar .more{ float:right;  }
+.taskbar .avatar img,.taskbar .avatar{ width:22px; height:22px; }
+.taskbar .avatar{ margin:0 10px 0 0; }
+
+.spacing{ border-right:#555 solid 1px; }
+
+.avatar{ border:#ddd solid 1px; height:48px; width:48px; background:#fff; display:inline-block; }
+.avatar img{ height:48px; width:48px; }
+
+.radius_top3px{-moz-border-radius-topleft:3px;-moz-border-radius-topright:3px; -webkit-border-top-left-radius:3px;-webkit-border-top-right-radius:3px; border-top-left-radius:3px;border-top-right-radius:3px;}
+.radius_bottom3px{-moz-border-radius-bottomleft:3px;-moz-border-radius-bottomright:3px; -webkit-border-bottom-left-radius:3px;-webkit-border-bottom-right-radius:3px; border-bottom-left-radius:3px;border-bottom-right-radius:3px}
+
+.iHome,.iMessage,.iSearch,.iFace,.iFont{ background-image:url(../images/icons.png); background-repeat:no-repeat; vertical-align:text-bottom; margin:0 5px 0 0; }
+.iHome{ background-position:-32px 0; }
+.iMessage{ background-position:-16px 0; }
+.iSearch{}
+.iFace{background-position:-48px 0;}
+.iFont{background-position:-64px 0;}
+a:hover .iHome{ background-position:-32px -16px; }
+a:hover .iMessage{ background-position:-16px -16px; }
+a:hover .iSearch{background-position:0px -16px;}
