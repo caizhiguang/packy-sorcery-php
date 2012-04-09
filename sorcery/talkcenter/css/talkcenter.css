@@ -4,7 +4,7 @@
 body{ background:#ddd; }
 a{ color:#666; }
 a:hover{ color:#000; }
-.wrap{ width:1024px; height:626px; /*background:#fff; position:absolute;*/ margin:50px auto; }
+.wrap{ width:1024px; height:626px; /*background:#fff; position:absolute;*/ margin:10px auto; }
 	.context{ width:1024px; }
 		.main{ width:700px; height:601px; float:left; }
 			.forms{ height:601px; width:700px; }
@@ -17,6 +17,7 @@ a:hover{ color:#000; }
 .offline .avatar{ opacity:0.5; }
 
 .contacts .offline{color:#999;}
+.contacts input,.contacts input[type='checkbox']{ margin:0 5px 0 0; }
 .contacts .avatar,.contacts .avatar img{ height:22px; width:22px; }
 .contacts .avatar{ margin:0 10px 0 0;}
 .contacts li{ cursor:pointer; padding:5px; color:#333; }
