@@ -33,7 +33,14 @@
 	.modForm .talking form{ padding:0 10px; }
 	.modForm .talking textarea{ height:100px; font-size:14px; border:none; width:100%; }
 	/*infor*/
-	.modForm .infor{}
-	.modForm .infor dl{ width:350px; margin:50px auto; background:#eee;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; padding:10px; }
-	.modForm .infor dt{ background:#fff; height:30px; line-height:30px; padding:0 5px;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+	.modForm .infor{ padding:50px 0 0 0; }
+	.modForm .infor dl{ width:350px; margin:0 auto 50px auto; background:#eee;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; padding:10px; }
+	.modForm .infor dt{ background:#fff; height:30px; line-height:30px; padding:0 5px; font-weight:bold; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
 	.modForm .infor dd{ padding:10px; }
+	.modForm .infor .fright{ font-weight:normal; }
+	/*member*/
+	.modForm .member{ padding:15px; height:466px; overflow:auto; }
+	.modForm .member .panel{ margin:0 auto; background:#eee; padding:10px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+	.modForm .member h5{ background:#fff; height:30px; color:#666; line-height:30px; padding:0 5px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+	.modForm .contacts{ margin:10px 0; }
+	.modForm .member .fun{ background:none; }
