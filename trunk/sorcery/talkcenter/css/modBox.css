@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+
+.modBox{ margin:0 0 10px 10px; position:relative; background:#fff;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+.modBox .menu{position:absolute; top:7px; right:7px; height:25px; text-align:right;}
+.modBox .content{ padding:5px; overflow:auto; }
+
+.modUInforBox .content{padding:10px; overflow:hidden;}
+.modUInforBox .content .avatar{ float:left; margin:0 10px 0 0; }
+.modUInforBox .content .infor{ overflow:hidden; zoom:1; }
+.modUInforBox .content:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.modUInforBox .name{ font-size:14px; margin-bottom:5px; padding:3px 0; }
+.modUInforBox .bar a{ color:#999; }
+.modUInforBox .ft{ background:#eee; border-top:#ddd solid 1px; font-size:14px; height:40px; line-height:40px; padding:0 10px; }
+.modUInforBox .ft a{ padding:5px 7px; margin:0 5px 0 0;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+.modUInforBox .ft a:hover{ background:#666; color:#fff; }
+.modUInforBox .ft .current{ background:#888; color:#fff; }
+.modUInforBox .ft .fright{ line-height:normal; margin:4px 0 0 0; }
+.modUInforBox .ft .fright:hover{background:inherit; color:inherit;}
+
+.modFunBox{ background:#fff; height:25px; }
+.modFunBox a{ padding:5px 7px; display:inline-block; }
+
+.modPanelBox{ }
+.modPanelBox .hd{ background:#f5f5f5; font-size:14px; height:30px; line-height:30px; padding:0 10px; }
+
+.news_box{ background:#f5f5f5; border:#eee solid 1px; padding:5px; margin:0 0 5px 0; position:relative; }
+.news_box_hd{ margin:0 0 5px 0; }
+.news_box_memu{position:absolute; top:0; right:0; height:16px; text-align:right; padding:3px;}
+.news_box_content{ text-indent:1em; }
+
+.authority_box{ border-color:#eee8aa; background:#fffacd; }
+.authority_box_view{}
+	.authority_box_view dt.tip{ color:#666; padding:0 0 3px 0; }
+	.authority_box_view dd.infor{ text-indent:1em; padding:0 0 5px 0; }
+.authority_box_ft{ text-align:right; }
+.authority_box_ft .more{ color:#00F; }
+.authority_box_ft .more:hover{ text-decoration:underline; }

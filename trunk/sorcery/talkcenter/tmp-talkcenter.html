@@ -3,10 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>聊天室</title>
+<script type="text/javascript" src="js/jquery.tools.min.js"></script>
 <link href="css/content.css" rel="stylesheet" type="text/css" />
 <link href="css/grids.css" rel="stylesheet" type="text/css" />
 <link href="css/libraries.css" rel="stylesheet" type="text/css" />
 <link href="css/mod.css" rel="stylesheet" type="text/css" />
+<link href="css/modForm.css" rel="stylesheet" type="text/css" />
+<link href="css/modBox.css" rel="stylesheet" type="text/css" />
 <link href="css/talkcenter.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -16,118 +19,149 @@
     	<div class="header"></div>
         <div class="context">
             <div class="main">
-                <div class="modForm">
-                	<div class="inner">
-                        <div class="hd">
-                        	<div class="avatar"><img src="" /></div>
-                        	<div class="title">广州市海珠实验中学2011届01班</div>
-                        </div>
-                        <div class="menu"><a href="javascript:;" class="i"><i class="i iClose"></i></a></div>
-                        <div class="bar">
-                        	<a href="javascript:;">群聊天</a>
-                            <a href="javascript:;">群资料</a>
-                            <a href="javascript:;">群成员</a>
-                            <a href="javascript:;">群话题</a>
-                            <a href="javascript:;">群通知</a>
-                        </div>
-                        <div class="content">
-                        	<div class="talk_view">
-                            	<dl>
-                                	<dt class="tip">
-                                        <span class="name">我</span>
-                                        <span class="time">2012-4-6 11:00:32</span>
-                                        <span class="fun">
-                                        	<a href="javascript:;">引用</a>
-                                            <a href="javascript:;" class="more"></a>
-                                        </span>
-                                    </dt>
-                                    <dd class="infor">
-                                    	准备好没有？
-                                    </dd>
-                                </dl>
-                                <dl>
-                                	<dt class="tip">
-                                        <span class="name">朱莉</span>
-                                        <span class="time">2012-4-6 11:00:32</span>
-                                        <span class="fun">
-                                        	<a href="javascript:;">引用</a>
-                                            <a href="javascript:;" class="more"></a>
-                                        </span>
-                                    </dt>
-                                    <dd class="infor">
-                                    	没有
-                                    </dd>
-                                </dl>
-                            	<div class="news">
-                                	<div class="news_box">
-                                    	<div class="view">
-                                        	<dl>
-                                                <dt class="tip">专家广播：</dt>
-                                                <dd class="infor">专家 宪高铃 上线了</dd>
-                                            </dl>
-                                            <dl>
-                                                <dt class="tip">宪高铃：</dt>
-                                                <dd class="infor">在上学时要注意安全</dd>
-                                            </dl>
-                                        </div>
-                                        <div class="ft"><a href="javascript:;">进入专家课堂</a></div>
-                                    </div>
-                                    <div class="news_box">
-                                    	<h5 class="hd">群公告</h5>
-                                        <div class="memu"><a href="javascript:;" class="i"><i class="i iClose"></i></a></div>
-                                    	<div class="content">
-                                        4月将举办XXX比赛，报名时间：4月12日前。
-                                        </div>
-                                        <div class="ft"><a href="javascript:;">进入专家课堂</a></div>
-                                    </div>
-                                </div>
+            	<div class="forms">
+                    <div class="modForm">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="avatar"><img src="./photo/avatar/3.png" /></div>
+                                <div class="title">广州市海珠实验中学2011届01班</div>
                             </div>
-                            <div class="talk_input">
-                            	<div class="funbar">
-                                	<a href="javascript:;" class="i"><i class="i face"></i></a>
-                                    <a href="javascript:;" class="i"><i class="i font"></i></a>
-                                    <a href="javascript:;" class="i"><i class="i"></i>过滤列表</a>
-                                    <a href="javascript:;" class="i"><i class="i"></i>历史记录</a>
+                            <div class="menu"><a href="javascript:;" class="i"><i class="i iClose"></i></a></div>
+                            <div class="bar"><a href="javascript:;" class="current">群聊天</a><a href="javascript:;">群资料</a><a href="javascript:;">群成员</a><a href="javascript:;">群话题</a><a href="javascript:;">群通知</a></div>
+                            <div class="content">
+                            	<!--[talking]-->
+                            	<div class="talking">
+                                    <div class="talk_view">
+                                        <dl>
+                                            <dt class="tip">
+                                                <span class="name">我</span>
+                                                <span class="time">2012-4-6 11:00:32</span>
+                                                <span class="fun">
+                                                    <a href="javascript:;">引用</a>
+                                                    <a href="javascript:;" class="more"></a>
+                                                </span>
+                                            </dt>
+                                            <dd class="infor">
+                                                准备好没有？
+                                            </dd>
+                                        </dl>
+                                        <dl>
+                                            <dt class="tip">
+                                                <span class="name">朱莉</span>
+                                                <span class="time">2012-4-6 11:00:32</span>
+                                                <span class="fun">
+                                                    <a href="javascript:;">引用</a>
+                                                    <a href="javascript:;" class="more"></a>
+                                                </span>
+                                            </dt>
+                                            <dd class="infor">
+                                                没有
+                                            </dd>
+                                        </dl>
+                                        <div class="news">
+                                            <div class="news_box authority_box">
+                                                <div class="authority_box_view">
+                                                    <dl>
+                                                        <dt class="tip">专家广播：</dt>
+                                                        <dd class="infor">专家 宪高铃 上线了</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt class="tip">宪高铃：</dt>
+                                                        <dd class="infor">在上学时要注意安全</dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="authority_box_ft"><a href="javascript:;" class="more">进入专家课堂&gt;&gt;</a></div>
+                                            </div>
+                                            <div class="news_box">
+                                                <h5 class="news_box_hd">群公告</h5>
+                                                <div class="news_box_memu"><a href="javascript:;" class="i"><i class="i iClose"></i></a></div>
+                                                <div class="news_box_content">
+                                                4月将举办XXX比赛，报名时间：4月12日前。
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="talk_input">
+                                        <div class="funbar">
+                                            <a href="javascript:;" class=""><i class="i iFace"></i></a>
+                                            <a href="javascript:;" class=""><i class="i iFont"></i></a>
+                                            <a href="javascript:;" class="fright"><i class="i"></i>过滤列表</a>
+                                            <a href="javascript:;" class="fright"><i class="i"></i>历史记录</a>
+                                        </div>
+                                        <form class="input">
+                                            <textarea></textarea>
+                                        </form>
+                                        <div class="ftbar">
+                                            <input class="fleft" type="button" value="关闭" />
+                                            <input class="submit" type="submit" value="发送" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <textarea></textarea>
-                                <div class="ftbar">
-                                	<input class="submit" type="submit" value="发送" />
+                                <!--[talking]-->
+                                
+                                <!--[infor]-->
+                                <div class="infor">
+                                	<dl>
+                                    	<dt>群名称：</dt>
+                                        <dd>广州市海珠实验中学2011届01班</dd>
+                                        <dt>群成员：<span class="fright"><a href="javascript:;">查看群成员&gt;&gt;</a></span></dt>
+                                        <dd>共30人，20在线</dd>
+                                        <dt>群公告：<span class="fright"><a href="javascript:;">修改&gt;&gt;</a></span></dt>
+                                        <dd>4月将举办XXX比赛，报名时间：4月12日前。</dd>
+                                    </dl>
+                                    <dl>
+                                    	<dt>你有 3 条群通知未读<span class="fright"><a href="javascript:;">查看&gt;&gt;</a></span></dt>
+                                    </dl>
                                 </div>
+                                <!--[infor]-->
                             </div>
-                        </div>
-                        <div class="ft taskbar">
-							<a href="javascript:;"><span class="avatar"><img src="" /></span>广州市海珠实验中学2011届01班</a>
-                            <a href="javascript:;"><span class="avatar"><img src="" /></span>朱莉</a>
-                            <a href="javascript:;" class="more"></a>
+                            <div class="ft"></div>
                         </div>
                     </div>
                 </div>
+                <div class="taskbar">
+                    <a href="javascript:;" class="current"><span class="avatar"><img src="./photo/avatar/3.png" /></span>广州市海珠实验中学2011届01班</a><a href="javascript:;" class="offline"><span class="avatar"><img src="./photo/avatar/3.png" /></span>朱莉</a>
+                    <a href="javascript:;" class="more"><i class="i iMore"></i></a>
+                </div>
             </div>
             <div class="side">
-            	<div class="box">
-                	<div class="menu"><a href="javascript:;" class="i"><i class="i iMessage"></i>信息</a></div>
-                	<div class="content">
-						<div class="avatar"><img src="" /></div>
-                        <div class="infor">
-                        	<div class="name">王莺莺</div>
-                            <div class="bar">
-                            	<a href="javascript:;">个人中心</a>
-                                <a href="javascript:;">设置</a>
-                                <a href="javascript:;">退出</a>
+            	<div class="modBox modFunBox"><a href="javascript:;"><i class="i iHome"></i>回到个人中心</a></div>
+            	<div class="modBox modUInforBox">
+                	<div class="inner">
+                        <div class="menu"><a href="javascript:;" class=""><i class="i iMessage"></i>信息</a></div>
+                        <div class="content">
+                            <div class="avatar"><img src="./photo/avatar/3.png" /></div>
+                            <div class="infor">
+                                <div class="name">王莺莺</div>
+                                <div class="bar"><a href="javascript:;">设置</a>&nbsp;<a href="javascript:;">退出</a></div>
                             </div>
                         </div>
+                        <div class="ft radius_bottom3px">
+                            <a href="javascript:;" class="current">好友</a><a href="javascript:;">群组</a><a href="javascript:;">在线专家</a>
+                            <a href="javascript:;" class="fright"><i class="i iSearch"></i>搜索</a>
+                        </div>
                     </div>
-                    <div class="ft">
-                    	<a href="javascript:;">正在聊天</a>
-                    	<a href="javascript:;">好友</a>
-                        <a href="javascript:;">群组</a>
-                        <a href="javascript:;" class="i"><i class="i iSearch"></i>搜索</a>
+                </div>
+                <div class="modBox modPanelBox">
+                	<div class="inner">
+                    	<div class="hd radius_top3px">好友</div>
+                        <div class="menu"><a href="javascript:;" class="i"><i class="i iClose"></i></a></div>
+                        <ul class="content contacts radius_bottom3px">
+                        	<li><span class="avatar"><img src="./photo/avatar/3.png" /></span>朱莉</li>
+                            <li class="offline"><span class="avatar"><img src="./photo/avatar/3.png" /></span>史提芬</li>
+                            <li class="offline"><span class="avatar"><img src="./photo/avatar/3.png" /></span>史提芬</li>
+                            <li class="offline"><span class="avatar"><img src="./photo/avatar/3.png" /></span>史提芬</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">在线聊天v0.2 | &copy;2012 妇联家教通</div>
+        <div class="footer"><span class="spacing">在线聊天v0.2</span>&copy;2012 妇联家教通</div>
     </div>
-
+	<script type="text/javascript">
+    	;(function($){
+			$(".modForm .bar").tabs(".modForm .content>div");
+		})(jQuery);
+    </script>
 </body>
 </html>
