@@ -10,7 +10,7 @@ a:hover{ color:#000; }
 			.forms{ height:601px; width:2000em; position:absolute; top:0; left:0; }
 			.forms .modForm{ width:700px; display:inline-block; }
 		.side{ width:324px; height:601px; overflow:hidden; zoom:1; }
-	.footer{ height:25px; color:#555; text-shadow: 1px 1px 0px #fff; font-family:Arial, Helvetica, sans-serif; line-height:25px; text-align:right; }
+	.footer{ height:25px; color:#555; font-size:12px; text-shadow: 1px 1px 0px #fff; font-family:Arial, Helvetica, sans-serif; line-height:25px; text-align:right; }
 
 .main .modPanelBox{ width:400px; height:300px; margin:80px auto 0 auto; }	
 .side .modPanelBox{ height:445px; }
