@@ -20,7 +20,7 @@ textarea.text{background:url(../images/text_bg.png) #fff repeat-x;line-height:25
 /*select.select{ background:url(../images/text_bg.png) repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }*/
 
 /**icon**/
-.i{ width:16px; height:16px; /*display:inline-block;*/ }
+.i{ width:16px; height:16px; vertical-align:text-bottom; /*display:inline-block;*/ }
 .iMini,.iDisableMini,.iClose,.iDisableClose{ background-image:url(../images/icon.png); background-repeat:no-repeat; }
 .iMini{ background-position:0 0; }
 .iMini:hover{ background-position:0 -16px; }
@@ -89,4 +89,5 @@ ul.li_disc li,ol.li_disc li{ list-style:disc; }
 ul.ubottom5 li{ margin-bottom:5px; }
 
 /**size**/
+.size12{ font-size:12px; }
 .size16{ font-size:16px; }
