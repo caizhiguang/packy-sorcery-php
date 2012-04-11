@@ -13,6 +13,10 @@
 <script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/ui/contextmenu.js"></script>
 <script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/ui/form.js"></script>
 <script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/ui/msgbox.js"></script>
+
+<script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/mvc/mode.js"></script>
+<script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/mvc/controller.js"></script>
+<script type="text/javascript" src="Public/js/salvia_debug_v_0.2/class/mvc/view.js"></script>
 <script type="text/javascript">
 
 ;(function($){
@@ -48,6 +52,9 @@
 		var date = new Date();
 		var str = $.dateToString(date,"Y-M-D h:m:s.z");
 		$(document.body).append($.c("div").text(str));
+
+
+		
 	});
 })(jQuery);
 
