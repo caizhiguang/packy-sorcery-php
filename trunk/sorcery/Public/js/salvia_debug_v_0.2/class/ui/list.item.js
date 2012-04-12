@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes.ui");
 	
 	/**list.item(窗体类)**/
-	$.classes.ui.list.item = $.salvia.object.class($.classes.ui.base,{
+	$.classes.ui.list.item = $.salvia.object.Class($.classes.ui.base,{
 		init:function($super,dom,attr){
 			$super(dom,attr);
 			

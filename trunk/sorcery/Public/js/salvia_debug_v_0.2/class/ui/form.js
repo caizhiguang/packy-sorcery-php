@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes.ui");
 	
 	/**form(窗体类)**/
-	$.classes.ui.form = $.salvia.object.class($.classes.ui.base,{
+	$.classes.ui.form = $.salvia.object.Class($.classes.ui.base,{
 		init:function($super,dom,attr){
 			$super(dom,attr);
 			if(attr==undefined){

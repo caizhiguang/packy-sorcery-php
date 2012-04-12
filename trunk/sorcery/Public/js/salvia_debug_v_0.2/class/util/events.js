@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes.util");
 	
 	/**base(基类)**/
-	$.classes.util.events = $.salvia.object.class({
+	$.classes.util.events = $.salvia.object.Class({
 		init:function(){this.hashtable={};},
 		add:function(key,fun,scope,data){
 			if(!$.hash.contains(this.hashtable,key)){this.hashtable[key]={};}

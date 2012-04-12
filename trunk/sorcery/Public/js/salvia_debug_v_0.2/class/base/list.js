@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes");
 	
 	/**list(列表基类)**/
-	$.classes.base.list = $.salvia.object.class($.classes.base,{
+	$.classes.base.list = $.salvia.object.Class($.classes.base,{
 		init:function($super){
 			$super();
 			this.list = [];

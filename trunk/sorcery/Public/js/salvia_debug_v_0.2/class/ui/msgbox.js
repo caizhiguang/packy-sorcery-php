@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes.ui");
 	
 	/**msgbox(信息提示窗体)**/
-	$.classes.ui.msgbox = $.salvia.object.class($.classes.ui.form,{
+	$.classes.ui.msgbox = $.salvia.object.Class($.classes.ui.form,{
 		init:function($super,dom,attr){
 			this.initScreen();
 			

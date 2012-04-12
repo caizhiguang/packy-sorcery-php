@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes.mvc");
 	
 	/**mode(mvc模型基类)**/
-	$.classes.mvc.mode = $.salvia.object.class($.classes.base,{
+	$.classes.mvc.mode = $.salvia.object.Class($.classes.base,{
 		init:function($super,options,filter){
 			$super();
 			this.filter=filter;
@@ -84,21 +84,21 @@
 			var arg = $.argToArray(arguments);
 			var controllers = $(document).data("Controllers");
 			var ctrl,method,args,ctrlName;
-			ctrlName = typeof arg[0];
+			ctrlName = arg[0];
 			ctrl = controllers[ctrlName];
-			method = typeof arg[1];
-			args = typeof arg[2];
+			method = arg[1];
+			args = arg[2];
 			
 			if(ctrl==undefined){$.error("No find "+ctrlName);return false;}
-			if(ctrl[requestContent]==undefined){$.error("No find "+ctrlName+"."+requestContent);return false;}
-			if($.isFunction(ctrl[requestContent])){
+			if(ctrl[method]==undefined){$.error("No find "+ctrlName+"."+method);return false;}
+			if($.isFunction(ctrl[method])){
 				try{
-					return ctrl[requestContent].apply(ctrl,args==undefined?[]:args);
+					return ctrl[method].apply(ctrl,args==undefined?[]:args);
 				}catch(e){
 					$.error(e.message);
 				}
 			}else{
-				return ctrl[requestContent];
+				return ctrl[method];
 			}
 		}
 	});

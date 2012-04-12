@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes");
 	
 	/**base(基类)**/
-	$.classes.base = $.salvia.object.class({
+	$.classes.base = $.salvia.object.Class({
 		init:function(){
 			this.id = $.md5($.dateToString(new Date(),"Y-M-D h:m:s.z"));
 			this._data = {};
