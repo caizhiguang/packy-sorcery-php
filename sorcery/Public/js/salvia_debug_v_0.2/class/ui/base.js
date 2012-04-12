@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes.ui");
 	
 	/**ui.base(可视基类)**/
-	$.classes.ui.base = $.salvia.object.class($.classes.base,{
+	$.classes.ui.base = $.salvia.object.Class($.classes.base,{
 		init:function($super,dom,attr){
 			$super();
 			this.dom = dom;

@@ -3,7 +3,7 @@
 	$.salvia.object.namespace("$.classes.ui");
 	
 	/**taskbar(任务栏)**/
-	$.classes.ui.taskbar = $.salvia.object.class($.classes.list,{
+	$.classes.ui.taskbar = $.salvia.object.Class($.classes.list,{
 		setFormManager:function(formManager){
 			this.formManager = formManager;
 			this.formManager.addListener("added",function(e,form){

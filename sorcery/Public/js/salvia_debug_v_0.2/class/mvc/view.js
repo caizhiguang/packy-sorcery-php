@@ -2,7 +2,7 @@
 	
 	$.salvia.object.namespace("$.classes.mvc");
 	
-	$.classes.mvc.view = $.salvia.object.class($.classes.base,{
+	$.classes.mvc.view = $.salvia.object.Class($.classes.base,{
 		init:function($super,ctrlKey){
 			this._ctrlKey = ctrlKey;
 			$super();
@@ -17,15 +17,15 @@
 			args = typeof arg[0] =="string" && arg[1] == "string" ? typeof arg[2] : typeof arg[1];
 			
 			if(ctrl==undefined){$.error("No find "+ctrlName);return false;}
-			if(ctrl[requestContent]==undefined){$.error("No find "+ctrlName+"."+requestContent);return false;}
-			if($.isFunction(ctrl[requestContent])){
+			if(ctrl[method]==undefined){$.error("No find "+ctrlName+"."+method);return false;}
+			if($.isFunction(ctrl[method])){
 				try{
-					return ctrl[requestContent].apply(ctrl,args==undefined?[]:args);
+					return ctrl[method].apply(ctrl,args==undefined?[]:args);
 				}catch(e){
 					$.error(e.message);
 				}
 			}else{
-				return ctrl[requestContent];
+				return ctrl[method];
 			}
 		}
 	});

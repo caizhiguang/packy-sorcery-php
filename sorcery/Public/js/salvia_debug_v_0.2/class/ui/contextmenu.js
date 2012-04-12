@@ -2,7 +2,7 @@
 	
 	$.salvia.object.namespace("$.classes.ui");
 	/**ui.base(可视基类)**/
-	$.classes.ui.contextmenu = $.salvia.object.class($.classes.ui.base,{
+	$.classes.ui.contextmenu = $.salvia.object.Class($.classes.ui.base,{
 		init:function($super,dom,attr){
 			$super(dom,attr);
 			

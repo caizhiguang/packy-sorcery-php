@@ -3,15 +3,17 @@
 	$.salvia.object.namespace("$.classes.ui");
 	
 	/**list(列表类)**/
-	$.classes.ui.list = $.salvia.object.class($.classes.list,{
-		add:function($super,attr){
-			var item = this.onAdded(attr);
-			$super(item);
-			return item;
+	$.classes.ui.list = $.salvia.object.Class($.classes.base.list,{
+		init:function($super,dom,attr){
+			$super();
+			$.classes.ui.base.prototype.init.apply(this,[dom,attr]);
 		},
-		onAdded:function(attr){
-			var item = new $.classes.ui.list.item(this.dom,attr);
-			this.dom.append(item.dom);
+		add:function($super,dom,attr){
+			if(dom==undefined){dom = $.c("li").appendTo(this.dom);}
+			if(dom.length==undefined){dom = $.c("li");}
+			
+			var item = new $.classes.ui.list.item(dom.appendTo(this.dom),attr);
+			$super(item);
 			return item;
 		},
 		remove:function($super,item){			

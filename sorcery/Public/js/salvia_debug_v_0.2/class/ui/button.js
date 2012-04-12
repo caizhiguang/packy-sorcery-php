@@ -2,7 +2,7 @@
 	
 	$.salvia.object.namespace("$.classes.ui");
 	
-	$.classes.ui.button = $.salvia.object.class($.classes.ui.base,{
+	$.classes.ui.button = $.salvia.object.Class($.classes.ui.base,{
 		text:function(text){
 			if(text==undefined){
 				return this.dom.find(".text").text();

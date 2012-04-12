@@ -28,6 +28,21 @@
 	});
 	/**==jQuery.extend===================================================================**/
 	$.extend({
+		unique: function( array ) {
+			var ret = [], done = {};
+			try{
+				for(var i=0,length=array.length;i<length;i++) {
+					var id = array[i];
+					if (!done[id]){
+						done[id] = true;
+						ret.push(array[i]);
+					}
+				}
+			}catch(e){
+			ret = array;
+			}
+			return ret;
+		},
 		isFunction:function(fun){
 			return typeof(fun)=="function";
 		},
@@ -65,6 +80,13 @@
 			result = result.replace(/s/,date.getSeconds());
 			result = result.replace(/z/,date.getMilliseconds());
 			return result;
+		},
+		stringToDate:function(str){
+			var reg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2}).(\d{1,3})$/;
+			var r = str.match(reg);
+			if(r==null) return false;
+			var d = new Date(r[1], r[3]-1,r[4],r[5],r[6],r[7],r[8]);
+			return d;
 		},
 		list:{
 			add:function(list,item){
@@ -169,7 +191,7 @@
 			},
 			//Object
 			object:{
-				class:function(){
+				Class:function(){
 					var parent = null, properties = $.argToArray(arguments);
 			        if($.isFunction(properties[0])){parent = properties.shift();}
 			            
@@ -305,6 +327,19 @@
 	$.extend({
 		c:function(options){
 			return $.salvia.dom.create(options);
+		},
+		_show_debug_message:function(message){
+			if($("#_debug").length>0){
+				$._debug_panel = $("#_debug");
+			}else{
+				$._debug_panel = $.c("div").appendTo(document.body).attr({id:"_debug"}).css({border:"#ddd solid 1px",background:"#fff",padding:10,position:"absolute",bottom:5,right:5,width:400,height:300,overflow:"auto"});
+				$.c("a").attr({href:"javascript:;",id:"_debug_close"}).appendTo($._debug_panel).text("关闭").css({float:"right"}).click(function(){
+					$(this).parent().hide();
+				});
+				$.c("div").attr({id:"message"}).appendTo($._debug_panel);
+			}
+			
+			$._debug_panel.find("#message").html($._debug_panel.find("#message").html()+message+"<br/>");
 		}
 	});
 	
