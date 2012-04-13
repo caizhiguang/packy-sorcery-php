@@ -218,6 +218,81 @@
                             <div class="ft"></div>
                         </div>
                     </div>
+                    
+                    <div class="modForm" id="32b79ffb186e4a5133a961df4ca6e85f">
+                        <div class="inner">
+                            <div class="hd">
+                                <div class="avatar"><img src="./photo/avatar/3.png" /></div>
+                                <div class="title">朱莉</div>
+                            </div>
+                            <div class="menu"><a href="javascript:;" class="i"><i class="i iClose"></i></a></div>
+                            <div class="bar">当前状态：[ <span class="state">离线</span> ]</div>
+                            <div class="content">
+                            	<!--[talking]-->
+                            	<div class="talking">
+                                    <div class="talk_view">
+                                        <dl>
+                                            <dt class="tip">
+                                                <span class="name">我</span>
+                                                <span class="time">2012-4-6 11:00:32</span>
+                                                <span class="fun">
+                                                    <a href="javascript:;">引用</a>
+                                                    <a href="javascript:;" class="more"></a>
+                                                </span>
+                                            </dt>
+                                            <dd class="infor">
+                                                准备好没有？
+                                            </dd>
+                                        </dl>
+                                        <dl>
+                                            <dt class="tip">
+                                                <span class="name">朱莉</span>
+                                                <span class="time">2012-4-6 11:00:32</span>
+                                                <span class="fun">
+                                                    <a href="javascript:;">引用</a>
+                                                    <a href="javascript:;" class="more"></a>
+                                                </span>
+                                            </dt>
+                                            <dd class="infor">
+                                                没有
+                                            </dd>
+                                        </dl>
+                                        <div class="news">
+                                            <div class="news_box authority_box">
+                                                <div class="authority_box_view">
+                                                    <dl>
+                                                        <dt class="tip">专家广播：</dt>
+                                                        <dd class="infor">专家 宪高铃 上线了</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt class="tip">宪高铃：</dt>
+                                                        <dd class="infor">在上学时要注意安全</dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="authority_box_ft"><a href="javascript:;" class="more">进入专家课堂&gt;&gt;</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="talk_input">
+                                        <div class="funbar">
+                                            <a href="javascript:;" class=""><i class="i iFace"></i></a>
+                                            <a href="javascript:;" class=""><i class="i iFont"></i></a>
+                                            <a href="javascript:;" class="fright"><i class="i"></i>历史记录</a>
+                                        </div>
+                                        <form class="input">
+                                            <textarea></textarea>
+                                        </form>
+                                        <div class="ftbar">
+                                            <input class="fleft" type="button" value="关闭" />
+                                            <input class="submit" type="submit" value="发送(s)" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[talking]-->
+                            </div>
+                            <div class="ft"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="taskbar">
@@ -319,7 +394,12 @@
 				$(".taskbarList").toggle();
 			});
 
-			
+			var btn = $('<a class="offline item" href="#g2"><span class="avatar"><img src="./photo/avatar/3.png"></span>朱莉</a>');
+			btn.click(function(){
+				var api = $(".main").data("scrollable");
+				api.seekTo(2);
+			});
+			$(".taskbar>.items").append(btn);
 		})(jQuery);
     </script>
 </body>

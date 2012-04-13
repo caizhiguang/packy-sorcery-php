@@ -25,9 +25,9 @@
 		},
 		text:function(text){
 			if(text==undefined){
-				return this.dom.find(".hd").text();
+				return this.dom.find(".title").text();
 			}else{
-				this.dom.find(".hd").text(text);
+				this.dom.find(".title").text(text);
 			}
 		},
 		actived:function(actived){

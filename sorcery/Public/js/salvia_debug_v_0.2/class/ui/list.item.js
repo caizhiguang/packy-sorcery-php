@@ -14,7 +14,7 @@
 			
 			this.dom.bind("click",this,function(e){
 				if(e.target.tagName != "INPUT" && e.data.hasCheckBox() && e.data.enable()){e.data.checked(!e.data.checked());}
-				return e.data._events.run("click",e);
+				return e.data._events.run("click",this,e.data,e);
 			});
 		},
 		text:function(text){

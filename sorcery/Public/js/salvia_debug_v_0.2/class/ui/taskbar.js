@@ -3,15 +3,17 @@
 	$.salvia.object.namespace("$.classes.ui");
 	
 	/**taskbar(任务栏)**/
-	$.classes.ui.taskbar = $.salvia.object.Class($.classes.list,{
+	$.classes.ui.taskbar = $.salvia.object.Class($.classes.ui.list,{
+		
 		setFormManager:function(formManager){
 			this.formManager = formManager;
 			this.formManager.addListener("added",function(e,form){
-				e.other.addItem(form);
+				e.data.addItem(form);
 			},this);
 			this.formManager.addListener("removed",function(e,form){
-				e.other.removeItem(form);
+				e.data.removeItem(form);
 			},this);
+			this._type = "default";
 		},
 		onAdded:function(item){
 			this.dom.append(item);
@@ -20,7 +22,7 @@
 			item.remove();
 		},
 		addItem:function(form){
-			var item = $.c("a").text(form.text()).data("ui-class",form).attr({
+			var item = $.c("a").text(form.text()).attr({
 				"data-for":form.id,
 				"href":"javascript:;"
 			}).click(function(){
@@ -31,12 +33,13 @@
 				}
 			});
 			this.add(item);
+			item.data("ui-class",form);
 		},
 		removeItem:function(form){
 			var removeItem;
 			for(var i in this.list){
 				if($.isFunction(this.list[i])){continue;}
-				if(this.list[i].data("ui-class")==form){
+				if(this.list[i].dom.data("ui-class")==form){
 					removeItem = this.list[i];
 				}
 			}
@@ -44,7 +47,7 @@
 			return true;
 		},
 		onActived:function(){
-			this._events.run("actived",this);
+			this._events.run("actived");
 		}
 	});
 	

@@ -2,18 +2,18 @@
 	
 	$.salvia.object.namespace("$.classes");
 	
-	/**list(列表基类)**/
+	/**hash(列表基类)**/
 	$.classes.base.hash = $.salvia.object.Class($.classes.base,{
 		init:function($super){
 			$super();
-			this.hashtable = [];
+			this.hashtable = {};
 		},
 		add:function(key,item){
 			$.hash.add(this.hashtable,key,item);
 			this.onAdded(key,item);
 		},
 		remove:function(key){
-			var result = $.list.remove(this.hashtable,key);
+			var result = $.hash.remove(this.hashtable,key);
 			this.onRemoved(result);
 			return result;
 		},
