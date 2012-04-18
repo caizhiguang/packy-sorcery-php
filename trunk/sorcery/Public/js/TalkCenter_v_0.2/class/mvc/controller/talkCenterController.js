@@ -84,7 +84,7 @@
 						this.mode.pollingMode.load({data:{
 							start:start.ToString(),
 							end:end.ToString(),
-							To:this._data.userInfor.Uid,
+							To:this._data.userInfor.id,
 							group:this._data.groupIds==undefined?"":this._data.groupIds
 						}});
 					},
@@ -92,8 +92,12 @@
 				},
 				online:{
 					space:30000,
+					validity:"one",
 					fun:function(timer,tag){
-						this.updataOnlineUser();
+						this.mode.onlineUsersMode.load({data:{
+							onlinelist:this._data.userIds.join(),
+							uid:this._data.userInfor.id
+						}});
 					},
 					scope:this
 				},
@@ -105,7 +109,6 @@
 					scope:this
 				}
 			});
-			
 		},
 
 		login:function(){
@@ -130,34 +133,85 @@
 		loginAfter:function(data){
 			//登入后处理
 			
-			this._data.userInfor = data.User_Info.Item;
+			this._data.userInfor = $.convert(data.User_Info.Item,{
+				Avatar:"avatar",
+				NickName:"name",
+				UserName:"accountName",
+				Uid:"id",
+				Status:"validity",
+				State:"state"
+			});
 			this._data.friends = data.User_Friends==""?[]:[].concat(data.User_Friends.Item);
 			this._data.groups = data.Group==""?[]:[].concat(data.Group.Item);
 			this._data.config.serverTime = $.stringToDate(data.NowTime);
 			
-			this._data.userIds = $.unique($.merge(this._data.userIds,this.getUserIds(this._data.friends,"Fuid")));
-			this._data.groupUser = this.getGroupIds(this._data.groups);
+			for(var i in this._data.friends)
+			{
+				this._data.friends[i] = $.convert(this._data.friends[i],{
+					Avatar:"avatar",
+					NickName:"name",
+					FUserName:"fulname",
+					Fuid:"id",
+					State:"status",
+					TypeRela:"relation"
+				});
+				this._data.friends[i]._type = "friend";
+			}
+			for(var i in this._data.groups)
+			{
+				this._data.groups[i] = $.convert(this._data.groups[i],{
+					Avatar:"avatar",
+					GroupName:"name",
+					Gid:"id",
+					Status:"status",
+					FounderID:"founderId",
+					GroupType1:"groupType",
+					Authentication:"authentication",
+					GroupLevel:"level",
+					Gbrief:"brief"
+				});
+				this._data.groups[i]._type = "group";
+			}
+			this._data.userIds = $.unique($.merge(this._data.userIds,this.getUserIds(this._data.friends,"id")));
+			this._data.groupIds = this.getGroupIds(this._data.groups);
 			
 			this.view.talkCenter.datasource({
-				userInfor:$.salvia.data.convert(this._data.userInfor,{
-					Avatar:"avatar",
-					NickName:"name"
-				}),
+				userInfor:this._data.userInfor,
 				friends:this._data.friends,
 				groups:this._data.groups
 			});
 			this.initPolling();
-			$(document).data("Timer").runTimer();
+			var timer = $(document).data("Timer");
+			timer.runTimer();
+			timer.runAction("online");
 			
 			this._events.run("loginAfter");
 		},
 		
+		//发送聊天内容
+		sentTalking:function(data){
+			this.mode.pushMessageMode.load(data);
+		},
+		
 		//取得轮询结果，更新其他板块
 		updateInformation:function(data,ajax_options){
-			
+			this.view.talkCenter.updateInformation(this._data);
 		},
 		//取得在线用户列表，更新所有用户在线状态
-		updataOnlineUser:function(){},
+		updataOnlineUser:function(data){
+			data = data==undefined?"":data;
+			var talkCenterView = this.view.talkCenter;
+			var compare = function(a,b){
+				return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
+			};
+			
+			for(var i in talkCenterView.control.friendList.list){
+				var item = talkCenterView.control.friendList.list[i];
+				if(data.indexOf(item._data.id)!=-1){item.online(false);continue;}
+				item.online(true);
+			}
+			talkCenterView.control.friendList.sort(compare);
+		},
 		
 		getUserIds:function(data,key){
 			if(data.length<=0){return;}
@@ -173,7 +227,7 @@
 			for(var i in groups)
 			{
 				if(i!="0"){str+=",";}
-				str+=groups[i].Gid+":"+groups[i].GroupType1;
+				str+=groups[i].id+":"+groups[i].groupType;
 			}
 			return str;
 		}

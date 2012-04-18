@@ -4,10 +4,15 @@
 	
 	/**formManager(窗体管理类)**/
 	$.classes.util.formManager = $.salvia.object.Class({
-		init:function(){
+		init:function(attr){
 			this.forms= new $.classes.base.hash();
 			this._forms = [];
 			this._events = new $.classes.util.events();
+			this._resetLocation = true;
+			
+			if(attr!=undefined){
+				$.classes.ui.base.prototype.initSet.apply(this,[attr]);
+			}
 		},
 		add:function(form){
 			if(this.forms.contains(form.id)){return;}
@@ -24,6 +29,13 @@
 			this.onActived(this._forms[this._forms.length-1]);
 			this._events.run("removed",this,form);
 			return true;
+		},
+		resetLocation:function(val){
+			if(val==undefined){
+				return this._resetLocation;
+			}else{
+				this._resetLocation = val;
+			}
 		},
 		contains:function(form){
 			return this.forms.contains(form.id);
@@ -70,6 +82,7 @@
 			this.remove(form);
 		},
 		onActived:function(form){
+			if(!this._resetLocation){return;}
 			var index = $.list.indexOf(this._forms,form);
 			if(index!=-1){
 				this._forms.splice(index,1);

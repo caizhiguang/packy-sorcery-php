@@ -10,10 +10,13 @@
 			this.dom.data("ui-class",this);
 			this.dom.attr("data-id",this.id);
 			if(attr!=undefined){
-				for(var pro in attr){
-					if(this[pro]==undefined) continue;
-					this[pro](attr[pro]);
-				}
+				this.initSet(attr);
+			}
+		},
+		initSet:function(attr){
+			for(var pro in attr){
+				if(this[pro]==undefined) continue;
+				this[pro](attr[pro]);
 			}
 		}
 	});

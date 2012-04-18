@@ -32,10 +32,10 @@
 			
 			var ctrl_mode = this.request("TalkCenter","mode");
 			var ctrl_data = this.request("TalkCenter","_data");
-			if(Number(messageCount)!=0){ctrl_mode.messageMode.load({data:{To:ctrl_data.userId,Start:ajax_options._data.start,End:ajax_options._data.end,group:ctrl_data.groupIds}});}
-			if(Number(requestCount)!=0){ctrl_mode.requestMode.load({data:{myId:ctrl_data.userId}});}
+			if(Number(messageCount)!=0){ctrl_mode.messageMode.load({data:{To:ajax_options._data.To,Start:ajax_options._data.start,End:ajax_options._data.end,group:ctrl_data.groupIds}});}
+			if(Number(requestCount)!=0){ctrl_mode.requestMode.load({data:{myId:ajax_options._data.To}});}
 			//if(Number(noticeCount)!=0){ctrl_mode.loadNotice();}
-			if(Number(fRequestCount)!=0){ctrl_mode.friendMode.load({data:{Uid:ctrl_data.userId}});}
+			if(Number(fRequestCount)!=0){ctrl_mode.friendMode.load({data:{Uid:ajax_options._data.To}});}
 			
 			if(ctrl_data.config.debug){
 				var i = $(document).data("messageIndex");

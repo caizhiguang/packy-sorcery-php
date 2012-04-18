@@ -6,14 +6,11 @@
 		
 		init:function($super){
 			$super("TalkCenter");
-			
-			$(".modForm .tabs").tabs(">.content>div",{history:true});
-			$(".modUInforBox .ft").tabs(".modPanelBox>.inner",{history:false});
-			
+
 			this.control={
-				friendList:new $.classes.ui.list($("#friends")),
-				groupList:new $.classes.ui.list($("#groups")),
-				authorityList:new $.classes.ui.list($("#authority"))
+				friendList:new $.TalkCenter.classes.ui.list($("#friends")),
+				groupList:new $.TalkCenter.classes.ui.list($("#groups")),
+				authorityList:new $.TalkCenter.classes.ui.list($("#authority"))
 			};
 			this.view={
 				talkView:new $.TalkCenter.classes.mvc.view.talkView()
@@ -21,9 +18,21 @@
 			
 			this.config={
 				binding:{
+					_default:{
+						avatar:function(avatar){
+							this.dom.find(".avatar img").attr({src:avatar});
+						},
+						name:function(name){
+							this.dom.find(".name").text(name);
+						},
+						id:function(fuid){
+							this.dom.find(".name").text(this.dom.find(".name").text()+"("+fuid+")");
+							this.dom.attr("data-uid",fuid);
+						}
+					},
+				
 					contacts:{
 						Avatar:function(avatar){
-							//this.dom.find(".avatar img").attr({src:$.getRootPath()+$.TalkCenter.config.avatarPath+avatar+".png"});
 							this.dom.find(".avatar img").attr({src:avatar});
 						},
 						NickName:function(name){
@@ -66,29 +75,70 @@
 				}
 			};
 			
+			$(".modUInforBox .ft").tabs(".modPanelBox>.inner",{history:false});
+			$(".modUInforBox .ft").data("tabs").click(1);
+			this.control.messagePanel = $(".modUInforBox .messages");
+			this.control.messagePanel.hide().click(function(){return false;});
+			this.control.messagePanel.find(".message").bind("click",this,function(e){
+				$(".modUInforBox .ft").data("tabs").click(0);
+			});
+			this.control.messagePanel.find(".gmessage").bind("click",this,function(e){
+				$(".modUInforBox .ft").data("tabs").click(1);
+			});
+			this.control.messagePanel.find(".notice").bind("click",this,function(e){});
+			this.control.messagePanel.find(".request").bind("click",this,function(e){});
+			this.control.messagePanel.find("a.btnClose").click($.proxy(function(){this.toggle();},this.control.messagePanel));
+			
+			this.timer = $(document).data("Timer")==undefined?new $.TalkCenter.classes.util.timer():$(document).data("Timer");
+			this.timer.addAction({
+				news_prompt:{
+					space:500,
+					fun:function(timer,tag){
+						$("a.btnMessage").toggleClass("showNews").find(".iMessage").toggleClass("iNew");						
+					},
+					scope:this
+				}
+			});
+			this.timer.stop("news_prompt");
+			
 			$(".wrap").hide();
+			
+			$(document).bind("click",this,this.onMessagePanelLostFocus);
+		},
+		onBtnMessageClick:function(e){
+			e.data.timer.stop("news_prompt");
+			$(this).removeClass("showNews").find(".iMessage").removeClass("iNew").parents(".menu").css({zIndex:2});
+			e.data.control.messagePanel.css("zIndex",1).toggle();
+			
+			return false;
+		},
+		onMessagePanelLostFocus:function(e){
+			e.data.control.messagePanel.hide();
 		},
 		
 		onDatasource:function(data){
 			$(".modUInforBox").find(".avatar>img").attr("src",data.userInfor.avatar);
 			$(".modUInforBox").find(".name").text(data.userInfor.name);
 			
+			this._data.contactHash = {};
 			for(var i in data.friends)
 			{
-				if(data.friends[i].TypeRela!="1"){continue;}
+				if(data.friends[i].relation!="1"){continue;}
 				var item = this.control.friendList.add($("#contacts>li").clone());
-				item.datasource(data.friends[i],this.config.binding.contacts);
+				item.datasource(data.friends[i],this.config.binding._default);
 				item.addListener("click",function(e,obj){
 					e.data.openTalking(obj._data);
 				},this);
+				$.hash.add(this._data.contactHash,data.friends[i].id,item);
 			}
 			for(var i in data.groups)
 			{
 				var item = this.control.groupList.add($("#contacts>li").clone());
-				item.datasource(data.groups[i],this.config.binding.contacts);
+				item.datasource(data.groups[i],this.config.binding._default);
 				item.addListener("click",function(e,obj){
 					e.data.openTalking(obj._data);
 				},this);
+				$.hash.add(this._data.contactHash,data.groups[i].id,item);
 			}
 			
 			$(".wrap").css({
@@ -99,6 +149,70 @@
 		
 		openTalking:function(data){
 			this.view.talkView.show(data);
+			if(data.id in this._data.contactHash) this._data.contactHash[data.id].twinkle(false);
+			this.updateInformation(this.request("_data"));
+		},
+		
+		updateInformation:function(data){
+			this.updateFormTalking(data);
+			
+			var messagesContent=0,gmessagesContent=0,newNoticeContent=0,newRequestContent=0;
+			
+			//message
+			for(var i in data.information.messages)
+			{
+				var item = data.information.messages[i];
+				if(!item._IsNew){continue;}
+				if(item._type=="friend"){messagesContent++;}else{gmessagesContent++;}
+				this._data.contactHash[item.id].twinkle(true);
+				this.timer.start("news_prompt");
+			}
+			//notice
+			for(var i in data.information.notice)
+			{
+				
+			}
+			//request
+			for(var i in data.information.request)
+			{
+				
+			}
+			
+			if(messagesContent>0){
+				this.control.messagePanel.find(".message").show().find("span.count").text(messagesContent);
+			}else{this.control.messagePanel.find(".message").hide();}
+			if(gmessagesContent>0){
+				this.control.messagePanel.find(".gmessage").show().find("span.count").text(gmessagesContent);
+			}else{this.control.messagePanel.find(".gmessage").hide();}
+			
+			if(messagesContent+gmessagesContent+newNoticeContent+newRequestContent<=0){
+				this.timer.stop("news_prompt");
+				$("a.btnMessage").removeClass("showNews").find(".iMessage").removeClass("iNew");
+				$("a.btnMessage").unbind("click",this.onBtnMessageClick);
+			}else{
+				$("a.btnMessage").unbind("click",this.onBtnMessageClick).bind("click",this,this.onBtnMessageClick);
+			}
+		},
+		
+		updateFormTalking:function(data){
+			for(var j in this.view.talkView.controll.formManager._forms){
+				var talkForm = this.view.talkView.controll.formManager._forms[j];
+				for(var i in data.information.messages)
+				{
+					if(data.information.messages[i].id == data.userInfor.id || data.information.messages[i].original.Uid == data.userInfor.id){data.information.messages[i]._IsNew=false;continue;}
+					if(talkForm._data.id == data.information.messages[i].id && data.information.messages[i]._IsNew)
+					{
+						data.information.messages[i]._IsNew=false;							
+						
+						this.view.talkView.talkingWithMe(talkForm,$.convert(data.information.messages[i],{
+							id:"sender_id",
+							name:"sender_name",
+							content:"content",
+							time:"time"
+						}));
+					}
+				}
+			}
 		}
 	});
 	

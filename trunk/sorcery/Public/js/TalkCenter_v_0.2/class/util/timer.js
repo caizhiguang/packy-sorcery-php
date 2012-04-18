@@ -39,6 +39,13 @@
 			this.actionHash[name]=null;
 			return delete this.actionHash[name];
 		},
+		runAction:function(name){
+			if(this.actionHash[name].scope==undefined){
+				this.actionHash[name].fun(this,$.extend({},{},this.actionHash[i]));
+			}else{
+				this.actionHash[name].fun.apply(this.actionHash[name].scope,[this,$.extend({},{},this.actionHash[name])]);
+			}
+		},
 		//运行计时模块
 		runTimer:function(){
 			var timer = $(document).data("Timer");
@@ -51,21 +58,10 @@
 					switch(timer.actionHash[i].validity){
 						default:
 						case "none":
-							if(timer.actionHash[i].scope==undefined){
-								timer.actionHash[i].fun(timer,$.extend({},{},timer.actionHash[i]));
-							}else{
-								timer.actionHash[i].fun.apply(timer.actionHash[i].scope,[timer,$.extend({},{},timer.actionHash[i])]);
-							}
-							/*if(typeof(timer.actionHash[i].validity)=="number"){
-								if(timer.actionHash[i].validity<=timer.actionHash[i].timer)
-							}*/
+							timer.runAction.apply(timer,[i]);
 							break;
 						case "one":
-							if(timer.actionHash[i].scope==undefined){
-								timer.actionHash[i].fun();
-							}else{
-								timer.actionHash[i].fun.apply(timer.actionHash[i].scope);
-							}
+							timer.runAction.apply(timer,[i]);
 							timer.actionHash[i].validity="died";
 						case "died":
 							continue;

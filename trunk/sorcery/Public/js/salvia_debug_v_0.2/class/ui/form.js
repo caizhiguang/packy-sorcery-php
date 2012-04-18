@@ -10,8 +10,8 @@
 				this.disposition("Default");
 			}
 			//event
-			this.dom.find(".iMini").bind("click",$.proxy(function(){this.hide();return false;},this));
-			this.dom.find(".iClose").bind("click",$.proxy(function(){this.close();return false;},this));
+			this.dom.find(".menu a.iClose").bind("click",$.proxy(function(){this.hide();return false;},this));
+			this.dom.find(".menu a.iClose").bind("click",$.proxy(function(){this.close();return false;},this));
 			this.dom.bind("click",$.proxy(function(){this.onActived();},this));
 			
 			this.hide();
