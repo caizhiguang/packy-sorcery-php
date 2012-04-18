@@ -11,10 +11,10 @@
 			var arg = $.argToArray(arguments);
 			var controllers = $(document).data("Controllers");
 			var ctrl,method,args,ctrlName;
-			ctrlName = typeof arg[0] =="string" && arg[1] == "string" ?typeof arg[0]:this._ctrlKey;
+			ctrlName = typeof arg[0] =="string" && arg[1] == "string" ? arg[0]:this._ctrlKey;
 			ctrl = controllers[ctrlName];
-			method = typeof arg[0] =="string" && arg[1] == "string" ? typeof arg[1] : typeof arg[0];
-			args = typeof arg[0] =="string" && arg[1] == "string" ? typeof arg[2] : typeof arg[1];
+			method = typeof arg[0] =="string" && arg[1] == "string" ? arg[1] : arg[0];
+			args = typeof arg[0] =="string" && arg[1] == "string" ? arg[2] : arg[1];
 			
 			if(ctrl==undefined){$.error("No find "+ctrlName);return false;}
 			if(ctrl[method]==undefined){$.error("No find "+ctrlName+"."+method);return false;}

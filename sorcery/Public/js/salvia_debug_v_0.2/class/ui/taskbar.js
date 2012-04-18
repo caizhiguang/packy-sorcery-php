@@ -15,12 +15,6 @@
 			},this);
 			this._type = "default";
 		},
-		onAdded:function(item){
-			this.dom.append(item);
-		},
-		onRemoved:function(item){
-			item.remove();
-		},
 		addItem:function(form){
 			var item = $.c("a").text(form.text()).attr({
 				"data-for":form.id,

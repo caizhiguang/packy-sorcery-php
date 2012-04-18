@@ -71,7 +71,7 @@
 			return(prePath+postPath);
 		},
 		dateToString:function(date,format){
-			var result = format;
+			var result = format==undefined?"Y-M-D h:m:s":format;
 			result = result.replace(/Y/,date.getFullYear());
 			result = result.replace(/M/,date.getMonth()+1);
 			result = result.replace(/D/,date.getDate());
@@ -328,6 +328,9 @@
 		c:function(options){
 			return $.salvia.dom.create(options);
 		},
+		convert:function(data,rule){
+			return $.salvia.data.convert(data,rule);
+		},
 		_show_debug_message:function(message){
 			if($("#_debug").length>0){
 				$._debug_panel = $("#_debug");
@@ -347,6 +350,13 @@
 		binding:function(data,binding,scope){
 			if(scope==undefined){scope=this;}
 			$.salvia.data.binding(scope,data,binding);
+		},
+		serializeObject:function(){
+			var result = {};
+			$(this).find("input[type='hidden'],input[type='text'],input[type='password'],input[type='radio'],input[type='checkbox'],textarea,select,").each(function(){
+				result[$(this).attr("name")]=$(this).val();
+			});
+			return result;
 		}
 	});
 	

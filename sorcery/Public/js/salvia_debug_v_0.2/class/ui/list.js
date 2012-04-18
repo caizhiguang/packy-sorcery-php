@@ -12,7 +12,7 @@
 			if(dom==undefined){dom = $.c("li").appendTo(this.dom);}
 			if(dom.length==undefined){dom = $.c("li");}
 			
-			var item = new $.classes.ui.list.item(dom.appendTo(this.dom),attr);
+			var item = this.onCreateItem(dom.appendTo(this.dom),attr);
 			$super(item);
 			return item;
 		},
@@ -34,6 +34,9 @@
 				var item = this.add();
 				item.datasource(datasource[i],setting);
 			}
+		},
+		onCreateItem:function(dom,attr){
+			return new $.classes.ui.list.item(dom,attr);
 		},
 		selectAll:function(){
 			for(var i in this.list)
