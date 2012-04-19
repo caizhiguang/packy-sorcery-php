@@ -20,14 +20,14 @@
 			this.forms.add(form.id,form);
 			this._forms.push(form);
 			this.onActived(form);
-			this._events.run("added",this,form);
+			this._events.run("added",form);
 		},
 		remove:function(form){
 			if(!this.forms.contains(form.id)){return false;}
 			this.forms.remove(form.id);
 			this._forms.splice($.list.indexOf(this._forms,form),1);
 			this.onActived(this._forms[this._forms.length-1]);
-			this._events.run("removed",this,form);
+			this._events.run("removed",form);
 			return true;
 		},
 		resetLocation:function(val){
@@ -71,11 +71,11 @@
 			form.dom.css(css);
 			form.addListener("actived",function(e){
 				e.data.onActived(this);
-				e.data._events.run("formActived",this);
+				e.data._events.run("formActived");
 			},this);
 			form.addListener("closed",function(e){
 				e.data.onClosed(this);
-				e.data._events.run("formClosed",this);
+				e.data._events.run("formClosed");
 			},this);
 		},
 		onClosed:function(form){

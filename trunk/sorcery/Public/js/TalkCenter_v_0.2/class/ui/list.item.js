@@ -12,7 +12,7 @@
 				return this._online;
 			}else{
 				this._online = val;
-				this.dom.toggleClass("off",this._online);
+				this.dom.toggleClass("off",!this._online);
 			}
 		},
 		twinkle:function(val){

@@ -31,28 +31,28 @@
 		contains:function(key,fun){
 			return fun!=undefined?$.hash.contains(this.hashtable[key],$.md5(fun)):$.hash.contains(this.hashtable,key);
 		},
-		run:function(key,scope){
+		run:function(key){
 			//运行事件
 			if(!this.contains(key)){return;}
 			
 			var result,scope,arg=$.argToArray(arguments);
-			if($.isArray(scope)){
+			/*if($.isArray(scope)){
 				arg.splice(0,1);scope=null;
 			}else{
 				arg.splice(0,2);scope = scope;
-			}
-			
+			}*/
+			arg.splice(0,1);
 			
 			for(var subKey in this.hashtable[key])
 			{
-				if(scope==null){scope=this.hashtable[key][subKey].scope;}
+				if(scope==undefined){scope=this.hashtable[key][subKey].scope;}
 				var event = {
 					data:this.hashtable[key][subKey].data,
 					target:scope
 				};
-				arg.unshift(event);
-				result = this.hashtable[key][subKey].fun.apply(scope,arg);
-				return result;
+				var _arg = [].concat([],event,arg);
+				result = this.hashtable[key][subKey].fun.apply(scope,_arg);
+				if((!result) && result!=undefined)return result;
 			}
 		},
 		clear:function(){
