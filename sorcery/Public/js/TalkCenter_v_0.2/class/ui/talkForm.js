@@ -11,7 +11,8 @@
 			this.control={
 				talkPanel:new $.TalkCenter.classes.ui.talkPanel(this.dom.find(".talk_view")),
 				facePanel:"",
-				btnFace:this.dom.find(".btnFace").attr("data-onShow",false)
+				btnFace:this.dom.find(".btnFace").attr("data-onShow",false),
+				groupMember:new $.classes.ui.list(this.dom.find(".member .contacts"))
 			};
 			this.initFacePanel();
 			
@@ -52,6 +53,13 @@
 			};
 			$(document).bind("click",this.control.facePanel,this._windowClickEvent);
 		},
+		setGroupMember:function(itemDom,data,setting){
+			for(var i in data)
+			{
+				var item = this.control.groupMember.add(itemDom);
+				item.datasource(data,setting);
+			}
+		},
 		faceDatasource:function(data){
 			this.control.facePanel.datasource(data);
 		},
@@ -66,6 +74,14 @@
 		},
 		onSend:function(form){
 			
+		},
+		online:function(val){
+			if(val==undefined){
+				return this._online;
+			}else{
+				this._online = val;
+				this.dom.find(".hd").toggleClass("off",this._online);
+			}
 		},
 		type:function(val){
 			if(val==undefined){

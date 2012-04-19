@@ -75,6 +75,23 @@
 				}
 			};
 			
+			//注册Controller的[取得在线用户后]事件
+			this.request("addListener",["requestOnlineUserAfter",function(e,data){
+				
+				var talkCenterView = e.data;
+				var compare = function(a,b){
+					return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
+				};
+				
+				for(var i in talkCenterView.control.friendList.list){
+					var item = talkCenterView.control.friendList.list[i];
+					if(data.indexOf(item._data.id)!=-1){item.online(true);continue;}
+					item.online(false);
+				}
+				talkCenterView.control.friendList.sort(compare);
+				
+			},this]);
+			
 			$(".modUInforBox .ft").tabs(".modPanelBox>.inner",{history:false});
 			$(".modUInforBox .ft").data("tabs").click(1);
 			this.control.messagePanel = $(".modUInforBox .messages");
@@ -127,16 +144,17 @@
 				var item = this.control.friendList.add($("#contacts>li").clone());
 				item.datasource(data.friends[i],this.config.binding._default);
 				item.addListener("click",function(e,obj){
-					e.data.openTalking(obj._data);
+					e.data.openTalking(e.target._data,e.target.online());
 				},this);
 				$.hash.add(this._data.contactHash,data.friends[i].id,item);
 			}
 			for(var i in data.groups)
 			{
 				var item = this.control.groupList.add($("#contacts>li").clone());
+				item.online(true);
 				item.datasource(data.groups[i],this.config.binding._default);
 				item.addListener("click",function(e,obj){
-					e.data.openTalking(obj._data);
+					e.data.openTalking(e.target._data,e.target.online());
 				},this);
 				$.hash.add(this._data.contactHash,data.groups[i].id,item);
 			}
@@ -147,8 +165,8 @@
 			}).fadeIn("slow");
 		},
 		
-		openTalking:function(data){
-			this.view.talkView.show(data);
+		openTalking:function(data,online){
+			this.view.talkView.show(data,online);
 			if(data.id in this._data.contactHash) this._data.contactHash[data.id].twinkle(false);
 			this.updateInformation(this.request("_data"));
 		},
@@ -195,8 +213,8 @@
 		},
 		
 		updateFormTalking:function(data){
-			for(var j in this.view.talkView.controll.formManager._forms){
-				var talkForm = this.view.talkView.controll.formManager._forms[j];
+			for(var j in this.view.talkView.control.formManager._forms){
+				var talkForm = this.view.talkView.control.formManager._forms[j];
 				for(var i in data.information.messages)
 				{
 					if(data.information.messages[i].id == data.userInfor.id || data.information.messages[i].original.Uid == data.userInfor.id){data.information.messages[i]._IsNew=false;continue;}

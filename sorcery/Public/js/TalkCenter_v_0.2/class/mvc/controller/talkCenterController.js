@@ -200,17 +200,14 @@
 		//取得在线用户列表，更新所有用户在线状态
 		updataOnlineUser:function(data){
 			data = data==undefined?"":data;
-			var talkCenterView = this.view.talkCenter;
-			var compare = function(a,b){
-				return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
-			};
 			
-			for(var i in talkCenterView.control.friendList.list){
-				var item = talkCenterView.control.friendList.list[i];
-				if(data.indexOf(item._data.id)!=-1){item.online(false);continue;}
-				item.online(true);
-			}
-			talkCenterView.control.friendList.sort(compare);
+			this._events.run("requestOnlineUserAfter",data);
+		},
+		updateGroupMemberByGroupId:function(gid,member){
+			this._events.run("requestGroupMemberAfter",gid,member);
+		},
+		requestGroupMemberByGroupId:function(gid){
+			this.mode.groupUsersMode.load({data:{gid:gid}});
 		},
 		
 		getUserIds:function(data,key){
