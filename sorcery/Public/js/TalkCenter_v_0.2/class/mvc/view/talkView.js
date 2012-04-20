@@ -56,9 +56,9 @@
 			},this);
 			this._type = "default";
 			
-			//注册controler的[取得群组用户后]事件
+			//注册controler的[取得群组成员后]事件
 			this.request("addListener",["requestGroupMemberAfter",function(e,gid,member){
-				e.data._data.groupMember[gid]=[];
+				e.data._data.groupMember[gid]={};
 				for(var i in member){
 					var data = $.convert(member[i],{
 						Uid:"id",
@@ -70,12 +70,13 @@
 						StudentID:"number"
 					});
 					data.avatar = data.avatar==undefined?"../photo/avatar/3.png":data.avatar;
-					e.data._data.groupMember[gid].push(data);
-					e.data._data.formsHash[gid].setGroupMember($("#contacts>li").clone().attr("name","member"),data,e.data.config.binding._memberContacts);
+					e.data._data.groupMember[gid][data.id]=data;
 				}
-				e.data._data.formsHash[gid].dom.find(".infor .memberCount").text(member.length);
+				e.data._data.formsHash[gid].setGroupMember($("#contacts>li").clone(),e.data._data.groupMember[gid],e.data.config.binding._memberContacts);
+				e.data._data.formsHash[gid].dom.find(".infor .memberCount").text($.hash.count(e.data._data.groupMember[gid]));
+				e.data.initGroupAuthority(gid);
 			},this]);
-			//注册controler的[取得在线用户后]事件
+			//注册controler的[取得在线成员后]事件
 			this.request("addListener",["requestOnlineUserAfter",function(e,data){
 				var forms = e.data.control.formManager._forms;
 				var taskbarItems = e.data.control.taskbar.list;
@@ -165,13 +166,16 @@
 						},
 						name:function(name){
 							this.text(name);
-							this.dom.find("form.input>[name='addressee_name']").val(name);
 						},
 						id:function(id){
 							this.text(this.text()+"("+id+")");
+							this.dom.find("[type='checkbox']").attr({name:""});
 						},
-						brief:function(brief){
-							this.dom.find(".affiche>.news_box_content").html(brief);
+						groupStatus:function(groupStatus){
+							this.dom.attr({groupStatus:groupStatus});
+						},
+						status:function(status){
+							this.dom.attr({status:status});
 						},
 						_type:function(_type){
 							this.dom.attr("data-_type",_type);
@@ -225,6 +229,71 @@
 				e.data.form_seekTo(current_index);
 			},this);
 			return taskbarButton;
+		},
+		
+		initGroupAuthority:function(gid){
+			var ctrl_data = this.request("_data");
+			var loginUserGroupName,loginUserId = ctrl_data.userInfor.id;
+			var authority = (this._data.groupMember[gid][loginUserId].groupStatus*2)+(this._data.groupMember[gid][loginUserId].status*3);
+			switch(authority)
+			{
+				case 6:
+					//群权限：普通，用户身份：教师
+					authority = "contributor";
+					break;
+				case 2:
+				case 5:
+				case 8:
+				case 11:
+					//群权限：管理员，用户身份：随便
+					authority = "manager";
+					break;
+				case 4:
+				case 7:
+				case 10:
+				case 13:
+					//群权限：群主，用户身份：随便
+					authority = "creator";
+					break;
+				default:
+					authority = "default";
+					break;
+			}
+			
+			var groupForm = this._data.formsHash[gid];
+			//对群组成员管理权限
+			switch(authority)
+			{
+				case "contributor":
+				case "default":
+					groupForm.dom.find(".member .fun").remove();
+					break;
+			}
+			
+			var memberList = groupForm.control.groupMember.list;
+			for(var i in memberList)
+			{
+				var member = memberList[i];
+				memberList[i].dom.hover(function(){$(this).find(".funbar").show();},function(){$(this).find(".funbar").hide();}).find("input[type='checkbox']").attr("name","member");
+				$.c("span").addClass("funbar hide left10").appendTo(memberList[i].dom);
+				if(loginUserId==member._data.id){
+					loginUserGroupName=member._data.id;
+					$.c("a").attr({href:"javascript:;"}).text("退出本群").appendTo(member.dom.find(".funbar")).prepend($.c("i").addClass(""));
+				}else{
+					switch(authority)
+					{
+						case "creator":
+						case "manager":
+							member.hasCheckBox(true);
+							$.c("a").attr({href:"javascript:;"}).text("移出本群").appendTo(member.dom.find(".funbar"));
+							break;
+					}
+					if(!$.hash.contains(ctrl_data.friends,member._data.id)){
+						$.c("a").attr({href:"javascript:;"}).text("加好友").appendTo(member.dom.find(".funbar")).prepend($.c("i").addClass("i iAdd"));
+					}
+				}
+			}
+			groupForm.dom.find(".talking form.input input[name='sender_name']").val(loginUserGroupName);
 		},
 		
 		onSend:function(form){

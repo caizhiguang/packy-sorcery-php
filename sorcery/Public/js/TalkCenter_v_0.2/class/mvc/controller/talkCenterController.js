@@ -141,13 +141,16 @@
 				Status:"validity",
 				State:"state"
 			});
-			this._data.friends = data.User_Friends==""?[]:[].concat(data.User_Friends.Item);
-			this._data.groups = data.Group==""?[]:[].concat(data.Group.Item);
+			var friends = data.User_Friends==""?[]:[].concat(data.User_Friends.Item);
+			var groups = data.Group==""?[]:[].concat(data.Group.Item);
 			this._data.config.serverTime = $.stringToDate(data.NowTime);
 			
-			for(var i in this._data.friends)
+			this._data.friends={};
+			this._data.groups={};
+			
+			for(var i in friends)
 			{
-				this._data.friends[i] = $.convert(this._data.friends[i],{
+				var friend = $.convert(friends[i],{
 					Avatar:"avatar",
 					NickName:"name",
 					FUserName:"fulname",
@@ -155,11 +158,16 @@
 					State:"status",
 					TypeRela:"relation"
 				});
-				this._data.friends[i]._type = "friend";
+				friend._type = "friend";
+				if(friend.relation=="1"){
+					this._data.friends[friend.id] = friend;
+				}else{
+					this._data.friends["_"+friend.id] = friend;
+				}
 			}
-			for(var i in this._data.groups)
+			for(var i in groups)
 			{
-				this._data.groups[i] = $.convert(this._data.groups[i],{
+				var group = $.convert(groups[i],{
 					Avatar:"avatar",
 					GroupName:"name",
 					Gid:"id",
@@ -170,7 +178,8 @@
 					GroupLevel:"level",
 					Gbrief:"brief"
 				});
-				this._data.groups[i]._type = "group";
+				group._type = "group";
+				this._data.groups[group.id] = group;
 			}
 			this._data.userIds = $.unique($.merge(this._data.userIds,this.getUserIds(this._data.friends,"id")));
 			this._data.groupIds = this.getGroupIds(this._data.groups);
@@ -221,10 +230,12 @@
 		},
 		getGroupIds:function(groups){
 			var str = "";
-			for(var i in groups)
+			var i = 0;
+			for(var pro in groups)
 			{
 				if(i!="0"){str+=",";}
-				str+=groups[i].id+":"+groups[i].groupType;
+				str+=groups[pro].id+":"+groups[pro].groupType;
+				i++;
 			}
 			return str;
 		}

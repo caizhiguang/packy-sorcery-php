@@ -56,8 +56,8 @@
 		setGroupMember:function(itemDom,data,setting){
 			for(var i in data)
 			{
-				var item = this.control.groupMember.add(itemDom);
-				item.datasource(data,setting);
+				var item = this.control.groupMember.add(itemDom.clone());
+				item.datasource(data[i],setting);
 			}
 		},
 		faceDatasource:function(data){
