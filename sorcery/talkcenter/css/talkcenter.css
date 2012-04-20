@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{ background:url(../images/bg.png) #ddd; font-size:14px; }
+body{ background:url(../../images/talkCenter_v_0.2/bg.png) #ddd; font-size:14px; }
 a{ color:#666; }
 a:hover{ color:#000; }
 .wrap{ width:1024px; height:626px; position:relative; margin:10px auto; }
@@ -29,7 +29,7 @@ a:hover{ color:#000; }
 .contacts .offline{color:#999;}
 .contacts input,.contacts input[type='checkbox']{ margin:0 5px 0 0; }
 .contacts .avatar,.contacts .avatar img{ height:22px; width:22px; }
-.contacts .avatar{ margin:0 10px 0 0;}
+.contacts .avatar{ margin:0 10px 0 0; vertical-align:middle; }
 .contacts li{ cursor:pointer; padding:5px; color:#333; }
 .contacts li:hover{ background:#f5f5f5; }
 
@@ -52,6 +52,8 @@ a:hover{ color:#000; }
 
 .avatar{ border:#ddd solid 1px; height:48px; width:48px; background:#fff; display:inline-block; }
 .avatar img{ height:48px; width:48px; }
+.off .avatar{opacity:0.5; filter:alpha(opacity=50);}
+.off,.off a,.contacts li.off{color:#999;}
 
 .radius_top3px{-moz-border-radius-topleft:3px;-moz-border-radius-topright:3px; -webkit-border-top-left-radius:3px;-webkit-border-top-right-radius:3px; border-top-left-radius:3px;border-top-right-radius:3px;}
 .radius_bottom3px{-moz-border-radius-bottomleft:3px;-moz-border-radius-bottomright:3px; -webkit-border-bottom-left-radius:3px;-webkit-border-bottom-right-radius:3px; border-bottom-left-radius:3px;border-bottom-right-radius:3px}
@@ -60,7 +62,7 @@ div.tip{ background:#FFFACD; border:#EEE8AA solid 1px; padding:5px; -moz-border-
 div.tip a.more{ color:#00F; }
 div.tip a.more:hover{ text-decoration:underline; }
 
-.iHome,.iMessage,.iSearch,.iFace,.iFont,.iUp,.iDown,.iNew{ background-image:url(../images/icons.png); background-repeat:no-repeat; vertical-align:text-bottom; margin:0 5px 0 0; }
+.iHome,.iMessage,.iSearch,.iFace,.iFont,.iUp,.iDown,.iNew,.iAdd{ background-image:url(../../images/talkCenter_v_0.2/icons.png); background-repeat:no-repeat; vertical-align:text-bottom; margin:0 5px 0 0; }
 .iHome{ background-position:-32px 0; }
 .iMessage{ background-position:-16px 0; }
 .iSearch{}
@@ -69,9 +71,11 @@ div.tip a.more:hover{ text-decoration:underline; }
 .iUp{background-position:-96px 0;}
 .iDown{background-position:-80px 0;}
 .iNew{ background-position:-16px -32px; }
+.iAdd{background-position:-112px 0;}
 a:hover .iHome{ background-position:-32px -16px; }
 a:hover .iMessage{ background-position:-16px -16px; }
 a:hover .iSearch{background-position:0px -16px;}
 a:hover .iUp{background-position:-96px -16px;}
 a:hover .iDown{background-position:-80px -16px;}
 a:hover .iNew{ background-position:-16px -32px; }
+a:hover .iAdd{background-position:-112px -16px;}

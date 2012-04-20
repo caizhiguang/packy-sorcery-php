@@ -2,7 +2,7 @@
 /* CSS Document */
 
 .i{ width:16px; height:16px; display:inline-block; }
-.iMini,.iDisableMini,.iClose,.iDisableClose{ background-image:url(../images/icon.png); background-repeat:no-repeat;  }
+.iMini,.iDisableMini,.iClose,.iDisableClose{ background-image:url(../../images/talkCenter_v_0.2/icon.png); background-repeat:no-repeat;  }
 .iMini{ background-position:0 0; }
 .iMini:hover{ background-position:0 -16px; }
 .iDisableMini{ background-position:0 -32px; }
@@ -38,9 +38,12 @@
 	.modForm .infor dt{ background:#fff; height:30px; line-height:30px; padding:0 5px; font-weight:bold; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
 	.modForm .infor dd{ padding:10px; }
 	.modForm .infor .fright{ font-weight:normal; }
-	/*member*/
+	/*member*/	
 	.modForm .member{ padding:15px; height:466px; overflow:auto; }
 	.modForm .member .panel{ margin:0 auto; background:#eee; padding:10px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
 	.modForm .member h5{ background:#fff; height:30px; color:#666; line-height:30px; padding:0 5px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
 	.modForm .contacts{ margin:10px 0; }
+	.modForm .contacts li{ cursor: default; }
 	.modForm .member .fun{ background:none; }
+	.modForm .member .funbar{ font-size:12px; }
+	.modForm .member .funbar a{ background:#fff; padding:3px 5px; border:#eee solid 1px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;}
