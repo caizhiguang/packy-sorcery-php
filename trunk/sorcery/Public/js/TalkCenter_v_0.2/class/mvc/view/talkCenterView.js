@@ -135,7 +135,7 @@
 		
 		onDatasource:function(data){
 			$(".modUInforBox").find(".avatar>img").attr("src",data.userInfor.avatar);
-			$(".modUInforBox").find(".name").text(data.userInfor.name);
+			$(".modUInforBox").find(".name").text(data.userInfor.name+" ("+data.userInfor.id+")");
 			
 			this._data.contactHash = {};
 			for(var i in data.friends)
