@@ -1,0 +1,42 @@
+<div class="mod modForm modTalkForm">
+    <div class="inner">
+        <div class="hd">
+            <div id="avatar" class="avatar">
+                <a href="javascript:;"><img src="" /></a>
+            </div>
+            <div class="info">
+                <div class="name"><!--对话用户名称--></div>
+            </div>
+    	</div>
+    	<div class="menu"><a id="mbtnMini" class="i iMini right5" href="javascript:;"></a><a id="mbtnClose" class="i iClose" href="javascript:;"></a></div>
+        <div class="content">
+        	<div class="tmain">
+            	<div class="bar">
+                	<a href="javascript:;" class="current">群聊</a><a href="javascript:;">过滤</a><a href="javascript:;">话题</a><a href="javascript:;">管理</a>
+                </div>
+                <div class="info">
+               		<!--内容-->
+                </div>
+                <div class="input">
+                    <form name="TalkInput" method="post">
+                        <textarea name="TalkInfo" class="TalkInput"></textarea>
+                        <div class="funbar clearfix">
+                        	<!--小工具栏-->
+                            <span class="fleft">
+                                <input id="btnHistory" type="button" value="历史记录" />
+                                <input id="btnExpression" type="button" value="表情" />
+                            </span>
+                            <input id="btnClose" name="Close" type="button" value="关闭" />
+                            <input id="btnSend" name="Send" type="submit" value="发送" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tside">
+                <div class="affiche"></div>
+                <div class="contact_list"></div>
+            </div>
+        </div>
+        <div class="ft"><!--状态栏--></div>
+    </div>
+</div>

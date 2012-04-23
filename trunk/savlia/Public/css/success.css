@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+
+.box{ background:#fff; border:#e1e1e1 solid 5px; height:250px; width:600px; margin:100px auto; }
+.message{ width:100%; margin:10px; }
+.row{ height:30px; line-height:30px; }

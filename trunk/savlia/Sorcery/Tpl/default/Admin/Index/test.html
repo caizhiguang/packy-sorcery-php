@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>测试页</title>
+{load:__PUBLIC__/css/libraries.css}
+{load:__PUBLIC__/css/grids.css}
+{load:__PUBLIC__/css/content.css}
+{load:__PUBLIC__/css/mod.css}
+{load:__PUBLIC__/css/form-test/mod_form.css}
+{load:__PUBLIC__/css/form-test/index.css}
+{load:__PUBLIC__/js/plug-in/jquery.tools.min.js}
+{load:__PUBLIC__/js/plug-in/jquery.md5.js}
+{load:__PUBLIC__/js/plug-in/jquery.xml2json.pack.js}
+{load:__PUBLIC__/js/plug-in/drag.js}
+{load:__PUBLIC__/js/plug-in/dragdrop.js}
+{load:__PUBLIC__/js/salvia_debug/lib/extend.js}
+{load:__PUBLIC__/js/salvia_debug/lib/salvia.js}
+{load:__PUBLIC__/js/salvia_debug/class/util/events.js}
+{load:__PUBLIC__/js/salvia_debug/class/util/formManager.js}
+{load:__PUBLIC__/js/salvia_debug/class/base.js}
+{load:__PUBLIC__/js/salvia_debug/class/base.list.js}
+{load:__PUBLIC__/js/salvia_debug/class/mvc/mode.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/base.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/form.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/msgbox.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/taskbar.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/list.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/list.item.js}
+{load:__PUBLIC__/js/salvia_debug/class/ui/menu.js}
+{load:__PUBLIC__/js/salvia_debug/config.js}
+{load:__PUBLIC__/js/salvia_debug/init.js}
+
+<!-- TalkCenter -->
+{load:__PUBLIC__/js/TalkCenter/class/ui/talkForm.js}
+{load:__PUBLIC__/js/TalkCenter/class/ui/talkForm.talkInforList.js}
+{load:__PUBLIC__/js/TalkCenter/class/ui/talkCenter.js}
+<style type="text/css">
+a{cursor: pointer;}
+html{ filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); }
+body {filter: gray;}
+
+#menuPlane{ padding:5px; border:#ddd solid 1px; }
+#menuPlane label{ padding:5px; display:block; }
+#menuPlane label:hover{ background: #f5f5f5; }
+</style>
+</head>
+
+<body>
+	<div id="wrap">
+		{search action="index"}{/search}
+		<!-- <img src="__PUBLIC__/images/icon.png" /> -->
+	
+		<a href="javascript:;" id="newForm">新增窗体</a>
+		<a id="newtalkform" href="javascript:;">新建聊天窗口</a>
+		<a href="javascript:;" id="msgbox">提示窗口</a>
+		
+		<div id="ajaxLoad"></div>
+		
+		<div id="talkForm">
+			<a id="btnAddTalkForm">添加聊天窗体</a>
+			<script type="text/javascript">
+				var talkForms = [];
+				;(function($){
+					$("#btnAddTalkForm").click(function(){
+						var talkForm = new $.classes.ui.talkForm($.salvia.packet("TalkForm.lbi").appendTo("#talkForm"));
+						talkForm.datasource({name:"聊天窗口"+talkForms.length},{name:function(name){this.text(name);}});
+						talkForm.show();
+						$.list.add(talkForms,talkForm);
+					});
+				})(jQuery)
+			</script>
+			<div id="talkInforList">
+				<a class="btnAdd">添加言论</a>
+				<a class="btnAddMe">添加本人言论</a>
+				<a class="btnRemove">删除言论</a>
+				<div class="infores"></div>
+				<script type="text/javascript">
+				;(function($){
+					//var talkInforList = new $.classes.ui.talkForm.talkInforList($("#talkInforList>.infores"));
+					$("#talkInforList .btnAddMe").click(function(){
+						var talkForm = talkForms[talkForms.length-1];
+						talkForm.addMeTalking({name:"packy",time:(new Date()).ToString(),content:"233"},
+						{name:function(name){
+							this.dom.find(".name").text(name);
+						},
+						time:function(time){
+							this.dom.find(".time").text(time);
+						},
+						content:function(content){
+							this.dom.find(".message").text(this.id);
+						}});
+					});
+					$("#talkInforList .btnAdd").click(function(){
+						var talkForm = talkForms[talkForms.length-1];
+						talkForm.addTalking({name:"packy",time:(new Date()).ToString(),content:"233"},
+						{name:function(name){
+							this.dom.find(".name").text(name);
+						},
+						time:function(time){
+							this.dom.find(".time").text(time);
+						},
+						content:function(content){
+							this.dom.find(".message").text(this.id);
+						}});
+						
+						/*var talkInfor = new $.classes.ui.base($.salvia.packet("TalkInfo.lbi"));
+						talkInfor.datasource({name:"packy",time:(new Date()).ToString(),content:"233"},
+						{name:function(name){
+							this.dom.find(".name").text(name);
+						},
+						time:function(time){
+							this.dom.find(".time").text(time);
+						},
+						content:function(content){
+							this.dom.find(".message").text(this.id);
+						}});
+						talkInforList.add(talkInfor);*/
+					});
+					$("#talkInforList .btnRemove").click(function(){
+						var talkInforList = (talkForms[talkForms.length-1]).TalkInforList;
+						talkInforList.remove(talkInforList.items(0));
+					});
+				})(jQuery)
+				</script>
+			</div>
+		</div>
+		
+		<div id="pnlTalkCenter">
+			<a id="btnTalkCenter" href="javascript:;">打开聊天中心</a>
+			<script>
+				(function($){
+					$("#btnTalkCenter").click(function(){
+						$.TalkCenter = new $.classes.ui.talkCenter($.salvia.packet("TalkCenter.lbi").appendTo("#pnlTalkCenter"));
+						$.TalkCenter.show();
+						$.TalkCenter.datasource({
+								name:"233小姐",
+								friends:[
+								    {
+									    id:0,
+									    name:"gb2312",
+									    avatar:"1"
+									},
+									{
+									    id:1,
+									    name:"B君",
+									    avatar:"1"
+									},
+									{
+									    id:2,
+									    name:"A君",
+									    avatar:"1"
+									},
+								]
+							},
+							{
+								name:function(name){
+									this.text(name);
+								},
+								friends:function(friends){
+									for(var i in friends){
+										var friend = this.addContact({},"friend");
+										friend.datasource(friends[i],{name:function(name){this.text(name);}});
+									}
+								}
+							}
+							);
+					});
+				})(jQuery);
+			</script>
+		</div>
+		
+		
+	</div>
+	<script>
+	;(function($){
+		$(document).ready(function(){
+			
+			
+			/*
+			var d = new Object();
+			d.a="a";
+			d.b="b";
+			d.c=function(){return "c";};
+
+			d.prototype = {
+				a:"a1",
+				d:function(){return "d";}
+			};
+
+			for(var pro in d){
+				$(document.body).append("<div>"+pro+":"+typeof(d[pro])=="function"?d[pro]():d[pro]+"</div>");
+			}
+			
+			var printObj = function(obj){
+				for(var pro in obj){
+					if(pro=="toString"||pro=="valueOf"||pro=="init"){continue;}
+					$(document.body).append("<div></div>").find("div:last").append(pro+":"+typeof(obj[pro])=="function"?obj[pro]():obj[pro]);
+				}
+			};
+			var parent = $.salvia.Class({
+				init:function(){
+					this.name = "233";
+				},
+				callMyName:function(){
+					return "My name is "+this.name;
+				}
+			});
+			var sub = $.salvia.Class(parent,{
+				callMyName:function($super){
+					return $super()+"....Fuck!!!!";
+				}
+			});
+
+			var parentObj = new parent();
+			var subObj = new sub();
+			
+			alert(parentObj.callMyName());
+			alert(subObj.callMyName());
+			*/
+			/*var form = new $.classes.ui.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
+			form.datasource({text:"测试用窗体"},{
+				text:function(text){
+					this.text(text);
+				}
+			});
+			form.show();*/
+
+			var ids = 0;
+			var formManager = $.formManager = new $.classes.util.formManager();
+			$("#newForm").click(function(){
+				var form = new $.classes.ui.form($.salvia.packet("Form.lbi").appendTo($("#wrap")));
+				formManager.add(form);
+				
+				form.datasource({text:"测试用窗体"+ids},{
+					text:function(text){
+						this.text(text);
+					}
+				});
+				form.show();
+				ids++;
+			});
+
+			var msgFormManager = $.msgFormManager = new $.classes.util.formManager();
+			$("#msgbox").click(function(){
+				var msg = new $.classes.ui.msgbox($.salvia.packet("Form.lbi"));
+				msg.addListener("return",function(result){
+					//alert();
+				});
+				msgFormManager.add(msg);
+				msg.show("提示","内容测试测试",["Yes","No"]);
+				var msg2 = new $.classes.ui.msgbox($.salvia.packet("Form.lbi"));
+				msg2.addListener("return",function(result){
+					//alert();
+				});
+				msgFormManager.add(msg2);
+				msg2.show("提示","内容测试测试",["Yes","No"]);
+			});
+
+			var taskbar = new $.classes.ui.taskbar(formManager,"#wrap");
+
+			
+
+			var mode = new $.classes.mvc.mode({
+				url:"/Index/test_data/",
+				dataType:"json"
+			},{
+				data:function(data){
+					$.list.remove(data.data.data,data.data.data[0]);
+					return data.data;
+				}
+			});
+			var d = {d:1};
+			mode.addListener("success",function(e,m,returndata){
+				/*for(var i in m.f_data){
+					$("#ajaxLoad").append();
+				}*/
+				$(document).data("data111",returndata);
+				e.other.f = m;
+			},d);
+			mode.load();
+			$(document).data("data222",d);
+
+
+			
+			var list_data = [{name:"加为好友"},{name:"加关注"},{name:"3"},{name:"4"},{name:"5"}];
+			var list = new $.classes.ui.list($(document.createElement("ul")).appendTo($("#wrap")));
+			list.datasource(list_data,function(data){
+				//this.hasCheckBox(true);
+				this.text(data.name);
+			});
+			list.remove(list.items(list.count()-1));
+			//list.selectAll();
+			var docMenu = new $.classes.ui.menu($(window));
+			docMenu.menuPlane.find("#menuPlane_inner").append(list.dom);
+			
+			for(var i in list.list)
+			{
+				var item = list.list[i];
+				item.addListener("click",function(e){
+					e.other.hide();
+					alert(e.other.target.localName+" "+this._data.name);
+				},docMenu);
+			}
+		});
+	})(jQuery);
+	</script>
+	
+	
+	<style>
+	body{background: #fff;}
+	#animate{ text-align: center; }
+	.wrap{ display:inline-block; }
+	</style>
+	<div id="animate">
+		<div>
+			<img src="__PUBLIC__/photo/ggg.jpg" />
+			<img src="__PUBLIC__/photo/fff.jpg" />
+		</div>
+		<script type="text/javascript">
+			(function($){
+				$("#animate img").hide();
+				window.onload = function(){
+					var row = 5;
+					var col = 7;
+					$("#animate img").each(function(i){
+						var height = $(this).height();
+						var width = $(this).width();
+						var wrap = $(this).hide().wrap("<div class='wrap'></div>").parent();
+						wrap.css({
+							position:"relative"
+						}).height(height).width(width);
+
+						for(var i=0;i<row*col;++i)
+						{
+							var r_index = i==0?0:(i>=col?((i/col).toString().indexOf(".")==-1?Math.ceil(i/col):Math.ceil(i/col)-1):0);
+							var top = (height/row)*r_index;
+							var left = (width/col)*(i-r_index*col);
+							var item = $("<div></div>").css({
+								display:"inline-block",
+								position:"absolute",
+								top:top,
+								left:left,
+								background:"url("+$(this).attr("src")+") -"+left+"px -"+top+"px no-repeat",
+							}).width(0).height(0).appendTo(wrap);
+						}
+						
+						wrap.find("div").animate({height:height/row+1,width:width/col+1},1500);
+					});
+				};
+			})(jQuery);
+		</script>
+	</div>
+</body>
+</html>

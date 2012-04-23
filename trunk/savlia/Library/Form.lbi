@@ -1,0 +1,8 @@
+<div class="mod modForm">
+    <div class="inner">
+        <div class="hd"><!--标题栏--></div>
+        <div class="menu"><a id="mbtnMini" class="i iMini right5" href="javascript:;"></a><a id="mbtnClose" class="i iClose" href="javascript:;"></a></div>
+        <div class="content"><!--内容--></div>
+        <div class="ft"><!--状态栏--></div>
+    </div>
+</div>
