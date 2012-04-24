@@ -1,0 +1,19 @@
+<nav>
+	{volist name="appnav" id="navItem"}
+    <dl class="{$navItem.current}">
+        <dt><a href="{$navItem.url}"><i class="i {$navItem.iconClass} right5"></i>{$navItem.name}</a>
+        {if condition="count($navItem['items']) gt 0"}
+        <a href="javascript:;" class="btnDrop"><i class="i iDrop"></i></a>
+        {/if}
+        </dt>
+        <dd>
+            <ul>
+            	{volist name="navItem['items']" id="subItem"}
+                <li><a href="{$subItem.url}" class="{$subItem.current}">{$subItem.name}</a></li>
+                {/volist}
+            </ul>
+        </dd>
+    </dl>
+    {/volist}
+    <div class="side_bg"></div>
+</nav>

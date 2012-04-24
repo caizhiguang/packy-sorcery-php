@@ -42,5 +42,22 @@ dump($db_hash);
 
 dump($db->query('select * from user'));
 
+//dump($db->query("insert into user(name) values('test1')"));
+
 $db->disconnect();
 dump($db_hash);
+
+$has = preg_match('/^select/i','select * from user');
+dump($has?"true":"false");
+
+require_once("Mode.class.php");
+
+Mode::setDB($db);
+
+class UserMode extends Mode{}
+
+$m = new UserMode();
+//dump($m->getModeName());
+$m->aa = "123";
+dump($m->getModeName());
+

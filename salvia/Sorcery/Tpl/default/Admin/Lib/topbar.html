@@ -1,0 +1,17 @@
+<section class="topbar">
+    <div class="websites">
+    	{volist name="websites" id="item"}
+        <a href="{$website.url}">{$item.name}</a>
+        {/volist}
+    </div>
+    <dl class="userInfo">
+        <dt>{@User.name}</dt>
+        <dd>
+            <ul>
+                {volist name="_SESSION.Function" id="fun"}
+                <li><a href="{$fun.url}">{$fun.name}</a></li>
+                {/volist}
+            </ul>
+        </dd>
+    </dl>
+</section>
