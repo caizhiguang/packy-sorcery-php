@@ -1,4 +1,0 @@
-<li>
-	<div><input type="checkbox" class="itemChecked right5" name="check" /><label><span class="avatar"><img src="" /></span><span class="name"></span></label></div>
-    <a href="javascript:;"><span class="avatar"><img src="" /></span><span class="name"></span></a>
-</li>
