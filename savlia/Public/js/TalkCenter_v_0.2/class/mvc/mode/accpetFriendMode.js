@@ -14,12 +14,7 @@
 		},
 		onSuccess:function(data,ajax_options){
 			//添加新友到好友栏
-			this.request("TalkCenter","addToFriends",[data]);
-			this.request("TalkCenter","msgBox",[
-                "提示信息 ",
-				"对方 "+data.FUserName+" 已同意加你为好友！",
-				["Ok"]
-			]);
+			this.request("TalkCenter","markfriendAfter",[data]);
 		}
 	});
 })(jQuery);

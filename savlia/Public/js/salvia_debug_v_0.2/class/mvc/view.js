@@ -27,6 +27,12 @@
 			}else{
 				return ctrl[method];
 			}
+		},
+		addCtrlListener:function(channel,fun,data){
+			this.request("addListener",[channel,fun,data]);
+		},
+		removeCtrlListener:function(channel,fun){
+			this.request("removeListener",[channel,fun,data]);
 		}
 	});
 	
