@@ -3,6 +3,7 @@
 class DB{
 	private $con;
 	private $dsn;
+	private $sql;
 	function __construct($dsn){
 		$this->dsn = $dsn;
 	}
@@ -14,29 +15,31 @@ class DB{
 	}
 	public function query($sql){
 		mysql_query('set names utf8');
+		$this->sql = $sql;
 		$query_result = mysql_query($sql,$this->con);
-		$result_array = mysql_fetch_array($query_result,MYSQL_ASSOC);
-		mysql_free_result($query_result);
+		if(preg_match('/^select/i',$sql)){
+			$result_array = mysql_fetch_array($query_result,MYSQL_ASSOC);
+			mysql_free_result($query_result);
+		}else{
+			$result_array=$query_result?true:false;
+		}
 		return $result_array;
 	}
-	
 	
 	static public function _connect($dsn){
 		 $dsninfo = DB::parseDSN($dsn);
 		 $type = $dsninfo['phptype'];
 		 switch($type){
 		 	case "mysql":
-		 		global $db_hash;
-		 		$db_hash[$dsn]=mysql_connect($dsninfo['hostspec'],$dsninfo['username'],$dsninfo['password']);
-		 		if(!$db_hash[$dsn]){return mysql_error();}
-		 		mysql_select_db($dsninfo['database'],$db_hash[$dsn]);
+		 		$GLOBALS["db_hash"][$dsn]=mysql_connect($dsninfo['hostspec'],$dsninfo['username'],$dsninfo['password']);
+		 		if(!$GLOBALS["db_hash"][$dsn]){return mysql_error();}
+		 		mysql_select_db($dsninfo['database'],$GLOBALS["db_hash"][$dsn]);
 		 		break;
 		 }
-		 return $db_hash[$dsn];
+		 return $GLOBALS["db_hash"][$dsn];
 	}
 	static public function _disconnect($dsn){
-		global $db_hash;
-		mysql_close($db_hash[$dsn]);
+		mysql_close($GLOBALS["db_hash"][$dsn]);
 	}
 	static function parseDSN($dsn)
     {
