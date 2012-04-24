@@ -27,7 +27,7 @@
 			if(text==undefined){
 				return this.dom.find(".title").text();
 			}else{
-				this.dom.find(".title").text(text);
+				this.dom.find(".title").html(text);
 			}
 		},
 		actived:function(actived){
@@ -73,10 +73,8 @@
 			//关闭后销毁对象
 			this.destruct();//销毁
 			try{
-				CollectGarbage();//只适用于IE系列，用于释放内存
-			}catch(e){
-				
-			}
+				if(CollectGarbage!=undefined) CollectGarbage();//只适用于IE系列，用于释放内存
+			}catch(e){}
 		},
 		drag:function(){
 			this.dom.css({position:"absolute"});

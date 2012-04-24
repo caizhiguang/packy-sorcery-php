@@ -16,7 +16,7 @@
 				information:{
 					messages:[],
 					newMessagesContent:0,
-					requests:[],
+					requests:{},
 					newRequestContent:0,
 					notice:[],
 					newNoticeContent:0
@@ -91,11 +91,10 @@
 					scope:this
 				},
 				online:{
-					space:30000,
-					validity:"one",
-					fun:function(timer,tag){
+					space:10000,
+					fun:function(timer,tag,onlinelist){
 						this.mode.onlineUsersMode.load({data:{
-							onlinelist:this._data.userIds.join(),
+							onlinelist:onlinelist==undefined?this._data.userIds.join():onlinelist,
 							uid:this._data.userInfor.id
 						}});
 					},
@@ -217,6 +216,74 @@
 		},
 		requestGroupMemberByGroupId:function(gid){
 			this.mode.groupUsersMode.load({data:{gid:gid}});
+		},
+		//更新全局在线用户检查值
+		updateOnlineUserKey:function(array){
+			this._data.userIds = $.unique($.merge(this._data.userIds,array));
+		},
+		
+		//退群处理
+		exitGroup:function(gid,uid){
+			this.mode.exitGroupMode.load({data:{gid:gid,uid:uid}});
+		},
+		exitGroupAfter:function(success,gid,uid){
+			this._events.run("exitGroupAfter",success,gid,uid);
+		},
+		
+		//好友申请
+		markfriend:function(data){
+			var data = $.convert(data,{
+				sender_id:"Uid",
+				sender_name:"UserName",
+				addressee_id:"Fuid",
+				addressee_name:"FUserName",
+				content:"Comments"
+			});
+			data.original = null;
+			delete data.original ;
+			this.mode.makingFriendMode.load({data:data});
+			//$._show_debug_message($.toJSON(data,true));
+		},
+		markfriendAfter:function(data){
+			var data = $.convert(data,{
+				Avatar:"avatar",
+				NickName:"name",
+				FUserName:"fulname",
+				Fuid:"id",
+				State:"status",
+				TypeRela:"relation"
+			});
+			this.view.talkCenter.addFriend(data);
+			var timer = $(document).data("Timer");
+			timer.runAction("online");
+			
+			alert(data.name+" 已添加你为好友！");
+		},
+		
+		//回复好友申请
+		responeFriendRequest:function(data){
+			var original;
+			var data = $.convert(data,{
+				sender_id:"Fuid",
+				addressee_id:"Uid",
+				addressee_name:"FUserName",
+				agree:"IsAgree"
+			});
+			original = data.original;
+			data.original = null;
+			delete data.original ;
+			this.mode.responeFriendRequsetMode.load({data:data,original:original});
+			this.view.talkCenter.updateInformation(this._data);
+		},
+		responeFriendRequestAfter:function(data){
+			var data = $.convert(data,{
+				sender_name:"name",
+				sender_id:"id"
+			});
+			data.avatar = "../photo/avatar/3.png";
+			this.view.talkCenter.addFriend(data);
+			var timer = $(document).data("Timer");
+			timer.runAction("online");
 		},
 		
 		getUserIds:function(data,key){

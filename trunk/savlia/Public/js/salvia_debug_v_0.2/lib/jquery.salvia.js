@@ -339,7 +339,7 @@
 				$.c("a").attr({href:"javascript:;",id:"_debug_close"}).appendTo($._debug_panel).text("关闭").css({float:"right"}).click(function(){
 					$(this).parent().hide();
 				});
-				$.c("div").attr({id:"message"}).appendTo($._debug_panel);
+				$.c("code").css({width:400}).attr({id:"message"}).appendTo($._debug_panel);
 			}
 			
 			$._debug_panel.find("#message").html($._debug_panel.find("#message").html()+message+"<br/>");

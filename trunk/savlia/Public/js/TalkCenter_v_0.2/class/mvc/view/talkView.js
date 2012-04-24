@@ -8,6 +8,7 @@
 			$super("TalkCenter");
 			
 			this._data={
+				groupMemberIds:{},
 				groupMember:{},
 				formsHash:{},
 				facesPath:$.getRootPath()+$.browser.msie&&$.browser.version=="6.0"?"/photo/faces_ie6":"/photo/faces/",
@@ -56,45 +57,7 @@
 			},this);
 			this._type = "default";
 			
-			//注册controler的[取得群组成员后]事件
-			this.request("addListener",["requestGroupMemberAfter",function(e,gid,member){
-				e.data._data.groupMember[gid]={};
-				for(var i in member){
-					var data = $.convert(member[i],{
-						Uid:"id",
-						GroupName:"name",
-						Avatar:"avatar",
-						Utype:"status",
-						State:"groupStatus",
-						GroupType:"groupType",
-						StudentID:"number"
-					});
-					data.avatar = data.avatar==undefined?"../photo/avatar/3.png":data.avatar;
-					e.data._data.groupMember[gid][data.id]=data;
-				}
-				e.data._data.formsHash[gid].setGroupMember($("#contacts>li").clone(),e.data._data.groupMember[gid],e.data.config.binding._memberContacts);
-				e.data._data.formsHash[gid].dom.find(".infor .memberCount").text($.hash.count(e.data._data.groupMember[gid]));
-				e.data.initGroupAuthority(gid);
-			},this]);
-			//注册controler的[取得在线成员后]事件
-			this.request("addListener",["requestOnlineUserAfter",function(e,data){
-				var forms = e.data.control.formManager._forms;
-				var taskbarItems = e.data.control.taskbar.list;
-				var compare = function(a,b){
-					return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
-				};
-				
-				for(var i in taskbarItems){
-					var item = taskbarItems[i];
-					if(data.indexOf(item._data.id)!=-1){item.online(false);continue;}
-					item.online(true);
-				}
-				for(var i in forms){
-					var item = forms[i];
-					if(data.indexOf(item._data.id)!=-1){item.online(false);continue;}
-					item.online(true);
-				}
-			},this]);
+			this.initControllerListener();
 			
 			this.config={
 				binding:{
@@ -118,23 +81,28 @@
 						},
 						groupType:function(type){
 							this.dom.find("form.input>[name='grouptype']").val(type);
-							var groupType = "";
+							var groupType = "",avatar;
 							switch(type)
 							{
 								case "0":
 									groupType="教育群";
+									avatar="../photo/avatar/教.png";
 									break;
 								case "1":
 									groupType="聊天群";
+									avatar="../photo/avatar/聊.png";
 									break;
 								case "2":
 									groupType="毕业群";
+									avatar="../photo/avatar/毕.png";
 									break;
 								case "3":
 									groupType="社区群";
+									avatar="../photo/avatar/社.png";
 									break;
 							}
 							this.dom.find(".infor .groupType").text(groupType);
+							this.dom.find(".avatar").show().find("img").attr({src:avatar});
 						},
 						_type:function(_type){
 							this.dom.attr("data-_type",_type);
@@ -169,7 +137,7 @@
 						},
 						id:function(id){
 							this.text(this.text()+"("+id+")");
-							this.dom.find("[type='checkbox']").attr({name:""});
+							this.dom.find("[type='checkbox']").val(id);
 						},
 						groupStatus:function(groupStatus){
 							this.dom.attr({groupStatus:groupStatus});
@@ -198,6 +166,95 @@
 				}
 			};
 		},
+		
+		initControllerListener:function(){
+			//注册controler的[取得群组成员后]事件
+			this.addCtrlListener("requestGroupMemberAfter",function(e,gid,member){
+				e.data._data.groupMember[gid]={};
+				e.data._data.groupMemberIds[gid]=[];
+				for(var i in member){
+					var data = $.convert(member[i],{
+						Uid:"id",
+						GroupName:"name",
+						Avatar:"avatar",
+						Utype:"status",
+						State:"groupStatus",
+						GroupType:"groupType",
+						StudentID:"number"
+					});
+					data.avatar = data.avatar==undefined?"../photo/avatar/3.png":data.avatar;
+					if(!$.hash.contains(e.data._data.groupMember[gid],data.id)){
+						e.data._data.groupMember[gid][data.id]=e.data._data.formsHash[gid].addGroupMember($("#contacts>li").clone(),data,e.data.config.binding._memberContacts);
+						e.data._data.groupMemberIds[gid].push(data.id);
+					}
+				}
+				e.data._data.formsHash[gid].dom.find(".infor .memberCount").text($.hash.count(e.data._data.groupMember[gid]));
+				var timer = $(document).data("Timer");
+				timer.runAction("online",$.unique(e.data._data.groupMemberIds[gid]).join());
+				e.data.request("updateOnlineUserKey",[e.data._data.groupMemberIds[gid]]);
+				e.data.initGroupAuthority(this._data.userInfor.id,gid);
+			},this);
+			
+			//注册controler的[取得在线成员后]事件
+			this.addCtrlListener("requestOnlineUserAfter",function(e,data){
+				var forms = e.data.control.formManager._forms;
+				var taskbarItems = e.data.control.taskbar.list;
+				var compare = function(a,b){
+					return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
+				};
+				
+				for(var i in taskbarItems){
+					var item = taskbarItems[i];
+					if(data.indexOf(item._data.id)!=-1){item.online(false);continue;}
+					item.online(true);
+				}
+				for(var i in forms){
+					var form = forms[i];
+					switch(form._data._type)
+					{
+						case "friend":
+							if(data.indexOf(form._data.id)!=-1){form.online(true);continue;}
+							form.online(false);
+							break;
+						case "group":
+							if(form.control.groupMember.length<=0){continue;}
+							var onlineCount = 0;
+							for(var j in form.control.groupMember.list)
+							{
+								var member = form.control.groupMember.list[j];
+								if(data.indexOf(member._data.id)!=-1){
+									member.online(true);
+									onlineCount++;
+									continue;
+								}
+								member.online(false);
+							}
+							form.dom.find(".onlineMemberCount").text(onlineCount);
+							form.control.groupMember.sort(compare);
+							break;
+					}
+				}
+			},this);
+			
+			//删除群组成员后( 或 自己退出群组后)
+			this.addCtrlListener("exitGroupAfter",function(e,success,gid,uid){
+				if(uid==this._data.userInfor.id){
+					//自己退出群组后
+					e.data._data.formsHash[gid].close();
+				}else{
+					//删除群组成员后
+					var uids = uid.split(",");
+					for(var i in uids)
+					{
+						e.data._data.formsHash[gid].removeGroupMember(e.data._data.groupMember[gid][uids[i]]);
+						e.data._data.groupMember[gid][uids[i]] = null;
+						delete e.data._data.groupMember[gid][uids[i]];
+						$.list.remove(e.data._data.groupMemberIds[gid],uids[i]);
+					}
+				}
+			},this);
+		},
+		
 		createForm:function(data){
 			var tmp = data._type=="friend"?$("#talkform").clone().removeAttr("id"):$("#grouptalkform").clone().removeAttr("id");
 			var form = new $.TalkCenter.classes.ui.talkForm(tmp.appendTo($(".main>.forms")),{
@@ -208,6 +265,9 @@
 			form.dom.find("form.input>[name='sender_id']").val(ctrl_data.userInfor.id);
 			form.dom.find("form.input>[name='sender_name']").val(ctrl_data.userInfor.name);
 			form.dom.find("form.input>[name='sender_type']").val(ctrl_data.userInfor.state);
+			form.dom.find("a.toMember").click(function(){
+				$(this).parents(".modTalkForm").find(".tabs").data("tabs").click(2);
+			});
 			
 			form.faceDatasource(this._data.faceHash);
 			
@@ -231,10 +291,10 @@
 			return taskbarButton;
 		},
 		
-		initGroupAuthority:function(gid){
+		initGroupAuthority:function(loginUserId,gid){
 			var ctrl_data = this.request("_data");
-			var loginUserGroupName,loginUserId = ctrl_data.userInfor.id;
-			var authority = (this._data.groupMember[gid][loginUserId].groupStatus*2)+(this._data.groupMember[gid][loginUserId].status*3);
+			var loginUserGroupName;
+			var authority = (this._data.groupMember[gid][loginUserId]._data.groupStatus*2)+(this._data.groupMember[gid][loginUserId]._data.status*3);
 			switch(authority)
 			{
 				case 6:
@@ -268,6 +328,23 @@
 				case "default":
 					groupForm.dom.find(".member .fun").remove();
 					break;
+				default:
+					groupForm.dom.find(".member .fun .all").bind("click",groupForm,function(e){
+						e.data.control.groupMember.selectAll();
+					});
+					groupForm.dom.find(".member .fun .invert").bind("click",groupForm,function(e){
+						e.data.control.groupMember.selectInvert();
+					});
+					groupForm.dom.find(".member .fun input[name='remove']").bind("click",{that:this,gid:gid,groupForm:groupForm},function(e){
+						var uids = [];
+						var removeMember = e.data.groupForm.dom.find(".member input[name='member']").serializeArray();						
+						for(var i in removeMember)
+						{
+							uids.push(removeMember[i].value);
+						}
+						e.data.that.exitGroupByMessager(e.data.gid,uids);
+					});
+					break;
 			}
 			
 			var memberList = groupForm.control.groupMember.list;
@@ -277,20 +354,31 @@
 				memberList[i].dom.hover(function(){$(this).find(".funbar").show();},function(){$(this).find(".funbar").hide();}).find("input[type='checkbox']").attr("name","member");
 				$.c("span").addClass("funbar hide left10").appendTo(memberList[i].dom);
 				if(loginUserId==member._data.id){
-					loginUserGroupName=member._data.id;
-					$.c("a").attr({href:"javascript:;"}).text("退出本群").appendTo(member.dom.find(".funbar")).prepend($.c("i").addClass(""));
+					loginUserGroupName=member._data.name;
+					$.c("a").attr({href:"javascript:;"}).text("退出本群").appendTo(member.dom.find(".funbar")).prepend($.c("i").addClass("")).bind("click",{gid:gid,uid:member._data.id,that:this},function(e){
+						e.data.that.exitGroupBySelf(e.data.gid,e.data.uid);
+						return false;
+					});
 				}else{
-					switch(authority)
-					{
-						case "creator":
-						case "manager":
-							member.hasCheckBox(true);
-							$.c("a").attr({href:"javascript:;"}).text("移出本群").appendTo(member.dom.find(".funbar"));
-							break;
-					}
 					if(!$.hash.contains(ctrl_data.friends,member._data.id)){
-						$.c("a").attr({href:"javascript:;"}).text("加好友").appendTo(member.dom.find(".funbar")).prepend($.c("i").addClass("i iAdd"));
+						$.c("a").attr({href:"javascript:;"}).text("加好友").appendTo(member.dom.find(".funbar")).prepend($.c("i").addClass("i iAdd")).bind("click",{that:this,member:member._data},function(e){
+							e.data.that.makefriend(e.data.member);
+							return false;
+						});
 					}
+				}
+				
+				switch(authority)
+				{
+					case "creator":
+					case "manager":
+						member.hasCheckBox(true);
+						if(loginUserId==member._data.id){break;}
+						$.c("a").attr({href:"javascript:;"}).addClass("left10").text("移出本群").appendTo(member.dom.find(".funbar")).bind("click",{gid:gid,uid:member._data.id,that:this},function(e){
+							e.data.that.exitGroupByMessager(e.data.gid,[e.data.uid]);
+							return false;
+						});
+						break;
 				}
 			}
 			groupForm.dom.find(".talking form.input input[name='sender_name']").val(loginUserGroupName);
@@ -370,6 +458,40 @@
 			
 			form.talkingTo($("#talking").clone().removeAttr("id"),data,this.config.binding.send);
 			form.dom.find("form.input>[name='content']").val("");
+		},
+		
+		exitGroupBySelf:function(gid,uid){
+			var msg = new $.classes.ui.msgbox($("#modMsgBox").clone().removeAttr("id").appendTo(document.body));
+			msg.show("","确认退出此群？",["Yes","No"]);
+			msg.addListener("return",function(e,returnVal){
+				if(returnVal!="Yes"){return;}
+				e.data.that.request("exitGroup",[e.data.gid,e.data.uid]);
+			},{that:this,gid:gid,uid:uid});
+		},
+		
+		exitGroupByMessager:function(gid,uids){
+			if(uids.length<=0){ alert("请选择成员！");return; }
+			var msg = new $.classes.ui.msgbox($("#modMsgBox").clone().removeAttr("id").appendTo(document.body));
+			msg.show("","确认要移除所选择的人(共"+uids.length+"人)出群？",["Yes","No"]);
+			msg.addListener("return",function(e,returnVal){
+				if(returnVal!="Yes"){return;}
+				e.data.that.request("exitGroup",[e.data.gid,e.data.uids.join()]);
+			},{that:this,gid:gid,uids:uids});
+		},
+		
+		makefriend:function(data){
+			var sender = this.request("_data").userInfor;
+			var msg = new $.classes.ui.msgbox($("#modMsgBox").clone().removeAttr("id").appendTo(document.body));
+			msg.show("向 <b>"+data.name+"</b> 申请为好友","请输入验证信息<input class='text w100p' type='text' name='content'>",{Ok:"发送",Cancel:"取消"});
+			$.c("input").attr({type:"hidden",name:"sender_id"}).val(sender.id).appendTo(msg.dom.find(".content"));
+			$.c("input").attr({type:"hidden",name:"sender_name"}).val(sender.name).appendTo(msg.dom.find(".content"));
+			$.c("input").attr({type:"hidden",name:"addressee_id"}).val(data.id).appendTo(msg.dom.find(".content"));
+			$.c("input").attr({type:"hidden",name:"addressee_name"}).val(data.name).appendTo(msg.dom.find(".content"));
+			msg.addListener("return",function(e,returnVal){
+				if(returnVal!="Ok"){return;}
+				var data = this.dom.find("form").serializeObject();
+				e.data.request("markfriend",[data]);
+			},this);
 		},
 		
 		strToFaceImage:function(content){

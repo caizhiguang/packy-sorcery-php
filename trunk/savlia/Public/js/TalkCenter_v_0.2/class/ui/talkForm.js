@@ -12,7 +12,7 @@
 				talkPanel:new $.TalkCenter.classes.ui.talkPanel(this.dom.find(".talk_view")),
 				facePanel:"",
 				btnFace:this.dom.find(".btnFace").attr("data-onShow",false),
-				groupMember:new $.classes.ui.list(this.dom.find(".member .contacts"))
+				groupMember:new $.TalkCenter.classes.ui.list(this.dom.find(".member .contacts"))
 			};
 			this.initFacePanel();
 			
@@ -53,12 +53,13 @@
 			};
 			$(document).bind("click",this.control.facePanel,this._windowClickEvent);
 		},
-		setGroupMember:function(itemDom,data,setting){
-			for(var i in data)
-			{
-				var item = this.control.groupMember.add(itemDom.clone());
-				item.datasource(data[i],setting);
-			}
+		addGroupMember:function(itemDom,data,setting){
+			var item = this.control.groupMember.add(itemDom.clone());
+			item.datasource(data,setting);
+			return item;
+		},
+		removeGroupMember:function(item){
+			this.control.groupMember.remove(item);
 		},
 		faceDatasource:function(data){
 			this.control.facePanel.datasource(data);
@@ -80,7 +81,8 @@
 				return this._online;
 			}else{
 				this._online = val;
-				this.dom.find(".hd").toggleClass("off",this._online);
+				this.dom.find(".hd").toggleClass("off",!this._online);
+				this.dom.find(".state").text(this._online?"在线":"离线");
 			}
 		},
 		type:function(val){

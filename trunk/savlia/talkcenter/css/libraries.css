@@ -19,7 +19,8 @@ address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}
 a{color:#0084b4;text-decoration:none;}
 a:hover{color:#09F; text-decoration:none;}
 a:hover span{ color:#000; }
-select,b{vertical-align:middle;}
+select{vertical-align:middle;}
+input[type='button'],input[type='submit'],input[type='reset']{ padding:3px 5px 2px 5px\9;/*hack for all IE*/ *padding:0px 5px 0px 5px;/*hack only for IE7 IE6*/ }
 input[type='radio'],input[type='checkbox']{ vertical-align:middle; height:22px; }
 
 h1{font-size:24px;}

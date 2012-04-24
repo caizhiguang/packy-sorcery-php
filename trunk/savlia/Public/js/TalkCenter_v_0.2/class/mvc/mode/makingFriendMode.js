@@ -17,7 +17,7 @@
 			if(data){
 				content="已发送好友请求，请等待对方确认！";
 			}
-			this.request("TalkCenter","msgBox",["提示信息",content,["Ok"]]);
+			alert(content);
 		}
 	});
 })(jQuery);
