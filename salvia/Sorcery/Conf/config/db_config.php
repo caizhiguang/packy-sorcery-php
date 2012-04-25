@@ -3,11 +3,11 @@ return array(
 /*============DEBUG===============*/
 	'DB_TYPE'=>'mysql',
 	'DB_HOST'=>'localhost',
-	'DB_NAME'=>'pcool',
+	'DB_NAME'=>'cool',
 	'DB_USER'=>'root',
 	'DB_PWD'=>'123456',
 	'DB_PORT'=>'3306',
-	'DB_PREFIX'=>'pcool_',//表前序
+	'DB_PREFIX'=>'',//表前序
 /*============DEBUG===============*/
 	/*'DB_TYPE'=>'mysql',
 	'DB_HOST'=>'localhost',

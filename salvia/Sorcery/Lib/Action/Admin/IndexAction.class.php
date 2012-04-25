@@ -35,6 +35,7 @@ class IndexAction extends BaseAction
     			array('name'=>'添加媒体','url'=>'','current'=>''),
     		)),
     	));
+    	
     	$this->display();
     }
     public function test_data()
