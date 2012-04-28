@@ -10,7 +10,7 @@
 			$super(dom,attr);
 			this.initButton();
 			
-			this.dom.css({height:"auto",width:180,position:"absolute",zIndex:"999"});
+			this.dom.css({height:"auto",width:230,position:"absolute",zIndex:"999"});
 			this.dom.find("#mbtnMini").remove();
 		},
 		initScreen:function(){
@@ -70,7 +70,7 @@
 				return this._content;
 			}else{
 				this._content = val;
-				this.dom.find(".content").text(val);
+				this.dom.find(".content").html(val);
 			}
 		},
 		buttons:function(val){

@@ -10,7 +10,7 @@
 		},
 		onSuccess:function(data,ajax_options){
 			var result = data.text == "1";
-			this.request("TalkCenter","sendReceiptAfter",[result,ajax_options._data,ajax_options]);
+			this.request("TalkCenter","sendReceiptAfter",[result,ajax_options._oData]);
 		}
 	});
 })(jQuery);

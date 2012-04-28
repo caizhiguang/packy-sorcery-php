@@ -39,11 +39,11 @@
 			this.actionHash[name]=null;
 			return delete this.actionHash[name];
 		},
-		runAction:function(name){
+		runAction:function(name,data){
 			if(this.actionHash[name].scope==undefined){
 				this.actionHash[name].fun(this,$.extend({},{},this.actionHash[i]));
 			}else{
-				this.actionHash[name].fun.apply(this.actionHash[name].scope,[this,$.extend({},{},this.actionHash[name])]);
+				this.actionHash[name].fun.apply(this.actionHash[name].scope,[this,$.extend({},{},this.actionHash[name]),data]);
 			}
 		},
 		//运行计时模块

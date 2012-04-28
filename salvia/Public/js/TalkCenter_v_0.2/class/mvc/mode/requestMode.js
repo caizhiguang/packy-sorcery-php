@@ -12,13 +12,24 @@
 			});
 		},
 		onSuccess:function(data,ajax_options){
-			var ctrl_data = this.request("TalkCenter","data");
-			var request = ctrl_data.requests;
-			ctrl_data.newRequestContent = data.length;
+			var ctrl_data = this.request("TalkCenter","_data");
+			var request = ctrl_data.information.requests;
+			//ctrl_data.information.newRequestContent = data.length;
 			for(var i in data)
 			{
 				if(request[i]!=undefined){continue;}
-				request.push(data[i]);
+				var item = $.convert(data[i],{
+					Fid:"id",
+					RequestId:"sender_id",
+					RequestName:"sender_name",
+					ResponeId:"addressee_id",
+					ResponeName:"addressee_name",
+					RequestTime:"time",
+					RequestComments:"content",
+					Type:"type"
+				});
+				if($.hash.contains(request,item.id)) continue;
+				$.hash.add(request,item.id,item);
 			}
 			this.request("TalkCenter","updateInformation",[data,ajax_options]);
 		}
