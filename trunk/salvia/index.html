@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>聊天中心</title>
+<link href="../css/talkCenter_v_0.2/libraries.css" rel="stylesheet" type="text/css" />
+<link href="../css/talkCenter_v_0.2/content.css" rel="stylesheet" type="text/css" />
+<link href="../css/talkCenter_v_0.2/grids.css" rel="stylesheet" type="text/css" />
+<link href="../css/talkCenter_v_0.2/mod.css" rel="stylesheet" type="text/css" />
+<link href="../css/talkCenter_v_0.2/modForm.css" rel="stylesheet" type="text/css" />
+<link href="../css/talkCenter_v_0.2/modBox.css" rel="stylesheet" type="text/css" />
+<link href="../css/talkCenter_v_0.2/talkcenter.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="../js/plug-in/jquery.tools.min.js"></script>
+<script type="text/javascript" src="../js/plug-in/jquery.cookie.js"></script>
+
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/lib/jquery.json.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/lib/jquery.salvia.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/util/events.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/base/base.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/base/hash.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/base/list.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/util/formManager.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/base.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/list.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/list.item.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/contextmenu.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/form.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/taskbar.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/ui/msgbox.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/mvc/controller.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/mvc/mode.js"></script>
+<script type="text/javascript" src="../js/salvia_debug_v_0.2/class/mvc/view.js"></script>
+
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/ui/facePanel.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/ui/talkPanel.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/ui/talkForm.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/ui/list.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/ui/list.item.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/util/timer.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/loginMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/groupUsersMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/requestMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/pollingMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/messageMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/oldMessageMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/pushMessageMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/accpetFriendMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/listenMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/makingFriendMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/onlineUserMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/responeFriendRequsetMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/exitGroupMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/getProChatTopMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/noticeMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/createNoticeMode.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/mode/sendReceiptMode.js"></script>
+
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/view/talkView.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/view/talkCenterView.js"></script>
+<script type="text/javascript" src="../js/TalkCenter_v_0.2/class/mvc/controller/talkCenterController.js"></script>
+
+<script src="../js/xyz.js" type="text/javascript"></script>
+<style type="text/css">
+ .hide{ display: none; }
+</style>
+</head>
+
+<body>
+	<div class="wrap">
+    	<div class="header"></div>
+        <div class="context">
+            <div class="main">
+            	<div class="forms"></div>
+            </div>
+            <div class="taskbar">
+                <div class="items"></div>
+                <a href="javascript:;" class="more" style="display:none;"><i class="i iDown"></i></a>
+                <ul class="taskbarList" style="display:none;"></ul>
+            </div>
+            <div class="side">
+            	<div class="modBox modFunBox"><a href="javascript:;"><i class="i iHome"></i>回到个人中心</a></div>
+            	<div class="modBox modUInforBox">
+                	<div class="inner">
+                        <div class="menu"><a href="javascript:;" class="btnMessage"><i class="i iMessage"></i>信息</a></div>
+                        <div class="messages tip" style="display:none;">
+                        	<div><a href="javascript:;" class="message hide">好友 (<span class="count"></span>)</a></div>
+                        	<div><a href="javascript:;" class="gmessage hide">群组 (<span class="count"></span>)</a></div>
+                        	<div><a href="javascript:;" class="notice hide">通知 (<span class="count"></span>)</a></div>
+                        	<div><a href="javascript:;" class="request hide">好友请求 (<span class="count"></span>)</a></div>
+                        	<div><a href="javascript:;" class="grequest hide">群信息 (<span class="count"></span>)</a></div>
+                            <div class="tright size12 top5"><a href="javascript:;" class="btnClose"><i class="i iClose"></i>我知道了</a></div>
+                        </div>
+                        <div class="content">
+                            <div class="avatar"><img src="./photo/avatar/3.png" /></div>
+                            <div class="infor">
+                                <div class="name"></div>
+                                <div class="bar"><a href="javascript:;">设置</a>&nbsp;<a href="javascript:;">退出</a></div>
+                            </div>
+                        </div>
+                        <div class="ft radius_bottom3px">
+                            <a href="javascript:;" class="current">好友</a><a href="javascript:;">群组</a><a href="javascript:;">在线专家</a>
+                            <a href="javascript:;" class="fright"><i class="i iSearch"></i>搜索</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modBox modPanelBox">
+                	<div class="inner">
+                    	<h5 class="hd">好友</h5>
+                        <ul id="friends" class="content contacts radius_bottom3px"></ul>
+                    </div>
+                    <div class="inner">
+                    	<h5 class="hd">群组</h5>
+                        <ul id="groups" class="content contacts radius_bottom3px"></ul>
+                    </div>
+                    <div class="inner">
+                    	<h5 class="hd">专家在线</h5>
+                        <ul id="authority" class="content contacts radius_bottom3px"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer"><span class="spacing">在线聊天v0.2</span>&copy;2012 妇联家教通</div>
+    </div>
+    
+    <div id="pack" style="display:none;">
+    	<ul id="contacts"><li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name"></span></li></ul>
+    	<div id="talking">
+			<dl>
+				<dt class="tip">
+					<span class="name"></span>
+					<span class="time"></span>
+					<span class="fun">
+						<a href="javascript:;" class="btnQuote">引用</a>
+						<a class="more" href="javascript:;"></a>
+					</span>
+				</dt>
+				<dd class="infor"></dd>
+			</dl>
+    	</div>
+    	<div id="forms">
+    		<div id="modMsgBox" class="modMsgBox">
+		    	<form class="inner">
+		    		<div class="hd"><span class="title"></span></div>
+		    		<div class="menu"><a href="javascript:;" class="i iClose"><i class="i iClose"></i></a></div>
+		    		<div class="content"></div>
+		    		<div class="ft"></div>
+		    	</form>
+		    </div>
+    		<div id="talkform" class="modTalkForm">
+			    <div class="inner">
+			        <div class="hd">
+			            <div class="avatar"><img src="" /></div>
+			            <div class="title"></div>
+			        </div>
+			        <div class="menu"><a href="javascript:;" class="i iClose"><i class="i iClose"></i></a></div>
+			        <div class="bar">当前状态：[ <span class="state">离线</span> ]</div>
+			        <div class="content">
+			        	<div class="talking">
+			                <div class="talk_view">
+			                    <div class="news">
+			                        <div class="news_box authority_box">
+			                            <div class="authority_box_view"></div>
+			                            <div class="authority_box_ft"><a href="javascript:;" class="more">进入专家课堂&gt;&gt;</a></div>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="talk_input">
+			                    <div class="funbar">
+			                        <a href="javascript:;" class="btnFace"><i class="i iFace"></i></a>
+			                        <a href="javascript:;" class="btnFont"><i class="i iFont"></i></a>
+			                        <a href="javascript:;" class="fright"><i class="i"></i>历史记录</a>
+			                    </div>
+			                    <form class="input">
+				                	<input type="hidden" name="sender_id" />
+				                	<input type="hidden" name="sender_name" />				                	
+				                	<input type="hidden" name="addressee_id" />
+				                	<input type="hidden" name="addressee_name" />
+				                	<input type="hidden" name="type" />
+				                    <textarea name="content"></textarea>
+				                    <div class="ftbar">
+				                        <input class="btnClose" type="button" value="关闭" />
+				                        <input class="fright submit" type="submit" value="发送(s)" />
+				                    </div>
+			                    </form>
+			                </div>
+			            </div>                                
+			        </div>
+			        <div class="ft"></div>
+			    </div>
+			</div>
+			<div id="grouptalkform" class="modTalkForm">
+				<div class="inner">
+				    <div class="hd">
+				        <div class="avatar"><img src="" /></div>
+				        <div class="title"></div>
+				    </div>
+				    <div class="menu"><a href="javascript:;" class="i iClose"><i class="i iClose"></i></a></div>
+				    <div class="bar tabs"><a href="javascript:;" class="current btnTalking">群聊天</a><a href="javascript:;" class="btnInfor">群资料</a><a href="javascript:;" class="btnMember">群成员</a><a href="javascript:;" class="btnTopic">群话题</a><a href="javascript:;" class="btnNotice">群通知</a></div>
+				    <div class="content">
+				    	<div class="talking">
+				            <div class="talk_view">
+				                <div class="news">
+				                    <div class="news_box authority_box">
+				                        <div class="authority_box_view"></div>
+				                        <div class="authority_box_ft"><a href="javascript:;" class="more">进入专家课堂&gt;&gt;</a></div>
+				                    </div>
+				                    <div class="news_box affiche">
+				                        <h5 class="news_box_hd">群公告</h5>
+				                        <div class="news_box_memu"><a href="javascript:;" class="i"><i class="i iClose"></i></a></div>
+				                        <div class="news_box_content"></div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="talk_input">
+				                <div class="funbar">
+				                    <a href="javascript:;" class="btnFace"><i class="i iFace"></i></a>
+				                    <a href="javascript:;" class="btnFont"><i class="i iFont"></i></a>
+				                    <a href="javascript:;" class="fright"><i class="i"></i>过滤列表</a>
+				                    <a href="javascript:;" class="fright"><i class="i"></i>历史记录</a>
+				                </div>
+				                <form class="input">
+				                	<input type="hidden" name="sender_id" />
+				                	<input type="hidden" name="sender_name" />	
+				                	<input type="hidden" name="sender_type" />
+				                	<input type="hidden" name="grouptype" />				                	
+				                	<input type="hidden" name="addressee_id" />
+				                	<input type="hidden" name="addressee_name" />
+				                	<input type="hidden" name="type" />
+				                    <textarea name="content"></textarea>
+				                    <div class="ftbar">
+					                    <input class="btnClose" type="button" value="关闭" />
+					                    <input class="fright submit" type="submit" value="发送(s)" />
+					                </div>
+				                </form>
+				            </div>
+				        </div>
+				        <div class="infor">
+				        	<dl>
+				            	<dt>群名称：</dt>
+				                <dd class="groupName"></dd>
+				                <dt>群类型：</dt>
+				                <dd class="groupType"></dd>
+				                <dt>群成员：<span class="fright"><a href="javascript:;" class="toMember">查看群成员&gt;&gt;</a></span></dt>
+				                <dd>共<span class="memberCount"></span>人，<span class="onlineMemberCount"></span>人在线</dd>
+				                <dt>群公告：<span class="fright"><a href="javascript:;">修改&gt;&gt;</a></span></dt>
+				                <dd class="affiche"></dd>
+				            </dl>
+				            <dl style="display:none;">
+				            	<dt>你有 3 条群通知未读<span class="fright"><a href="javascript:;">查看&gt;&gt;</a></span></dt>
+				            </dl>
+				        </div>
+				        <div class="member">
+				        	<div class="panel">
+				                <h5>成员列表</h5>
+				                <ul class="contacts"></ul>
+				                <div class="fun"><input name="all" class="all" type="button" value="全选" /><input name="invert" class="invert" type="button" value="反选" /><input class="fright" name="remove" type="button" value="移出本群" /></div>
+				            </div>
+				        </div>
+				        <div class="topic tcenter">
+				        	<div>——————群话题——————</div>
+				        	<div>【暂未开放，敬请期待】</div>
+				        </div>
+				        <div class="notice">
+				        	<div class="notices" style="">
+								<div class="panel">
+							        <h5>群通知</h5>
+									<table class="notice w100p" cellpadding="0" cellspacing="0">
+										<thead>
+											<tr>
+										    	<td class="fun" colspan="4">
+										        	<input type="checkbox" class="right10" /><input class="right10 remove" type="button" value="删除" /><input class="createNotice" type="button" value="写通知" />
+										            <span class="left10 bar">
+										            	<span>显示：</span><a class="current week" href="javascript:;" data-val="week">近一星期</a><a href="javascript:;" class="month" data-val="month">近一个月</a><a href="javascript:;" class="thisMonth" data-val="thisMonth">当月</a><a href="javascript:;" class="all" data-val="all">全部</a>
+										            </span>
+										        </td>
+											</tr>        
+										</thead>
+										<tbody>
+										    <tr><td class="tcenter" colspan="4">暂无通知</td></tr>
+										    <tr><td class="checkbox"><input type="checkbox" /></td><td class="sender"></td><td><a href="javascript:;" class="notice_title"></a></td><td class="time"></td></tr>
+										</tbody>
+										<tfoot>
+											<tr>
+											   	<td class="fun" colspan="4"><input type="checkbox" class="right10" /><input class="right10 remove" type="button" value="删除" /><input class="createNotice" type="button" value="写通知" /><input class="fright totop" type="button" value="返回顶" /></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+							<div class="noticeView panel" style="display:none;">
+								<h5><span class="notice_title right10"></span> <span class="sender"></span> <span class="time"></span></h5>
+								<div class="notice_content bottom10"></div>
+								<form class="receipt bottom10">
+									<span>回执内容：</span>
+									<input type="text" class="text right10" name="receipt" style="width:250px;" /><input type="submit" value="发送" />
+								</form>
+								<div class="fun clearfix tcenter"><a href="javascript:;" class="fleft prev">&lt;&lt;上一封</a><a href="javascript:;" class="beack">返回</a><a href="javascript:;" class="fright next">下一封&gt;&gt;</a></div>
+							</div>
+							<div class="noticeCreate" style="display:none;">
+								<form class="panel">
+									<h5 class="bottom10">写通知 <span class="fright"><a href="javascript:;" class="beack">返回&gt;&gt;</a></span></h5>
+									<div class="sub">
+										<div class="p10">
+											<label class="sender">寄件人：</label><span class="sender">班主任(10002)</span><input type="hidden" class="text" name="sender" style="width:600px;" />
+											<label class="address">收件人：</label><input type="text" class="text" name="address" style="width:600px;" />
+											<label class="notice_title">通知标题：</label><input type="text" class="text right10" name="notice_title" style="width:500px;" /><input type="checkbox" class="right10" name="receipt" /><label class="receipt">需要回执</label>
+											<label class="notice_content">通知内容：</label>
+											<textarea style="width:100%; height:155px;" class="text" name="notice_content"></textarea>
+											<div class="tcenter"><input type="submit" value="发送" /></div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+				    </div>
+				    <div class="ft"></div>
+				</div>
+           </div>
+    	</div>
+    </div>
+    <div class="modForm mod hide">
+   		<div class="inner">
+    		<div class="hd"></div>
+    		<div class="menu"><a href="javascript:;" class="i iClose"><i class="i iClose"></i></a></div>
+    		<div class="content">
+				<div class="tree">
+					<ul>
+						<li><a href="javascript:;">111</a></li>
+						<li>
+							<a href="javascript:;">222</a>
+							<ul>
+								<li><a href="javascript:;">2.1</a></li>
+								<li><a href="javascript:;">2.2</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+    		<div class="ft"></div>
+   		</div>
+   	</div>
+   	
+	<script type="text/javascript">
+		;(function($){
+			$(document).ready(function(){
+				var ctrlTalkCenter = new $.TalkCenter.classes.mvc.controller.talkCenterController();
+				ctrlTalkCenter.login();
+				ctrlTalkCenter.addListener("loginAfter",function(){
+					//$._show_debug_message($.toJSON(this._data));
+				});				
+				
+				//var d = new $.TalkCenter.classes.ui.list.item($(".test"));
+				//d.twinkle(true);
+				//$(".test").click(function(){d.twinkle(false)});
+
+				/*var talkForm = new $.TalkCenter.classes.ui.talkForm($("#talkform").clone().appendTo(document.body));
+				talkForm.show();
+
+				$(".test").click(function(){
+					talkForm.talkingWithMe($("#talking").clone(),{name:"测试",content:"123",time:$.dateToString((new Date()))},{
+						name:function(name){
+							this.find(".name").text(name);
+						},
+						content:function(content){
+							this.find(".infor").text(content);
+						},
+						time:function(time){this.find(".time").text(time);}
+					});
+				});*/
+				
+				//var taskbar = new $.classes.ui.taskbar($(".taskbar>.items"));
+				
+				//var form = new $.classes.ui.form($.c("div").appendTo(".forms"));
+				//form.dom.append($.c("div").addClass("hd").text(""));
+				//form.text("测试");
+				
+				//taskbar.addItem(form);
+				
+				/*var testList = new $.classes.ui.list($("#testList"));
+				testList.datasource(["1","2","3"],function(text){
+					this.dom.text(text);
+				});*/
+			});
+		})(jQuery);
+	</script>
+</body>
+</html>

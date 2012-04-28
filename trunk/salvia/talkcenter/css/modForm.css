@@ -19,7 +19,7 @@
 	.modForm .bar a{ padding:5px 7px; background:#f5f5f5; display:inline-block; margin:0 0 0 5px; font-size:12px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
 	.modForm .bar a:hover{ background:#666; color:#fff; }
 	.modForm .bar .current{ background:#888; color:#fff;}
-	.modForm .content{ height:496px; position:relative; }
+	.modForm .content{ height:496px; position:relative; overflow:hidden; }
 	/*talking*/
 	.modForm .talking .talk_view{ height:326px; position:relative; padding:10px 0 0 10px; overflow:auto; }
 	.talking dt.tip{padding:6px 3px 3px 3px; color:#03F;}
@@ -40,7 +40,36 @@
 	.modForm .infor .fright{ font-weight:normal; }
 	/*member*/
 	.modForm .member{ padding:15px; height:466px; overflow:auto; }
-	.modForm .member .panel{ margin:0 auto; background:#eee; padding:10px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
-	.modForm .member h5{ background:#fff; height:30px; color:#666; line-height:30px; padding:0 5px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
 	.modForm .contacts{ margin:10px 0; }
-	.modForm .member .fun{ background:none; }
+	.modForm .member .fun{ background:none; padding:10px 0 0 0; border-top:#fff dashed 1px; }
+	/**notice**/
+	.modForm div.notice{ height:466px; padding:15px; overflow:auto; }
+	.modForm div.notice .bar{ background:none; padding:0; }
+	.modForm div.noticeCreate form{ height:446px; }
+	.modForm div.noticeCreate form label{ width:80px; display:block; }
+	.modForm div.noticeCreate form label.receipt{ display:inline; }
+	.modForm div.noticeCreate form textarea{ display:inline-block; *display:inline; *overflow:hidden; *zoom:1; }
+	.modForm div.noticeView{  }
+	.modForm div.noticeView .notice_title{ font-size:14px; }
+	.modForm div.noticeView .notice_content{ line-height:22px; }
+	.modForm div.noticeView .receipt{ background:#f5f5f5; padding:10px; margin:10px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+	.modForm div.noticeView span.time,.modForm div.noticeView span.sender{ color:#999; font-family:SimSun; font-weight:normal; font-size:12px; }
+	.modForm div.noticeView h5{ margin:0 0 10px 0; }
+	.modForm div.noticeView .fun{ border-top:#fff dashed 1px; padding:5px 0 0 0; font-size:12px; }
+	.modForm div.notices{  }
+	.modForm table.notice .odd{ background:#f5f5f5; }
+	.modForm table.notice thead .fun{ padding:10px 0 5px 5px; border-bottom:#fff dashed 1px; }
+	.modForm table.notice tfoot .fun{ padding:5px 0 0 5px; border-top:#fff dashed 1px; }
+	.modForm table.notice tbody td{ padding:5px 0; }
+	.modForm table.notice tbody tr:hover{ background:#fff; }
+	.modForm table.notice td{ font-size:14px; vertical-align:middle; }
+	.modForm table.notice td.checkbox{ width:25px; padding:0 0 0 5px; }
+	.modForm table.notice td.sender{ width:80px; }
+	.modForm table.notice td.title{ }
+	.modForm table.notice td.time{ width:80px; text-align:center; font-size:12px; }
+	
+	/**panel**/
+	.modForm .panel{ margin:0 auto; background:#eee; padding:10px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+	.modForm .panel h5,.modForm .panel .sub{ background:#fff; height:30px; color:#666; line-height:30px; padding:0 5px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+	.modForm .panel .sub{ height:auto; }
+	
