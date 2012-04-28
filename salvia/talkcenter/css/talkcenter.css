@@ -47,8 +47,10 @@ a:hover{ color:#000; }
 .taskbar .taskbarList a{ display:block; overflow:hidden; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;}
 
 .spacing{ border-right:#555 solid 1px; }
-.more,.fright{ font-size:12px; }
+.more,span.fright{ font-size:12px; }
 .fright{*margin:-2.1em 0 0 0;}
+h5 .fright a{ font-family:SimSum; font-size:12px; color:#999; font-weight:normal; }
+h5 .fright a:hover{ color:#666; }
 
 .avatar{ border:#ddd solid 1px; height:48px; width:48px; background:#fff; display:inline-block; }
 .avatar img{ height:48px; width:48px; }
