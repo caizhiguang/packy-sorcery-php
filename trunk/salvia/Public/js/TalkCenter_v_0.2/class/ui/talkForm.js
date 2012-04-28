@@ -12,7 +12,8 @@
 				talkPanel:new $.TalkCenter.classes.ui.talkPanel(this.dom.find(".talk_view")),
 				facePanel:"",
 				btnFace:this.dom.find(".btnFace").attr("data-onShow",false),
-				groupMember:new $.classes.ui.list(this.dom.find(".member .contacts"))
+				groupMember:new $.TalkCenter.classes.ui.list(this.dom.find(".member .contacts")),
+				groupNotice:new $.TalkCenter.classes.ui.list(this.dom.find(".notice table.notice"))
 			};
 			this.initFacePanel();
 			
@@ -22,6 +23,22 @@
 				e.data._events.run("send",e.data,this);
 				$(this).find("textarea").focus();
 				return false;
+			});
+			
+			this.dom.find(".notices .fun .createNotice").bind("click",this,function(e){e.data.createGroupNotice();});
+			this.dom.find(".noticeView .beack ,.noticeCreate .beack").bind("click",this,function(e){
+				e.data.dom.find(".notice>div").hide();
+				e.data.dom.find(".notices").show();
+			});
+			this.dom.find(".noticeView .prev,.noticeView .next").bind("click",this,function(e){
+				var item = e.data.control.groupNotice.list[$(this).attr("data-index")];
+				e.data.viewGroupNotice(item._data.id);
+			});
+			/*this.dom.find(".notice .week,.notice .month,.notice .thisMont,.notice .all").bind("click",this,function(e){
+				e.data.showNoticeByTime($(this).attr("data-val"));
+			});*/
+			this.dom.find(".notice .totop").bind("click",this,function(e){
+				e.data.dom.find(".notice").animate({scrollTop:0},"fast");
 			});
 		},
 		initFacePanel:function(){
@@ -53,12 +70,47 @@
 			};
 			$(document).bind("click",this.control.facePanel,this._windowClickEvent);
 		},
-		setGroupMember:function(itemDom,data,setting){
-			for(var i in data)
+		addGroupMember:function(itemDom,data,setting){
+			var item = this.control.groupMember.add(itemDom.clone());
+			item.datasource(data,setting);
+			return item;
+		},
+		removeGroupMember:function(item){
+			this.control.groupMember.remove(item);
+		},
+		addGroupNotice:function(itemDom,data,setting){
+			var item = this.control.groupNotice.add(itemDom.clone());
+			item.datasource(data,setting);
+			return item;
+		},
+		removeGroupNotice:function(item){
+			this.control.groupNotice.remove(item);
+		},
+		viewGroupNotice:function(noticeId){
+			var notice,index = -1;
+			for(var i in this.control.groupNotice.list)
 			{
-				var item = this.control.groupMember.add(itemDom.clone());
-				item.datasource(data[i],setting);
+				if(this.control.groupNotice.list[i]._data.id != noticeId){continue;}
+				notice = this.control.groupNotice.list[i]._data;
+				index = Number(i);
 			}
+			this.dom.find(".notice>div").hide();
+			this.dom.find(".noticeView").attr("data-index",index).show();
+			this.dom.find(".noticeView .prev").attr("data-index",index-1)[index>0?"show":"hide"]();
+			this.dom.find(".noticeView .next").attr("data-index",index+1)[index+1<this.control.groupNotice.count()?"show":"hide"]();
+			this.dom.find(".notice .noticeView .sender").text(notice.sender_name);
+			this.dom.find(".notice .noticeView .notice_title").text(notice.title);
+			this.dom.find(".notice .noticeView .time").text(notice.time);
+			this.dom.find(".notice .noticeView .notice_content").text(notice.content);
+			this.dom.find(".notice .noticeView .receipt").append($.c("input").attr({type:"hidden",name:"id"}).val(notice.id));
+			this.dom.find(".notice .noticeView .receipt").append($.c("input").attr({type:"hidden",name:"sender_id"}).val(notice.address_id));
+			this.dom.find(".notice .noticeView .receipt").append($.c("input").attr({type:"hidden",name:"gid"}).val(notice.gid));
+			this.dom.find(".notice .noticeView .receipt")[notice.receipt=="1"?"show":"hide"]();
+			this.dom.find(".notice .noticeView .receipt input[name='receipt']").val("");
+		},
+		createGroupNotice:function(){
+			this.dom.find(".notice>div").hide();
+			this.dom.find(".noticeCreate").show();
 		},
 		faceDatasource:function(data){
 			this.control.facePanel.datasource(data);
@@ -80,7 +132,8 @@
 				return this._online;
 			}else{
 				this._online = val;
-				this.dom.find(".hd").toggleClass("off",this._online);
+				this.dom.find(".hd").toggleClass("off",!this._online);
+				this.dom.find(".state").text(this._online?"在线":"离线");
 			}
 		},
 		type:function(val){

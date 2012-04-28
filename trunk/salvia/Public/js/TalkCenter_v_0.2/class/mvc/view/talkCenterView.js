@@ -28,70 +28,32 @@
 						id:function(fuid){
 							this.dom.find(".name").text(this.dom.find(".name").text()+"("+fuid+")");
 							this.dom.attr("data-uid",fuid);
-						}
-					},
-				
-					contacts:{
-						Avatar:function(avatar){
-							this.dom.find(".avatar img").attr({src:avatar});
 						},
-						NickName:function(name){
-							this.dom.find(".name").text(name);
-						},
-						Fuid:function(fuid){
-							this.dom.find(".name").text(this.dom.find(".name").text()+"("+fuid+")");
-							this.dom.attr("data-uid",fuid);
-						},
-						FUserName:function(name){
-							this.dom.find(".name").text(name);
-						},
-						GroupType1:function(type){
-							var group;
+						groupType:function(type){
+							var avatar;
 							switch(type)
 							{
 								case "0":
-									group="教育群";
+									avatar="../photo/avatar/教.png";
 									break;
 								case "1":
-									group="聊天群";
+									avatar="../photo/avatar/聊.png";
 									break;
 								case "2":
-									group="毕业群";
+									avatar="../photo/avatar/毕.png";
 									break;
 								case "3":
-									group="社区群";
+									avatar="../photo/avatar/社.png";
 									break;
 							}
-							this.dom.find(".name").text(group+" - ");
-						},
-						GroupName:function(name){
-							this.dom.find(".name").text(this.dom.find(".name").text()+name);
-						},
-						Gid:function(gid){
-							this.dom.find(".name").text(this.dom.find(".name").text()+"("+gid+")");
-							this.dom.attr("data-gid",gid);
+							this.dom.find(".avatar").show().find("img").attr({src:avatar});
 						}
 					}
 				}
 			};
 			
-			//注册Controller的[取得在线用户后]事件
-			this.request("addListener",["requestOnlineUserAfter",function(e,data){
-				
-				var talkCenterView = e.data;
-				var compare = function(a,b){
-					return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
-				};
-				
-				for(var i in talkCenterView.control.friendList.list){
-					var item = talkCenterView.control.friendList.list[i];
-					if(data.indexOf(item._data.id)!=-1){item.online(true);continue;}
-					item.online(false);
-				}
-				talkCenterView.control.friendList.sort(compare);
-				
-			},this]);
-			
+			this.initControllerListener();
+
 			$(".modUInforBox .ft").tabs(".modPanelBox>.inner",{history:false});
 			$(".modUInforBox .ft").data("tabs").click(1);
 			this.control.messagePanel = $(".modUInforBox .messages");
@@ -103,7 +65,8 @@
 				$(".modUInforBox .ft").data("tabs").click(1);
 			});
 			this.control.messagePanel.find(".notice").bind("click",this,function(e){});
-			this.control.messagePanel.find(".request").bind("click",this,function(e){});
+			this.control.messagePanel.find(".request").bind("click",this,function(e){e.data.showRequest();});
+			this.control.messagePanel.find(".grequest").bind("click",this,function(e){$(".modUInforBox .ft").data("tabs").click(1);});
 			this.control.messagePanel.find("a.btnClose").click($.proxy(function(){this.toggle();},this.control.messagePanel));
 			
 			this.timer = $(document).data("Timer")==undefined?new $.TalkCenter.classes.util.timer():$(document).data("Timer");
@@ -122,6 +85,34 @@
 			
 			$(document).bind("click",this,this.onMessagePanelLostFocus);
 		},
+		
+		initControllerListener:function(){
+			//注册Controller的[取得在线用户后]事件
+			this.addCtrlListener("requestOnlineUserAfter",function(e,data){
+				
+				var talkCenterView = e.data;
+				var compare = function(a,b){
+					return ($(a)[0].className.indexOf("off")==-1)&&($(b)[0].className.indexOf("off")==-1)?0:(($(a)[0].className.indexOf("off")==-1)?1:-1);
+				};
+				
+				for(var i in talkCenterView.control.friendList.list){
+					var item = talkCenterView.control.friendList.list[i];
+					if(data.indexOf(item._data.id)!=-1){item.online(true);continue;}
+					item.online(false);
+				}
+				talkCenterView.control.friendList.sort(compare);
+				
+			},this);
+			//注册Controller的[退出群后]事件
+			this.addCtrlListener("exitGroupAfter",function(e,success,gid,uid){
+				if(uid==this._data.userInfor.id){
+					e.data.control.groupList.remove(e.data._data.contactHash[gid]);
+					e.data._data.contactHash[gid]=null;
+					delete e.data._data.contactHash[gid];
+				}
+			},this);
+		},
+		
 		onBtnMessageClick:function(e){
 			e.data.timer.stop("news_prompt");
 			$(this).removeClass("showNews").find(".iMessage").removeClass("iNew").parents(".menu").css({zIndex:2});
@@ -141,28 +132,66 @@
 			for(var i in data.friends)
 			{
 				if(data.friends[i].relation!="1"){continue;}
-				var item = this.control.friendList.add($("#contacts>li").clone());
-				item.datasource(data.friends[i],this.config.binding._default);
-				item.addListener("click",function(e,obj){
-					e.data.openTalking(e.target._data,e.target.online());
-				},this);
-				$.hash.add(this._data.contactHash,data.friends[i].id,item);
+				this.addFriend(data.friends[i]);
 			}
 			for(var i in data.groups)
 			{
-				var item = this.control.groupList.add($("#contacts>li").clone());
-				item.online(true);
-				item.datasource(data.groups[i],this.config.binding._default);
-				item.addListener("click",function(e,obj){
-					e.data.openTalking(e.target._data,e.target.online());
-				},this);
-				$.hash.add(this._data.contactHash,data.groups[i].id,item);
+				this.addGroup(data.groups[i]);
 			}
 			
 			$(".wrap").css({
 				margin:"0 auto",
 				top:$(window).height()-$(".wrap").height()<0?0:($(window).height()-$(".wrap").height())/2
 			}).fadeIn("slow");
+		},
+		
+		addFriend:function(data){
+			var item = this.control.friendList.add($("#contacts>li").clone());
+			item.datasource(data,this.config.binding._default);
+			item.addListener("click",function(e,obj){
+				e.data.openTalking(e.target._data,e.target.online());
+			},this);
+			$.hash.add(this._data.contactHash,data.id,item);
+			var ctrl_data = this.request("_data");
+			if(!$.hash.contains(ctrl_data.friends,data.id)){
+				ctrl_data.friends[data.id]=data;
+				ctrl_data.userIds = $.unique($.merge(ctrl_data.userIds,this.request("getUserIds",[ctrl_data.friends,"id"])));
+			}
+		},
+		addGroup:function(data){
+			var item = this.control.groupList.add($("#contacts>li").clone());
+			item.online(true);
+			item.datasource(data,this.config.binding._default);
+			item.addListener("click",function(e,obj){
+				e.data.openTalking(e.target._data,e.target.online());
+			},this);
+			$.hash.add(this._data.contactHash,data.id,item);
+		},
+		
+		showRequest:function(){
+			var ctrl_data = this.request("_data");
+			for(var i in ctrl_data.information.requests)
+			{
+				var request = ctrl_data.information.requests[i];
+				var msg = new $.classes.ui.msgbox($("#modMsgBox").clone().removeAttr("id").appendTo(document.body));
+				msg.show("","<p>"+request.sender_name+"请求加你为好友</p><div>验证信息：</div><div>"+request.content+"</div>",{Yes:"加为好友",No:"拒绝",Cancel:"忽略"});
+				msg.addListener("return",function(e,returnVal){
+					var agree = -1;
+					switch(returnVal){
+						case "Yes":
+							e.data.request.agree = 1;
+							break;
+						case "No":
+							e.data.request.agree = 0;
+							break;
+						case "Cancel":
+							e.data.request.agree = -1;
+							break;
+					}
+					if(e.data.request.agree<0){return;}
+					e.data.that.request("responeFriendRequest",[e.data.request]);
+				},{that:this,request:request});
+			}
 		},
 		
 		openTalking:function(data,online){
@@ -174,7 +203,7 @@
 		updateInformation:function(data){
 			this.updateFormTalking(data);
 			
-			var messagesContent=0,gmessagesContent=0,newNoticeContent=0,newRequestContent=0;
+			var messagesContent=0,gmessagesContent=0,newNoticeContent=0,requestContent=0,grequestContent=0;
 			
 			//message
 			for(var i in data.information.messages)
@@ -183,7 +212,6 @@
 				if(!item._IsNew){continue;}
 				if(item._type=="friend"){messagesContent++;}else{gmessagesContent++;}
 				this._data.contactHash[item.id].twinkle(true);
-				this.timer.start("news_prompt");
 			}
 			//notice
 			for(var i in data.information.notice)
@@ -191,9 +219,17 @@
 				
 			}
 			//request
-			for(var i in data.information.request)
+			for(var i in data.information.requests)
 			{
-				
+				if(data.information.requests[i].agree!=undefined){continue;}
+				switch(data.information.requests[i].type){
+					case "Friend":
+						requestContent++;
+						break;
+					case "Group":
+						grequestContent++;
+						break;
+				}
 			}
 			
 			if(messagesContent>0){
@@ -202,12 +238,19 @@
 			if(gmessagesContent>0){
 				this.control.messagePanel.find(".gmessage").show().find("span.count").text(gmessagesContent);
 			}else{this.control.messagePanel.find(".gmessage").hide();}
+			if(requestContent>0){
+				this.control.messagePanel.find(".request").show().find("span.count").text(requestContent);
+			}else{this.control.messagePanel.find(".request").hide();}
+			if(grequestContent>0){
+				this.control.messagePanel.find(".grequest").show().find("span.count").text(grequestContent);
+			}else{this.control.messagePanel.find(".grequest").hide();}
 			
-			if(messagesContent+gmessagesContent+newNoticeContent+newRequestContent<=0){
+			if(messagesContent+gmessagesContent+newNoticeContent+requestContent+grequestContent<=0){
 				this.timer.stop("news_prompt");
 				$("a.btnMessage").removeClass("showNews").find(".iMessage").removeClass("iNew");
 				$("a.btnMessage").unbind("click",this.onBtnMessageClick);
 			}else{
+				this.timer.start("news_prompt");
 				$("a.btnMessage").unbind("click",this.onBtnMessageClick).bind("click",this,this.onBtnMessageClick);
 			}
 		},

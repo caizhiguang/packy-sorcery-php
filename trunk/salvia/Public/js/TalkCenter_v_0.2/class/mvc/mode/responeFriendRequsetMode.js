@@ -18,9 +18,7 @@
 				]);
 			}else{
 				if(ajax_options._data.IsAgree!=1){return;}
-				ajax_options._data.TypeRela="1";
-				this.request("TalkCenter","addToFriends",[ajax_options._data]);
-				this.request("TalkCenter","updataOnlineUser");				
+				this.request("TalkCenter","responeFriendRequestAfter",[ajax_options.original]);
 			}
 		}
 	});

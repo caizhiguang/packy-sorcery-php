@@ -9,7 +9,7 @@
 			},filter);
 		},
 		onSuccess:function(data,ajax_options){
-			data = data.text;
+			data = data.text==undefined?"":data.text;
 			this.request("TalkCenter","updataOnlineUser",[data]);
 		}
 	});
