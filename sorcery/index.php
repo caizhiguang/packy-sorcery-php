@@ -28,6 +28,11 @@ function dump($var, $echo=true,$label=null, $strict=true)
         return $output;
 }
 
+echo "hello!";
+
+require_once '/lib_v0.2/lib.php';
+
+/*
 require_once("DB.class.php");
 $userName = 'root';
 $password = '123456';
@@ -60,4 +65,4 @@ $m = new UserMode();
 //dump($m->getModeName());
 $m->aa = "123";
 dump($m->getModeName());
-
+*/
