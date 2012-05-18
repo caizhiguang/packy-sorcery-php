@@ -4,8 +4,11 @@ class log{
 	function __construct(){
 		$this->_log = array();
 	}
+	public function add($time,$content){
+		$this->_log[$time]=$content;
+	}
 	
-	public function add($content,$time,$type){
-	
+	public function clear(){
+		$this->_log = array();
 	}
 }

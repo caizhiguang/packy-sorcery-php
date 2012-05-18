@@ -7,3 +7,11 @@ define("APP_PATH",SYS_PATH.'/app/');//网站内容目录
 
 require_once SORCERY_PATH.'sorcery.class.php';//加载巫术框架
 sorcery::run();//运行巫术框架
+
+//test
+$log = import('log');
+dump($log->d());
+
+$smarty = import('smarty');
+$smarty->assign('test','FUCK!!!!!!!!');
+$smarty->display('index.html');
