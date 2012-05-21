@@ -10,8 +10,13 @@ sorcery::run();//运行巫术框架
 
 //test
 $log = import('log');
-dump($log->d());
+$log->add("2012-5-3 20:35:30","测试测试");
+dump($log->getAll());
 
 $smarty = import('smarty');
 $smarty->assign('test','FUCK!!!!!!!!');
 $smarty->display('index.html');
+
+dump($_SERVER["REQUEST_URI"]);
+$d = str_split2($_SERVER["REQUEST_URI"],'/');
+dump($d);
