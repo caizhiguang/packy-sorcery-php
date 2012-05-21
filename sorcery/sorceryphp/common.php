@@ -32,7 +32,6 @@ function import($classes,$instantiation=true){
 
 function str_split2($str,$howmany){
 	$result = array();
-	$string = "I like this game"; 
 	$tok = strtok($str,$howmany); 
 	while($tok) {
 		$result[] = $tok;
