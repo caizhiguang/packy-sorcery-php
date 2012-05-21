@@ -29,3 +29,14 @@ function dump($var, $echo=true,$label=null, $strict=true)
 function import($classes,$instantiation=true){
 	return $GLOBALS['sorcery']->import($classes,$instantiation);
 }
+
+function str_split2($str,$howmany){
+	$result = array();
+	$string = "I like this game"; 
+	$tok = strtok($str,$howmany); 
+	while($tok) {
+		$result[] = $tok;
+		$tok = strtok($howmany);
+	}
+	return $result;
+}

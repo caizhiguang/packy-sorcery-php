@@ -9,14 +9,17 @@ class sorcery{
 	public static $_sorcery;
 	public static function run(){
 		$GLOBALS['sorcery'] = self::$_sorcery = new sorcery();
+		self::$_sorcery->rewrite();
 	}
 	
 	private $_loader;
 	private $_log;
-	function __construct(){
-		$this->_log = $this->import('log');
+	private $_router;
+	function __construct(){		
 		$this->initLoader();
 		$this->initSmarty();
+		$this->_log = $this->import('log');
+		$this->_router = $this->import('router');
 	}
 	
 	private function initLoader(){
@@ -44,5 +47,8 @@ class sorcery{
 		}else{
 			return $this->_loader->create($classes);
 		}
+	}
+	public function rewrite(){
+		$this->_router->rewrite();
 	}
 }
