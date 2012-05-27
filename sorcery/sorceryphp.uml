@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XPD:PROJECT xmlns:XPD="http://www.staruml.com" version="1">
+<XPD:HEADER>
+<XPD:SUBUNITS>
+</XPD:SUBUNITS>
+<XPD:PROFILES>
+<XPD:PROFILE>UMLStandard</XPD:PROFILE>
+</XPD:PROFILES>
+</XPD:HEADER>
+<XPD:BODY>
+<XPD:OBJ name="DocumentElement" type="UMLProject" guid="TWKO6wjXhECkqgZLIZ6w+gAA">
+<XPD:ATTR name="Title" type="string">Untitled</XPD:ATTR>
+<XPD:ATTR name="#OwnedElements" type="integer">5</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLModel" guid="sHKf7S8J1EW5J7PiXlAGJAAA">
+<XPD:ATTR name="Name" type="string">Use Case Model</XPD:ATTR>
+<XPD:ATTR name="StereotypeProfile" type="string">UMLStandard</XPD:ATTR>
+<XPD:ATTR name="StereotypeName" type="string">useCaseModel</XPD:ATTR>
+<XPD:REF name="Namespace">TWKO6wjXhECkqgZLIZ6w+gAA</XPD:REF>
+<XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedDiagrams[0]" type="UMLUseCaseDiagram" guid="lhFCGG16Wka3OE+aVBdwwwAA">
+<XPD:ATTR name="Name" type="string">Main</XPD:ATTR>
+<XPD:REF name="DiagramOwner">sHKf7S8J1EW5J7PiXlAGJAAA</XPD:REF>
+<XPD:OBJ name="DiagramView" type="UMLUseCaseDiagramView" guid="/z3jVCNyZEiURhBG9NxqfwAA">
+<XPD:REF name="Diagram">lhFCGG16Wka3OE+aVBdwwwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLModel" guid="MGP2mq930kazgENxt5IgaAAA">
+<XPD:ATTR name="Name" type="string">Analysis Model</XPD:ATTR>
+<XPD:ATTR name="StereotypeProfile" type="string">UMLStandard</XPD:ATTR>
+<XPD:ATTR name="StereotypeName" type="string">analysisModel</XPD:ATTR>
+<XPD:REF name="Namespace">TWKO6wjXhECkqgZLIZ6w+gAA</XPD:REF>
+<XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedDiagrams[0]" type="UMLClassDiagram" guid="O67/Q1I2bUCUboxof4erJQAA">
+<XPD:ATTR name="Name" type="string">Main</XPD:ATTR>
+<XPD:ATTR name="DefaultDiagram" type="boolean">True</XPD:ATTR>
+<XPD:ATTR name="DiagramType" type="string">RobustnessDiagram</XPD:ATTR>
+<XPD:REF name="DiagramOwner">MGP2mq930kazgENxt5IgaAAA</XPD:REF>
+<XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="Tn5C90/ZK0GTtxElDxJVAwAA">
+<XPD:REF name="Diagram">O67/Q1I2bUCUboxof4erJQAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[2]" type="UMLModel" guid="DekGXyR/K0qh1YPFlgCdiwAA">
+<XPD:ATTR name="Name" type="string">Design Model</XPD:ATTR>
+<XPD:ATTR name="StereotypeProfile" type="string">UMLStandard</XPD:ATTR>
+<XPD:ATTR name="StereotypeName" type="string">designModel</XPD:ATTR>
+<XPD:REF name="Namespace">TWKO6wjXhECkqgZLIZ6w+gAA</XPD:REF>
+<XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedDiagrams[0]" type="UMLClassDiagram" guid="QRsG82j6Dk+44ivntiTeNgAA">
+<XPD:ATTR name="Name" type="string">Main</XPD:ATTR>
+<XPD:ATTR name="DefaultDiagram" type="boolean">True</XPD:ATTR>
+<XPD:REF name="DiagramOwner">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
+<XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="s3HpMjOPaUCm+oi/dJUkFwAA">
+<XPD:REF name="Diagram">QRsG82j6Dk+44ivntiTeNgAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:ATTR name="#OwnedElements" type="integer">5</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLPackage" guid="qd8qpctWd0qeRbGoZEMAlAAA">
+<XPD:ATTR name="Name" type="string">sorceryphp</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">巫师数据包</XPD:ATTR>
+<XPD:REF name="Namespace">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
+<XPD:ATTR name="#OwnedElements" type="integer">3</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLPackage" guid="icXihnFz/UqQhA2Osgu8pgAA">
+<XPD:ATTR name="Name" type="string">library</XPD:ATTR>
+<XPD:REF name="Namespace">qd8qpctWd0qeRbGoZEMAlAAA</XPD:REF>
+<XPD:ATTR name="#OwnedElements" type="integer">8</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="51xCUh/TM0+MPy0nKMaTMgAA">
+<XPD:ATTR name="Name" type="string">router</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">路由器
+读取访问路径，调用相应模块并反馈对应内容给用户</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLClass" guid="yRkKRhG38Uaf9eRxcKaDRwAA">
+<XPD:ATTR name="Name" type="string">directory</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">目录管理器</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[2]" type="UMLClass" guid="5NN85aoPrkiUGioyi2OeMwAA">
+<XPD:ATTR name="Name" type="string">loader</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">加载器</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[3]" type="UMLClass" guid="HOPfTQl0YEuisn8bKulf0gAA">
+<XPD:ATTR name="Name" type="string">cache</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">缓存器</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[4]" type="UMLClass" guid="J0sBhMpcuUKsX0vJfPvXGwAA">
+<XPD:ATTR name="Name" type="string">template</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">模板</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[5]" type="UMLClass" guid="zY9gIjw2BEKzKzvaZBqljgAA">
+<XPD:ATTR name="Name" type="string">log</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">日志</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[6]" type="UMLClass" guid="OTCYo5yr4EuUeb3hOlkdZQAA">
+<XPD:ATTR name="Name" type="string">model</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">数据模型</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[7]" type="UMLClass" guid="t3Jla53VfkarPZ1PfuxaCAAA">
+<XPD:ATTR name="Name" type="string">view</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">视图
+</XPD:ATTR>
+<XPD:REF name="Namespace">icXihnFz/UqQhA2Osgu8pgAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLPackage" guid="vU03DP9NwEmt/YQyenjvZwAA">
+<XPD:ATTR name="Name" type="string">database</XPD:ATTR>
+<XPD:REF name="Namespace">qd8qpctWd0qeRbGoZEMAlAAA</XPD:REF>
+<XPD:ATTR name="#OwnedElements" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="Sq27ZKo/+0Sd3gVsygCIgQAA">
+<XPD:ATTR name="Name" type="string">database</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">数据库</XPD:ATTR>
+<XPD:REF name="Namespace">vU03DP9NwEmt/YQyenjvZwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[2]" type="UMLClass" guid="tVW1lkX9RkuIpu0HerdhggAA">
+<XPD:ATTR name="Name" type="string">sorcery</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">巫术模板系统</XPD:ATTR>
+<XPD:REF name="Namespace">qd8qpctWd0qeRbGoZEMAlAAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLPackage" guid="CBzxwyW3CE+t9A0SkKdD6wAA">
+<XPD:ATTR name="Name" type="string">config</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">配置文件</XPD:ATTR>
+<XPD:REF name="Namespace">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[2]" type="UMLPackage" guid="ihdteE+030ybCzhwla24ZAAA">
+<XPD:ATTR name="Name" type="string">plugIn</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">扩展包</XPD:ATTR>
+<XPD:REF name="Namespace">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[3]" type="UMLPackage" guid="FMkY2CjZy0yp5rQlC+BZwAAA">
+<XPD:ATTR name="Name" type="string">source</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">存放所有外置文件包括js,css,image</XPD:ATTR>
+<XPD:REF name="Namespace">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[4]" type="UMLPackage" guid="XFb63fXH00q/7/HnWvQBAwAA">
+<XPD:ATTR name="Name" type="string">app</XPD:ATTR>
+<XPD:ATTR name="Documentation" type="string">网站目录</XPD:ATTR>
+<XPD:REF name="Namespace">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
+<XPD:ATTR name="#OwnedElements" type="integer">4</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLPackage" guid="JKG9chkis0iaUr+vhmL2ywAA">
+<XPD:ATTR name="Name" type="string">views</XPD:ATTR>
+<XPD:REF name="Namespace">XFb63fXH00q/7/HnWvQBAwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLPackage" guid="qiBgNUhghUaE9ZLQqot+BgAA">
+<XPD:ATTR name="Name" type="string">model</XPD:ATTR>
+<XPD:REF name="Namespace">XFb63fXH00q/7/HnWvQBAwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[2]" type="UMLPackage" guid="HKZBTzckwkaSvz13YqdWWgAA">
+<XPD:ATTR name="Name" type="string">templates</XPD:ATTR>
+<XPD:REF name="Namespace">XFb63fXH00q/7/HnWvQBAwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[3]" type="UMLPackage" guid="uZVpuevJLUqGj6omR5ARkAAA">
+<XPD:ATTR name="Name" type="string">cache</XPD:ATTR>
+<XPD:REF name="Namespace">XFb63fXH00q/7/HnWvQBAwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[3]" type="UMLModel" guid="tmYU8ghT00eC67DL4xAyWgAA">
+<XPD:ATTR name="Name" type="string">Implementation Model</XPD:ATTR>
+<XPD:ATTR name="StereotypeProfile" type="string">UMLStandard</XPD:ATTR>
+<XPD:ATTR name="StereotypeName" type="string">implementationModel</XPD:ATTR>
+<XPD:REF name="Namespace">TWKO6wjXhECkqgZLIZ6w+gAA</XPD:REF>
+<XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedDiagrams[0]" type="UMLComponentDiagram" guid="miMPuEQ8a0SyWdZIVoOIBgAA">
+<XPD:ATTR name="Name" type="string">Main</XPD:ATTR>
+<XPD:REF name="DiagramOwner">tmYU8ghT00eC67DL4xAyWgAA</XPD:REF>
+<XPD:OBJ name="DiagramView" type="UMLComponentDiagramView" guid="6yD9pKWSwk6a1cVkHgD32gAA">
+<XPD:REF name="Diagram">miMPuEQ8a0SyWdZIVoOIBgAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[4]" type="UMLModel" guid="JKqDYALCEkyvOaRZ3yL8uAAA">
+<XPD:ATTR name="Name" type="string">Deployment Model</XPD:ATTR>
+<XPD:ATTR name="StereotypeProfile" type="string">UMLStandard</XPD:ATTR>
+<XPD:ATTR name="StereotypeName" type="string">deploymentModel</XPD:ATTR>
+<XPD:REF name="Namespace">TWKO6wjXhECkqgZLIZ6w+gAA</XPD:REF>
+<XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedDiagrams[0]" type="UMLDeploymentDiagram" guid="uGp3DgmoX0qVj3YQqjBxxQAA">
+<XPD:ATTR name="Name" type="string">Main</XPD:ATTR>
+<XPD:REF name="DiagramOwner">JKqDYALCEkyvOaRZ3yL8uAAA</XPD:REF>
+<XPD:OBJ name="DiagramView" type="UMLDeploymentDiagramView" guid="k/0bTRr8QU60hZU+lOyc3wAA">
+<XPD:REF name="Diagram">uGp3DgmoX0qVj3YQqjBxxQAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:BODY>
+</XPD:PROJECT>
