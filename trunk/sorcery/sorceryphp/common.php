@@ -30,12 +30,24 @@ function import($classes,$instantiation=true){
 	return $GLOBALS['sorcery']->import($classes,$instantiation);
 }
 
-function str_split2($str,$howmany){
+function str_split2($str,$howmany,$count=-1){
 	$result = array();
-	$tok = strtok($str,$howmany); 
+	$tok = strtok($str,$howmany);
+	$howmany_count = strlen($howmany);
+	$index = 0;
+	$cut_index = 0;
 	while($tok) {
 		$result[] = $tok;
+		$cut_index += strlen($tok)+$howmany_count;
 		$tok = strtok($howmany);
+		if($count>0){
+			if($index>=$count-1){
+				if($cut_index>=strlen($str)){break;}
+				$result[] = substr($str,$cut_index,strlen($str));
+				break;
+			}
+			$index++;
+		}
 	}
 	return $result;
 }

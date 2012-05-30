@@ -5,6 +5,7 @@ require_once SORCERY_PATH.'library/log.class.php';
 require_once PLUG_PATH.'smarty_lib/Smarty.class.php';
 
 class sorcery{
+	/*
 	public static $_sorcery;
 	public static function run(){
 		$GLOBALS['sorcery'] = self::$_sorcery = new sorcery();
@@ -49,5 +50,5 @@ class sorcery{
 	}
 	public function pilot(){
 		$this->_router->pilot();
-	}
+	}*/
 }
