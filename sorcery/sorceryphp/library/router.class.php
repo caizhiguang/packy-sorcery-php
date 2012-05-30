@@ -5,6 +5,65 @@
  * */
 class router{
 	private $_requestUrl;
+	private $_route;
+	private $_mode;//路由模式
+	private $_pattern;//路由规则
+	
+	function __construct(){
+		$this->_url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$this->_requestUrl = $_SERVER['REQUEST_URI'];
+		$this->_mode = '0';
+		$this->_pattern = array();
+		$this->_route=array();
+		
+		$urlHash = str_split2(preg_replace("/(\/index.php)|(\/?\?.+)/s",'',$this->_requestUrl),'/',2);
+		$count = count($urlHash);
+		$this->_route['view'] = $count>1?$urlHash[0]:'index';
+		$this->_route['action'] = $count>2?$urlHash[1]:'index';
+		$this->_route['parameter'] = $count>=3?$urlHash[2]:$_GET;
+	}
+	
+	function __get($key){
+		switch($key){
+			case 'mode':
+				return $this->_mode;
+			case 'pattern':
+				return $this->_pattern;
+		}
+	}
+	
+	function __set($key,$value){
+		switch($key){
+			case 'mode':
+			case 'pattern':
+				$this->$key = $value;
+				break;
+		}
+	}
+	
+	public function addPattern($pattern,$function_name){
+		if(array_key_exists($pattern)){return;}
+		$this->_pattern[$pattern] = $function_name;
+	}
+	
+	public function getRequestUrl() {
+		return $this->_requestUrl;
+	}
+
+	public function getView($url='',$mode='0') {
+		return $this->_route['view'];
+	}
+
+	public function getAction($url='',$mode='0') {
+		return $this->_route['action'];
+	}
+
+	public function getParameter($url='',$mode='0') {
+	return $this->_route['parameter'];
+		return;
+	}
+	/*
+	private $_requestUrl;
 	private $_method;
 	private $_action;
 	private $_properties;
@@ -25,5 +84,5 @@ class router{
 		$action = import($this->action);
 		$method = $this->method;
 		$action->$method();
-	}
+	}*/
 }
