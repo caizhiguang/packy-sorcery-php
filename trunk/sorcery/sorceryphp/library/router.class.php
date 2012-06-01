@@ -21,6 +21,18 @@ class router{
 		$this->_route['view'] = $count>1?$urlHash[0]:'index';
 		$this->_route['action'] = $count>2?$urlHash[1]:'index';
 		$this->_route['parameter'] = $count>=3?$urlHash[2]:$_GET;
+		if($count>=3){
+			$parameter = str_split2($this->_route['parameter'],'/');
+			$this->_route['parameter'] = array();
+			$parameter_key = "";
+			foreach($parameter as $key=>$val){
+				if(($key+1)%2==0){
+					$this->_route['parameter'][$parameter_key] = $val;
+				}else{
+					$parameter_key = $val;
+				}
+			}
+		}
 	}
 	
 	function __get($key){
@@ -45,6 +57,11 @@ class router{
 		if(array_key_exists($pattern)){return;}
 		$this->_pattern[$pattern] = $function_name;
 	}
+	public function removePattern($pattern){
+		if(!array_key_exists($pattern)){return;}
+		//TODO:删除规则
+		//$this->_pattern[$pattern] = $function_name;
+	}
 	
 	public function getRequestUrl() {
 		return $this->_requestUrl;
@@ -59,8 +76,7 @@ class router{
 	}
 
 	public function getParameter($url='',$mode='0') {
-	return $this->_route['parameter'];
-		return;
+		return $this->_route['parameter'];
 	}
 	/*
 	private $_requestUrl;

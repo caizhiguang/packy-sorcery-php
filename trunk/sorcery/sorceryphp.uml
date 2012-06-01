@@ -527,7 +527,7 @@
 <XPD:REF name="Namespace">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[2]" type="UMLPackage" guid="ihdteE+030ybCzhwla24ZAAA">
-<XPD:ATTR name="Name" type="string">plugIn</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">plugin</XPD:ATTR>
 <XPD:ATTR name="Documentation" type="string">扩展包</XPD:ATTR>
 <XPD:REF name="Namespace">DekGXyR/K0qh1YPFlgCdiwAA</XPD:REF>
 </XPD:OBJ>

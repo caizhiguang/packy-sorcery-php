@@ -4,7 +4,32 @@ require_once SORCERY_PATH.'library/loader.class.php';
 require_once SORCERY_PATH.'library/log.class.php';
 require_once PLUG_PATH.'smarty_lib/Smarty.class.php';
 
+require_once SORCERY_PATH.'\\library\\router.class.php';
+require_once SORCERY_PATH.'\\library\\view.class.php';
+class indexView extends view{
+	public function index(){
+		$this->assign('test','FUCK!!!!!!!!');
+		$this->display();
+	}
+}
+
 class sorcery{
+	public static function run(){
+		$router = new router();
+		view::setRoute($router->getView(),$router->getAction(),$router->getParameter());
+		$view = new indexView();
+		
+		$smarty = new Smarty();
+
+		$smarty->template_dir = APP_PATH.'template/';
+		$smarty->compile_dir = APP_PATH.'cache/temp/';
+		$smarty->cache_dir = APP_PATH.'cache/data/';
+		$smarty->config_dir = CONFIG_PATH.'smarty_config/';
+		$view->setTemplate($smarty);
+		
+		$view->index();
+	}
+		
 	/*
 	public static $_sorcery;
 	public static function run(){
