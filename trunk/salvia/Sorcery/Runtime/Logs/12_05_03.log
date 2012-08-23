@@ -1,0 +1,4 @@
+[ 2012-05-03T09:23:34+08:00 ] NOTIC: [8] Undefined offset: 2 Dispatcher.class.php 第 220 行.
+[ 2012-05-03T09:23:35+08:00 ] ERR: (ThinkException) 无法加载模块
+[ 2012-05-03T09:23:35+08:00 ] ERR: (ThinkException) 无法加载模块
+[ 2012-05-03T09:23:35+08:00 ] ERR: (ThinkException) 无法加载模块talkcenter
