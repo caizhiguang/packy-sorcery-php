@@ -19,8 +19,7 @@ class database{
 		if(!$query_result) return $query_result;
 		if(preg_match('/^select/i',$sql)){
 			$result_array = mysql_fetch_array($query_result,MYSQL_ASSOC);
-			dump($query_result);
-			mysql_free_result($query_result);
+			mysql_free_result($query_result);//TODO:明天修改
 		}else{
 			$result_array=$query_result?true:false;
 		}
