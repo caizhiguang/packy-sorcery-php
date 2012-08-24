@@ -17,10 +17,9 @@ class router{
 		}
 
 		$urlHash = str_split2($path,'/',2);
-		if(empty($urlHash[0])) $result[0]='index';
-		if(empty($urlHash[1])) $result[1]='index';
-
-		if(empty($query)) $query = $urlHash[2];
+		if(empty($urlHash[0])) $urlHash[0]='index';
+		if(empty($urlHash[1])) $urlHash[1]='index';
+		if(empty($query)) $query = empty($urlHash[2])?'':$urlHash[2];
 		$query = preg_split('/\//', $query);
 		if(!empty($array['query'])){
 			$query = $array['query'];
@@ -50,7 +49,7 @@ class router{
 	}
 
 	protected function getURL(){
-		return $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	}
 
 }
