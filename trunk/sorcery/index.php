@@ -14,4 +14,10 @@ dump($rule);
 $loader->import('lib.router');
 $router = new router();
 $route = $router->getRoute($rule);
-dump($route);
+
+$loader->import('lib.database');
+$database = new database('mysql://root:@localhost/winebox');
+$database->connect();
+$result = $database->query('select * from wb_config');
+$database->disconnect();
+dump($result);
