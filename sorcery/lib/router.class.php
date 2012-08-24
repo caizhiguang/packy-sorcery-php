@@ -1,10 +1,10 @@
 <?php
 class router{
-
-	function __construct($rule){
+	public function getRoute($rule){
 		$url = $this->getURL();//取得访问地址
 		$array = parse_url($url);//格式化地址
 		$path = preg_replace("/(\/index.php\/)|(\/?\?.+\/)/s",'', $array['path']);//过滤入口文件，取得访问地址
+		$param = array();
 		
 		//当有自定义规则优先处理
 		if(!empty($rule)){
@@ -29,20 +29,24 @@ class router{
 
 		for ($i=0; $i < count($query); $i++) {
 			if(($i+1)%2==0){
-				$_GET[$parameter_key] = $query[$i];
+				$param[$parameter_key] = $query[$i];
 			}else{
 				$parameter_key = $query[$i];
 			}
 		}
 		unset($parameter_key);
 
-		define('MODEL_NAME',$urlHash[0]);
-		define('ACTION_NAME',$urlHash[1]);
+		// define('MODEL_NAME',$urlHash[0]);
+		// define('ACTION_NAME',$urlHash[1]);
 	
-		$_REQUEST = array_merge($_POST,$_GET);
-		dump($_GET);
-		dump(MODEL_NAME);
-		dump(ACTION_NAME);
+		// $_REQUEST = array_merge($_POST,$_GET);
+
+		return array(
+			'entrance'=>'index.php',
+			'model'=>$urlHash[0],
+			'action'=>$urlHash[1],
+			'param'=>$param
+		);
 	}
 
 	protected function getURL(){
