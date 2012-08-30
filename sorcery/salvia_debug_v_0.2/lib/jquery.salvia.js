@@ -1,31 +1,5 @@
 ;(function($){
 	
-	/**==Date.extend===================================================================**/
-	$.extend(Date.prototype,{
-		ToString:function(){
-			return this.getFullYear()+"-"+(this.getMonth()+1)+"-"+this.getDate()+" "+this.getHours()+":"+this.getMinutes()+":"+this.getSeconds()+"."+this.getMilliseconds();
-		}
-	});
-	/**==Function.extend===================================================================**/
-	$.extend(Function.prototype,{
-		argumentNames:function() {
-		    var names = this.toString().match(/^[\s\(]*function[^(]*\(([^\)]*)\)/)[1].replace(/\s+/g, '').split(',');
-		    return names.length == 1 && !names[0] ? [] : names;
-		},
-		bind:function(){
-		    if (arguments.length < 2 && $.isUndefined(arguments[0])) return this;
-		    var __method = this, args = $.argToArray(arguments), object = args.shift();
-		    return function() {
-		        return __method.apply(object, args.concat($.argToArray(arguments)));
-		    };
-		},
-		wrap:function(wrapper){
-		    var __method = this;
-		    return function(){	
-		        return wrapper.apply(this, [__method.bind(this)].concat($.argToArray(arguments)));
-		    };
-		}
-	});
 	/**==jQuery.extend===================================================================**/
 	$.extend({
 		unique: function( array ) {
@@ -42,25 +16,6 @@
 			ret = array;
 			}
 			return ret;
-		},
-		isFunction:function(fun){
-			return typeof(fun)=="function";
-		},
-		isUndefined: function(object) {
-            return typeof(object) == "undefined";
-        },
-        argToArray:function(arg){
-        	if(!arg) return [];
-        	var result = [],length = arg.length || 0;
-        	while (length--) result[length] = arg[length];
-        	return result;
-        },
-        keys:function(source){
-			var result = new Array();
-			for(var i in source){
-				result.push(i);
-			}
-			return result;
 		},
         getRootPath:function(){
 			var strFullPath=window.document.location.href;
@@ -189,75 +144,6 @@
 					return result.length==1?result[0]:result;
 				}
 			},
-			//Object
-			object:{
-				Class:function(){
-					var parent = null, properties = $.argToArray(arguments);
-			        if($.isFunction(properties[0])){parent = properties.shift();}
-			            
-			        var klass = function(){
-			        	this.init.apply(this, arguments);
-			        };
-
-			        $.extend(klass,{addMethods:$.salvia.object.addMethods});
-			        klass.superclass = parent;
-			        klass.subclasses = [];
-
-			        if(parent){
-			            var subclass = function() { };
-			            subclass.prototype = parent.prototype;
-			            klass.prototype = new subclass;
-			            parent.subclasses.push(klass);
-			        }
-
-			        for (var i = 0; i < properties.length; i++){
-			        	klass.addMethods(properties[i]);
-			        }
-			        if (!klass.prototype.init){klass.prototype.init = function(){};}
-			        klass.prototype.constructor = klass;
-			        
-			        return klass;
-				},
-				addMethods:function(source){
-					var ancestor = this.superclass && this.superclass.prototype;
-			        var properties = $.keys(source);
-			        
-			        if (!$.keys({ toString: true }).length){properties.push("toString", "valueOf");}
-
-			        for (var i = 0, length = properties.length; i < length; i++) {
-			            var property = properties[i], value = source[property];
-			            if (ancestor && $.isFunction(value) && value.argumentNames()[0] == "$super") {
-			                var method = value;
-			                value = (function(m){
-			                    return function(){return ancestor[m].apply(this, arguments)};
-			                })(property).wrap(method);
-
-			                value.valueOf = method.valueOf.bind(method);
-			                value.toString = method.toString.bind(method);
-			            }
-			            this.prototype[property] = value;
-			        }
-
-			        return this;
-				},
-				namespace:function(str){
-					var chain,array = str.split(".");
-					for(var i in array)
-					{
-						if(Number(i)==0){
-							if(window[array[i]]==undefined){
-								chain=window[array[i]]={};
-							}else{
-								chain = window[array[i]];
-							}
-						}else{
-							if(chain[array[i]]==undefined){chain[array[i]]={};}
-							chain = chain[array[i]];
-						}
-					}
-					return chain;
-				}
-			},
 			//Data
 			data:{
 				binding:function(scope,data,binding){
@@ -272,9 +158,16 @@
 					var mode = -1;
 					//判断数据类型
 					if($.isArray(data)){mode = 0;}
-					if(typeof binding=="function"){mode += 1;}else{mode += 3;}
+					if(typeof binding=="function"){mode += 1;}
+					else if(binding==undefined){mode = -1;}
+					else{mode += 3;}
 					
 					switch(mode){
+						case -1:
+							for(var attr in data){
+								scope.find('.'+attr).text(data[attr]);
+							}
+							break;
 						case 0:
 						case 1:
 							binding.call(scope,data);

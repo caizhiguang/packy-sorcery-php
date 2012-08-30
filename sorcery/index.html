@@ -4,10 +4,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="http://127.0.0.1:8081/con/assets/js/f5.js"></script>
-<script type="text/javascript" src="../salvia_debug_v_0.2/lib/jquery.tools.min.js"></script>
-<script type="text/javascript" src="../salvia_debug_v_0.2/lib/jquery.salvia.js"></script>
+<script type="text/javascript" src="./salvia_debug_v_0.2/lib/jquery.tools.min.js"></script>
+<script type="text/javascript" src="./salvia_debug_v_0.2/lib/jquery.salvia.js"></script>
 </head>
 <body>
-test count:{$test}.111
+test count:{$test}.111322
+
+<form class="testdata">
+	<label for="a1">测试:</label><input type="text" name="a1" value="1" id="a1" /><br>
+	<label for="a2">测试:</label><input type="text" name="a2" value="2" id="a2" /><br>
+	<label for="a3">测试:</label><input type="text" name="a3" value="3" id="a3" />
+	<input type="button" id="submit" value="提交">
+</form>
+<div class="testshow">
+	<p>
+		<span class="a1"></span><span class="a2"></span>
+	</p>
+	<p class="a3"></p>
+</div>
+
+<script type="text/javascript">
+	$('#submit').bind('click',function(){
+		var data = $('.testdata').serializeObject();
+		$('.testshow').binding(data);
+	});
+</script>
+
 </body>
 </html>

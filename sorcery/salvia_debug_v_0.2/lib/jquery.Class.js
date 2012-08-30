@@ -86,6 +86,23 @@
 	        }
 	
 	        return this;
+		},
+		namespace:function(str){
+			var chain,array = str.split(".");
+			for(var i in array)
+			{
+				if(Number(i)==0){
+					if(window[array[i]]==undefined){
+						chain=window[array[i]]={};
+					}else{
+						chain = window[array[i]];
+					}
+				}else{
+					if(chain[array[i]]==undefined){chain[array[i]]={};}
+					chain = chain[array[i]];
+				}
+			}
+			return chain;
 		}
 	});
 	
