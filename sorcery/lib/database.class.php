@@ -9,6 +9,7 @@ class database{
 	public function connect(){
 		return $this->con = self::_connect($this->dsn);
 	}
+    
 	public function disconnect(){
 		return self::_disconnect($this->dsn);
 	}
@@ -18,12 +19,16 @@ class database{
 		$query_result = mysql_query($sql,$this->con);
 		if(!$query_result) return $query_result;
 		if(preg_match('/^select/i',$sql)){
-			$result_array = mysql_fetch_array($query_result,MYSQL_ASSOC);
-			mysql_free_result($query_result);//TODO:明天修改
-		}else{
-			$result_array=$query_result?true:false;
+            while ($row = mysql_fetch_array($query_result, MYSQL_ASSOC)) {
+                $result[] = $row;
+            }
+			mysql_free_result($query_result);
+		}else if(preg_match('/count/i',$sql)){
+            $result = $query_result;
+        }else{
+			$result=$query_result?true:false;
 		}
-		return $result_array;
+		return $result;
 	}
 
 	static public function _connect($dsn){
