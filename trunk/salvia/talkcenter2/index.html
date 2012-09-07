@@ -8,6 +8,13 @@
 <link href="css/grids.css" rel="stylesheet" type="text/css" />
 <link href="css/mod.css" rel="stylesheet" type="text/css" />
 <link href="css/talkcenter_beta0.3.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/plug-in/jquery.tools.min.js"></script>
+<script type="text/javascript" src="js/plug-in/jquery.cookie.js"></script>
+
+<script type="text/javascript" src="js/salvia_debug_v_0.3/lib/jquery.salvia.js"></script>
+<script type="text/javascript" src="js/salvia_debug_v_0.3/lib/jquery.list.js"></script>
+
+<script type="text/javascript" src="js/plug-in/drag.js"></script>
 </head>
 
 <body>
@@ -30,11 +37,15 @@
 	</div>
 
 	<div class="sidebar">
-		<div class="user_infor">
-			<div class="avatar"><img src="avatar/3.png" /></div>
-            <div class="infor">
+		<div class="user_infor line">
+			<div class="avatar unit"><img src="avatar/3.png" /></div>
+            <div class="infor unit">
                 <div class="name">测试用账户</div>
-                <div class="no">(10001)</div>                
+                <div class="no">(10001)</div>
+            </div>
+            <div class="fun unit">
+            	<a href="">设置</a>
+            	<a href="">退出</a>
             </div>
 		</div>
 
@@ -46,32 +57,48 @@
 			</ul>
 
 			<div class="tab_content unit">
+				<div class="fun"></div>
 				<div id="friend">
-					<ul>
-						<ul class="contacts">
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-						</ul>
+					<ul class="contacts">
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
 					</ul>
 				</div>
 				<div id="ground" class="hide">
-					<ul>
-						<ul class="contacts">
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-						</ul>
+					<ul class="contacts">
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
 					</ul>
 				</div>
 				<div id="authority" class="hide">
-					<ul>
-						<ul class="contacts">
-							<li><input type="checkbox" name="" /><span class="avatar"><img src=""></span><span class="name">测试</span></li>
-						</ul>
+					<ul class="contacts">
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
+						<li><input type="checkbox" name="" /><span class="avatar"><img.src="avatar/3.png"></span><span class="name">测试</span></li>
 					</ul>
 				</div>
 			</div>
@@ -79,7 +106,58 @@
 	</div>
 
 	<div class="block">
-		
+		<div id="talkform" class="modTalkForm">
+		    <div class="inner">
+		        <div class="hd">
+		            <span class="avatar"><img src="avatar/3.png" /></span>
+		            <span class="title">测试用户</span>
+		        </div>
+		        <div class="menu"><a href="javascript:;" class="i iClose"><i class="i iClose"></i></a></div>
+		        <div class="bar"></div>
+		        <div class="content">
+		        	<div class="talking">
+		                <div class="talk_view">
+		                    
+		                </div>
+		                <div class="talk_input">
+		                    <div class="funbar">
+		                        <a href="javascript:;" class="btnFace"><i class="i iFace"></i></a>
+		                        <a href="javascript:;" class="btnFont"><i class="i iFont"></i></a>
+		                        <a href="javascript:;" class="fright btnHistory"><i class="i"></i>历史记录</a>
+		                    </div>
+		                    <form class="input">
+			                	<input type="hidden" name="sender_id" />
+			                	<input type="hidden" name="sender_name" />				                	
+			                	<input type="hidden" name="addressee_id" />
+			                	<input type="hidden" name="addressee_name" />
+			                	<input type="hidden" name="type" />
+			                    <textarea name="content"></textarea>
+			                    <div class="ftbar">
+			                        <a href="javascript:;" class="btn btnClose">关闭</a><span class="count">还可以输入<span>400</span></span>
+				                    <span class="fright"><span class="right10 prompt"></span><a href="javascript:;" class="btn btnSend hasMenu">发送</a><a href="javascript:;" class="btn btnMenu"><i class="i iDown"></i></a></span>
+			                    </div>
+		                    </form>
+		                </div>
+		            </div>                                
+		        </div>
+		        <div class="ft">当前状态：[ <span class="state">离线</span> ]</div>
+		    </div>
+		</div>
 	</div>
+
+	<div class="test"></div>
+
+	<script type="text/javascript">
+		!function($){
+
+			$('.tab_content .contacts input').hide();
+			$('.hide').hide();
+
+			$('#talkform').offset({top:100,left:100});
+
+			$('#talkform').drag({handle:'.hd'});
+
+		}(jQuery);
+	</script>
 </body>
 </html>
