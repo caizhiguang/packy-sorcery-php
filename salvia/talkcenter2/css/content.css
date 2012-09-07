@@ -2,9 +2,9 @@
 /* CSS Document */
 
 /****/
-.btn{ background: url(../../images/talkCenter_v_0.2/btn_bg_n.png) #eee; display: inline-block; height:28px; line-height:28px; padding:0 7px; *overflow:hidden; *zoom:1; border: #ccc solid 1px; }
-.btn:HOVER{ background-image:url(../../images/talkCenter_v_0.2/btn_bg_h.png); }
-.btn:ACTIVE{ background-image:url(../../images/talkCenter_v_0.2/btn_bg_a.png); }
+.btn{ background: url(../images/btn_bg_n.png) #eee; display: inline-block; height:28px; line-height:28px; padding:0 7px; *overflow:hidden; *zoom:1; border: #ccc solid 1px; }
+.btn:HOVER{ background-image:url(../images/btn_bg_h.png); }
+.btn:ACTIVE{ background-image:url(../images/btn_bg_a.png); }
 
 .btn.hasMenu{ border-right: none; }
 .btnMenu{ padding: 0; width: 16px; overflow: hidden; vertical-align:bottom; }
@@ -24,14 +24,14 @@
 .table tbody td{ background:#fff; padding:3px; }*/
 
 /**input**/
-input.text{ background:url(../../images/text_bg.png) #fff repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }
-textarea.text{background:url(../../images/text_bg.png) #fff repeat-x;line-height:25px; border:#ccc solid 1px; font-size:12px;}
-/*select.select{ background:url(../../images/text_bg.png) repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }*/
+input.text{ background:url(../images/text_bg.png) #fff repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }
+textarea.text{background:url(../images/text_bg.png) #fff repeat-x;line-height:25px; border:#ccc solid 1px; font-size:12px;}
+/*select.select{ background:url(../images/text_bg.png) repeat-x; height:25px; line-height:25px; border:#ccc solid 1px; }*/
 
 /**icon**/
 .i{ width:16px; height:16px; vertical-align:text-bottom; *vertical-align:middle; display:inline-block; *display:inline; overflow: hidden; zoom:1; }
 a .i{ *cursor: pointer; }
-.iMini,.iDisableMini,.iClose,.iDisableClose{ background-image:url(../../images/icon.png); background-repeat:no-repeat; }
+.iMini,.iDisableMini,.iClose,.iDisableClose{ background-image:url(../images/icon.png); background-repeat:no-repeat; }
 .iMini{ background-position:0 0; }
 .iMini:hover{ background-position:0 -16px; }
 .iDisableMini{ background-position:0 -32px; }
@@ -61,7 +61,7 @@ a .i{ *cursor: pointer; }
 .tinherit{text-indent:inherit;}
 
 /**spacing**/
-.spacing{ background:url(../../images/spacing_666.png) right center no-repeat; padding-right:10px; margin-right:10px; }
+.spacing{ background:url(../images/spacing_666.png) right center no-repeat; padding-right:10px; margin-right:10px; }
 
 /**padding**/
 .ptop10{ padding-top:10px; }

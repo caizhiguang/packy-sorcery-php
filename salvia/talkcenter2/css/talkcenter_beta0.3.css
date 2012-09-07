@@ -1,10 +1,32 @@
 @charset "utf-8";
 /* CSS Document */
 
+div.test{ height: 626px; position: absolute; background: #000; left: 0; top:0; width: 5px; }
+
 body{ background: url(../images/bg.jpg) repeat-x; overflow: hidden; }
 
 .avatar{ margin: 0 10px 0 0; vertical-align: middle; }
+.avatar img{ background: #fff; }
 .contacts input[type='checkbox']{ margin: 0 5px 0 0; }
+
+.iHome,.iMessage,.iSearch,.iFace,.iFont,.iUp,.iDown,.iNew,.iAdd,.iUploadPhoto{ background-image:url(../images/icons.png); background-repeat:no-repeat; margin:0 5px 0 0; }
+.iHome{ background-position:-32px 0; }
+.iMessage{ background-position:-16px 0; }
+.iSearch{}
+.iFace{background-position:-48px 0;}
+.iFont{background-position:-64px 0;}
+.iUp{background-position:-96px 0;}
+.iDown{background-position:-80px 0;}
+.iNew{ background-position:-16px -32px; }
+.iAdd{background-position:-128px 0;}
+.iUploadPhoto{background-position:-112px 0;}
+a:hover .iHome{ background-position:-32px -16px; }
+a:hover .iMessage{ background-position:-16px -16px; }
+a:hover .iSearch{background-position:0px -16px;}
+a:hover .iUp{background-position:-96px -16px;}
+a:hover .iDown{background-position:-80px -16px;}
+a:hover .iNew{ background-position:-16px -32px; }
+a:hover .iAdd{background-position:-128px -16px;}
 
 /**layout**/
 
@@ -20,17 +42,23 @@ span.channel_btn a:hover{ background: #ccc; }
 .channel_fun{ font-family:"MS Serif", "New York", serif; }
 .channel_fun a{ background: #333; color:#fff; font-size: 9px; width: 16px; height: 16px; line-height: 16px; text-align: center; display: inline-block; *display: inline; zoom:1; vertical-align: top; margin: 0 5px 0 0; }
 
-.sidebar{ position: absolute; right:0px; top:50px; }
+.sidebar{ position: absolute; right:0px; top:50px; opacity: 0.85; }
 
-.sidebar .user_infor{ background: #1494ed; color: #fff; width: 150px; padding: 10px; margin: 0 10px 0 0; position: absolute; right:0; top:0;  }
-.sidebar .avatar{ background: #fff; margin: 0 5px 0 0; display:inline-block; *display: inline; zoom:1; cursor: pointer; }
-.sidebar .infor{ display: inline-block; *display: inline; zoom:1; }
+.sidebar .user_infor{ color: #fff; width: 250px; margin: 0 10px 0 0; position: absolute; right:0; top:0; text-align: right; }
+.sidebar .user_infor .avatar{ background: #408DD2; padding: 10px; display:inline-block; *display: inline; zoom:1; cursor: pointer; margin:0; }
+.sidebar .user_infor .avatar img{ background: #fff; }
+.sidebar .infor{ background: #408DD2; padding: 10px 10px 10px 0; display: inline-block; *display: inline; zoom:1; height: 50px; width: 100px; margin: 0 1px 0 0; text-align: left; text-shadow:1px 1px 1px #333; }
+.sidebar .user_infor .fun a{ display: inline-block; *display: inline; zoom:1; height: 35px; line-height: 35px; width: 100%; text-align: center; background: #0C5DA5; color:#fff; }
+.sidebar .user_infor .fun a:hover{ background: #26537C; color: #fff; }
 
-.sidebar .connection{ width: 220px; position: absolute; right:0; top:100px; margin:0 10px 0 0; }
+.sidebar .connection{ width: 320px; position: absolute; right:0; top:85px; /*top:71px;*/ margin:0 10px 0 0; text-align: right; }
 .sidebar .connection .tab,.sidebar .connection .tab_content{ vertical-align: top; }
-.sidebar .connection .tab{ display: inline-block; *display: inline; zoom:1; }
-.sidebar .connection .tab a{ padding: 5px 10px; background: #666; color:#fff; display: inline-block; *display: inline; zoom:1; width: 50px; text-align: center; }
-.sidebar .connection .tab a:hover{ background: #999; }
-.sidebar .connection .tab a.current{ font-weight: bold; }
-.sidebar .connection .tab_content{ display: inline-block; *display: inline; zoom:1; width: 130px; padding: 10px; background: #eee; }
-.sidebar .connection .tab_content li{ color:#666; padding: 5px; }
+.sidebar .connection .tab{ display: inline-block; *display: inline; zoom:1; margin: 0 1px 0 0; }
+.sidebar .connection .tab a{ padding: 7px 10px; background: #679FD2; color:#fff; display: inline-block; *display: inline; zoom:1; line-height: 24px; height: 24px; width: 50px; text-align: center; }
+.sidebar .connection .tab a:hover{ background: #408DD2; }
+.sidebar .connection .tab a.current{ font-weight: bold; background: #408DD2; }
+.sidebar .connection .tab_content{ display: inline-block; *display: inline; zoom:1; width: 233px; text-align: left; height:468px; overflow: auto; }
+.sidebar .connection .tab_content li{ color:#043A6B; padding:7px 10px; cursor: pointer; background: #f3f3f3; margin: 0 0 1px 0; }
+.sidebar .connection .tab_content li.odd{ background: #408DD2; }
+.sidebar .connection .tab_content li:hover{ background: #408DD2; color: #fff; }
+.sidebar .connection .tab_content .contacts .avatar img{ height: 24px; width: 24px; vertical-align: middle; }
