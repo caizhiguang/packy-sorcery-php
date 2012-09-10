@@ -2,9 +2,9 @@
 /* CSS Document */
 
 /****/
-.btn{ background: url(../images/btn_bg_n.png) #eee; display: inline-block; height:28px; line-height:28px; padding:0 7px; *overflow:hidden; *zoom:1; border: #ccc solid 1px; }
+/*.btn{ background: url(../images/btn_bg_n.png) #eee; display: inline-block; height:28px; line-height:28px; padding:0 7px; *overflow:hidden; *zoom:1; border: #ccc solid 1px; }
 .btn:HOVER{ background-image:url(../images/btn_bg_h.png); }
-.btn:ACTIVE{ background-image:url(../images/btn_bg_a.png); }
+.btn:ACTIVE{ background-image:url(../images/btn_bg_a.png); }*/
 
 .btn.hasMenu{ border-right: none; }
 .btnMenu{ padding: 0; width: 16px; overflow: hidden; vertical-align:bottom; }
