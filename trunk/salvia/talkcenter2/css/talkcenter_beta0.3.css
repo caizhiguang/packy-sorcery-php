@@ -59,7 +59,7 @@ span.channel_btn a:hover{ background: #ccc; }
 .sidebar .connection .tab a{ padding: 7px 10px; background: #679FD2; color:#fff; display: inline-block; *display: inline; zoom:1; line-height: 24px; height: 24px; width: 50px; text-align: center; }
 .sidebar .connection .tab a:hover{ background: #408DD2; }
 .sidebar .connection .tab a.current{ font-weight: bold; background: #408DD2; }
-.sidebar .connection .tab_content{ display: inline-block; *display: inline; zoom:1; width: 233px; text-align: left; height:468px; overflow: auto; }
+.sidebar .connection .tab_content{ display: inline-block; *display: inline; zoom:1; width: 233px; text-align: left; height:390px; overflow: auto; }
 .sidebar .connection .tab_content li{ color:#043A6B; padding:7px 10px; cursor: pointer; background: #f3f3f3; margin: 0 0 1px 0; }
 .sidebar .connection .tab_content li.odd{ background: #408DD2; }
 .sidebar .connection .tab_content li:hover{ background: #408DD2; color: #fff; }
