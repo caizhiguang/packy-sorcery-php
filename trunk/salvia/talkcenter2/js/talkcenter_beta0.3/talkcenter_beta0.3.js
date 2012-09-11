@@ -45,24 +45,57 @@
 				$.talkcenter.wrap.events.sidebar_userInfor_hover(false,1000);
 			},
 
+			scrollable:{
+				init:function(dom,options){
+					$.extend({},{
+						spacing:0,
+						item:'.item'
+					},options);
+					this.options = options;
+					this.dom = dom;
+					this.index = options.index==undefined?0:options.index;
+				},
+				next:function(){
+					if(this.index != this.dom.find(this.options.item).length - 1)
+						this.to(this.index+1);
+				},
+				prev:function(){
+					if(this.index!=0)
+						this.to(this.index-1);
+				},
+				to:function(index){
+					var item = this.dom.find(this.options.item);
+					for (var i = 0; i < item.length; i++) {
+						var offset = $(item[i]).offset();
+						if(index>this.index){
+							offset.left = offset.left-index*this.options.spacing;
+						}else if(index<this.index){
+							offset.left = offset.left+(index==0?1:index)*this.options.spacing;
+						}
+						$(item[i]).animate(offset,'normal','easeOutExpo');
+					};
+					this.index = index;
+				}
+			},
+
 			wrap:{
 				events:{
 					sidebar_connection_hover:function(isOver,delay){
 						if(delay==undefined) delay=0;
 						if (isOver) {
 							//over
-							$('.sidebar .connection').stop().delay(delay).animate({right:0},'normal');
+							$('.sidebar .connection').stop().delay(delay).animate({right:0},'normal','easeOutExpo');
 						}else{
 							//out
-							$('.sidebar .connection').stop().delay(delay).animate({right:-243},'normal');
+							$('.sidebar .connection').stop().delay(delay).animate({right:-243},'normal','easeOutExpo');
 						}
 					},
 					sidebar_userInfor_hover:function(isOver,delay){
 						if(delay==undefined) delay=0;
 						if (isOver) {
-							$('.sidebar .user_infor').stop().delay(delay).animate({right:0},'normal');
+							$('.sidebar .user_infor').stop().delay(delay).animate({right:0},'normal','easeOutExpo');
 						}else{
-							$('.sidebar .user_infor').stop().delay(delay).animate({right:'-'+($('.sidebar .user_infor .infor').outerWidth()+$('.sidebar .user_infor .fun').outerWidth()+11)},'normal');
+							$('.sidebar .user_infor').stop().delay(delay).animate({right:'-'+($('.sidebar .user_infor .infor').outerWidth()+$('.sidebar .user_infor .fun').outerWidth()+11)},'normal','easeOutExpo');
 						}
 					}
 				}
@@ -75,23 +108,5 @@
 			return $.talkcenter.setDOM(this);
 		}
 	})
-
-	$.fn.extend({
-		scrollable:function(){
-			var scrollable = {
-				init:function(dom){
-					this.dom = dom;
-					this.spacing = dom.attr('data-spacing');
-				},
-				next:function(){},
-				prov:function(){},
-				to:function(index){
-					
-				}
-			};
-
-
-		}
-	});
 
 }(jQuery);
