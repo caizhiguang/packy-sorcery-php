@@ -214,6 +214,15 @@
 			}
 			initResetOffset();
 			$.talkcenter.init();
+			$.talkcenter.scrollable.init($('.forms'),{spacing:$(window).width(),item:'.form'});
+
+			$('.channel_fun a').click(function(e){
+				if(e.target.classList.contains('left')){
+					$.talkcenter.scrollable.prev();
+				}else if(e.target.classList.contains('right')){
+					$.talkcenter.scrollable.next();
+				}
+			});
 
 			// $('.sidebar .connection .tab_content').hide();
 			// $('.sidebar .connection').hover(function(){
