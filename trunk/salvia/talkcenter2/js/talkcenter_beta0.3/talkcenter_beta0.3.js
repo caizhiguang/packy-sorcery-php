@@ -7,17 +7,17 @@
 				return this;
 			},
 			init:function(){
-				$('.sidebar .connection').hover(function(){
-					$.talkcenter.wrap.events.sidebar_connection_hover(true);
-				},function(){
+				$('.sidebar .connection').hover(function(){},function(){
 					$.talkcenter.wrap.events.sidebar_connection_hover(false);
+				}).find('.tab').click(function(){
+					$.talkcenter.wrap.events.sidebar_connection_hover(true);
 				});
 
-				$('.sidebar .user_infor').hover(function(){
-					$.talkcenter.wrap.events.sidebar_userInfor_hover(true);
-				},function(){
+				$('.sidebar .user_infor').hover(function(){},function(){
 					$.talkcenter.wrap.events.sidebar_userInfor_hover(false);
-				});
+				}).find('.avatar').click(function(){
+					$.talkcenter.wrap.events.sidebar_userInfor_hover(true);
+				});;
 
 				this.sidebar_connection_close();
 				this.sidebar_userInfor_close();
@@ -26,16 +26,22 @@
 				if(wrap==undefined) wrap = this.dom;
 				return wrap.css({width:$(window).width(),height:$(window).height()});
 			},
-			resetoffset:function(index,wrap){
+			resetoffset:function(index,options,wrap){
 				if(wrap==undefined) wrap = this.dom;
 				if(index==undefined) index=0;
 				var width = wrap.outerWidth();
 				var height = wrap.outerHeight();
+				var options = $.extend({},{
+					top:true,
+					left:true
+				},options);
 
-				return wrap.offset({
-					top:$(window).height()/2-height/2,
-					left:$(window).width()/2-width/2 +index*$(window).width()
-				});
+				var offset = {};
+
+				if(options.top) offset.top = $(window).height()/2-height/2;
+				if(options.left) offset.top = $(window).width()/2-width/2 +index*$(window).width();
+
+				return wrap.offset(offset);
 			},
 
 			sidebar_connection_close:function(){
@@ -65,12 +71,16 @@
 				},
 				to:function(index){
 					var item = this.dom.find(this.options.item);
+					var spacing = this.options.spacing==0?item.outerWidth():this.options.spacing;
+					var top = 0;
 					for (var i = 0; i < item.length; i++) {
 						var offset = $(item[i]).offset();
+						if(i==0) top = offset.top;
+						if(top != offset.top) offset.top = top;
 						if(index>this.index){
-							offset.left = offset.left-index*this.options.spacing;
+							offset.left = offset.left-index*spacing;
 						}else if(index<this.index){
-							offset.left = offset.left+(index==0?1:index)*this.options.spacing;
+							offset.left = offset.left+(index==0?1:index)*spacing;
 						}
 						$(item[i]).animate(offset,'normal','easeOutExpo');
 					};
