@@ -5,8 +5,10 @@
 .inner{}
 .hd,.bd,.ft,.menu{overflow:hidden;_overflow:visible; _zoom:1;}
 
-.forms{ position: absolute; top:0; left: 0; overflow: hidden; z-index: 0; }
-.form{ position: absolute; width:622px; }
+/*.forms{ position: absolute; top:0; left: 0; overflow: hidden; z-index: 0; width: 200000em; }*/
+.form{ position: absolute; display: inline-block; *display: inline; zoom:1; }
+.form .inner{ text-align: center; }
+.form .inner .unit{ text-align: left; }
 .form .talkinfo{ background: #fff; border:#408DD2 solid 2px; width: 400px; height: 450px; /*position: absolute; top:0 ;left: 0;*/ }
 .form .talkinfo .talk_view{ height: 360px; border-bottom:#408DD2 solid 2px; overflow: auto; }
 .form .talkinfo .talk_input{ background: #408DD2; height: 88px; }
@@ -26,13 +28,35 @@
 
 .form .side{ margin: 0 0 0 -2px; padding: 0 0 0 20px; background: url(../images/piece.gif) 0 20px no-repeat; }
 .form .menu{position:absolute; top:0; right:0; height:16px; text-align:right; padding:3px;}
-.form .addresseeinfo{ background:#408DD2; color: #fff; width: 200px; }
+.form .addresseeinfo{ background:#408DD2; color: #fff; width: 210px; position: relative; margin: 0 0 10px 0; }
 .form .addresseeinfo .avatar{ background: #408DD2; padding: 10px; cursor: pointer; margin:0; }
 .form .addresseeinfo .avatar img{ background: #fff; }
 .form .addresseeinfo .infor{ background: #408DD2; padding: 10px 10px 10px 0; height: 50px; margin: 0 1px 0 0; text-align: left; text-shadow:1px 1px 1px #333; }
-.form .funs{ margin: 10px 0 0 0; width: 200px; }
-.form .funs a{ display: inline-block; *display: inline; zoom:1; background:#679FD2; color:#fff; width:95px; height: 30px; line-height: 30px; text-align: center; margin: 0 0 10px 0; }
+.form .funs{ width: 100%; }
+.form .funs .unit{ width: 100px; text-align: center; }
+.form .funs .lastUnit{ width: 110px; }
+.form .funs .lastUnit a{ margin: 0 0 10px 10px; }
+.form .funs a{ display: block; background:#679FD2; color:#fff; padding:7px 0; text-align: center; margin: 0 0 10px 0; }
 .form .funs a:hover{ background: #408DD2; }
+.form .funs .nav a{ height: 40px; line-height: 40px; margin: 0 10px 10px 10px; }
+
+.form .subform{ margin: 0 0 10px 0; }
+.form .subform .member{ width: 200px; }
+.form .subform .member dt{ margin: 0 0 10px 0; background: #408DD2; height: 30px; line-height: 30px; color: #fff; text-indent: 1em; font-weight: bold; }
+.form .subform .member dd{ text-align: left; height:390px; overflow: auto; height:410px; overflow: auto;  }
+.form .contacts li{ color:#043A6B; padding:7px 10px; cursor: pointer; background: #f3f3f3; margin: 0 0 1px 0; }
+.form .contacts li.odd{ background: #408DD2; }
+.form .contacts li:hover{ background: #408DD2; color: #fff; }
+.form .contacts .avatar img{ height: 24px; width: 24px; vertical-align: middle; }
+
+.form .subform .authority_box{ border-color:#eee8aa; background:#fffacd; padding: 10px; }
+.form .subform .authority_box_view{ height:117px; overflow: hidden; position:relative; }
+.form .subform .authority_box_view .items{ position: absolute; }
+	.form .subform .authority_box_view dt.tip{ color:#666; padding:0 0 3px 0; }
+	.form .subform .authority_box_view dd.infor{ text-indent:1em; padding:0 0 5px 0; }
+.form .subform .authority_box_ft{ text-align:right; }
+.form .subform .authority_box_ft .more{ color:#00F; }
+.form .subform .authority_box_ft .more:hover{ text-decoration:underline; }
 
 /*.modTalkForm{ position: absolute; width:500px; height: 380px; }
 	.modTalkForm .hd{ background: #408DD2; color:#fff; position: relative; padding:0 0 0 79px; height: 25px; line-height: 25px; font-family:'Microsoft Yahei'; overflow: visible; }

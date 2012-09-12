@@ -46,20 +46,20 @@ span.channel_btn a:hover{ background: #ccc; }
 
 .sidebar{ position: absolute; right:0px; top:50px; /*opacity: 0.85;*/ z-index: 1; }
 
-.sidebar .user_infor{ color: #fff; width: 250px; padding: 0 10px 0 0; position: absolute; right:0; top:0; text-align: right; }
+.sidebar .user_infor{ box-shadow: -1px 1px 5px #333; color: #fff; width: 244px; margin: 0 10px 0 0; position: absolute; right:0; top:0; text-align: right; }
 .sidebar .user_infor .avatar{ background: #408DD2; padding: 10px; display:inline-block; *display: inline; zoom:1; cursor: pointer; margin:0; }
 .sidebar .user_infor .avatar img{ background: #fff; }
 .sidebar .infor{ background: #408DD2; padding: 10px 10px 10px 0; display: inline-block; *display: inline; zoom:1; height: 50px; width: 100px; margin: 0 1px 0 0; text-align: left; text-shadow:1px 1px 1px #333; }
 .sidebar .user_infor .fun a{ display: inline-block; *display: block; zoom:1; height: 35px; line-height: 35px; width: 100%; *width: 54px; text-align: center; background: #0C5DA5; color:#fff; }
 .sidebar .user_infor .fun a:hover{ background: #26537C; color: #fff; }
 
-.sidebar .connection{ width: 314px; position: absolute; right:0; top:85px; /*top:71px;*/ padding:0 10px 0 0; text-align: right; overflow: hidden; }
+.sidebar .connection{ width: 314px; position: absolute; right:0; top:85px; /*top:71px;*/ margin:0 10px 0 0; text-align: right; }
 .sidebar .connection .tab,.sidebar .connection .tab_content{ vertical-align: top; }
-.sidebar .connection .tab{ display: inline-block; *display: inline; zoom:1; margin: 0 1px 0 0; }
+.sidebar .connection .tab{ box-shadow: -1px 1px 5px #333; display: inline-block; *display: inline; zoom:1; margin: 0 1px 0 0; }
 .sidebar .connection .tab a{ padding: 7px 10px; background: #679FD2; color:#fff; display: inline-block; *display: inline; zoom:1; line-height: 24px; height: 24px; width: 50px; text-align: center; }
 .sidebar .connection .tab a:hover{ background: #408DD2; }
 .sidebar .connection .tab a.current{ font-weight: bold; background: #408DD2; }
-.sidebar .connection .tab_content{ display: inline-block; *display: inline; zoom:1; width: 233px; text-align: left; height:390px; overflow: auto; }
+.sidebar .connection .tab_content{ box-shadow: 1px 1px 5px #333; display: inline-block; *display: inline; zoom:1; width: 233px; text-align: left; height:390px; overflow: auto; }
 .sidebar .connection .tab_content li{ color:#043A6B; padding:7px 10px; cursor: pointer; background: #f3f3f3; margin: 0 0 1px 0; }
 .sidebar .connection .tab_content li.odd{ background: #408DD2; }
 .sidebar .connection .tab_content li:hover{ background: #408DD2; color: #fff; }
