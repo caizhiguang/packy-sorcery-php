@@ -9,7 +9,30 @@
 .form{ position: absolute; display: inline-block; *display: inline; zoom:1; }
 .form .inner{ text-align: center; }
 .form .inner .unit{ text-align: left; }
-.form .talkinfo{ background: #fff; border:#408DD2 solid 2px; width: 400px; height: 450px; /*position: absolute; top:0 ;left: 0;*/ }
+
+.form .side{ }
+.form .menu{position:absolute; top:0; right:0; height:16px; text-align:right; padding:3px;}
+.form .addresseeinfo{ background:#408DD2; color: #fff; width: 210px; position: relative; margin: 0 0 10px 0; }
+.form .addresseeinfo .avatar{ background: #408DD2; padding: 10px; cursor: pointer; margin:0; }
+.form .addresseeinfo .avatar img{ background: #fff; }
+.form .addresseeinfo .infor{ background: #408DD2; padding: 10px 10px 10px 0; height: 50px; margin: 0 1px 0 0; text-align: left; text-shadow:1px 1px 1px #333; }
+.form .funs{ width: 100%; }
+.form .funs .unit{ width: 100px; text-align: center; }
+.form .funs .lastUnit{ width: 110px; }
+.form .funs .lastUnit a{ margin: 0 0 10px 10px; }
+.form .funs a{ display: block; background:#679FD2; color:#fff; padding:7px 0; text-align: center; margin: 0 0 10px 0; }
+.form .funs a:hover{ background: #408DD2; }
+.form .funs .nav a{ height: 40px; line-height: 40px; margin: 0 10px 10px 10px; }
+
+.form .sub{ height: 454px; overflow: hidden; position: relative; width: 424px; }
+.form .sub_inner{ height: 2000000000em; position: absolute; width: 100%; }
+.form .angle{ position: absolute; z-index: 1; right: 3px; top:15px; width: 20px; height: 60px; background: url(../images/piece.gif) top right no-repeat; }
+
+.form .panel{ width:380px; border:#408DD2 solid 2px; background: #fff; padding: 5px 10px 10px 10px; }
+.form .panel .title{ font-size: 14px; background: #fff; height: 30px; line-height: 30px; color: #408DD2; text-indent: 0.5em; font-weight: bold; }
+.form .panel .content{ text-align: left; overflow: auto; height:405px; overflow: auto; }
+
+.form .talkinfo{ background: #fff; border:#408DD2 solid 2px; width: 400px; height: 450px; padding: 0; /*position: absolute; top:0 ;left: 0;*/ }
 .form .talkinfo .talk_view{ height: 360px; border-bottom:#408DD2 solid 2px; overflow: auto; }
 .form .talkinfo .talk_input{ background: #408DD2; height: 88px; }
 .form .talkinfo .talk_input .input{ width:318px; padding: 0 2px 0 0; }
@@ -26,24 +49,9 @@
 .talk_view dd.infor{color:#333; padding:3px 3px 6px 3px;word-break:break-all;word-wrap:break-word;}
 .talk_view dd.infor img{vertical-align: baseline;}
 
-.form .side{ margin: 0 0 0 -2px; padding: 0 0 0 20px; background: url(../images/piece.gif) 0 20px no-repeat; }
-.form .menu{position:absolute; top:0; right:0; height:16px; text-align:right; padding:3px;}
-.form .addresseeinfo{ background:#408DD2; color: #fff; width: 210px; position: relative; margin: 0 0 10px 0; }
-.form .addresseeinfo .avatar{ background: #408DD2; padding: 10px; cursor: pointer; margin:0; }
-.form .addresseeinfo .avatar img{ background: #fff; }
-.form .addresseeinfo .infor{ background: #408DD2; padding: 10px 10px 10px 0; height: 50px; margin: 0 1px 0 0; text-align: left; text-shadow:1px 1px 1px #333; }
-.form .funs{ width: 100%; }
-.form .funs .unit{ width: 100px; text-align: center; }
-.form .funs .lastUnit{ width: 110px; }
-.form .funs .lastUnit a{ margin: 0 0 10px 10px; }
-.form .funs a{ display: block; background:#679FD2; color:#fff; padding:7px 0; text-align: center; margin: 0 0 10px 0; }
-.form .funs a:hover{ background: #408DD2; }
-.form .funs .nav a{ height: 40px; line-height: 40px; margin: 0 10px 10px 10px; }
-
 .form .subform{ margin: 0 0 10px 0; }
-.form .subform .member{ width: 200px; }
-.form .subform .member dt{ margin: 0 0 10px 0; background: #408DD2; height: 30px; line-height: 30px; color: #fff; text-indent: 1em; font-weight: bold; }
-.form .subform .member dd{ text-align: left; height:390px; overflow: auto; height:410px; overflow: auto;  }
+.form .subform dl{ margin: 0 0 10px 0; padding: 10px; border:#ddd solid 1px; background: #f5f5f5; }
+.form .subform dt{ font-weight: bold; }
 .form .contacts li{ color:#043A6B; padding:7px 10px; cursor: pointer; background: #f3f3f3; margin: 0 0 1px 0; }
 .form .contacts li.odd{ background: #408DD2; }
 .form .contacts li:hover{ background: #408DD2; color: #fff; }
