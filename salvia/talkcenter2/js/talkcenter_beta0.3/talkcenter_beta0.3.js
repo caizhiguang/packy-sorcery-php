@@ -21,6 +21,32 @@
 
 				this.sidebar_connection_close();
 				this.sidebar_userInfor_close();
+
+				// $('.addresseeinfo>.avatar').click(function(){
+				// 	$(this).parents('.form').find('.sub_inner').animate({top:0},'normal','easeOutExpo');
+				// });
+				// $('.nav>a').eq(0).click(function(){
+				// 	$(this).parents('.form').find('.sub_inner').animate({top:-454},'normal','easeOutExpo');
+				// });
+
+				var scrollableOfForms = new $.salvia.ui.scrollable($('.forms'),{
+					item:['.form'],
+					to:[1],
+					naviSetting:[{prev:'.left',next:'.right'}],
+					navi:[$('.channel_fun')]
+				});
+
+				$('.forms>.group').each(function(i){
+					var scrollableOfGroup = new $.salvia.ui.scrollable($(this),{
+						item:['.sub_inner>div'],
+						wrap:['.sub_inner'],
+						vertical:[true],
+						to:[1],
+						naviSetting:[{prev:'.left',next:'.right'}],
+						navi:[$(this).find('.nav')]
+					});
+					$(this).data('scrollable',scrollableOfGroup);
+				});
 			},
 			resize:function(wrap){
 				if(wrap==undefined) wrap = this.dom;

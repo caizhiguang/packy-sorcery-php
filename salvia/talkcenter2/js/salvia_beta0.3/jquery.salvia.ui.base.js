@@ -4,9 +4,20 @@
 	
 	/**ui.base(可视基类)**/
 	$.salvia.ui.base = $.salvia.object.Class({
-		init:function(dom){
+		init:function(dom,attr){
 			this.dom = dom;
 			// this.dom.attr('data-id',$.dateToString(new Date(),"YMDhmsz"));
+			if(attr!=undefined){
+				for(var method in attr){
+					if(this[method]==undefined) continue;
+					if(typeof(this[method])!='function') continue;
+					if(typeof(attr[method])=='string'&&attr[method].lenght==0){
+						this[method].cell(this);
+						continue;	
+					}
+					this[method].apply(this,attr[method]);
+				}
+			}
 		},
 
 		/**=[attr]==================================================================================**/
