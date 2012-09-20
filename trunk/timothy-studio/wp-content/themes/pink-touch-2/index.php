@@ -13,17 +13,17 @@ get_header(); ?>
 			<h1 class="page-title">
 			<?php
 				if ( is_day() ) :
-					printf( __( 'Daily Archives: %s', 'pinktouch' ), '<span>' . get_the_date() . '</span>' );
+					printf( __( '以下是 %s 日的文章', 'pinktouch' ), '<span>' . get_the_date() . '</span>' );
 				elseif ( is_month() ) :
-					printf( __( 'Monthly Archives: %s', 'pinktouch' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
+					printf( __( '以下是 %s 月的文章', 'pinktouch' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
 				elseif ( is_year() ) :
-					printf( __( 'Yearly Archives: %s', 'pinktouch' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
+					printf( __( '以下是 %s 年的文章', 'pinktouch' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
 				elseif ( is_tag() ) :
-					printf( __( 'Tag Archives: %s', 'pinktouch' ), '<span>' . single_tag_title( '', false ) . '</span>' );
+					printf( __( '以下是 %s 标签的文章', 'pinktouch' ), '<span>' . single_tag_title( '', false ) . '</span>' );
 				elseif ( is_author() ) :
 					printf( __( 'Posted by: %s', 'pinktouch' ), '<span>' . get_the_author() . '</span>' );
 				elseif ( is_category() ) :
-					printf( __( 'Category Archives: %s', 'pinktouch' ), '<span>' . single_cat_title( '', false ) . '</span>' );
+					printf( __( '以下是 %s 目录的文章', 'pinktouch' ), '<span>' . single_cat_title( '', false ) . '</span>' );
 				else :
 					_e( 'Archives', 'pinktouch' );
 				endif;
@@ -39,7 +39,7 @@ get_header(); ?>
 
 	<?php if ( is_search() ) : ?>
 		<div class="page-header">
-			<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'pinktouch' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+			<h1 class="page-title"><?php printf( __( '以下是搜索 %s 的相关文章', 'pinktouch' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 		</div>
 	<?php endif; ?>
 
@@ -58,7 +58,7 @@ get_header(); ?>
 	<?php else : ?>
 
 		<div class="page-header">
-			<h1 class="page-title"><?php _e( 'Nothing Found.', 'pinktouch' ); ?></h1>
+			<h1 class="page-title"><?php _e( '问号？你找的东西不存在！', 'pinktouch' ); ?></h1>
 		</div>
 
 		<div class="hentry error404 clearfix">
