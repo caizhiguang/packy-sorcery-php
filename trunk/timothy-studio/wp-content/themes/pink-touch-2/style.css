@@ -1210,3 +1210,14 @@ legend span {
 	font-size: 0.875em;
 	text-align: left;
 }
+
+/* 
+ * Author: eric 
+ * Date: 09.26.2012
+ *
+ *********************************************************/
+
+/* index.php preview image */
+.clear { clear: both; }
+.entry-image { margin: 10px 0; }
+.entry-image img { float: left; margin-right: 10px; width: 100px; border: 5px solid #fff; }

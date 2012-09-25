@@ -427,3 +427,28 @@ function pinktouch_audio_grabber( $post_id ) {
 
 	return false;
 }
+
+/* index.php image preview */
+function post_thumbnail($a){
+	global $post;
+	$post_img = '';
+	ob_start();
+	ob_end_clean();
+	
+	$output = preg_match_all("/<img(.[^<]*)src=\"?(.[^<\"]*)\"?(.[^<]*)\/?>/", $post->post_content, $matches, PREG_SET_ORDER);
+	$post_img_src = $matches [0][1];
+	$cnt = count( $matches );
+
+	$imgs = '';
+
+	if($a == 1) {
+		for($i = 0 ; $i < count($matches); $i++) {
+			$imgs .= $matches[$i][0];
+			if ($i == 3) break;
+		}
+
+		echo $imgs;
+	} else {
+		return $cnt;
+	}
+}

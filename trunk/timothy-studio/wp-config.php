@@ -15,7 +15,7 @@
 
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
 /** WordPress 数据库的名称 */
-define('DB_NAME', 'lprete_520ue');
+define('DB_NAME', 'timothy');
 
 
 /** MySQL 数据库用户名 */
@@ -25,7 +25,7 @@ define('DB_USER', 'root');
 
 /** MySQL 数据库密码 */
 // define('DB_PASSWORD', '310died666lp');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'eric052250');
 
 
 /** MySQL 主机 */
