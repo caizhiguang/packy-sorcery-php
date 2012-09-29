@@ -25,7 +25,8 @@ define('DB_USER', 'root');
 
 /** MySQL 数据库密码 */
 // define('DB_PASSWORD', '310died666lp');
-define('DB_PASSWORD', 'eric052250');
+// define('DB_PASSWORD', 'eric052250');
+define('DB_PASSWORD','');
 
 
 /** MySQL 主机 */
