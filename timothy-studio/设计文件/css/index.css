@@ -1,0 +1,65 @@
+#wrap{ width: 960px; margin: 20px auto 0 auto ; }
+#header{  }
+#nav{ 
+	list-style: none; 
+	margin: 0 0 10px 0;
+	letter-spacing: -0.31em; /* webkit */
+    *letter-spacing: normal; /* IE < 8 重置 */
+    word-spacing: -0.43em; /* IE < 8 && gecko */
+}
+#nav li{
+	display: inline-block;
+	zoom:1;
+	*display: inline;
+	letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+
+    margin: 0 10px 0 0;
+    font-size: 18px;
+    font-family: 'Microsoft YaHei';
+}
+#nav a>span{
+	font-size: 12px;
+}
+#content{}
+#content .entry-image img{ width:115px; background: #eee; padding: 10px; vertical-align: top; margin: 0 5px 0 0; }
+#content .bar{ text-align: right; }
+
+#share{
+	list-style: none; 
+	margin: 0 0 10px 0;
+	letter-spacing: -0.31em; /* webkit */
+    *letter-spacing: normal; /* IE < 8 重置 */
+    word-spacing: -0.43em; /* IE < 8 && gecko */
+}
+#share li{
+	display: inline-block;
+	zoom:1;
+	*display: inline;
+	letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    margin: 0 10px 0 0;
+}
+#share li>a{
+	display: block;
+	vertical-align: bottom;
+	text-align: center;
+	width: 50px;
+}
+#share li>a>i{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	vertical-align: bottom;
+	text-align: center;
+	background: #eee;
+}
+
+.tag a{ padding:3px 5px; margin: 0 0 5px 0; display: inline-block; *display: inline; zoom:1; }
+.tag .t1{ background: #666; color: #eee; }
+.tag .t2{ background: #999; color: #eee; }
+.tag .t3{ background: #aaa; color: #eee; }
+.tag .t4{ background: #ccc; color: #fff; }
+.tag .t5{ background: #ddd; color: #fff; }
