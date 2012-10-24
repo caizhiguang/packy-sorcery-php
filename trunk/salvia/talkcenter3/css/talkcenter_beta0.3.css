@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*div.test{ height: 626px; position: absolute; background: #999; left: 0; top:0; width: 5px; opacity: 0.3; width: 1010px; z-index: -99; }*/
+
+body{ background: url(../images/bg.jpg) center -150px repeat-x; font-size: 14px; }
+
+.wrap{ position: absolute; overflow: hidden; }
+
+.avatar{ margin: 0 10px 0 0; vertical-align: middle; }
+.avatar img{ background: #fff; }
+.contacts input[type='checkbox']{ margin: 0 5px 0 0; }
+
+.iHome,.iMessage,.iSearch,.iFace,.iFont,.iUp,.iDown,.iNew,.iAdd,.iUploadPhoto{ background-image:url(../images/icons.png); background-repeat:no-repeat; margin:0 5px 0 0; }
+.iHome{ background-position:-32px 0; }
+.iMessage{ background-position:-16px 0; }
+.iSearch{}
+.iFace{background-position:-48px 0;}
+.iFont{background-position:-64px 0;}
+.iUp{background-position:-96px 0;}
+.iDown{background-position:-80px 0;}
+.iNew{ background-position:-16px -32px; }
+.iAdd{background-position:-128px 0;}
+.iUploadPhoto{background-position:-112px 0;}
+a:hover .iHome{ background-position:-32px -16px; }
+a:hover .iMessage{ background-position:-16px -16px; }
+a:hover .iSearch{background-position:0px -16px;}
+a:hover .iUp{background-position:-96px -16px;}
+a:hover .iDown{background-position:-80px -16px;}
+a:hover .iNew{ background-position:-16px -32px; }
+a:hover .iAdd{background-position:-128px -16px;}
+
+/**layout**/
+
+.topbar{ position: absolute; top:5px; right: 5px; z-index: 1; }
+.topbar a{ padding:5px 10px; background: #666; color:#fff; display: inline-block; *display: inline; zoom:1; }
+.topbar a:hover{ background: #999; }
+
+.channel{ position: absolute; top:5px; left:5px; width:200px; z-index: 1; }
+span.channel_btn a{ background: #999; color:#fff; width: 16px; height: 16px; display: inline-block; *display: inline; zoom:1; vertical-align: top; margin: 0 5px 0 0; }
+span.channel_btn a.current{ height: 32px; background: #666; }
+span.channel_btn a:hover{ background: #ccc; }
+
+.channel_fun{ font-family:"MS Serif", "New York", serif; }
+.channel_fun a{ background: #333; color:#fff; font-size: 9px; width: 16px; height: 16px; line-height: 16px; text-align: center; display: inline-block; *display: inline; zoom:1; vertical-align: top; margin: 0 5px 0 0; }
+
+.sidebar{ position: absolute; right:0px; top:50px; /*opacity: 0.85;*/ z-index: 1; }
+
+.sidebar .user_infor{ box-shadow: -1px 1px 5px #333; color: #fff; width: 244px; margin: 0 10px 0 0; position: absolute; right:0; top:0; text-align: right; }
+.sidebar .user_infor .avatar{ background: #408DD2; padding: 10px; display:inline-block; *display: inline; zoom:1; cursor: pointer; margin:0; }
+.sidebar .user_infor .avatar img{ background: #fff; }
+.sidebar .infor{ background: #408DD2; padding: 10px 10px 10px 0; display: inline-block; *display: inline; zoom:1; height: 50px; width: 100px; margin: 0 1px 0 0; text-align: left; text-shadow:1px 1px 1px #333; }
+.sidebar .user_infor .fun a{ display: inline-block; *display: block; zoom:1; height: 35px; line-height: 35px; width: 100%; *width: 54px; text-align: center; background: #0C5DA5; color:#fff; }
+.sidebar .user_infor .fun a:hover{ background: #26537C; color: #fff; }
+
+.sidebar .connection{ width: 314px; position: absolute; right:0; top:85px; /*top:71px;*/ margin:0 10px 0 0; text-align: right; }
+.sidebar .connection .tab,.sidebar .connection .tab_content{ vertical-align: top; }
+.sidebar .connection .tab{ box-shadow: -1px 1px 5px #333; display: inline-block; *display: inline; zoom:1; margin: 0 1px 0 0; }
+.sidebar .connection .tab a{ padding: 7px 10px; background: #679FD2; color:#fff; display: inline-block; *display: inline; zoom:1; line-height: 24px; height: 24px; width: 50px; text-align: center; }
+.sidebar .connection .tab a:hover{ background: #408DD2; }
+.sidebar .connection .tab a.current{ font-weight: bold; background: #408DD2; }
+.sidebar .connection .tab_content{ box-shadow: 1px 1px 5px #333; display: inline-block; *display: inline; zoom:1; width: 233px; text-align: left; height:390px; overflow: auto; }
+.sidebar .connection .tab_content li{ color:#043A6B; padding:7px 10px; cursor: pointer; background: #f3f3f3; margin: 0 0 1px 0; }
+.sidebar .connection .tab_content li.odd{ background: #408DD2; }
+.sidebar .connection .tab_content li:hover{ background: #408DD2; color: #fff; }
+.sidebar .connection .tab_content .contacts .avatar img{ height: 24px; width: 24px; vertical-align: middle; }
