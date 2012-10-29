@@ -1,5 +1,44 @@
-#wrap{ width: 960px; margin: 20px auto 0 auto ; }
-#header{  }
+#wrap{
+	zoom:1;
+	overflow: hidden;
+}
+#wrap:after{ 
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+#side{
+	width: 250px;
+	float: left;
+	height: 100%;
+	text-align: center;
+	position: relative;
+	background: url(../img/side_bg.png) #ddd right repeat-y;
+}
+#main{
+	margin: 0 0 0 250px;
+	padding: 10px;
+}
+
+#header{
+	font-size: 12px;
+	font-family: 'Microsoft Yahei';
+	margin: 30px 0 45px 0;
+	padding: 0 0 15px 0;
+	color: #b28c6e;
+	border-bottom:#999 dashed 1px;
+}
+#footer{
+	font-size: 11px;
+	position: absolute;
+	bottom: 15px;
+	left: 0;
+	right: 0;
+	color:#999;
+}
 #nav{ 
 	list-style: none; 
 	margin: 0 0 10px 0;
@@ -8,19 +47,26 @@
     word-spacing: -0.43em; /* IE < 8 && gecko */
 }
 #nav li{
-	display: inline-block;
+	display: block;
 	zoom:1;
-	*display: inline;
 	letter-spacing: normal;
     word-spacing: normal;
     vertical-align: top;
 
     margin: 0 10px 0 0;
-    font-size: 18px;
+    font-size: 24px;
+    line-height: 48px;
     font-family: 'Microsoft YaHei';
 }
+#nav a{
+	color: #b3ada0;
+	text-decoration: none;
+}
+#nav a:hover{
+	color: #b28c6e;
+}
 #nav a>span{
-	font-size: 12px;
+	/*font-size: 10px;*/
 }
 #content{}
 #content .entry-image img{ width:115px; background: #eee; padding: 10px; vertical-align: top; margin: 0 5px 0 0; }
