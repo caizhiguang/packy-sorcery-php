@@ -9,6 +9,10 @@ a{
 a:hover{
 	color:#b28c6e;
 }
+h1,h2,h3,h4,h5,h6{
+	color: #000;
+}
+
 #wrap{
 	zoom:1;
 	overflow: hidden;
@@ -41,16 +45,17 @@ a:hover{
 	display: block;
 	font-family: 'Microsoft Yahei';
 	font-size: 12px;
-	color: #D6A34B;
 	border-bottom:#999 dashed 1px;
 	position: absolute;
 	top: 10px;
 	left: 0;
 	right: 0;
 }
+#menu.smallmenu .wrap>h1{
+	color: #D6A34B;
+}
 #content{
 	margin: 0 0 0 200px;
-	padding: 10px 10px 10px 20px;
 	height: 100%;
 	background: url(../img/side_bg.png) 0 repeat-y;
 	position: relative;
@@ -64,8 +69,11 @@ a:hover{
 	font-family: 'Microsoft Yahei';
 	margin: 30px 10px;
 	padding: 0 5px 15px 5px;
-	color: #D6A34B;
+	color: #EDEADC;
 	border-bottom:#999 dashed 1px;
+}
+#header h1{
+	color: #D6A34B;
 }
 #header h1>span{
 	font-size: 12px;
@@ -75,7 +83,6 @@ a:hover{
 #header p{
 	text-align: left;
 	text-indent: 2em;
-	color:#EDEADC;
 }
 #footer{
 	font-size: 11px;
@@ -125,14 +132,20 @@ a:hover{
 }
 
 
-#main{}
+#main{
+	/*padding: 10px 10px 10px 20px;*/
+	height: 100%;
+	overflow: auto;
+}
 #side{
-	position: absolute;
+	/*position: absolute;
 	top: 0;
 	bottom: 0;
 	right:0;
-	width: 200px;
+	width: 200px;*/
+	height: 100%;
 	background: #fff;
+	position: relative;
 }
 #side .line{
 	position: absolute;
@@ -155,7 +168,6 @@ a:hover{
 	white-space:nowrap;*/
 	text-align: right;
 	position: absolute;
-	top: 50px;
 	left: -49px;
 }
 #side .menu li{
@@ -208,6 +220,39 @@ a:hover{
 	vertical-align: bottom;
 	text-align: center;
 	background: #eee;
+}
+
+
+.article{
+	margin: 25px 15px 15px 25px;
+}
+.article>.content{
+	display: inline-block;
+}
+.article>.tag{
+	text-align: right;
+}
+.article>.tag>span{
+	display: inline-block;
+	background: #D6A34B;
+	width: 75px;
+	height: 68px;
+	padding: 22px 15px 0 0;
+	font-family: Arvo,Cambria,Georgia,Times,serif;
+	color: #1e1e1e;
+	text-align: right;
+	margin: 0 25px 0 0;
+	-moz-border-radius:75px;
+	-webkit-border-radius: 75px;
+	border-radius: 75px;
+}
+.article>.tag .day{
+	font-size: 1.6875em;
+	display: block;
+}
+.article h3{
+	border-bottom:#E1E1E1 solid 1px;
+	padding: 0 0 .3em 0;
 }
 
 .tag a{ padding:3px 5px; margin: 0 0 5px 0; display: inline-block; *display: inline; zoom:1; }
