@@ -62,10 +62,10 @@
 				});
 
 				$('#menu').hover(function(){
-					$('#menu').stop().dequeue().find('.wrap').stop(false).animate({opacity:'hide'},500).parent().animate({width:200},1500,'easeInOutQuart',function(){$(this).removeClass('smallmenu')});
+					$('#menu').stop().dequeue().find('.wrap').animate({opacity:'hide'},500).parent().animate({width:200},800,'easeInOutQuart',function(){$(this).removeClass('smallmenu')});
 					// $('#content').animate({margin:'0 0 0 200px'},1500,'easeInOutQuart');
 				},function(){
-					$('#menu').stop().animate({width:50},1500,'easeInOutQuart').find('.wrap').stop(false).delay(1000).animate({opacity:'show'},500).parent().addClass('smallmenu');
+					$('#menu').stop().animate({width:50},800,'easeInOutQuart').addClass('smallmenu').find('.wrap').delay(800).animate({opacity:'show'},500);
 					// $('#content').animate({margin:'0 0 0 50px'},1500,'easeInOutQuart');
 				});
 			});
