@@ -3,11 +3,11 @@ body{
 	color:#6D6A67;
 }
 a{
-	color:#D6A34B;
+	color:#1e1e1e;/*D6A34B*/
 	text-decoration: none;
 }
 a:hover{
-	color:#b28c6e;
+	color:#D6A34B;/*b28c6e*/
 }
 h1,h2,h3,h4,h5,h6{
 	color: #000;
@@ -60,6 +60,7 @@ h1,h2,h3,h4,h5,h6{
 	background: url(../img/side_bg.png) 0 repeat-y;
 	position: relative;
 	z-index: 0;
+	width: 920px;
 }
 #content.article{
 	margin: 0 0 0 50px;
@@ -144,7 +145,6 @@ h1,h2,h3,h4,h5,h6{
 	right:0;
 	width: 200px;*/
 	height: 100%;
-	background: #fff;
 	position: relative;
 }
 #side .line{
@@ -152,8 +152,10 @@ h1,h2,h3,h4,h5,h6{
 	top: 0;
 	bottom: 0;
 	left: 0;
-	border-left: #e1e1e1 dotted 1px;
-	width: 25px;
+	right: 0;
+	border-left: #9e9e9e dotted 1px;
+	border-right: #9e9e9e dotted 1px;
+	/*width: 25px;*/
 	z-index: 0;
 }
 #side .menu{
@@ -186,17 +188,21 @@ h1,h2,h3,h4,h5,h6{
 	background: url(../img/nav_right.png) #D6A34B center center no-repeat;
 }
 #side .content{
-	padding:0 0 0 10px;
+	padding:0 15px;
 	z-index: 1;
 	position: relative;
+}
+#side .content h4{
+	border-bottom:#E1E1E1 solid 1px;
+	padding: 0 0 .3em 0;
 }
 
 #share{
 	list-style: none; 
 	margin: 0 0 10px 0;
-	letter-spacing: -0.31em; /* webkit */
+	letter-spacing: -.31em; /* webkit */
     *letter-spacing: normal; /* IE < 8 重置 */
-    word-spacing: -0.43em; /* IE < 8 && gecko */
+    word-spacing: -.43em; /* IE < 8 && gecko */
 }
 #share li{
 	display: inline-block;
@@ -205,18 +211,18 @@ h1,h2,h3,h4,h5,h6{
 	letter-spacing: normal;
     word-spacing: normal;
     vertical-align: top;
-    margin: 0 10px 0 0;
+    margin: 1em .8em 0 0;
 }
 #share li>a{
 	display: block;
 	vertical-align: bottom;
 	text-align: center;
-	width: 50px;
+	width: 3em;
 }
 #share li>a>i{
 	display: inline-block;
-	width: 50px;
-	height: 50px;
+	width: 3em;
+	height: 3em;
 	vertical-align: bottom;
 	text-align: center;
 	background: #eee;
@@ -255,9 +261,9 @@ h1,h2,h3,h4,h5,h6{
 	padding: 0 0 .3em 0;
 }
 
-.tag a{ padding:3px 5px; margin: 0 0 5px 0; display: inline-block; *display: inline; zoom:1; }
-.tag .t1{ background: #666; color: #eee; }
-.tag .t2{ background: #999; color: #eee; }
-.tag .t3{ background: #aaa; color: #eee; }
-.tag .t4{ background: #ccc; color: #fff; }
-.tag .t5{ background: #ddd; color: #fff; }
+.tag a{ padding:3px 5px; margin: 0 0 5px 0; display: inline-block; *display: inline; zoom:1; background: #d8e698; color: #fff; }
+.tag a:hover{ background: #69821b; }
+.tag .t1{ background: #69821b; color: #eee; }
+.tag .t2{ background: #7b8d42; color: #eee; }
+.tag .t3{ background: #99ab4e; color: #fff; }
+.tag .t4{ background: #aacf53; color: #fff; }
