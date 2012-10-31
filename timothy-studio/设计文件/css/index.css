@@ -60,7 +60,6 @@ h1,h2,h3,h4,h5,h6{
 	background: url(../img/side_bg.png) 0 repeat-y;
 	position: relative;
 	z-index: 0;
-	width: 920px;
 }
 #content.article{
 	margin: 0 0 0 50px;
@@ -134,16 +133,10 @@ h1,h2,h3,h4,h5,h6{
 
 
 #main{
-	/*padding: 10px 10px 10px 20px;*/
 	height: 100%;
 	overflow: auto;
 }
 #side{
-	/*position: absolute;
-	top: 0;
-	bottom: 0;
-	right:0;
-	width: 200px;*/
 	height: 100%;
 	position: relative;
 }
@@ -231,6 +224,9 @@ h1,h2,h3,h4,h5,h6{
 
 .article{
 	margin: 25px 15px 15px 25px;
+}
+.article.unit{
+	width: 500px;
 }
 .article>.content{
 	display: inline-block;
