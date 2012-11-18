@@ -8,7 +8,7 @@ h1,h2,h3,h4,h5,h6{ font-family: 'Microsoft Yahei'; }
 #header{ height: 50px; background: #515151; }
 #header:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
 #header header{ float: left; }
-#header h1{ font-size: 24px; margin: 0; text-align: center; line-height: 14px; padding: .4em 0; }
+#header h1{ font-size: 24px; margin: 0; text-align: center; line-height: 14px; padding: .4em 0 0 0; }
 #header h1 span{ color: #b3b3b3; font-size: 12px; }
 #header h1 span.title{ color: #89c3eb; font-size: 18px; }
 #header nav{ float: left; line-height:50px; margin: 0 0 0 15px; }
@@ -16,6 +16,11 @@ h1,h2,h3,h4,h5,h6{ font-family: 'Microsoft Yahei'; }
 #header nav a>span{ display: none; }
 #header nav a:hover{ color: #fffffc; }
 #header nav a.current{ color: #fffffc; }
-  #content{}
-#footer{}
+  #content>.wrap:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
+  #content>.wrap>section{ float: left; width: 700px; }
+  #content>.wrap>aside{ float: left; width:260px; }
+#footer{ background: #515151; border-top: #999 solid 5px; padding:35px; }
+#footer dl{ display: inline-block; vertical-align: top; margin: 0 20px 20px 0; }
+#footer dl dd>a{ display: block; }
+#footer .copyright{ display: inline-block; float: right; }
 

@@ -1,0 +1,5 @@
+@charset "utf-8";
+
+.article aside>.search,.article aside>.tab{ margin: 10px 0; }
+.article aside>.search{  }
+.article aside>.tab{  }
