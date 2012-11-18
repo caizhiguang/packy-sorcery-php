@@ -1,21 +1,31 @@
 @charset "utf-8";
 
-a{ color:#1e1e1e; text-decoration: none; }
+a{ color:#89c3eb; text-decoration: none; }
 h1,h2,h3,h4,h5,h6{ font-family: 'Microsoft Yahei'; }
 
+a>i,i.i{ display: inline-block; background: url(../img/icons.png) no-repeat; width: 16px; height: 16px; vertical-align: text-bottom; }
+.index>i{ background-position: -136px -8px; margin: 0 3px 0 0; }
+.research>i{ background-position: -168px -8px; margin: 0 3px 0 0; }
+.article>i{ background-position: -200px -8px; margin: 0 3px 0 0; }
+.about>i{ background-position: -232px -8px; margin: 0 3px 0 0; }
+.current.index>i,.index:hover>i{ background-position: -8px -8px; margin: 0 3px 0 0; }
+.current.research>i,.research:hover>i{ background-position: -40px -8px; margin: 0 3px 0 0; }
+.current.article>i,.article:hover>i{ background-position: -72px -8px; margin: 0 3px 0 0; }
+.current.about>i,.about:hover>i{ background-position: -104px -8px; margin: 0 3px 0 0; }
 .wrap{ width: 970px; margin: 0 auto; }
 
-#header{ height: 50px; background: #515151; }
+#header{ height: 50px; background: url(../img/nav_bg.png) #515151 repeat-x; }
 #header:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
 #header header{ float: left; }
 #header h1{ font-size: 24px; margin: 0; text-align: center; line-height: 14px; padding: .4em 0 0 0; }
 #header h1 span{ color: #b3b3b3; font-size: 12px; }
 #header h1 span.title{ color: #89c3eb; font-size: 18px; }
 #header nav{ float: left; line-height:50px; margin: 0 0 0 15px; }
-#header nav a{ color: #a3a3a3; display: inline-block; padding: 0 .5em; }
+#header nav a{ color: #a3a3a3; display: inline-block; padding: 0 .5em 0 20px; }
 #header nav a>span{ display: none; }
 #header nav a:hover{ color: #fffffc; }
-#header nav a.current{ color: #fffffc; }
+#header nav a.current{ color: #fffffc; background: url(../img/nav_current.png) center bottom no-repeat; }
+#header nav a.current>span{ display: inline; }
   #content>.wrap:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
   #content>.wrap>section{ float: left; width: 700px; }
   #content>.wrap>aside{ float: left; width:260px; }

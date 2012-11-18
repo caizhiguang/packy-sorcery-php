@@ -18,10 +18,10 @@
 				</header>
 				<!-- 导航 -->
 				<nav>
-					<a href="javascript:;">首页<span>index</span></a>
-					<a href="javascript:;" class="current">研究<span>research</span></a>
-					<a href="javascript:;">文章<span>article</span></a>
-					<a href="javascript:;">关于<span>about</span></a>
+					<a href="javascript:;" class="index"><i></i>首页<span>index</span></a>
+					<a href="javascript:;" class="research current"><i></i>研究<span>research</span></a>
+					<a href="javascript:;" class="article"><i></i>文章<span>article</span></a>
+					<a href="javascript:;" class="about"><i></i>关于<span>about</span></a>
 				</nav>
 			</div>
 		</div>
@@ -75,21 +75,15 @@
 				<aside>
 					<!-- 搜索栏 -->
 					<form class="search">
-						<input type="text" />
-						<input type="submit" value="搜索" />
+						<input type="text" /><input type="submit" value="搜索" />
 					</form>
 
-					<div class="tab">
-						<div class="bar">
-							<a href="javascript:;">热度</a>
-							<a href="javascript:;">目录</a>
-							<a href="javascript:;">标签</a>
-							<a href="javascript:;">日历</a>
-						</div>
-
-						<div class="barcontent">
+					<div class="tab line">
+						<div class="content unit">
+							<div class="flag"></div>
 							<div class="hots">
 								<hgroup>
+									<i class="fire i"></i>
 									<h4>热度</h4>
 									<h5>hots</h5>
 								</hgroup>
@@ -100,6 +94,13 @@
 									<a href="javascript:;">冷门</a>
 								</nav>
 							</div>
+						</div>
+
+						<div class="bar unit">
+							<a href="javascript:;" class="fire current"><i>热度</i></a>
+							<a href="javascript:;" class="catalog"><i>目录</i></a>
+							<a href="javascript:;" class="tag"><i>标签</i></a>
+							<a href="javascript:;" class="calendar"><i>日历</i></a>
 						</div>
 					</div>
 
