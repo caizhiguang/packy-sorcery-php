@@ -1,5 +1,7 @@
 !function($){
 	$.fn.scrollable = function(options){
+		var options = $.extend({index:0},{},options);
+
 		var scrollable = {
 			init:function(dom,attr){
 				this._dom = dom;
@@ -21,7 +23,7 @@
 						e.data.prev($(e.target));
 					},
 					btnTo:function(e){
-						e.data.to($(e.target).attr('data-index'),$(e.target));
+						e.data.to($(this).attr('data-index'),$(this));
 					}
 				};
 
@@ -146,8 +148,13 @@
 				}
 				
 				this._index = index;
-			};
+			}
+		};
 		scrollable.init(this);
+		scrollable.item(options.item);
+		scrollable.to(options.index);
+		scrollable.navi(this.find(options.navi));
+		scrollable.vertical(true);
 		this.data('scrollable',scrollable);
 	}
 }(jQuery);
