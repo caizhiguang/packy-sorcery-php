@@ -27,7 +27,10 @@ a>i,i.i{ display: inline-block; background: url(../img/icons.png) no-repeat; wid
 #header nav a:hover{ color: #fffffc; }
 #header nav a.current{ color: #fffffc; background: url(../img/nav_current.png) center bottom no-repeat; }
 #header nav a.current>span{ display: inline; }
-  #content>.wrap:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
+#content{ position: relative; }
+#content>.wrap:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
+#content>.up{ z-index: 99; position:fixed; bottom: 50px; right: 50px; background: #aaa; text-align: center; padding:10px; }
+#content>.up a>i{ background-position: 0 -128px; width: 32px; height: 32px; }
 #footer{ background: #515151; border-top: #999 solid 5px; padding:35px; }
 #footer dl{ display: inline-block; vertical-align: top; margin: 0 20px 20px 0; }
 #footer dl dt{

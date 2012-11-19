@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-.article{ position: relative; }
 .article .wrap>section{ float: left; width: 650px; padding:0 50px 0 0; }
 .article .wrap>aside{ float: left; width:260px; }
 .article header{ margin: 10px 0; height: 32px; border-bottom:#ddd solid 1px; padding: 0 0 10px; line-height: 50px; }
@@ -11,9 +10,6 @@
 .article .bar>a.current,.article .bar>a:hover{ background-color:#89c3eb; }
 .article .bar>.list>i{ background-position:-96px -96px; text-indent: -200em; }
 .article .bar>.calendar>i{ background-position:0 -96px; text-indent: -200em; }
-
-.article>.up{ position:fixed; bottom: 50px; right: 50px; background: #aaa; text-align: center; padding:10px; }
-.article>.up a>i{ background-position: 0 -128px; width: 32px; height: 32px; }
 
 .article section>aside{ float: left; margin: 0 10px 0 0; width: 120px; padding: 0 10px 0 0; }
 .article section>article{ overflow: hidden; }
@@ -66,8 +62,8 @@
 .aside_tab .bar>.tag>i{ background-position: -96px -30px; }
 .aside_tab .bar>.calendar>i{ background-position: -128px -30px; }
 .aside_tab .bar>a:hover,.aside_tab .bar>a.current{ background-color: #121212; }
-.aside_tab .content{ width: 223px; margin: 0 5px 0 0; background: #89c3eb; height: 177px; overflow: hidden; }
-.aside_tab .content .wrap>div{ padding: 15px; }
+.aside_tab .content{ width: 223px; margin: 0 5px 0 0; background: #89c3eb; height: 177px; overflow: hidden; position: relative; }
+.aside_tab .content>div{ padding: 15px; }
 .aside_tab .content a{ color: #fff; }
 .aside_tab .content a:hover{ color: inherit; }
 .aside_tab .content nav{ margin: 0 10px; }
