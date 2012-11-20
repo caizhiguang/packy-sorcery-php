@@ -1,20 +1,14 @@
 !function($){
 	$.fn.scrollable = function(options){
-		var options = $.extend({index:0},{},options);
-
+		var options = $.extend({},{},options);
 		var scrollable = {
-			init:function(dom,attr){
+			/**
+			 * 初始化scrollable
+			 * @param  {jQuery} dom 主体
+			 */
+			init:function(dom){
 				this._dom = dom;
-				this._wrap = '.wrap';
-				this._item = '.item';
 				this._index = 0;
-				this._spacing = 0;
-				this._naviSetting = {
-					next:'.next',
-					prev:'.prev',
-					item:'a'
-				};
-				this._vertical = false;
 				this._naviEvents = {
 					btnNextEvent:function(e){
 						e.data.next($(e.target));
@@ -23,138 +17,69 @@
 						e.data.prev($(e.target));
 					},
 					btnTo:function(e){
-						e.data.to($(this).attr('data-index'),$(this));
+						e.data.to($(e.target).attr('data-index'),$(e.target));
 					}
 				};
-
-				// $super(dom,attr);
 			},
-			vertical:function(vertical){
-				if(vertical==undefined){
-					return this._vertical;
-				}else{
-					this._vertical = vertical;
-				}
-			},
-			naviSetting:function(setting){
-				if(setting==undefined){
-					return this._naviSetting;
-				}else{
-					if(this._navi!=undefined){
-						this._navi.find(this._naviSetting.next).unbind('click',this._naviEvents.btnNextEvent);
-						this._navi.find(this._naviSetting.prev).unbind('click',this._naviEvents.btnPrevEvent);
-						this._navi.find(this._naviSetting.item).unbind('click',this._naviEvents.btnTo);
-					}
-					this._naviSetting = $.extend({},this._naviSetting,setting);
-				}
-			},
-			navi:function(navi){
-				if(navi==undefined){
-					return this._navi;
-				}else{
-					this._navi = navi;
-					this._navi.find(this._naviSetting.next).bind('click',this,this._naviEvents.btnNextEvent);
-					this._navi.find(this._naviSetting.prev).bind('click',this,this._naviEvents.btnPrevEvent);
-					this._navi.find(this._naviSetting.item+':not('+this._naviSetting.next+','+this._naviSetting.prev+')').bind('click',this,this._naviEvents.btnTo);
-					this._navi.find(this._naviSetting.item+':not('+this._naviSetting.next+','+this._naviSetting.prev+')').each(function(i){$(this).attr('data-index',i);});
-				}
-			},
+			/**
+			 * 包裹item的标签
+			 * @param  {jQuery} wrap 包裹item的标签
+			 * @return {jQuery}      
+			 */
 			wrap:function(wrap){
-				if(wrap==undefined){
-					return this._wrap;
-				}else{
+				if(wrap!=undefined){
 					this._wrap = wrap;
+				}else{
+					return this._wrap;
 				}
 			},
-			item:function(item){
-				if(item==undefined){
-					return this._item;
+			/**
+			 * 内容项
+			 * @param  {jQuery} items 内容项
+			 * @return {jQuery}      
+			 */
+			items:function(items){
+				if(items!=undefined){
+					this._items = items;
 				}else{
-					this._item = item;
+					return this._items;
 				}
 			},
-			spacing:function(spacing){
-				if(spacing==undefined){
-					return this._spacing;
+			/**
+			 * 导航
+			 * @param  {jQuery} navi 导航标签
+			 * @return {[type]}      [description]
+			 */
+			navi:function(navi){
+				if(navi!=undefined){
+					this._navi = navi;
+					this._navi.find('.next').bind('click',this,this._naviEvents.btnNextEvent);
+					this._navi.find('.prev').bind('click',this,this._naviEvents.btnPrevEvent);
+					this._navi.find(':not(.next,.prev)').bind('click',this,this._naviEvents.btnTo);
+					this._navi.find(':not(.next,.prev)').each(function(i){$(this).attr('data-index',i);});
 				}else{
-					this._spacing = spacing;
-				}
-			},
-			index:function(index){
-				if(index==undefined){
-					return this._index;
-				}else{
-					this._index = index;
+					return this._navi;
 				}
 			},
 			next:function(){
-				if(this._index != this._dom.find(this._item).length - 1)
-					this.to(this._index+1);
+				this.to(++this._index);
 			},
 			prev:function(){
-				if(this._index!=0)
-					this.to(this._index-1);
+				this.to(--this._index);
 			},
 			to:function(index){
-				var item = this._dom.find(this._item);
-				var spacing = this._spacing==0?(!this._vertical?item.outerWidth():item.outerHeight()):this._spacing;
 				var top = 0;
-				var left = 0;
-				var wrap = this._dom.find(this._wrap);
-
-				if(wrap.length==0){
-					for (var i = 0; i < item.length; i++) {
-						var position = $(item[i]).position();
-
-						if(!this._vertical){
-							if(i==0) top = position.top;
-							if(top != position.top) position.top = top;
-							if(index>this._index){
-								position.left = position.left-index*spacing;
-							}else if(index<this._index){
-								position.left = position.left+(index==0?1:index)*spacing;
-							}
-						}else{
-							if(i==0) left = position.left;
-							if(left != position.left) position.left = left;
-							if(index>this._index){
-								position.top = position.top-index*spacing;
-							}else if(index<this._index){
-								position.top = position.top+(index==0?1:index)*spacing
-							}
-						}
-						$(item[i]).animate(position,'normal','easeOutExpo');
-					};
-				}else{
-					var position = wrap.position();
-					if(!this._vertical){
-						if(i==0) top = position.top;
-						if(top != position.top) position.top = top;
-						if(index>this._index){
-							position.left = -1*(index+1)*spacing;
-						}else if(index<this._index){
-							position.left = (index+1)*spacing;
-						}
-					}else{
-						if(i==0) left = position.left;
-						if(left != position.left) position.left = left;
-						if(index>this._index){
-							position.top = -index*spacing;
-						}else if(index<this._index){
-							position.top = -index*spacing
-						}
-					}
-					wrap.animate(position,'normal','easeOutExpo');
-				}
-				
-				this._index = index;
+				for (var i = 0; i < index; i++) {
+					top+=this._items.eq(i).outerHeight();
+				};
+				this._navi.removeClass('current').eq(index).addClass('current');
+				this._wrap.animate({scrollTop:top,height:this._items.eq(index).outerHeight()},'normal','easeOutExpo');
 			}
 		};
 		scrollable.init(this);
-		scrollable.item(options.item);
-		scrollable.to(options.index);
-		scrollable.navi(this.find(options.navi));
-		scrollable.vertical(true);
-		this.data('scrollable',scrollable);
+		scrollable.wrap(this.find(options.item).parent());
+		scrollable.items(this.find(options.item));
+		scrollable.navi(this.find(options.navi).find('a'));
+		scrollable.to(options.index==undefined?0:index);
 	}
 }(jQuery);
