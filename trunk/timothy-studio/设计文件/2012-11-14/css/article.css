@@ -69,7 +69,7 @@
 .aside_tab .content nav{ margin: 0 10px; }
 .aside_tab .content nav>a{ display: block; }
 .aside_tab .content hgroup>h4{ font-size: 1.5em; margin: 0; }
-.aside_tab .content hgroup>h5{ font-size: 0.5em; font-weight: normal; }
+.aside_tab .content hgroup>h5{ font-size: 0.7em; font-weight: normal; }
 .aside_tab .content hgroup>i{ width: 32px; height: 32px; float: left; margin: 5px 5px 0 0; }
 .hots hgroup>i{ background-position: -32px -96px; }
 .catalog hgroup>i{ background-position: -128px -64px; }
