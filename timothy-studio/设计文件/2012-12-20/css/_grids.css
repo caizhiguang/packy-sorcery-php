@@ -1,0 +1,5 @@
+@charset "utf-8";
+
+.tb{ display: table; }
+.tb>.line{ display: table-row; }
+.tb>.line>.unit{ display: table-cell; }
