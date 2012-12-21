@@ -1,7 +1,7 @@
 !function($){
 
 	$(document).ready(function(){
-		$('#toTop').click(function(){
+		$('#totop').click(function(){
 			$('body,html').animate({scrollTop:0},'normal','easeOutExpo');
 			return false;
 		});
