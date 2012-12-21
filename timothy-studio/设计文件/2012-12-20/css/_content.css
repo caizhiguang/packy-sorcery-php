@@ -2,51 +2,5 @@
 
 a{ color:#1e1e1e; text-decoration: none; }
 a:hover{ color: #38a1db; }
+a[target='_blank']{ background: url(../img/redo.png) center right no-repeat; padding: 0 24px 0 0; }
 h1,h2,h3,h4,h5,h6{ font-family: 'Microsoft Yahei'; }
-
-.icons{ background-image: url(../img/icons.png); background-repeat: no-repeat; }
-.icons-left-disable{ background-position: 0 0; }
-.icons-right-disable{ background-position: -32px 0; }
-.icons-top-disable{ background-position: -64px 0; }
-.icons-bottom-disable{ background-position: -96px 0; }
-.icons-left{ background-position: 0 -32px; }
-.icons-right{ background-position: -32px -32px; }
-.icons-top{ background-position: -64px -32px; }
-.icons-bottom{ background-position: -96px -32px; }
-
-#header{ padding: 15px 0; }
-#header h1{ width: 185px; border-right: #89c4ec solid 5px; font-size: 14px; text-align: right; padding: 0 10px 0 0; display: inline-block; margin: 0; }
-#header h1 span{ color: #545454; font-weight: normal; }
-#header h1 span.description{ display: block; font-size: 12px; color: #999; font-family: '宋体'; margin: 5px 0 0 0; }
-#crumbs{ font-size: 12px; color: #fff; background: #2e2e2e; padding: 6px 7px; display: inline-block; vertical-align: top; margin: 0 0 0 10px; }
-
-#wrap{  }
-
-#sidenav{ width: 200px; position: relative; overflow: hidden; }
-
-#sidenav ul{ margin: 0; }
-#sidenav ul>li{ list-style: none; }
-#sidenav a{ color: #545454; display: block; margin: 0 0 2px 0; border-right: #595857 solid 5px; text-align: right; padding: 0 10px 0 0;  height: 30px; line-height: 30px;  }
-#sidenav li ul>li a{ border-color: #969696; font-size: 12px; color: #969696; }
-#navbar{ text-align: right; }
-#navbar .navbar-btn{ border: none; display: inline-block; padding: 0; height: 32px; width: 32px; margin: 0; vertical-align: middle; }
-.navbar-btn{ background-color: #f5f5f5; }
-#navbar span{ margin: 0 1em 0 0; }
-#navbar .display-line{ background: url(../img/line_bg.png) 0 0 repeat-x; width: 60px; display: inline-block; height: 32px; vertical-align: middle; }
-
-#main{ width: 800px; }
-
-#article{ width: 550px; }
-#article article{ padding: 0 15px; }
-
-#aside{ width: 250px; }
-aside dt,aside dl,aside dd{ margin: 0; }
-
-#footer{ text-align: left; background: url(../img/footer_bg.png) 0 0 repeat-x ; padding: 25px 15px 15px 15px; }
-
-.widget{ background: #f5f5f5; padding: 10px; }
-
-.widget.info{ background: #eee; }
-.widget.info dl{ margin: 0 0 10px 0; }
-.widget.info dt{ font-size: 12px; color: #969696; font-weight: normal; }
-.widget.info dd{ font-size: 18px; color: #969696; }

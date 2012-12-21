@@ -1,1 +1,25 @@
 @charset "utf-8";
+
+
+/**
+ * 默认轮播风格
+ */
+.scrollable{ overflow: hidden; zoom:1; position: relative; }
+.scrollable>.items.horizontal{ width: 20000em; zoom:1; overflow: hidden; }
+.scrollable>.items.horizontal>*{ float: left; }
+.scrollable>.items.horizontal:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
+.scrollable>.navi{}
+.scrollable .navi-btn-prev{}
+.scrollable .navi-btn-next{}
+
+
+/**
+ * photo-scrollable 图片轮播风格
+ */
+.photo-scrollable{ height: 350px; width: 520px; margin: 0 0 10px 0; }
+.photo-scrollable>.items{}
+.photo-scrollable>.navi{ position: absolute; bottom:0; right: 0; line-height: 0; opacity: .9; }
+.navi-pageinfo{ background: #2e2e2e; display: inline-block; height: 32px; line-height: 32px; padding: 0 5px; color: #fff; vertical-align: bottom; }
+.navi-btn-prev,.navi-btn-next{ display: inline-block; height: 32px; width: 32px; vertical-align: bottom; }
+.navi-btn-prev{ background: url(../img/icons.png) #2e2e2e 0 0 no-repeat; }
+.navi-btn-next{ background: url(../img/icons.png) #2e2e2e -32px 0 no-repeat; }

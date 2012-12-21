@@ -1,0 +1,77 @@
+
+.icons{ background-image: url(../img/icons.png); background-repeat: no-repeat; }
+.icons-left-disable{ background-position: 0 0; }
+.icons-right-disable{ background-position: -32px 0; }
+.icons-top-disable{ background-position: -64px 0; }
+.icons-bottom-disable{ background-position: -96px 0; }
+.icons-left{ background-position: 0 -32px; }
+.icons-right{ background-position: -32px -32px; }
+.icons-top{ background-position: -64px -32px; }
+.icons-bottom{ background-position: -96px -32px; }
+.icons-article{ background-position: 0 -96px; }
+.icons-heart{ background-position: -64px -96px; }
+.icons-share{ background-position: -128px -96px; }
+.icons-rss{ background-position: -192px -96px; }
+.icons-photo{ background-position: -256px -96px; }
+
+.corner{ width: 14px; height: 14px; background: url(../img/corner_black.png); display: inline-block; }
+
+#totop{ position: fixed; bottom: 100px; left: 800px; background: url(../img/icons.png) #2e2e2e -64px 0 no-repeat; width: 32px; height: 32px; }
+
+#header{ padding: 15px 0; }
+#header h1{ width: 185px; border-right: #89c4ec solid 5px; font-size: 14px; text-align: right; padding: 0 10px 0 0; display: inline-block; margin: 0; }
+#header h1 span{ color: #545454; font-weight: normal; }
+#header h1 span.description{ display: block; font-size: 12px; color: #999; font-family: '宋体'; margin: 5px 0 0 0; }
+#crumbs{ font-size: 12px; color: #fff; background: #2e2e2e; padding: 6px 7px; display: inline-block; vertical-align: top; margin: 0 0 0 10px; position: relative; }
+#crumbs .corner{ position: absolute; bottom:-14px; left: 10px; }
+
+#wrap{  }
+
+#sidenav{ width: 200px; position: relative; overflow: hidden; }
+
+#sidenav ul{ margin: 0; }
+#sidenav ul>li{ list-style: none; }
+#sidenav a{ color: #545454; display: block; margin: 0 0 2px 0; border-right: #595857 solid 5px; text-align: right; padding: 0 10px 0 0;  height: 30px; line-height: 30px;  }
+#sidenav a:hover{ border-color: #38a1db; color: #38a1db; }
+#sidenav li ul>li a{ border-color: #969696; font-size: 12px; color: #969696; }
+#navbar{ text-align: right; }
+#navbar .navbar-btn{ border: none; display: inline-block; padding: 0; height: 32px; width: 32px; margin: 0; vertical-align: middle; }
+.navbar-btn{ background-color: #f5f5f5; }
+#navbar span{ margin: 0 1em 0 0; }
+#navbar .display-line{ background: url(../img/line_bg.png) 0 0 repeat-x; width: 60px; display: inline-block; height: 32px; vertical-align: middle; }
+
+#main{ width: 800px; }
+
+#article{ width: 550px; }
+.article{ padding: 0 15px 15px 15px; }
+.article .bar{ background: url(../img/line_bg.png) repeat-x; height: 30px; line-height: 30px; text-align: right; }
+.article .bar>a{ background: #fff; margin: 0 10px 0 0; padding:0 5px; color: #545454; }
+.article .bar>a.gray{ color: #999; }
+.article .bar>a:hover{ color: inherit; }
+
+.page{ overflow:hidden; zoom:1; }
+.page:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
+.page a{ background: #484848; height: 30px; padding: 0 10px; display: inline-block; line-height: 30px; color: #fff; }
+.page .alignleft{ float: left; margin: 0 0 0 15px; }
+.page .alignright{ float: right; margin: 0 15px 0 0; }
+
+#aside{ width: 250px; }
+aside dt,aside dl,aside dd{ margin: 0; }
+#aside .funbar{ background-color: #f5f5f5; line-height: 0; }
+#aside .funbar>a{ height: 48px; width: 48px; display: inline-block; background-color: #f5f5f5; }
+#aside .funbar>a.attr{ background-color:#fff; }
+.funbar>a.icons-article{ background-position: 8px -88px; }
+.funbar>a.icons-heart{ background-position: -56px -88px; }
+.funbar>a.icons-share{ background-position: -120px -88px; }
+.funbar>a.icons-rss{ background-position: -184px -88px; }
+.funbar>a.icons-photo{ background-position: -248px -88px; }
+
+#footer{ text-align: left; background: url(../img/footer_bg.png) 0 0 repeat-x ; padding: 25px 15px 15px 15px; margin: 15px 0 0 0; }
+
+.widget{ background: #f5f5f5; padding: 10px; }
+.widget h3{ font-weight: normal; font-size: 12px; color: #969696; }
+
+.widget.info{ background: #eee; }
+.widget.info dl{ margin: 0 0 10px 0; }
+.widget.info dt{ font-size: 12px; color: #969696; font-weight: normal; }
+.widget.info dd{ font-size: 18px; color: #969696; }
