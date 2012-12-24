@@ -79,7 +79,7 @@
 		scrollable.init(this);
 		scrollable.wrap(this.find(options.item).parent());
 		scrollable.items(this.find(options.item));
-		scrollable.navi(this.find(options.navi).find('a'));
+		scrollable.navi(this.find(options.navi));
 		scrollable.to(options.index==undefined?0:index);
 	}
 }(jQuery);
