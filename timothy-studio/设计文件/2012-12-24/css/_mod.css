@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+/**
+ * 提示模型
+ */
+.corner{ width: 14px; height: 14px; background: url(../img/corner_black.png); display: inline-block; }
+
+.tip{ position: absolute; background: #2e2e2e; color: #fff; }
+.tip dt{ padding: 5px 15px; }
+.tip dd{ margin: 0; padding: 5px 15px; }
+.tip .corner,.tip .corner.left,.tip .corner.right,.tip .corner.bottom{ position: absolute; background-color: transparent; padding: 0; }
+.tip .corner{ bottom: -14px; left: 10px; }
+.tip .corner.left{ right: -14px; top: 10px; left: auto; bottom: auto; }
+.tip .corner.right{ background-image: url(../img/corner_black_right.png); right: auto; top: 10px; left: -14px; bottom: auto; }
+.tip .corner.right{ background-image: url(../img/corner_black_bottom.png); right: auto; top: -14px; left: 10px; bottom: auto; }
+
+
+/**
+ * 默认轮播风格
+ */
+.scrollable{ overflow: hidden; zoom:1; position: relative; }
+.scrollable>.items.horizontal{ width: 20000em; zoom:1; overflow: hidden; }
+.scrollable>.items.horizontal>*{ float: left; }
+.scrollable>.items.horizontal:after{ clear: both;content: ".";display: block;height: 0;visibility: hidden; }
+.scrollable>.navi{}
+.scrollable .navi-btn-prev{}
+.scrollable .navi-btn-next{}
+
+
+/**
+ * photo-scrollable 图片轮播风格
+ */
+.photo-scrollable{ height: 350px; width: 520px; margin: 0 0 10px 0; }
+.photo-scrollable>.items{}
+.photo-scrollable>.navi{ position: absolute; bottom:0; right: 0; line-height: 0; opacity: .9; }
+.navi-pageinfo{ background: #2e2e2e; display: inline-block; height: 32px; line-height: 32px; padding: 0 5px; color: #fff; vertical-align: bottom; }
+.navi-btn-prev,.navi-btn-next{ display: inline-block; height: 32px; width: 32px; vertical-align: bottom; }
+.navi-btn-prev{ background: url(../img/icons.png) #2e2e2e 0 0 no-repeat; }
+.navi-btn-next{ background: url(../img/icons.png) #2e2e2e -32px 0 no-repeat; }
