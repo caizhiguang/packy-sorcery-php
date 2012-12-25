@@ -1,9 +1,6 @@
 !function($){
 
 	$(document).ready(function(){
-		
-		$(window).bind('resize',function(){$("#article").height($(window).height());});
-		$("#article").height($(window).height());
 
 		$('#bottom>nav>a').navtip('#bottom~.tip',[-20,10]);
 
