@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="js/plug-in/jquery-1.8.2.min.js"></script>
 		<script type="text/javascript" src="js/plug-in/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="js/plug-in/jquery.scrollable.js"></script>
-		<script type="text/javascript" src="js/style.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
 	</head>
 	<body>
 
@@ -20,62 +20,104 @@
 			<dd>内容</dd>
 		</dl> -->
 
-		<!-- 页头 -->
-		<header id="bottom">
-			<h1><a href="javascript:;">&copy 悠闲的下午茶时间</a></h1>
+		<!-- 页脚 -->
+		<footer id="bottom">
+			<a class="copy" href="javascript:;">&copy 悠闲的下午茶时间</a>
 			<nav>
 				<a href="javascript:;">日历</a>
 				<a href="javascript:;">订阅</a>
-				<a href="javascript:;">标签</a>
+				<a href="javascript:;" rel=".tip-tag">标签</a>
 				<a href="javascript:;">关于</a>
 				<a href="javascript:;">友情链接</a>
 			</nav>
-			<aside>
-				<form action="" class="search">
-					<input type="text" name="search" class="input-search">
-					<input type="submit" value="search" class="btn-round btn">
-				</form>
-			</aside>
-		</header>
+			<form action="" class="search btn-group">
+				<input type="text" name="search" class="input-search">
+				<button type="submit" class="btn-round btn">search</button>
+			</form>
+		</footer>
+		<dl class="tip tip-tag">
+			<dt class="corner"></dt>
+			<dd>
+				 <a href="">Wordpress</a>, <a href="">学习笔记</a>, <a href="">日志</a>, <a href="">模板</a>, <a href="">403</a>, <a href="">xampp</a>, <a href="">多域名</a>, <a href="">多站点</a>
+			</dd>
+		</dl>
 
 		<div id="line"></div>
 		<section id="article">
-			
-			<article class="line">
-				<div class="corner"></div>
-				<header class="unit">
-					<div class="round-unit"></div>
-					<h3><a href="">通俗解释主要编程语...</a></h3>
-					<p><span class="time">16 / 十 / 2012</span></p>
-				</header>
-				<div class="unit content">在 Quora 网站上有这样一个问答贴：《In layman’s terms, what are the major programming languages, and what are they used for? 》如何用通俗语言来解释主要的编程语言及其用途。这个问答贴回复很多，不乏精彩回答。伯乐在线挑选得票数最高排前二的回复。</div>
-				<aside class="unit">
-					<dl>
-						<dd><a href="">16℃</a></dd>
-						<dt>热度</dt>
-					</dl>
-					<dl>
-						<dd><a href="">学习笔记</a></dd>
-						<dt>目录</dt>
-					</dl>
-					<dl>
-						<dd>
+			<section class="article">
+				<div class="unit content">
+					<div class="corner"></div>
+					<article>
+						在 Quora 网站上有这样一个问答贴：《In layman’s terms, what are the major programming languages, and what are they used for? 》如何用通俗语言来解释主要的编程语言及其用途。这个问答贴回复很多，不乏精彩回答。伯乐在线挑选得票数最高排前二的回复。
+					</article>
+					<aside>
+						<a href="" class="icons icons-hot">16℃</a>
+						<a href="" class="icons icons-catalog">学习笔记</a>
+						<span class="icons icons-tag">
 							<a href="">视觉设计</a>
 							<a href="">语言与文字</a>
-						</dd>
-						<dt>标签</dt>
-					</dl>
-				</aside>
-				<div class="hover-box"></div>
-			</article>
+						</span>
+					</aside>
+				</div>
+				<header class="unit">
+					<div class="round-unit"></div>
+					<h3><a href="" class="icons icons-article">通俗解释主要编程语...</a></h3>
+					<p><span class="time">16 / 十 / 2012</span></p>
+				</header>
+			</section>
 
+			<section class="article">
+				<div class="unit content">
+					<div class="corner"></div>
+					<article>
+						<span class="img"><img src="photo/3.jpg" alt=""></span>
+						<span class="img"><img src="photo/2.jpg" alt=""></span>
+						<span class="img"><img src="photo/1.jpg" alt=""></span>
+					</article>
+					<aside>
+						<a href="" class="icons icons-hot">16℃</a>
+						<a href="" class="icons icons-catalog">学习笔记</a>
+						<span class="icons icons-tag">
+							<a href="">视觉设计</a>
+							<a href="">语言与文字</a>
+						</span>
+					</aside>
+				</div>
+				<header class="unit">
+					<div class="round-unit"></div>
+					<h3><a href="" class="icons icons-photo">通俗解释主要编程语...</a></h3>
+					<p><span class="time">16 / 十 / 2012</span></p>
+				</header>
+			</section>
+
+			<section class="article">
+				<div class="unit content">
+					<div class="corner"></div>
+					<article>
+						<span class="img fleft"><img src="photo/3.jpg" alt=""></span>
+						在 Quora 网站上有这样一个问答贴：《In layman’s terms, what are the major programming languages, and what are they used for? 》如何用通俗语言来解释主要的编程语言及其用途。这个问答贴回复很多，不乏精彩回答。伯乐在线挑选得票数最高排前二的回复。
+					</article>
+					<aside>
+						<a href="" class="icons icons-hot">16℃</a>
+						<a href="" class="icons icons-catalog">学习笔记</a>
+						<span class="icons icons-tag">
+							<a href="">视觉设计</a>
+							<a href="">语言与文字</a>
+						</span>
+					</aside>
+				</div>
+				<header class="unit">
+					<div class="round-unit"></div>
+					<h3><a href="" class="icons icons-photo">通俗解释主要编程语...</a></h3>
+					<p><span class="time">16 / 十 / 2012</span></p>
+				</header>
+			</section>
 		</section>
 
-		<aside>
-			
-
-
-		</aside>
+		<header id="header">
+			<h1>悠闲的下午茶时间</h1>
+			<p>创意起始于生活与空闲的下午…</p>
+		</header>
 
 		<div id="mask"></div>
 		<div id="bg">
@@ -84,12 +126,5 @@
 			<img src="./photo/2.jpg" alt="" style="display:none;">
 			<img src="./photo/3.jpg" alt="" style="display:none;">
 		</div>
-		<script type="text/javascript">
-			jQuery(document).ready(function($){
-				$("#article>article").clone().appendTo("#article");
-				$("#article>article").clone().appendTo("#article");
-				$("#article>article").clone().appendTo("#article");
-			});
-		</script>
 	</body>
 </html>
