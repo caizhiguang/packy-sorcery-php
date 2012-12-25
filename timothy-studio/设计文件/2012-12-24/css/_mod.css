@@ -5,14 +5,15 @@
  */
 .corner{ width: 14px; height: 14px; background: url(../img/corner_black.png); display: inline-block; }
 
-.tip{ position: absolute; background: #2e2e2e; color: #fff; }
-.tip dt{ padding: 5px 15px; }
-.tip dd{ margin: 0; padding: 5px 15px; }
+.tip{ position: absolute; background: #2e2e2e; color: #fff; z-index: 999; padding: 10px; }
+.tip dd{ margin: 0; }
 .tip .corner,.tip .corner.left,.tip .corner.right,.tip .corner.bottom{ position: absolute; background-color: transparent; padding: 0; }
 .tip .corner{ bottom: -14px; left: 10px; }
 .tip .corner.left{ right: -14px; top: 10px; left: auto; bottom: auto; }
 .tip .corner.right{ background-image: url(../img/corner_black_right.png); right: auto; top: 10px; left: -14px; bottom: auto; }
 .tip .corner.right{ background-image: url(../img/corner_black_bottom.png); right: auto; top: -14px; left: 10px; bottom: auto; }
+.tip a{ color: #fff; }
+.tip a:hover{ color: inherit; }
 
 
 /**
