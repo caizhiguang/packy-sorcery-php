@@ -4,6 +4,13 @@
 
 		$('#bottom>nav>a').navtip('#bottom~.tip',[-20,10]);
 
+		$('#nav>li.active>ul').slideDown('normal','easeInOutQuint').parents('li').find('b').text('-');
+		$('#nav>li>a').click(function(e){
+			$(e.target).find('b').text('-').parent().next().slideDown('normal','easeInOutQuint').parents('li').addClass('active')
+			.siblings('.active').removeClass('active').find('b').text('+').parent().next().slideUp('normal','easeInOutQuint');
+		});
+
+		$('#article').width($('.article').outerWidth()*$('.article').length).height($(window).height());
 	});
 
 	$.fn.navtip=function(tip,spacing){
