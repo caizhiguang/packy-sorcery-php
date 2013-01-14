@@ -2,6 +2,17 @@
 
 	$(document).ready(function(){
 
+		$('#bg>img').each(function(i){
+			$(this).load(function(){
+				var width = $(this).width();
+				var height = $(this).height();
+				var multiple = 3;
+				width = width*multiple;
+				height = height*multiple;
+				$(this).width(width).height(height).css({top:($(window).height()-height)/2,left:($(window).width()-width)/2});
+			});
+		});
+
 		$('#bottom>nav>a').navtip('#bottom~.tip',[-20,10]);
 
 		$('#nav>li.active>ul').slideDown('normal','easeInOutQuint').parents('li').find('b').text('-');
