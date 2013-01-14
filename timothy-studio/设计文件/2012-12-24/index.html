@@ -25,12 +25,19 @@
 			<p>创意起始于生活与空闲的下午…</p>
 		</header>
 
-		<nav id="sidenav" class="unit">
+		<nav id="navi">
+			<a href="javascript:;" class="current">文章</a>
+			<a href="javascript:;">日历</a>
+			<a href="javascript:;">关于</a>
+		</nav>
+
+		<div id="sidenav" class="unit">
 			<div class="items">
 				<!-- 导航 -->
 				<div>
-					<ul id="nav">
-						<li class="sub active">
+					<ul class="nav-catalog">
+						<li class="sub active"><a href="javascript:;" class="index"><b></b>// ALL</a></li>
+						<li class="sub">
 							<a href="javascript:;" class="index"><b>+</b> 开发日记</a>
 							<ul>
 								<li><a href="">PHP</a></li>
@@ -39,8 +46,8 @@
 								<li><a href="">.net</a></li>
 							</ul>
 						</li>
-						<li><a href="javascript:;" class="index">学习日记</a></li>
-						<li><a href="javascript:;" class="index">心情日记</a></li>
+						<li><a href="javascript:;" class="index"><b></b>学习日记</a></li>
+						<li><a href="javascript:;" class="index"><b></b>心情日记</a></li>
 						<li class="sub">
 							<a href="javascript:;" class="index"><b>+</b> 图书日记</a>
 							<ul>
@@ -51,32 +58,20 @@
 					</ul>
 				</div>
 			</div>
+		</div>
 
-			<!-- <div id="navbar" class="navi">
-				<a href="javascript:;" class="navbar-btn icons icons-left-disable next" id="nav_btn_prev"></a>
-				<a href="javascript:;" class="navbar-btn icons icons-right prev" id="nav_btn_next"></a>
-			</div> -->
-
-		</nav>
-
-		<section id="article" class="line">
+		<div id="line"></div>
+		<section id="article">
 			
 		</section>
 
 		<!-- 页脚 -->
 		<footer id="bottom">
+			<a href="javascript:;">搜索</a>
+			<a href="javascript:;">订阅</a>
+			<a href="javascript:;" rel=".tip-tag">标签</a>
+			<a href="javascript:;">友情链接</a>
 			<a class="copy" href="javascript:;">&copy 悠闲的下午茶时间</a>
-			<nav>
-				<a href="javascript:;">日历</a>
-				<a href="javascript:;">订阅</a>
-				<a href="javascript:;" rel=".tip-tag">标签</a>
-				<a href="javascript:;">关于</a>
-				<a href="javascript:;">友情链接</a>
-			</nav>
-			<form action="" class="search btn-group">
-				<input type="text" name="search" class="input-search">
-				<button type="submit" class="btn-round btn">search</button>
-			</form>
 		</footer>
 		<dl class="tip tip-tag">
 			<dt class="corner"></dt>
@@ -85,9 +80,13 @@
 			</dd>
 		</dl>
 
+			<!-- <form action="" class="search btn-group">
+				<input type="text" name="search" class="input-search">
+				<button type="submit" class="btn-round btn">search</button>
+			</form> -->
+
 		<div id="mask"></div>
 		<div id="bg">
-			<img src="./photo/2.jpg" alt="" style="">
 			<img src="./photo/1.jpg" alt="" style="display:none;">
 			<img src="./photo/2.jpg" alt="" style="display:none;">
 			<img src="./photo/3.jpg" alt="" style="display:none;">
