@@ -50,7 +50,7 @@
 			$(e.target).parents('li').addClass('active').find('b').text($(e.target).find('b').text().length?'-':$(e.target).find('b').text()).parent().next().slideDown('normal','easeInOutQuint');
 		});
 
-		$('#article').load('./js/ajax/articlebylist.html');
+		//$('#article').load('./js/ajax/articlebylist.html');
 
 		// $('#article').width($('.article').outerWidth()*$('.article').length).height($(window).height());
 
