@@ -662,6 +662,10 @@
 	
 </table>
 
+<colors>
+	<color name="" value=""></color>
+</colors>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 	<script type="text/javascript">
 
@@ -670,23 +674,36 @@
 		var count = $('table.colortable td').length
 
 		for (var i = 0; i < count; i++) {
-			$('#s').append('<tr><td class="name"></td><td class="code"></td></tr>');
+			$('colors').append('<color name="" value=""></color>');
 		}
 
-		var _index = 1;
-		$('.colortable a').each(function(i){
-			var i_i = i+1;
+		var tr_count = $('.colortable tr').length;
+		var td_count = 0;
+
+		$('.colortable tr').each(function(i){
+			td_count = $(this).find('td').length;
 			$(this).find('td').each(function(j){
-				var j_j = j+1;
-
-				var index = (_index*j_j)-1;
-
-				var array = $(this).find('a').attr('title').split(" ");
-				$('#s tr').eq(index).css('background-color',$(this).css('background-color')).find('td').eq(1).text(array[0]);
-				$('#s tr').eq(index).find('td').eq(0).text(array[1]);
+				
+				var index = j*tr_count+i;
+				var array = $.trim($(this).find('a').attr('title')).split(" ");
+				$('colors>color').eq(index).css('background-color',$(this).css('background-color')).attr({'name':array[1],'value':array[0]}).text($.trim($(this).find('a').attr('title')));
 			});
-
 		});
+
+		// var _index = 1;
+		// $('.colortable tr').each(function(i){
+		// 	count = $(this).find('td').length;
+		// 	$(this).find('td').each(function(j){
+		// 		var j_j = j+1;
+
+		// 		var index = (count*i+j_j)-1;
+
+		// 		var array = $(this).find('a').attr('title').split(" ");
+		// 		$('#s tr').eq(index).css('background-color',$(this).css('background-color')).find('td').eq(1).text(array[0]);
+		// 		$('#s tr').eq(index).find('td').eq(0).text(array[1]);
+		// 	});
+
+		// });
 
 	});
 
