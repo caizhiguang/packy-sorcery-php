@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+a{ color:#1e1e1e; text-decoration: none; }
+a:hover{ color: #38a1db; }
+a[target='_blank']{ background: url(../img/redo.png) center right no-repeat; padding: 0 24px 0 0; }
+h1,h2,h3,h4,h5,h6{ font-family: 'Microsoft Yahei'; }
