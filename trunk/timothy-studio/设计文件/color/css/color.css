@@ -1,0 +1,7 @@
+#sidebar li{
+	width: 8em;
+	height: 3em;
+}
+
+body>h1{ color: #fff; font-size: 48px; position: fixed; bottom: 100px; right: 100px; }
+body>h1~p{ color: #fff; font-size: 36px; position: fixed; bottom: 50px; right: 100px; }
