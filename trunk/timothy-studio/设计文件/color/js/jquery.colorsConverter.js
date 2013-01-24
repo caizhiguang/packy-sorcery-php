@@ -1,20 +1,20 @@
-Math.Min = function() {
-  var min = 255;
-  for(var i = 0; i < arguments.length; i++)
-    if(arguments < min)
-      min = arguments;
-  return min;
-}
-Math.Max = function() {
-  var max = 0;
-  for(var i = 0; i < arguments.length; i++)
-    if(arguments > max)
-      max = arguments;
-  return max;
-}
-
 !function($){
-	
+
+  function MIN() {
+    var min = 255;
+    for(var i = 0; i < arguments.length; i++)
+      if(arguments[i] < min)
+        min = arguments[i];
+    return min;
+  }
+  function MAX() {
+    var max = 0;
+    for(var i = 0; i < arguments.length; i++)
+      if(arguments[i] > max)
+        max = arguments[i];
+    return max;
+  }
+  	
   $.HextoRGB = function(hex) {
     hex = hex.toUpperCase();
     if(hex.charAt(0) == "#") hex = hex.substring(1,hex.length);
@@ -62,7 +62,7 @@ Math.Max = function() {
     cmyk.c = Math.pow(1-r,.45);
     cmyk.m = Math.pow(1-g,.45);
     cmyk.y = Math.pow(1-b,.45);
-    cmyk.k = Math.Min(cmyk.c,cmyk.y,cmyk.m);
+    cmyk.k = MIN(cmyk.c,cmyk.y,cmyk.m);
     cmyk.c -= cmyk.k;
     cmyk.m -= cmyk.k;
     cmyk.y -= cmyk.k;
@@ -74,8 +74,8 @@ Math.Max = function() {
     b /= 255;
     var min, max, delta;
     var hsv = {};
-    min = Math.Min(r,g,b);
-    max = Math.Max(r,g,b);
+    min = MIN(r,g,b);
+    max = MAX(r,g,b);
     hsv.v = max;
     delta = max - min;
     if (max != 0) hsv.s = delta/max;
@@ -154,8 +154,8 @@ Math.Max = function() {
     B /= 255;
     var max, min,diff,r_dist,g_dist,b_dist;
     var hls = {};
-    max = Math.Max(R,G,B);
-    min = Math.Min(R,G,B);
+    max = MAX(R,G,B);
+    min = MIN(R,G,B);
     diff = max-min;
     hls.l = (max+min)/2;
     if (diff==0) {
