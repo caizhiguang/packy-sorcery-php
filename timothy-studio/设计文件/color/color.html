@@ -22,6 +22,12 @@
 			<span class="g"></span>
 		</p>
 
+		<footer>
+			<script src="http://s21.cnzz.com/stat.php?id=3477190&web_id=3477190" language="JavaScript"></script>
+			<span> | </span>
+			<a class="copyright" rel="copy" href="http://blog.lpreterite.com" >@悠闲的下午茶时间</a>
+		</footer>
+
 	<script type="text/javascript">
 
 	jQuery(document).ready(function($){
@@ -35,13 +41,21 @@
 			window.index = index==undefined?window.index:index;
 
 			$('h1').text(name).next().text(value);
-			$(document.body).css('background-color',value);
+			$(document.body).css('background-color',value).animate({scrollTop:$('#sidebar>li').eq(window.index).position().top});
+			window.location.hash="#"+value;
 
 			var rgbColor = $.HextoRGB(value);
 			var hsvColor = $.RGBtoHSV(rgbColor.r,rgbColor.g,rgbColor.b);
-			if(hsvColor.v>50)
+			if(hsvColor.v>0.89 && hsvColor.s<0.10 && hsvColor.h>30 && hsvColor.h<90)
 				$('h1,h1~p').css('color','#2e2e2e');
-
+			else if(hsvColor.v>0.89 && hsvColor.s<0.10)
+				$('h1,h1~p').css('color','#2e2e2e');
+			else if(hsvColor.v>0.89 && hsvColor.h>30 && hsvColor.h<90)
+				$('h1,h1~p').css('color','#2e2e2e');
+			else if(hsvColor.v>0.80 && hsvColor.s<0.032)
+				$('h1,h1~p').css('color','#2e2e2e');
+			else
+				$('h1,h1~p').css('color','#fffffc');
 			window.index++
 			if(window.index>=data.length)
 				window.index=0;
@@ -64,7 +78,7 @@
 
 				$(document).data('colors',data);
 				colors_scrollable();
-				setInterval(window.colors_scrollable,3000);
+				setInterval(window.colors_scrollable,10000);
 			},
 			dataFilter:function(data,type){
 				var result = [];
