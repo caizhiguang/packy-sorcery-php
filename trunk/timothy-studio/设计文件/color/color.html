@@ -17,9 +17,25 @@
 		<p></p>
 
 		<p class="rgb">
-			<span class="r"></span>
-			<span class="g"></span>
-			<span class="g"></span>
+			<span class="r">
+				<span class="spinner pie"></span>
+				<span class="filler pie"></span>
+				<span class="mask"></span>
+				<span class="name">R</span>
+			</span>
+			
+			<span class="g">
+				<span class="spinner pie"></span>
+				<span class="filler pie"></span>
+				<span class="mask"></span>
+				<span class="name">G</span>
+			</span>
+			<span class="b">
+				<span class="spinner pie"></span>
+				<span class="filler pie"></span>
+				<span class="mask"></span>
+				<span class="name">B</span>
+			</span>
 		</p>
 
 		<footer>
@@ -46,16 +62,41 @@
 
 			var rgbColor = $.HextoRGB(value);
 			var hsvColor = $.RGBtoHSV(rgbColor.r,rgbColor.g,rgbColor.b);
+			var rgbPreColor = {
+				r:rgbColor.r/255*360,
+				g:rgbColor.g/255*360,
+				b:rgbColor.b/255*360
+			};
+			var color = '#fffffc';
 			if(hsvColor.v>0.89 && hsvColor.s<0.10 && hsvColor.h>30 && hsvColor.h<90)
-				$('h1,h1~p').css('color','#2e2e2e');
+				color = '#2e2e2e';
 			else if(hsvColor.v>0.89 && hsvColor.s<0.10)
-				$('h1,h1~p').css('color','#2e2e2e');
+				color = '#2e2e2e';
 			else if(hsvColor.v>0.89 && hsvColor.h>30 && hsvColor.h<90)
-				$('h1,h1~p').css('color','#2e2e2e');
+				color = '#2e2e2e';
 			else if(hsvColor.v>0.80 && hsvColor.s<0.032)
-				$('h1,h1~p').css('color','#2e2e2e');
+				color = '#2e2e2e';
+			$('h1,h1~p').css('color',color);
+			$('.pie').css('border-color',color);
+			$('.mask').css('background-color',value);
+			// $('.r .spinner').css('transform','rotate('+rgbPreColor.r+'deg)');
+			// $('.g .spinner').css('transform','rotate('+rgbPreColor.g+'deg)');
+			// $('.b .spinner').css('transform','rotate('+rgbPreColor.b+'deg)');
+			if(rgbPreColor.r>180)
+				$('.r .mask').css('opacity',0).parents('.r').find('.spinner').css('transform','rotate('+(rgbPreColor.r-360)+'deg)').parents('.r').find('.filler').css('opacity',1);
 			else
-				$('h1,h1~p').css('color','#fffffc');
+				$('.r .spinner').css('transform','rotate('+rgbPreColor.r+'deg)').parents('.r').find('.filler').css('opacity',0);
+
+			if(rgbPreColor.r>180)
+				$('.g .mask').css('opacity',0).parents('.g').find('.spinner').css('transform','rotate('+(rgbPreColor.g-360)+'deg)').parents('.g').find('.filler').css('opacity',1);
+			else
+				$('.g .spinner').css('transform','rotate('+rgbPreColor.g+'deg)').parents('.g').find('.filler').css('opacity',0);
+
+			if(rgbPreColor.r>180)
+				$('.b .mask').css('opacity',0).parents('.b').find('.spinner').css('transform','rotate('+(rgbPreColor.b-360)+'deg)').parents('.b').find('.filler').css('opacity',1);
+			else
+				$('.b .spinner').css('transform','rotate('+rgbPreColor.b+'deg)').parents('.b').find('.filler').css('opacity',0);
+
 			window.index++
 			if(window.index>=data.length)
 				window.index=0;
