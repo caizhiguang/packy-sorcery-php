@@ -27,7 +27,8 @@ footer a:hover{ color: #ddd; }
 	position: relative;
 	margin-bottom:10px;
 }
-.rgb .name{ margin-bottom:10px; display: block; width: 100%; height: 100%; line-height: 100px; position: absolute; z-index: 999; top: 0; left: 0; }
+.rgb .name{ margin-bottom:10px; display: block; width: 100%; height: 100%; position: absolute; z-index: 999; top: 0; left: 0; padding-top: 1.8em; font-size: 18px; }
+.rgb .val{ font-size: 12px; }
 .rgb span{ display: block; }
 
 .pie {
@@ -43,8 +44,11 @@ footer a:hover{ color: #ddd; }
 	border-radius: 100% 0 0 100% / 50% 0 0 50%;
 	border-right: none;
 	transform-origin:right center;
+	-webkit-transform-origin:right center;
+	-ms-transform-origin:right center;
+	-o-transform-origin:right center; 
 	transform:rotate(45deg);
-	z-index: 997;
+	z-index: 990;
 }
 
 .filler {
@@ -58,6 +62,6 @@ footer a:hover{ color: #ddd; }
 	width: 50%;
 	height: 100%;
 	position: absolute;
-	z-index: 998;
+	z-index: 991;
 	background: #fff;
 }
