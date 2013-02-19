@@ -18,7 +18,10 @@ class About extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{
+	{		
+		$this->load->model('Users_model', 'users');
+		// dump($this->users->getFields('p_users'));
+		dump($this->users->query('select * from p_users'));
 		$this->load->view('about');
 	}
 }
