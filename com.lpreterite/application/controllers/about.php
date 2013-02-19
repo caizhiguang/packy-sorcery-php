@@ -21,7 +21,8 @@ class About extends CI_Controller {
 	{		
 		$this->load->model('Users_model', 'users');
 		// dump($this->users->getFields('p_users'));
-		dump($this->users->query('select * from p_users'));
+		// dump($this->users->query('select * from p_users'));
+		dump($this->users->seletc()->result_array());
 		$this->load->view('about');
 	}
 }
