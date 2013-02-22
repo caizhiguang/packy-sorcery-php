@@ -10,15 +10,37 @@ class TaskAction extends Action {
 
     public function index(){
 
-    	$this->tags();
-    	$this->tasks();
+        if($_GET['t']=='all')
+            $tasks = $this->tasks();
+        else
+            $tasks = $this->tasks_effective();
 
+    	$this->tags();
+
+        foreach ($tasks as $key => $value) {
+            $value['important'] = $value['end_time']==date('Y-m-d');
+        }
+
+        $this->assign('tasks',$tasks);
 		$this->display();
     }
 
     public function tasks(){
-    	$tasks = $this->task->select();
-    	$this->assign('tasks',$tasks);
+    	return $this->task->select();
+    }
+
+    public function tasks_effective(){
+        $begin = time();
+
+        return $this->task->where(array('end_time'=>array('egt',date('Y-m-d h:i:s',$begin))))->select();
+    }
+
+    public function tasks_today(){
+
+        $begin = time();
+        $end = time()+60*60*24-1;
+
+        return $this->task->where(array('end_time'=>array('between',array(date('Y-m-d h:i:s',$begin),date('Y-m-d h:i:s',$end)))))->select();
     }
 
     public function add_task(){

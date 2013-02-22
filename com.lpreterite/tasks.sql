@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-02-21 17:46:55
+Date: 2013-02-22 10:22:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,11 +38,12 @@ CREATE TABLE `p_tasks` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
   `content` blob,
+  `tags` varchar(150) DEFAULT NULL,
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
   `uid` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tasks

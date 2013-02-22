@@ -38,3 +38,4 @@
 .navi-btn-prev,.navi-btn-next{ display: inline-block; height: 32px; width: 32px; vertical-align: bottom; }
 .navi-btn-prev{ background: url(../img/icons.png) #2e2e2e 0 0 no-repeat; }
 .navi-btn-next{ background: url(../img/icons.png) #2e2e2e -32px 0 no-repeat; }
+
