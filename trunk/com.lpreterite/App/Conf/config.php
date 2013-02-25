@@ -15,8 +15,8 @@ return array(
     'TMPL_L_DELIM'=>'{',//模板引擎普通标签开始标记
 	'TMPL_R_DELIM'=>'}',//模板引擎普通标签结束标记
 
-	'TAGLIB_BEGIN'=>'[',//标签库标签开始标签
-	'TAGLIB_END'=>']',//标签库标签结束标记
+	// 'TAGLIB_BEGIN'=>'[',//标签库标签开始标签
+	// 'TAGLIB_END'=>']',//标签库标签结束标记
     
     //路由
     'URL_CASE_INSENSITIVE' =>true,//路由没有大小写规范

@@ -25,16 +25,26 @@
 						
 					</div>
 					
-					<div id="task-today">
+					<div id="tasks">
 						<h2>任务</h2>
 						<ol class="tasks">
 							<?php if(is_array($tasks)): foreach($tasks as $key=>$item): ?><li>
-								<?php if(item.important): ?><span><a href="#task-<?php echo ($item["id"]); ?>" title="今天必须完成的任务"><?php echo ($item["name"]); ?> <em>!</em></a></span>
+								<?php if($item['important']): ?><span><a class="title" href="#task-<?php echo ($item["id"]); ?>" rel="#task-detail" title="今天必须完成的任务"><?php echo ($item["name"]); ?> <em>!</em></a></span>
 								<?php else: ?>
-								<span><a href="#task-<?php echo ($item["id"]); ?>"><?php echo ($item["name"]); ?></a></span><?php endif; ?>
+								<span><a class="title" href="#task-<?php echo ($item["id"]); ?>" rel="#task-detail"><?php echo ($item["name"]); ?></a></span><?php endif; ?>
 								<span><?php echo (date("Y-m-d",strtotime($item["end_time"]))); ?></span>
 							</li><?php endforeach; endif; ?>
 						</ol>
+					</div>
+
+					<div id="task-detail">
+						<h2 class="name"></h2>
+						<p class="content"></p>
+						<p>
+							<span class="start_time"></span>
+							<span> - </span>
+							<span class="end_time"></span>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -93,6 +103,18 @@
 				}
 			});
 
+			$('#tasks a.title[rel]').overlay({
+				top:160,
+				mask:{
+					color:'#222',
+					loadSpeed:200,
+					opacity:.5
+				},
+				onLoad:function(){
+					alert('test');
+				}
+			});
+
 			$('#time_defined').change(function(){
 				$('#_time_defined').show();
 			});
@@ -131,7 +153,17 @@
 					type:'POST',
 					success:function(data){
 						if(!data.status){alert(data.info); return;}
-						$('#tasks').append('<tr id="task-'+data.id+'"><td>'+data.id+'</td><td>'+data.name+'</td><td>'+data.start_time+'</td><td>'+data.end_time+'</td><td><a href="__SELF__delete_task?id='+data.id+'">删除</a></td></tr>');
+						$.ajax({
+							url:'__SELF__api?action=tasks',
+							type:'GET',
+							dataType:'json',
+							success:function(data){
+								$('#tasks ol').empty();
+								for (var i = data.length - 1; i >= 0; i--) {
+									$('#tasks ol').append('<li><span><a class="title" href="#task-'+data[i].id+'" rel="#task-detail">'+data[i].name+'</a></span> <span>'+$.dateToString($.stringToDate(data[i].end_time),'Y-M-D')+'</span></li>');
+								};
+							}
+						});
 					}
 				});
 				return false;
