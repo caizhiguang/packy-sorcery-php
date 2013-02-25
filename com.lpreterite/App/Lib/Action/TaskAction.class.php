@@ -18,11 +18,23 @@ class TaskAction extends Action {
     	$this->tags();
 
         foreach ($tasks as $key => $value) {
-            $value['important'] = $value['end_time']==date('Y-m-d');
+            $tasks[$key]['important'] = strtotime($value['end_time'])==time();
         }
 
         $this->assign('tasks',$tasks);
 		$this->display();
+    }
+
+    public function api(){
+        switch ($_GET['action']) {
+            case 'tasks':
+                $this->ajaxReturn($this->tasks());
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     }
 
     public function tasks(){
@@ -52,6 +64,7 @@ class TaskAction extends Action {
         $verification = $this->task->add($data);//能否于数据库中添加(修改、删除)数据
         if(!$verification){$this->error($this->task->getError());return;}
         $data['id'] = $verification;
+        $data['important'] = strtotime($data['end_time'])==time();
 
 
         //返回成功信息
@@ -67,6 +80,7 @@ class TaskAction extends Action {
         $verification = $this->task->save($data);//能否于数据库中添加(修改、删除)数据
         if(!$verification){$this->error($this->task->getError());return;}
         $data['id'] = $verification;
+        $data['important'] = strtotime($data['end_time'])==time();
 
 
         //返回成功信息
