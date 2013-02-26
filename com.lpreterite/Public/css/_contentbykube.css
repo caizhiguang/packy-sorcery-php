@@ -614,7 +614,7 @@ table.tableforms tr.labels td {
 input[type="radio"],
 input[type="checkbox"] {
   position: relative;
-  top: -1px;
+  top: 2px;
 }
 input[type="text"],
 input[type="password"],

@@ -17,10 +17,6 @@ class TaskAction extends Action {
 
     	$this->tags();
 
-        foreach ($tasks as $key => $value) {
-            $tasks[$key]['important'] = strtotime($value['end_time'])==time();
-        }
-
         $this->assign('tasks',$tasks);
 		$this->display();
     }
@@ -38,13 +34,13 @@ class TaskAction extends Action {
     }
 
     public function tasks(){
-    	return $this->task->select();
+    	return $this->task->order('end_time asc')->select();
     }
 
     public function tasks_effective(){
         $begin = time();
 
-        return $this->task->where(array('end_time'=>array('egt',date('Y-m-d h:i:s',$begin))))->select();
+        return $this->task->where(array('end_time'=>array('egt',date('Y-m-d h:i:s',$begin))))->order('end_time asc')->select();
     }
 
     public function tasks_today(){
@@ -52,7 +48,7 @@ class TaskAction extends Action {
         $begin = time();
         $end = time()+60*60*24-1;
 
-        return $this->task->where(array('end_time'=>array('between',array(date('Y-m-d h:i:s',$begin),date('Y-m-d h:i:s',$end)))))->select();
+        return $this->task->where(array('end_time'=>array('between',array(date('Y-m-d h:i:s',$begin),date('Y-m-d h:i:s',$end)))))->order('end_time asc')->select();
     }
 
     public function add_task(){
@@ -84,7 +80,7 @@ class TaskAction extends Action {
 
 
         //返回成功信息
-        $message = '添加完成！';
+        $message = '编辑完成！';
         $this->success($message,'',$data);
     }
 
