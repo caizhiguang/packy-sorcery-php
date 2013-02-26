@@ -66,6 +66,10 @@
 			};
 		});
 
+		$('.groud input[type="radio"]').change(function(){
+			$('#_time_defined').toggle($(this).attr('id')=='time_defined');
+		});
+
 		$(document.forms['task-form']).submit(function(){
 			var data = $(this).serializeObject();
 			

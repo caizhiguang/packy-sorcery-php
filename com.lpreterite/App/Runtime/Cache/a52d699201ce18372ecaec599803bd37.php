@@ -25,9 +25,6 @@
 					<div class="bar">
 						
 					</div>
-					
-					
-					
 				</div>
 			</div>
 			<div class="unit size1of4">
@@ -48,8 +45,10 @@
 									<label for="time_now"><input type="radio" name="time_mode" value="0" id="time_now" checked="checked" />当天</label>
 									<label for="time_week"><input type="radio" name="time_mode" value="1" id="time_week" />一周</label>
 									<label for="time_defined"><input type="radio" name="time_mode" value="2" id="time_defined" />自定义</label>
-									<div id="_time_defined">
-										<input type="text" name="defined_start_time" id="defined-start-time"> - <input type="text" name="defined_end_time" id="defined-end-time">
+									<div id="_time_defined" class="line">
+										<span class="unit"><input type="text" name="defined_start_time" id="defined-start-time"></span>
+										<span class="unit"> - </span>
+										<span class="unit"><input type="text" name="defined_end_time" id="defined-end-time"></span>
 									</div>
 									<input type="hidden" name="start_time">
 									<input type="hidden" name="end_time">
