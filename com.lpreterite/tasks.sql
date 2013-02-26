@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50516
+Source Server Version : 50527
 Source Host           : localhost:3306
 Source Database       : lprete_blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50516
+Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2013-02-22 10:22:07
+Date: 2013-02-26 20:03:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,6 +42,8 @@ CREATE TABLE `p_tasks` (
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
   `uid` int(255) DEFAULT NULL,
+  `important` int(1) NOT NULL,
+  `complete` int(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
