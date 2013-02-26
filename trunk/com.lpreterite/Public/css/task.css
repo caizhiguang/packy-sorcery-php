@@ -32,17 +32,18 @@ h1{ font-size: 100px; position: absolute; top: 0; left: 90px; z-index: 0; color:
 #taskform .groud label{ display: inline-block; *display: inline; zoom:1; }
 #taskform>div{ margin-bottom:1em; }
 #taskform .small.name{ width: 100%; }
-#taskform .more{ position: relative; overflow: hidden; height: 10px; }
+#taskform .more{ position: relative; overflow: hidden; height: 12px; }
 #taskform .more:hover{ border-color: #ef843c; }
 #taskform .more:hover a{ color: #ef843c; }
-#taskform .more a{ color: #b5b5b5; position: absolute; left: 50%; font-size: 12px; height: 12px; }
+#taskform .more a{ color: #b5b5b5; position: absolute; left: 50%; display: inline; height: 12px; line-height: 12px; font-size: 12px; vertical-align: middle; }
 #taskform .up{ border-top:#b5b5b5 solid 2px; margin-top:5px; }
-#taskform .up>a{ color: #b5b5b5; top: -100%; }
+#taskform .up>a{ color: #b5b5b5; top: -50%; }
 #taskform .down{ border-bottom:#b5b5b5 solid 2px; }
-#taskform .down>a{ color: #b5b5b5; bottom: -.2em; }
+#taskform .down>a{ color: #b5b5b5; bottom: -50%; }
 #taskform .more-content{ display: none; }
 #taskform .content{ width: 100%; height: 50px; }
 #_time_defined{ display: none; }
+#_time_defined input{ width: 80px; }
 .msg{
 	width: 400px;
 	padding:15px;
