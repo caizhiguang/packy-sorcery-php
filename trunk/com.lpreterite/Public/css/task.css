@@ -16,21 +16,32 @@ h1{ font-size: 100px; position: absolute; top: 0; left: 90px; z-index: 0; color:
 	transform-origin: left top;
  }
 
-#wrap .line>div{ width: 35%; }
-#wrap .line>div:first-child{ width: 65%; }
-
 #main{ margin: 15px 15px 15px 110px; }
 #main h2,#side h2{ color: #f3843d; font-size: 18px; border-bottom:#ddd solid 1px; padding: .5em; }
 
 .bar{ margin-bottom: 15px; }
-.tasks li{ font-size: 12px; color: #999; }
+.tasks li{ font-size: 12px; color: #999; list-style: decimal; }
 .tasks span:first-child{ font-size: 14px; color: #555; }
 .tasks em{ font-style: normal; font-size: 14px; color: red; }
+.tasks .complete{ text-decoration: line-through; }
 
 #side{ margin: 15px 0 0 0; }
-#taskform{ display: none; }
+#taskform{ padding:0 10px; }
 #taskform label{ margin-bottom:.5em; }
+#taskform p{ margin-bottom: 5px; }
+#taskform .groud label{ display: inline-block; *display: inline; zoom:1; }
 #taskform>div{ margin-bottom:1em; }
+#taskform .small.name{ width: 100%; }
+#taskform .more{ position: relative; overflow: hidden; height: 10px; }
+#taskform .more:hover{ border-color: #ef843c; }
+#taskform .more:hover a{ color: #ef843c; }
+#taskform .more a{ color: #b5b5b5; position: absolute; left: 50%; font-size: 12px; height: 12px; }
+#taskform .up{ border-top:#b5b5b5 solid 2px; margin-top:5px; }
+#taskform .up>a{ color: #b5b5b5; top: -100%; }
+#taskform .down{ border-bottom:#b5b5b5 solid 2px; }
+#taskform .down>a{ color: #b5b5b5; bottom: -.2em; }
+#taskform .more-content{ display: none; }
+#taskform .content{ width: 100%; height: 50px; }
 #_time_defined{ display: none; }
 .msg{
 	width: 400px;
@@ -40,3 +51,9 @@ h1{ font-size: 100px; position: absolute; top: 0; left: 90px; z-index: 0; color:
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+
+#task-detail{
+	display: none;
+}
+
+#package{ display: none; }
