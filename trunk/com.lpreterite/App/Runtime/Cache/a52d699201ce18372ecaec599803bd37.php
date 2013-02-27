@@ -25,6 +25,9 @@
 					<div class="bar">
 						
 					</div>
+
+					<div id="calendar"></div>
+
 				</div>
 			</div>
 			<div class="unit size1of4">
@@ -61,6 +64,10 @@
 							<div class="more up">
 								<a href="javascript:;">◆</a>
 							</div>
+						</form>
+
+						<form action="__SELF__update_task">
+							
 						</form>
 					</div>
 				</div>

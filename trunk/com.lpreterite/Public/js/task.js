@@ -34,13 +34,8 @@
 		 * 动作
 		 */
 		$('.more>a').click(function(){
-			if($(this).parent().hasClass('up')){
-				$(this).parent().addClass('down').removeClass('up');
-				$('.more-content').show();
-			}else{
-				$(this).parent().addClass('up').removeClass('down');
-				$('.more-content').hide();
-			}
+			$(this).parent().toggleClass('down').toggleClass('up');
+			$('.more-content').slideToggle();
 		});
 
 		$('#tasks>.tasks .checkbox').live('change',function(){
@@ -55,15 +50,24 @@
 			},'update_task');
 		});
 
+		$('#calendar').ajax({
+			url:$.getRootPath()+'/task/api?action=calendar'
+		},'get_calendar').bind('get_calendar',function(ajax,data){
+			for (var i = 0; i < data.days.length; i++) {
+				$(this).append('<span> '+data.days[i].number+' </span>');
+			};
+		});
+
 		$('#tasks>.tasks').ajax({
 			url:$.getRootPath()+'/task/api?action=tasks'
 		},'get_tasks').bind('get_tasks',function(ajax,data){
-			for (var i = data.length - 1; i >= 0; i--) {
-				var task_temp = $('#package .tasks>li').clone().appendTo(this);
-				task_temp.find('.checkbox').attr({'data-id':data[i].id}).attr(parseInt(data[i].complete)?{'checked':''}:{});
-				task_temp.find('.name').html(data[i].name+(parseInt(data[i].important)?'<em> ! </em>':'')).attr({'href':'#task-'+data[i].id,'data-id':data[i].id}).toggleClass('complete', Boolean(parseInt(data[i].complete)));
-				task_temp.find('.end_time').text(data[i].end_time);
-			};
+			if(parseInt(data['status']))
+				for (var i = data.length - 1; i >= 0; i--) {
+					var task_temp = $('#package .tasks>li').clone().appendTo(this);
+					task_temp.find('.checkbox').attr({'data-id':data[i].id}).attr(parseInt(data[i].complete)?{'checked':''}:{});
+					task_temp.find('.name').html(data[i].name+(parseInt(data[i].important)?'<em> ! </em>':'')).attr({'href':'#task-'+data[i].id,'data-id':data[i].id}).toggleClass('complete', Boolean(parseInt(data[i].complete)));
+					task_temp.find('.end_time').text(data[i].end_time);
+				};
 		});
 
 		$('.groud input[type="radio"]').change(function(){
@@ -102,8 +106,10 @@
 		}).bind('added',function(ajax,data){
 			var task_temp = $('#package .tasks>li').clone().prependTo('#tasks>.tasks');
 			task_temp.find('.checkbox').attr('data-id',data.id).attr(parseInt(data.complete)?{'checked':''}:{});
-			task_temp.find('.name').html(data.name+(parseInt(data.important)?'<em> ! </em>':'')).attr({'href':'#task-'+data.id,'data':data.id}).toggleClass('complete',Boolean(parseInt(data[i].complete)));
+			task_temp.find('.name').html(data.name+(parseInt(data.important)?'<em> ! </em>':'')).attr({'href':'#task-'+data.id,'data':data.id}).toggleClass('complete',Boolean(parseInt(data.complete)));
 			task_temp.find('.end_time').text(data.end_time);
+
+			this.reset();
 		});
 	});
 
