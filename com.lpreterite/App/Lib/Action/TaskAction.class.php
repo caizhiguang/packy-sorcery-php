@@ -24,13 +24,61 @@ class TaskAction extends Action {
     public function api(){
         switch ($_GET['action']) {
             case 'tasks':
-                $this->ajaxReturn($this->tasks());
+                $result = $this->tasks();
+                $this->ajaxReturn($result,'',$result?1:0);
                 break;
-            
+            case 'calendar':
+                $result = $this->calendar();
+                $this->ajaxReturn($result);
+                break;
             default:
                 # code...
                 break;
         }
+    }
+
+    public function calendar(){
+        $year = date('Y');
+        $month = date('n');
+        $day = date('j');
+
+        $nextMonth = $month+1;
+        $prevMonth = $month-1;
+
+        $days = date('t');
+        $inWeek = date('w');
+        $firstOfMonthInWeek = date('w',mktime(0,0,0,$month,1,$year));
+        $lastOfMonthInWeek = date('w',mktime(0,0,0,$month,$days,$year));
+
+        $displayCount = ($firstOfMonthInWeek-1)+(7-$lastOfMonthInWeek)+$days;
+        $result = array(
+            'year'=>$year,
+            'month'=>$month,
+            'day'=>$day,
+            'days'=>array()
+        );
+        for ($i=0; $i < $displayCount; $i++) { 
+            $number = $i-$firstOfMonthInWeek;
+            $m = $month;
+            if($i<$firstOfMonthInWeek){
+                $number = date('t',mktime(0,0,0,$month-1,1,$year))-$firstOfMonthInWeek+$i;
+                $m = $prevMonth;
+            }
+            if($i-$firstOfMonthInWeek>=$days){
+                $number = $i-$firstOfMonthInWeek-$days;
+                $m = $nextMonth;
+            }
+
+            $number++;
+
+            $result['days'][]= array(
+                'totay'=>$number==$day,
+                'number'=>$number,
+                'week'=>date('w',mktime(0,0,0,$m,$number,date('Y',mktime(0,0,0,$m,$year)))),
+            );
+        }
+
+        return $result;
     }
 
     public function tasks(){
