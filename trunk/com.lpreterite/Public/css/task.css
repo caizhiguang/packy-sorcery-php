@@ -58,4 +58,20 @@ h1{ font-size: 100px; position: absolute; top: 0; left: 90px; z-index: 0; color:
 	display: none;
 }
 
+#calendar div{
+	width: 14.2857%;
+	height: 6em;
+	float: left;
+	color: #ccc;
+}
+#calendar div>div{
+	padding: .5em;
+}
+#calendar .this-month,#calendar .this-month>*{
+	color: #333;
+}
+#calendar .today{
+	background: #eee;
+}
+
 #package{ display: none; }

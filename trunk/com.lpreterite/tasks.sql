@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50527
+Source Server Version : 50516
 Source Host           : localhost:3306
 Source Database       : lprete_blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50527
+Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-02-26 20:03:56
+Date: 2013-02-28 17:33:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,11 +45,13 @@ CREATE TABLE `p_tasks` (
   `important` int(1) NOT NULL,
   `complete` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tasks
 -- ----------------------------
+INSERT INTO p_tasks VALUES ('53', '任务详细功能', '', null, '2013-02-27 15:21:13', '2013-02-27 15:21:13', null, '0', '0');
+INSERT INTO p_tasks VALUES ('54', '右面日历页', '', null, '2013-02-27 15:30:01', '2013-02-27 15:30:01', null, '0', '1');
 
 -- ----------------------------
 -- Table structure for `p_users`

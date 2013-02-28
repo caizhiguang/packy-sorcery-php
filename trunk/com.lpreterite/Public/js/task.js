@@ -51,10 +51,20 @@
 		});
 
 		$('#calendar').ajax({
-			url:$.getRootPath()+'/task/api?action=calendar'
+			url:$.getRootPath()+'/task/api',
+			type:'GET',
+			data:{
+				action:'calendar',
+				month:3
+			}
 		},'get_calendar').bind('get_calendar',function(ajax,data){
 			for (var i = 0; i < data.days.length; i++) {
-				$(this).append('<span> '+data.days[i].number+' </span>');
+				var div = $(document.createElement('div')).appendTo(this).html('<div>'+data.days[i].number+'</div>');
+				if(data.days[i].month==data.month){
+					div.addClass('this-month');
+					if(data.days[i].number==data.day)
+						div.addClass('today');
+				}
 			};
 		});
 
@@ -62,11 +72,12 @@
 			url:$.getRootPath()+'/task/api?action=tasks'
 		},'get_tasks').bind('get_tasks',function(ajax,data){
 			if(parseInt(data['status']))
-				for (var i = data.length - 1; i >= 0; i--) {
+				for (var i = data.data.length - 1; i >= 0; i--) {
+					var item = data.data[i];
 					var task_temp = $('#package .tasks>li').clone().appendTo(this);
-					task_temp.find('.checkbox').attr({'data-id':data[i].id}).attr(parseInt(data[i].complete)?{'checked':''}:{});
-					task_temp.find('.name').html(data[i].name+(parseInt(data[i].important)?'<em> ! </em>':'')).attr({'href':'#task-'+data[i].id,'data-id':data[i].id}).toggleClass('complete', Boolean(parseInt(data[i].complete)));
-					task_temp.find('.end_time').text(data[i].end_time);
+					task_temp.find('.checkbox').attr({'data-id':item.id}).attr(parseInt(item.complete)?{'checked':''}:{});
+					task_temp.find('.name').html(item.name+(parseInt(item.important)?'<em> ! </em>':'')).attr({'href':'#task-'+item.id,'data-id':item.id}).toggleClass('complete', Boolean(parseInt(item.complete)));
+					task_temp.find('.end_time').text(item.end_time);
 				};
 		});
 
