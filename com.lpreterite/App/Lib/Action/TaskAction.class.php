@@ -38,14 +38,15 @@ class TaskAction extends Action {
     }
 
     public function calendar(){
+        $month = $_GET['month']?$_GET['month']:date('n');
+
         $year = date('Y');
-        $month = date('n');
         $day = date('j');
 
         $nextMonth = $month+1;
         $prevMonth = $month-1;
 
-        $days = date('t');
+        $days = date('t',mktime(0,0,0,$month,$day,$year));
         $inWeek = date('w');
         $firstOfMonthInWeek = date('w',mktime(0,0,0,$month,1,$year));
         $lastOfMonthInWeek = date('w',mktime(0,0,0,$month,$days,$year));
@@ -72,9 +73,9 @@ class TaskAction extends Action {
             $number++;
 
             $result['days'][]= array(
-                'totay'=>$number==$day,
                 'number'=>$number,
                 'week'=>date('w',mktime(0,0,0,$m,$number,date('Y',mktime(0,0,0,$m,$year)))),
+                'month'=>$m,
             );
         }
 
