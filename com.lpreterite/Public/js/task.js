@@ -54,8 +54,7 @@
 			url:$.getRootPath()+'/task/api',
 			type:'GET',
 			data:{
-				action:'calendar',
-				month:3
+				action:'calendar'
 			}
 		},'get_calendar').bind('get_calendar',function(ajax,data){
 			for (var i = 0; i < data.days.length; i++) {
