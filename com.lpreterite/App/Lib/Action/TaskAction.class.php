@@ -106,7 +106,7 @@ class TaskAction extends Action {
 
         $verification = $this->task->create($data);//检验数据有效性
         if(!$verification){$this->error($this->task->getError());return;}
-        $verification = $this->task->add($data);//能否于数据库中添加(修改、删除)数据
+        $verification = $this->task->add($verification);//能否于数据库中添加(修改、删除)数据
         if(!$verification){$this->error($this->task->getError());return;}
         $data['id'] = $verification;
         $data['important'] = strtotime($data['end_time'])==time();
@@ -122,7 +122,7 @@ class TaskAction extends Action {
 
         $verification = $this->task->create($data);//检验数据有效性
         if(!$verification){$this->error($this->task->getError());return;}
-        $verification = $this->task->save($data);//能否于数据库中添加(修改、删除)数据
+        $verification = $this->task->save($verification);//能否于数据库中添加(修改、删除)数据
         if(!$verification){$this->error($this->task->getError());return;}
         $data['id'] = $verification;
         $data['important'] = strtotime($data['end_time'])==time();
@@ -156,7 +156,7 @@ class TaskAction extends Action {
 
     	$verification = $this->tag->create($data);//检验数据有效性
     	if(!$verification){$this->error($this->tag->getError());return;}
-    	$verification = $this->tag->add($data);//能否于数据库中添加(修改、删除)数据
+    	$verification = $this->tag->add($verification);//能否于数据库中添加(修改、删除)数据
     	if(!$verification){$this->error($this->tag->getError());return;}
         $data['id'] = $verification;
 
@@ -172,7 +172,7 @@ class TaskAction extends Action {
 
     	$verification = $this->tag->create($data);//检验数据有效性
     	if(!$verification){$this->error($this->tag->getError());return;}
-    	$verification = $this->tag->save($data);//能否于数据库中添加(修改、删除)数据
+    	$verification = $this->tag->save($verification);//能否于数据库中添加(修改、删除)数据
     	if(!$verification){$this->error($this->tag->getError());return;}
 
     	//返回成功信息
