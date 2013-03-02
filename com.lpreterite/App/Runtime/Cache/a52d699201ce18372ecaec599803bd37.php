@@ -35,7 +35,7 @@
 					<div id="tasks">
 						<h2>任务</h2>
 						<ol class="tasks"></ol>
-						<form action="__SELF__add_task" method="post" name="task-form" id="taskform" class="forms">
+						<form action="__URL__/add_task" method="post" name="task-form" id="taskform" class="forms">
 							<p>
 								<input type="text" name="name" class="name small">
 							</p>
@@ -66,7 +66,7 @@
 							</div>
 						</form>
 
-						<form action="__SELF__update_task">
+						<form action="__URL__/update_task">
 							
 						</form>
 					</div>
@@ -85,7 +85,7 @@
 				<span class="end_time"></span>
 			</li>
 		</ol>
-		<form action="__SELF__add_task" method="post" name="task-form" id="taskform" class="msg forms">
+		<form action="__URL__/add_task" method="post" name="task-form" id="taskform" class="msg forms">
 			<h2>添加任务</h2>
 			<div>
 				<label for="name">任务名称：</label>
