@@ -6,6 +6,13 @@ class AccountsAction extends Action{
 		$this->user = new User();
 	}
 
+	public function sign(){
+
+		if(!$_GET['action']) return;
+		$this->display($_GET['action']);
+
+	}
+
 	public function signin(){
 		$verification = $this->user->create();//检验数据有效性
         if(!$verification){$this->error($this->user->getError());return;}
@@ -21,7 +28,7 @@ class AccountsAction extends Action{
 	}
 
 	public function signout(){
-		$message = ''
+		$message = '';
 		if(session('?user_id')){
 			$this->error('(。_ 。;)这页面啥都没有啊！');
 		}else if(session('user_id')!=$_GET['id']){
@@ -39,7 +46,7 @@ class AccountsAction extends Action{
         $verification = $this->user->add($verification);//能否于数据库中添加(修改、删除)数据
         if(!$verification){$this->error($this->user->getError());return;}
 
-        $this->success('恭喜，现在可以使用我（Packy）写的很烂的程序了(。_。)。','',$verification['id']);
+        $this->success('恭喜，现在可以使用由Packy编写的很烂的程序了(。_。)。','',$verification['id']);
 	}
 
 }
