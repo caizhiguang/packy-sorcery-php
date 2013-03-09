@@ -13,11 +13,21 @@
 			}
 		},
 		success:function(data, textStatus){
+			if(!this._ajax) return;
 			this._ajax.target.trigger(this._ajax.operation,[data]);
 		},
-		complete:function(XMLHttpRequest, textStatus){this._ajax.target.trigger(this._ajax.operation+'-ajaxComplete',[textStatus]);},
-		beforeSend:function(XMLHttpRequest){this._ajax.target.trigger(this._ajax.operation+'-ajaxBeforeSend',[]);},
-		error:function(XMLHttpRequest, textStatus, errorThrown){this._ajax.target.trigger(this._ajax.operation+'-ajaxError',[textStatus]);}
+		complete:function(XMLHttpRequest, textStatus){
+			if(!this._ajax) return;
+			this._ajax.target.trigger(this._ajax.operation+'-ajaxComplete',[textStatus]);
+		},
+		beforeSend:function(XMLHttpRequest){
+			if(!this._ajax) return;
+			this._ajax.target.trigger(this._ajax.operation+'-ajaxBeforeSend',[]);
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			if(!this._ajax) return;
+			this._ajax.target.trigger(this._ajax.operation+'-ajaxError',[textStatus]);
+		}
 	});
 
 	//extend ajax
