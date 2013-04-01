@@ -2,19 +2,24 @@ html,body{ background: #f3f3f2; color: #555; }
 a{ color: inherit; }
 a:hover{ color: #f0843c; }
 
-h1{ font-size: 100px; position: absolute; top: 0; left: 90px; z-index: 0; color: #f2d347; 
-	-webkit-transform: rotate(90deg);
-	-moz-transform: rotate(90deg);
-	-ms-transform: rotate(90deg);
-	-o-transform: rotate(90deg);
-	transform: rotate(90deg);
+nav{/* font-size: 14px;*//* position: absolute; top: 12em; left: 0; z-index: 0;*/ 
+	font-family: 'Microsoft Yahei';
+	margin: 2em;
+	color: #ddd;
+	/*-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
 
 	-webkit-transform-origin: left top;
 	-moz-transform-origin: left top;
 	-ms-transform-origin: left top;
 	-o-transform-origin: left top;
-	transform-origin: left top;
+	transform-origin: left top;*/
  }
+ nav a{ font-size: 14px; color: #f2d347;  }
+ nav a.current{ font-size: 2em; color:#f3843d;  }
 
 #main{ margin: 15px 15px 15px 110px; }
 #main h2,#side h2{ color: #f3843d; font-size: 18px; border-bottom:#ddd solid 1px; padding: .5em; }
