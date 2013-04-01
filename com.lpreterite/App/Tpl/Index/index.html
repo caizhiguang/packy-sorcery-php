@@ -9,5 +9,28 @@
 	<load href="__PUBLIC__/js/plug-in/backbone.js"/>
 </head>
 <body>
+	
+	<div id="sidebar">
+		233
+	</div>
+
+	<script type="text/javascript">
+		var Sidebar = Backbone.Model.extend({
+		  promptColor: function() {
+		    var cssColor = prompt("Please enter a CSS color:");
+		    this.set({color: cssColor});
+		  }
+		});
+
+		window.sidebar = new Sidebar;
+
+		sidebar.on('change:color', function(model, color) {
+		  $('#sidebar').css({background: color});
+		});
+
+		sidebar.set({color: 'white'});
+
+		sidebar.promptColor();
+	</script>
 </body>
 </html>

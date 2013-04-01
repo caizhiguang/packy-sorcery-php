@@ -13,12 +13,15 @@
 	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.tools.min.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.cookie.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.salvia.js"></script>
-	<script type="text/javascript" src="__PUBLIC__/js/task.js"></script>
+	<!-- <script type="text/javascript" src="__PUBLIC__/js/task.js"></script> -->
 </head>
 <body>
 	<div id="wrap">
-		
-		<h1>每日任务</h1>
+		<nav>
+			<a href="javascript:;" class="current">活动清单
+			</a> / <a href="javascript:;">今日待办
+			</a> / <a href="javascript:;">记录</a>
+		</nav>
 		<div class="line">
 			<div class="unit size3of4">
 				<div id="main">
