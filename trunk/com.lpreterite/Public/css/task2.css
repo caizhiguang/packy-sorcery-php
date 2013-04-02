@@ -1,0 +1,79 @@
+/**
+ * default element -----------------------------------------
+ */
+
+html,body{ background: #fffffc; color: #555; }
+a{ color: #555; }
+a:hover{ color: #f0843c; }
+
+/**
+ * default layout --------------------------------------------
+ */
+
+header{
+	background: #f3f3f2;
+}
+
+nav{
+	font-family: 'Microsoft Yahei';
+	padding: 2em;
+	color: #ddd;
+}
+nav a{ font-size: 14px; color: #f2d347;  }
+nav a.current{ font-size: 2em; color:#f3843d;  }
+
+#body{
+	background: #f3f3f2;
+	min-height: 600px;
+}
+
+footer{
+	background: #fffffc;
+	padding: 1em;
+	text-align: right;
+	color: #888;
+	border-top: solid #eee 1px;
+}
+
+/**
+ * #task-form -----------------------------------------------
+ */
+
+#task-form{
+	margin:0 2em;
+}
+
+/**
+ * #list-tasks ----------------------------------------------
+ */
+
+.list-tasks-item{
+	padding: .5em;
+}
+.list-tasks-item:hover{
+	background: #eee;
+}
+.list-tasks-item a,.list-tasks-item em{
+	font-size: 14px;
+}
+.list-tasks-item{
+	color: #999;
+	font-size: 12px;
+}
+.list-tasks-item em{
+	color: red;
+	font-style: normal;
+}
+.list-tasks-item .name{
+	padding: 0 .3em;
+}
+.list-tasks-item .tags a{
+	font-size: 12px;
+	color: #999;
+}
+.list-tasks-item .tags a:hover{
+	text-decoration: underline;
+}
+.list-tasks-item .delete{
+	margin-left: .5em;
+}
