@@ -22,19 +22,20 @@ class TaskAction extends Action {
     }
 
     public function api(){
-        switch ($_GET['action']) {
-            case 'tasks':
-                $result = $this->tasks();
-                $this->ajaxReturn($result,'',$result?1:0);
-                break;
-            case 'calendar':
-                $result = $this->calendar();
-                $this->ajaxReturn($result);
-                break;
-            default:
-                # code...
-                break;
-        }
+        // switch ($_GET['action']) {
+        //     case 'tasks':
+        //         $result = $this->tasks();
+        //         $this->ajaxReturn($result,'',$result?1:0);
+        //         break;
+        //     case 'calendar':
+        //         $result = $this->calendar();
+        //         $this->ajaxReturn($result);
+        //         break;
+        //     default:
+        //         # code...
+        //         break;
+        // }
+        dump($_SERVER['REQUEST_METHOD']);
     }
 
     public function calendar(){

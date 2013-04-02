@@ -2,27 +2,94 @@
 <html>
 <head>
 	<title>任务列表</title>
-	[load href="__PUBLIC__/css/_libraries.css"/]
-	[load href="__PUBLIC__/css/_grids.css"/]
-	[load href="__PUBLIC__/css/_mod.css"/]
-	[load href="__PUBLIC__/css/_content.css"/]
-	[load href="__PUBLIC__/css/task.css"/]
-	[load href="__PUBLIC__/js/plug-in/jquery-1.8.2.min.js"/]
-	[load href="__PUBLIC__/js/plug-in/jquery.easing.1.3.js"/]
-	[load href="__PUBLIC__/js/plug-in/jquery.cookie.js"/]
-	[load href="__PUBLIC__/js/plug-in/jquery.salvia.js"/]
+	<load href="__PUBLIC__/css/_libraries.css"/>
+	<load href="__PUBLIC__/css/_grids.css"/>
+	<load href="__PUBLIC__/css/_mod.css"/>
+	<load href="__PUBLIC__/css/_contentbykube.css"/>
+	<load href="__PUBLIC__/css/_content.css"/>
+	<load href="__PUBLIC__/css/task.css"/>
+	<load href="__PUBLIC__/js/plug-in/jquery-1.8.2.min.js"/>
+	<load href="__PUBLIC__/js/plug-in/jquery.easing.1.3.js"/>
+	<load href="__PUBLIC__/js/plug-in/jquery.tools.min.js"/>
+	<load href="__PUBLIC__/js/plug-in/jquery.cookie.js"/>
+	<load href="__PUBLIC__/js/plug-in/jquery.salvia.js"/>
+	<!-- <load href="__PUBLIC__/js/task.js"/> -->
 </head>
 <body>
 	<div id="wrap">
-		
-		
+		<nav>
+			<a href="javascript:;" class="current">活动清单
+			</a> / <a href="javascript:;">今日待办
+			</a> / <a href="javascript:;">记录</a>
+		</nav>
+		<div class="line">
+			<div class="unit size3of4">
+				<div id="main">
+					<div class="bar">
+						
+					</div>
 
+					<div id="calendar"></div>
+
+				</div>
+			</div>
+			<div class="unit size1of4">
+				<div id="side">
+					<div id="tasks">
+						<h2>任务</h2>
+						<ol class="tasks"></ol>
+						<form action="__URL__/add_task" method="post" name="task-form" id="taskform" class="forms">
+							<p>
+								<input type="text" name="name" class="name small">
+							</p>
+							<div class="more-content">
+								<p>
+									<textarea id="task-content" name="content" class="content"></textarea>
+								</p>
+								<label for="name">时间：</label>
+								<div class="groud">
+									<label for="time_now"><input type="radio" name="time_mode" value="0" id="time_now" checked="checked" />当天</label>
+									<label for="time_week"><input type="radio" name="time_mode" value="1" id="time_week" />一周</label>
+									<label for="time_defined"><input type="radio" name="time_mode" value="2" id="time_defined" />自定义</label>
+									<div id="_time_defined" class="line">
+										<span class="unit"><input type="text" name="defined_start_time" id="defined-start-time"></span>
+										<span class="unit"> - </span>
+										<span class="unit"><input type="text" name="defined_end_time" id="defined-end-time"></span>
+									</div>
+									<input type="hidden" name="start_time">
+									<input type="hidden" name="end_time">
+								</div>
+								<div id="time_defined_panel"></div>
+								<div>
+									<input type="submit" value="添加" class="btn" />
+								</div>
+							</div>
+							<div class="more up">
+								<a href="javascript:;">◆</a>
+							</div>
+						</form>
+
+						<form action="__URL__/update_task">
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	
 
-	<div id="wrap">
-		<a href="javascript:;">添加任务</a>
-		<form action="__SELF__add_task" method="post" name="task-form" id="taskform">
+	<div id="package">
+		<ol class="tasks">
+			<li>
+				<span>
+					<label for=""><input type="checkbox" class="checkbox"></label>
+					<a class="name" href="" rel="#task-detail" title=""><em>!</em></a>
+				</span>
+				<span class="end_time"></span>
+			</li>
+		</ol>
+		<form action="__URL__/add_task" method="post" name="task-form" id="taskform" class="msg forms">
+			<h2>添加任务</h2>
 			<div>
 				<label for="name">任务名称：</label>
 				<input type="text" name="name" id="name" value="" tabindex="1" />
@@ -34,15 +101,11 @@
 			<div>
 				<label for="name">时间：</label>
 				<div class="groud">
-					<input type="radio" name="time_mode" value="0" id="time_now" checked="checked" /><label for="time_now">当天</label>
-					<input type="radio" name="time_mode" value="1" id="time_week" /><label for="time_week">一周</label>
-					<input type="radio" name="time_mode" value="2" id="time_defined" /><label for="time_defined">自定义</label>
-					<div>
-						<label for="defined-start-time">start</label>
-						<input type="text" name="defined_start_time" id="defined-start-time">
-						 - 
-						<label for="defined-end-time">end</label>
-						<input type="text" name="defined_end_time" id="defined-end-time">
+					<label for="time_now"><input type="radio" name="time_mode" value="0" id="time_now" checked="checked" />当天</label>
+					<label for="time_week"><input type="radio" name="time_mode" value="1" id="time_week" />一周</label>
+					<label for="time_defined"><input type="radio" name="time_mode" value="2" id="time_defined" />自定义</label>
+					<div id="_time_defined">
+						<input type="text" name="defined_start_time" id="defined-start-time"> - <input type="text" name="defined_end_time" id="defined-end-time">
 					</div>
 					<input type="hidden" name="start_time">
 					<input type="hidden" name="end_time">
@@ -50,112 +113,18 @@
 				<div id="time_defined_panel"></div>
 			</div>
 			<div>
-				<input type="submit" value="添加" />
+				<input type="submit" value="添加" class="btn" />
 			</div>
 		</form>
-		
-		<table class="simple" id="tasks">
-			<tr>
-				<th>id</th>
-				<th>name</th>
-				<th>start</th>
-				<th>end</th>
-				<th></th>
-			</tr>
-			[foreach name="tasks" item="item"]
-			<tr id="tag-{$item.id}">
-				<td>{$item.id}</td>
-				<td><a href="#task-{$item.id}">{$item.name}</a></td>
-				<td>{$item.start_time}</td>
-				<td>{$item.end_time}</td>
-				<td><a class="delete-task" href="__SELF__delete_task?id={$item.id}">删除</a></td>
-			</tr>
-			[/foreach]
-		</table>
-		
-		<div id="tags">
-			<h3>tags</h3>
-		
-			<ul class="tags">
-				[foreach name="tags" item="item"]
-				<li class="tag-{$item.id}"><a href="javascript:;" data-id="{$item.id}">{$item.name}</a></li>
-				[/foreach]
-			</ul>
-		
-			<form action="__SELF__add_tag" method="post" name="tag-form">
-				<h3>添加标签</h3>
-				<label for="tag-name">名称：</label><input type="text" name="name" id="tag-name">
-				<input type="submit" value="添加">
-			</form>
+		<div id="task-detail" class="msg">
+			<h2 class="name"></h2>
+			<p class="content"></p>
+			<p>
+				<span class="start_time"></span>
+				<span> - </span>
+				<span class="end_time"></span>
+			</p>
 		</div>
 	</div>
-
-	<script type="text/javascript">
-		jQuery(document).ready(function($){
-			$('#tasks a.delete-task').click(function(){
-				$.ajax({
-					url:$(this).attr('href'),
-					dataType:'json',
-					type:'GET',
-					success:function(data){
-						if(!data.status){alert(data.info); return;}
-						$('#tag-'+data.id).remove();
-					}
-				});
-				return false;
-			});
-
-			$(document.forms['task-form']).submit(function(){
-				var data = $(this).serializeObject();
-				
-				var now = new Date();
-				switch(parseInt(data.time_mode))
-				{
-					case 0:
-						//当天
-						data.start_time = $.dateToString(now);
-						data.end_time = $.dateToString(now);
-						break;
-					case 1:
-						//一周
-						data.start_time = $.dateToString(now);
-						data.end_time = new Date(now.setDate(now.getDate()+7));
-						data.end_time = $.dateToString(data.end_time);
-						break;
-					case 2:
-						//自定义
-						data.start_time = data.defined_start_time;
-						data.end_time = data.defined_end_time;
-						break;
-				}
-
-				$.ajax({
-					url:$(this).attr('action'),
-					data:data,
-					dataType:'json',
-					type:'POST',
-					success:function(data){
-						if(!data.status){alert(data.info); return;}
-						$('#tasks').append('<tr id="task-'+data.id+'"><td>'+data.id+'</td><td>'+data.name+'</td><td>'+data.start_time+'</td><td>'+data.end_time+'</td><td><a href="__SELF__delete_task?id='+data.id+'">删除</a></td></tr>');
-					}
-				});
-				return false;
-			});
-
-			$(document.forms['tag-form']).submit(function(){
-				$.ajax({
-					url:$(this).attr('action'),
-					data:$(this).serialize(),
-					dataType:'json',
-					type:'POST',
-					success:function(data){
-						if(!data.status){alert(data.info); return;}
-						$('#tags').append('<li class="tag-'+data.id+'">'+data.name+'</li>');
-					}
-				});
-				return false;
-			});
-		});
-	</script>
 </body>
 </html>

@@ -7,124 +7,71 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/_mod.css" />
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/_contentbykube.css" />
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/_content.css" />
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/task.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/task2.css" />
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/json2.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.tools.min.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.cookie.js"></script>
-	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.salvia.js"></script>
-	<!-- <script type="text/javascript" src="__PUBLIC__/js/task.js"></script> -->
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/underscore.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/backbone.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/backbone.localStorage.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/task2.js"></script>
 </head>
 <body>
 	<div id="wrap">
-		<nav>
-			<a href="javascript:;" class="current">活动清单
-			</a> / <a href="javascript:;">今日待办
-			</a> / <a href="javascript:;">记录</a>
-		</nav>
-		<div class="line">
-			<div class="unit size3of4">
-				<div id="main">
-					<div class="bar">
-						
-					</div>
-
-					<div id="calendar"></div>
-
-				</div>
-			</div>
-			<div class="unit size1of4">
+		<header>
+			<nav>
+				<a href="javascript:;" class="current">活动清单
+				</a> / <a href="javascript:;">今日待办
+				</a> / <a href="javascript:;">记录</a>
+			</nav>
+		</header>
+		<div id="body" class="line">
+			<section class="unit size3of4">
+				<form action="#" id="task-form" class="form">
+					<p>
+						<input type="text" class="task_input">
+						<input type="submit" value="确定">
+						<input type="hidden" name="name">
+						<input type="hidden" name="important">
+						<input type="hidden" name="start_time">
+						<input type="hidden" name="tags">
+					</p>
+				</form>
+				<ul id="list-tasks">
+					<li class="list-tasks-item">
+						<span class="start_time">2013-4-2</span>
+						<a href="#" class="name">界面设计</a><em></em>
+						<span class="tags">(<a href="#">番茄任务管理</a>、<a href="#">设计</a>)</span>
+						<a href="#" class="delete">x</a>
+					</li>
+					<li class="list-tasks-item">
+						<span class="start_time">2013-4-2</span>
+						<a href="#" class="name">查看邮箱</a><em>!</em>
+						<span class="tags">(<a href="#">杂项</a>)</span>
+						<a href="#" class="delete">x</a>
+					</li>
+				</ul>
+			</section>
+			<aside class="unit size1of4">
 				<div id="side">
-					<div id="tasks">
-						<h2>任务</h2>
-						<ol class="tasks"></ol>
-						<form action="__URL__/add_task" method="post" name="task-form" id="taskform" class="forms">
-							<p>
-								<input type="text" name="name" class="name small">
-							</p>
-							<div class="more-content">
-								<p>
-									<textarea id="task-content" name="content" class="content"></textarea>
-								</p>
-								<label for="name">时间：</label>
-								<div class="groud">
-									<label for="time_now"><input type="radio" name="time_mode" value="0" id="time_now" checked="checked" />当天</label>
-									<label for="time_week"><input type="radio" name="time_mode" value="1" id="time_week" />一周</label>
-									<label for="time_defined"><input type="radio" name="time_mode" value="2" id="time_defined" />自定义</label>
-									<div id="_time_defined" class="line">
-										<span class="unit"><input type="text" name="defined_start_time" id="defined-start-time"></span>
-										<span class="unit"> - </span>
-										<span class="unit"><input type="text" name="defined_end_time" id="defined-end-time"></span>
-									</div>
-									<input type="hidden" name="start_time">
-									<input type="hidden" name="end_time">
-								</div>
-								<div id="time_defined_panel"></div>
-								<div>
-									<input type="submit" value="添加" class="btn" />
-								</div>
-							</div>
-							<div class="more up">
-								<a href="javascript:;">◆</a>
-							</div>
-						</form>
-
-						<form action="__URL__/update_task">
-							
-						</form>
-					</div>
+					
 				</div>
-			</div>
+			</aside>
 		</div>
+		<footer>2013 &copy <a href="http://lpreterite.com">lpreterite.com</a>. Design by <a href="http://weibo.com/lpreterite">@帕奇奶罐</a>. </footer>
 	</div>
 
-	<div id="package">
-		<ol class="tasks">
-			<li>
-				<span>
-					<label for=""><input type="checkbox" class="checkbox"></label>
-					<a class="name" href="" rel="#task-detail" title=""><em>!</em></a>
-				</span>
-				<span class="end_time"></span>
-			</li>
-		</ol>
-		<form action="__URL__/add_task" method="post" name="task-form" id="taskform" class="msg forms">
-			<h2>添加任务</h2>
-			<div>
-				<label for="name">任务名称：</label>
-				<input type="text" name="name" id="name" value="" tabindex="1" />
-			</div>
-			<div>
-				<label for="content">任务内容：</label>
-				<textarea id="content" name="content"></textarea>
-			</div>
-			<div>
-				<label for="name">时间：</label>
-				<div class="groud">
-					<label for="time_now"><input type="radio" name="time_mode" value="0" id="time_now" checked="checked" />当天</label>
-					<label for="time_week"><input type="radio" name="time_mode" value="1" id="time_week" />一周</label>
-					<label for="time_defined"><input type="radio" name="time_mode" value="2" id="time_defined" />自定义</label>
-					<div id="_time_defined">
-						<input type="text" name="defined_start_time" id="defined-start-time"> - <input type="text" name="defined_end_time" id="defined-end-time">
-					</div>
-					<input type="hidden" name="start_time">
-					<input type="hidden" name="end_time">
-				</div>
-				<div id="time_defined_panel"></div>
-			</div>
-			<div>
-				<input type="submit" value="添加" class="btn" />
-			</div>
-		</form>
-		<div id="task-detail" class="msg">
-			<h2 class="name"></h2>
-			<p class="content"></p>
-			<p>
-				<span class="start_time"></span>
-				<span> - </span>
-				<span class="end_time"></span>
-			</p>
-		</div>
-	</div>
+	<script type="text/template" id="list-task-item">
+		<span class="start_time"><%= start_time %></span>
+		<a href="#" class="name"><%- name %></a><em><%= important?'!':'' %></em>
+		<span class="tags">(
+			<% _.each(tags, function(id,index,list) { %>
+			<a href="#"><%- id %></a><% index<=list.length?'':'、' %>
+			<% }); %>
+		)</span>
+		<a href="#" class="delete">x</a>
+	</script>
 </body>
 </html>
