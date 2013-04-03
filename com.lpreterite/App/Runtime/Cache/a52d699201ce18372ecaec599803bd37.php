@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="__PUBLIC__/js/task2.js"></script>
 </head>
 <body>
+	<?php dump($GLOBALS); ?>
 	<div id="wrap">
 		<header>
 			<nav>
@@ -56,7 +57,7 @@
 			</section>
 			<aside class="unit size1of4">
 				<div id="side">
-					
+					<div id="tags"></div>
 				</div>
 			</aside>
 		</div>
