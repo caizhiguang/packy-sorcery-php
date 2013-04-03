@@ -8,6 +8,27 @@ class TaskAction extends Action {
 		$this->task = D('tasks');
 	}
 
+    public function task(){
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'PUT':
+                $this->update_task();
+                break;
+            case 'POST':
+                $this->add_task();
+                break;
+            case 'GET':
+                $result = $this->tasks();
+                $this->ajaxReturn($result,'',$result?1:0);
+                break;
+            case 'DELETE':
+                $this->delete_task($_GET['_URL_'][strlen($_GET['_URL_'])-1]);
+                break;
+            default:
+                # code...
+                break;
+        }
+    }
+
     public function index(){
 
         if($_GET['t']=='all')
@@ -35,7 +56,11 @@ class TaskAction extends Action {
         //         # code...
         //         break;
         // }
-        dump($_SERVER['REQUEST_METHOD']);
+        call_user_func($this,'test');
+    }
+
+    public function test(){
+        dump(233);
     }
 
     public function calendar(){
@@ -132,8 +157,9 @@ class TaskAction extends Action {
         $this->success($message,'',$data);
     }
 
-    public function delete_task(){
+    public function delete_task($id){
         $data = $_REQUEST;
+        $data['id'] = !$data['id'] ? $id : $data['id'];
         if(!$data['id']){$this->error('id不存在');return;}
 
         $verification = $this->task->where(array('id'=>$data['id']))->delete();
