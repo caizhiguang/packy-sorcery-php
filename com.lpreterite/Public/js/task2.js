@@ -8,14 +8,15 @@ jQuery(document).ready(function($) {
 	});
 
 	var Tags = new TagList;
-	Tags.fetch({success:function(collection){
-		var tag1 = collection.at(0);
-		tag1.set({name:'中文'});
-		tag1.save();
+	Tags.fetch({data:{condition:{uid:1},order:'id desc'}});
+	// Tags.fetch({success:function(collection){
+	// 	var tag1 = collection.at(0);
+	// 	tag1.set({name:'中文'});
+	// 	tag1.save();
 
-		var newTag = new Tag;
-		newTag.set({name:'223'});
-		newTag.save();
-		tag1.destroy();
-	}});
+	// 	var newTag = new Tag;
+	// 	newTag.set({name:'223'});
+	// 	newTag.save();
+	// 	tag1.destroy();
+	// }});
 });

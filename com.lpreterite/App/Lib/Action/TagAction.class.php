@@ -8,7 +8,16 @@ class TagAction extends Action {
     }
 
     public function tags(){
-        return $this->tag->select();
+        $condition = $_GET;
+        if($_GET['condition'])
+            $condition = $_GET['condition'];
+        if($_GET['order'])
+            $order = $_GET['order'];
+
+        $condition['_URL_'] = null;
+        unset($condition['_URL_']);
+
+        return $this->tag->where($condition)->order($order)->select();
     }
 
     public function _empty(){
