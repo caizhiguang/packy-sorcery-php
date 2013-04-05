@@ -3,23 +3,46 @@ class TagAction extends Action {
 
     var $tag;
 
+    /**
+     * 初始化
+     * @return [type]
+     */
     function _initialize(){
         $this->tag = D('tags');
     }
 
-    public function tags(){
-        $condition = $_GET;
-        if($_GET['condition'])
-            $condition = $_GET['condition'];
-        if($_GET['order'])
-            $order = $_GET['order'];
-
-        $condition['_URL_'] = null;
-        unset($condition['_URL_']);
-
-        return $this->tag->where($condition)->order($order)->select();
+    /**
+     * 取得所有标签
+     * @param  boolean $ajaxReturn
+     * @return array
+     */
+    public function getAll($ajaxReturn=true){
+        $result = $this->tag->order($_GET['order'])->select();
+        if(!$ajaxReturn):
+            return $result;
+        else:
+            $this->ajaxReturn($result);
+        endif;
     }
 
+    /**
+     * 以ID取得标签内容
+     * @param  boolean $ajaxReturn
+     * @return [type]
+     */
+    public function getById($ajaxReturn=true){
+        $result = $this->tag->where(array('id'=>$_GET['id']))->select();
+        if(!$ajaxReturn):
+            return $result;
+        else:
+            $this->ajaxReturn($result);
+        endif;
+    }
+
+    /**
+     * 默认显示页面，也是ajax默认AIP接口
+     * @return [type]
+     */
     public function _empty(){
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'PUT':
@@ -28,8 +51,7 @@ class TagAction extends Action {
                 $this->save($_PUT);
                 break;
             case 'GET':
-                $result = $this->tags();
-                $this->ajaxReturn($result);
+                $result = $this->getAll(true);
                 break;
             case 'DELETE':
                 $this->delete($_GET['_URL_'][count($_GET['_URL_'])-1]);
@@ -40,6 +62,11 @@ class TagAction extends Action {
         }
     }
 
+    /**
+     * 保存标签（当参数没有ID为创建，有ID为储存）
+     * @param  array $data
+     * @return [type]
+     */
     public function save($data){
 
         $data = !$_POST?$data:$_POST;
@@ -63,6 +90,11 @@ class TagAction extends Action {
         $this->success($message,'',$data);
     }
 
+    /**
+     * 删除标签
+     * @param  string $id
+     * @return [type]
+     */
     public function delete($id){
 
         $data = $_REQUEST;
