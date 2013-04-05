@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 	});
 
 	var Tags = new TagList;
-	Tags.fetch({data:{condition:{uid:1},order:'id desc'}});
+	Tags.fetch();
 	// Tags.fetch({success:function(collection){
 	// 	var tag1 = collection.at(0);
 	// 	tag1.set({name:'中文'});
