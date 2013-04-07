@@ -19,7 +19,6 @@
 	<script type="text/javascript" src="__PUBLIC__/js/task2.js"></script>
 </head>
 <body>
-	<?php dump($GLOBALS); ?>
 	<div id="wrap">
 		<header>
 			<nav>
@@ -34,10 +33,10 @@
 					<p>
 						<input type="text" class="task_input">
 						<input type="submit" value="确定">
-						<input type="hidden" name="name">
-						<input type="hidden" name="important">
-						<input type="hidden" name="start_time">
-						<input type="hidden" name="tags">
+						<input type="hidden" name="name" class="name">
+						<input type="hidden" name="important" class="important">
+						<input type="hidden" name="start_time" class="start_time">
+						<input type="hidden" name="tags" class="tags">
 					</p>
 				</form>
 				<ul id="list-tasks">
