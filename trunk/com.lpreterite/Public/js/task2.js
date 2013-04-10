@@ -36,16 +36,16 @@ jQuery(document).ready(function($) {
 	// // }});
 	
 	var Tag = Backbone.Model.extend({
-		urlRoot:'/tag/'
+		urlRoot:'/tag/api/'
 	});
 
 	var Task = Backbone.Model.extend({
-		urlRoot:'/task/'
+		urlRoot:'/task/api/'
 	});
 
 	var TaskList = Backbone.Collection.extend({
 		model:Task,
-		url:'/task/',
+		url:'/task/api/',
 		comparator:'start_time'
 	});
 
@@ -68,6 +68,8 @@ jQuery(document).ready(function($) {
 		el:$('#body'),
 		initialize:function(){
 			this.listenTo(Tasks, 'add', this.addOne);
+
+			Tasks.fetch();
 		},
 		events:{
 			'submit #task-form':'create_task'
@@ -80,7 +82,6 @@ jQuery(document).ready(function($) {
 		},
 		addOne:function(task){
 			var view = new TaskView({model:task});
-			//task.save();
 			this.$('#list-tasks').append(view.render().el);
 		}
 	});
