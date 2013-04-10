@@ -43,7 +43,7 @@ class TagAction extends Action {
      * 默认显示页面，也是ajax默认AIP接口
      * @return [type]
      */
-    public function _empty(){
+    public function api(){
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'PUT':
             case 'POST':
