@@ -1,0 +1,41 @@
+header{ background: url(../images/header_bg.png); height:150px ; position: relative; }
+footer{ background-color: #fff; color: #999; text-align: right; height: 35px; line-height: 35px; }
+
+header .head{ padding: 50px 0 0 50px; }
+header .sign{ position: absolute; top:60px; right: 70px; }
+#logo{ float: left; }
+#title,#description{ margin-left: 70px;  }
+#title{ font-size: 24px; margin-bottom: 5px; margin-top: 10px; }
+#description{ color: #fff; }
+#btn-sign-in-group{
+	background-color: #9ab400;
+	color: #fffffc;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
+	-moz-box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
+	box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
+}
+header .sign a{
+	color: #fff;
+	display: inline-block;
+	padding:0 12px;
+	text-shadow: 0 1px 0 #999;
+}
+header .sign .btn-drop-down{
+	border-right: #aec33b 1px solid;
+	-webkit-box-shadow: 1px 0 0 #87a100;
+	-moz-box-shadow: 1px 0 0 #87a100;
+	box-shadow: 1px 0 0 #87a100;
+	padding: 0 6px;
+	vertical-align: top;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
