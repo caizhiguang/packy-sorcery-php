@@ -2,6 +2,12 @@
 <html>
 <head>
 	<title>index</title>
+	<load href="__PUBLIC__/css/_libraries.css"/>
+	<load href="__PUBLIC__/css/_grids.css"/>
+	<load href="__PUBLIC__/css/_mod.css"/>
+	<load href="__PUBLIC__/css/_content.css"/>
+	<load href="__PUBLIC__/css/common.css"/>
+	<load href="__PUBLIC__/css/index.css"/>
 	<load href="__PUBLIC__/js/plug-in/json2.js"/>
 	<load href="__PUBLIC__/js/plug-in/jquery-1.8.2.min.js"/>
 	<load href="__PUBLIC__/js/plug-in/jquery.easing.1.3.js"/>
@@ -9,28 +15,45 @@
 	<load href="__PUBLIC__/js/plug-in/backbone.js"/>
 </head>
 <body>
-	
-	<div id="sidebar">
-		233
-	</div>
-
-	<script type="text/javascript">
-		var Sidebar = Backbone.Model.extend({
-		  promptColor: function() {
-		    var cssColor = prompt("Please enter a CSS color:");
-		    this.set({color: cssColor});
-		  }
-		});
-
-		window.sidebar = new Sidebar;
-
-		sidebar.on('change:color', function(model, color) {
-		  $('#sidebar').css({background: color});
-		});
-
-		sidebar.set({color: 'white'});
-
-		sidebar.promptColor();
-	</script>
+	<header>
+		<div class="head">
+			<img src="__PUBLIC__/images/logo.png" alt="番茄钟" id="logo">
+			<h1 id="title">番茄钟</h1>
+			<p id="description">根据番茄工作法而制作的工具</p>
+		</div>
+		<div class="sign">
+			<div id="btn-sign-in-group">
+				<a href="">登陆</a><a href="" class="btn-drop-down">▲</a>
+			</div>
+		</div>
+	</header>
+	<section class="main content">
+		<ul>
+			<li class="u1">
+				<p>简单易行的时间管理方法</p>
+			</li><li class="u2">
+				<p>减轻焦虑</p>
+				<p>提升：<br>集中力↑<br>注意力↑</p>
+			</li><li class="u3">
+				<p>拖延症</p>
+				<p>自我激励</p>
+				<p>压力</p>
+				<p>专注</p>
+				<p>承诺</p>
+				<p>工作效率↑</p>
+			</li><li class="u4">
+				
+			</li><li class="u5">
+				<p>自我观察</p>
+				<p>每日反省</p>
+				<p>寻找改进方法</p>
+			</li><li class="u6">
+				<p><a href="">→注册试用</a></p>
+			</li>
+		</ul>
+	</section>
+	<footer>
+		<p>&copy 2013 <a href="">番茄钟</a> All Rights Reserved.</p>
+	</footer>
 </body>
 </html>
