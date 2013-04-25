@@ -1,41 +1,47 @@
-header{ background: url(../images/header_bg.png); height:150px ; position: relative; }
+h1,h2,h3,h4,h5,h6{ font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "宋体B8B\4F53", simsun, sans-serif }
+
+header{ background: url(../img/header_bg.png); height:150px ; position: relative; }
 footer{ background-color: #fff; color: #999; text-align: right; height: 35px; line-height: 35px; }
 
+header h1{ line-height: 100%; }
 header .head{ padding: 50px 0 0 50px; }
 header .sign{ position: absolute; top:60px; right: 70px; }
 #logo{ float: left; }
 #title,#description{ margin-left: 70px;  }
 #title{ font-size: 24px; margin-bottom: 5px; margin-top: 10px; }
 #description{ color: #fff; }
-#btn-sign-in-group{
-	background-color: #9ab400;
-	color: #fffffc;
-	width: 80px;
+.btn-signin{
+	/*width: 80px;
 	height: 30px;
 	line-height: 30px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
-	-moz-box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
-	box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0,.5);
+	-moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0,.5);
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0,.5);*/
+	background-color: #9ab400;
+    background-image: linear-gradient(to bottom, #9ab400, #9ab400);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-header .sign a{
-	color: #fff;
-	display: inline-block;
-	padding:0 12px;
-	text-shadow: 0 1px 0 #999;
+.btn-signin .caret{
+	border-top-color: #FFFFFF;
+}
+.btn-signin:hover, .btn-signin:focus, .btn-signin:active, .btn-signin.active, .btn-signin.disabled, .btn-signin[disabled] {
+    background-color: #9ab400;
+    color: #FFFFFF;
+}
+.btn-group.open .btn-signin.dropdown-toggle{
+	background-color: #9ab400;
 }
 header .sign .btn-drop-down{
-	border-right: #aec33b 1px solid;
-	-webkit-box-shadow: 1px 0 0 #87a100;
-	-moz-box-shadow: 1px 0 0 #87a100;
-	box-shadow: 1px 0 0 #87a100;
+	border-left: #aec33b 1px solid;
+	-webkit-box-shadow: -1px 0 0 #87a100;
+	-moz-box-shadow: -1px 0 0 #87a100;
+	box-shadow: -1px 0 0 #87a100;
 	padding: 0 6px;
 	vertical-align: top;
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	transform: rotate(180deg);
 }
