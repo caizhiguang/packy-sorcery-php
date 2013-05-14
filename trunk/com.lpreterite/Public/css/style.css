@@ -1,0 +1,57 @@
+/*===== Style =====*/
+
+body{
+	padding-top:41px;
+}
+
+#body{
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+footer{
+	border-top:solid #eee 1px;
+	padding:.5em;
+}
+
+
+#task-input{
+	position: relative;
+}
+#task-input .icon-plus{
+	position: absolute;
+	top: .5em;
+	right: .7em;
+	opacity: .3;
+}
+#todolist{
+	list-style: none;
+	margin: 0;
+}
+
+
+/*===== Extend =====*/
+
+
+
+/*===== Layout =====*/
+/* Tablet to desktop */
+@media(min-width: 768px) and (max-width: 979px){
+	body{
+		padding-top: 0;
+	}
+}
+ 
+/* Tablet */
+@media(max-width: 767px){
+	body{
+		padding-top: 0;
+	}
+}
+
+/* phones */
+@media(max-width: 480px){
+	body{
+		padding-top: 0;
+	}
+}
