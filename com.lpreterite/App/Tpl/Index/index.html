@@ -12,9 +12,9 @@
 	<load href="__PUBLIC__/js/plug-in/underscore.js"/>
 	<load href="__PUBLIC__/js/plug-in/backbone.js"/>
 	<load href="__PUBLIC__/js/plug-in/bootstrap.min.js"/>
+	<load href="__PUBLIC__/js/common.js"/>
 </head>
 <body>
-
 	<header class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -35,37 +35,68 @@
               <li class="active"><a href="#ToDoList">ToDoList</a></li>
               <li><a href="#Calendar">Calendar</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </header>
-	<div class="container">
-		<ul>
-			<li class="u1">
-				<p>简单易行的时间管理方法</p>
-			</li><li class="u2">
-				<p>减轻焦虑</p>
-				<p>提升：<br>集中力↑<br>注意力↑</p>
-			</li><li class="u3">
-				<p>拖延症</p>
-				<p>自我激励</p>
-				<p>压力</p>
-				<p>专注</p>
-				<p>承诺</p>
-				<p>工作效率↑</p>
-			</li><li class="u4">
-				
-			</li><li class="u5">
-				<p>自我观察</p>
-				<p>每日反省</p>
-				<p>寻找改进方法</p>
-			</li><li class="u6">
-				<p><a href="">→注册试用</a></p>
-			</li>
-		</ul>
-		<footer>
-			<p>&copy 2013 <a href="">番茄钟</a> All Rights Reserved.</p>
-		</footer>
+	<div id="body" class="container">
+		<section class="row-fluid">
+			<article class="span8">
+				<form action="" id="task-input">
+					<i class="icon-plus"></i>
+					<input type="text" name="title" class="span12">
+				</form>
+				<ul id="todolist">
+					<li>
+						<label class="checkbox">
+							<input class="completed" type="checkbox">
+							<span class="name">test1</span>
+							<span class="pull-right"><i class="icon-time"></i><span class="time">1</span></span>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input class="completed" type="checkbox">
+							<span class="name">test1</span>
+							<span class="pull-right"><i class="icon-time"></i><span class="time">1</span></span>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input class="completed" type="checkbox">
+							<span class="name">test1</span>
+							<span class="pull-right"><i class="icon-time"></i><span class="time">1</span></span>
+						</label>
+					</li>
+				</ul>
+			</article>
+			<asice class="span4">
+				<section class="panel-clock">
+					<h1>没有工作进行</h1>
+					<span class="clock">
+						<span>2</span>
+						<span>5</span>
+						<span>.</span>
+						<small>0</small>
+						<small>0</small>
+					</span>
+				</section>
+			</asice>
+		</section>
 	</div>
+	<footer>
+		<p class="container">&copy 2013 <a href="">番茄钟</a> All Rights Reserved.</p>
+	</footer>
+
+	<script id="todolist-item" type="text/templet">
+		<li>
+			<label class="checkbox">
+				<input class="completed" type="checkbox" <%= completed ? 'checked="checked"' : '' %> >
+				<span class="name"><%- name %></span>
+				<span class="pull-right"><i class="icon-time"></i><span class="time"><%- time %></span></span>
+			</label>
+		</li>
+	</script>
+
 </body>
 </html>
