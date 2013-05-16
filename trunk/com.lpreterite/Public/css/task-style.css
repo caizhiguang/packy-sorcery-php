@@ -1,0 +1,43 @@
+body{
+	background-color: #111;
+	font-family: Consolas;
+}
+
+
+#logo{
+	padding: 30px 15px;
+	display: block;
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+}
+#content{ zoom:1; }
+#content:after{ content: ""; clear: both; line-height: 0; display: table; }
+#sidebar{
+	float: right;
+	min-width: 230px;
+	background: #111;
+}
+#mainbar{
+	margin-right: 230px;
+	background-color: #fff;
+	min-height: 900px;
+}
+#navi{
+	margin: 0;
+}
+#navi>li{
+	list-style: none;
+}
+#navi>li>a{
+	display: block;
+	color: #fff;
+	padding: 12px 20px;
+}
+#navi>li.active>a{
+	background-color: #ee7948;
+}
+#navi>li>a:active,#navi>li>a:hover,#navi>li>a:focus{
+	background-color: #98ba01;
+	text-decoration: none;
+}
