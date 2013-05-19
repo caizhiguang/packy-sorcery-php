@@ -1,15 +1,22 @@
 body{
 	background-color: #111;
-	font-family: Consolas;
+	font-family: Consolas,'Microsoft Yahei';
 }
-
-
-#logo{
-	padding: 30px 15px;
-	display: block;
+header{
+	padding: 0 15px;
+	margin: 30px 0;
+	border-left: solid #ee7948 3px;
+	color: #aaa;
+}
+header .brand{
 	font-size: 24px;
 	color: #fff;
-	text-align: center;
+}
+footer{
+	text-align: right;
+	font-size: 12px;
+	color: #666;
+	margin: 15px 0;
 }
 #content{ zoom:1; }
 #content:after{ content: ""; clear: both; line-height: 0; display: table; }
@@ -20,6 +27,7 @@ body{
 }
 #mainbar{
 	margin-right: 230px;
+	background-image: url(../img/mainbar_bg.png);
 	background-color: #fff;
 	min-height: 900px;
 }
@@ -35,9 +43,45 @@ body{
 	padding: 12px 20px;
 }
 #navi>li.active>a{
-	background-color: #ee7948;
+	background-color: #799401;
 }
 #navi>li>a:active,#navi>li>a:hover,#navi>li>a:focus{
-	background-color: #98ba01;
+	background-color: #9ab400;
 	text-decoration: none;
+}
+
+
+/* UI Element */
+
+.box{
+	background-color: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border:solid #ccc 1px;
+}
+
+.main h2.title{
+	margin: 15px 0 5px 0;
+	font-size: 14px;
+}
+
+.task-input{ margin:0; }
+.task-input input[type="text"]{
+	border:none;
+	height: 35px;
+	line-height: 35px;
+	margin:0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	border-bottom: solid #ddd 1px;
+}
+
+.tasks{
+	list-style: none;
+	margin: 0;
 }
