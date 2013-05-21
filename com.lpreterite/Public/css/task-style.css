@@ -1,5 +1,6 @@
 body{
-	background-color: #111;
+	background-image: url(../img/mainbar_bg.png);
+	background-color: #fff;
 	font-family: Consolas,'Microsoft Yahei';
 }
 header{
@@ -17,19 +18,21 @@ footer{
 	font-size: 12px;
 	color: #666;
 	margin: 15px 0;
+	clear: none;
 }
 #content{ zoom:1; }
 #content:after{ content: ""; clear: both; line-height: 0; display: table; }
 #sidebar{
-	float: right;
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
 	min-width: 230px;
 	background: #111;
 }
 #mainbar{
 	margin-right: 230px;
-	background-image: url(../img/mainbar_bg.png);
-	background-color: #fff;
-	min-height: 900px;
+	/*min-height: 900px;*/
 }
 #navi{
 	margin: 0;
@@ -60,17 +63,36 @@ footer{
 	border-radius: 3px;
 	border:solid #ccc 1px;
 }
+.box.gray{
+	background-image: url(../img/gray_box.png);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.box.b-none{
+	border:none;
+}
 
-.main h2.title{
+.widget{}
+.widget-head{
 	margin: 15px 0 5px 0;
 	font-size: 14px;
+}
+.widget-head>.bar a{
+	text-decoration: none;
+	color: #ccc;
+}
+.widget-head>.bar a:hover{
+	color: #999;
+}
+.widget-head>.bar i{
+	margin: 0 4px;
 }
 
 .task-input{ margin:0; }
 .task-input input[type="text"]{
 	border:none;
-	height: 35px;
-	line-height: 35px;
+	height: 55px;
 	margin:0;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -79,9 +101,105 @@ footer{
 	-moz-border-radius: 3px 3px 0 0;
 	border-radius: 3px 3px 0 0;
 	border-bottom: solid #ddd 1px;
+	text-indent: .5em;
 }
 
 .tasks{
 	list-style: none;
 	margin: 0;
+}
+.tasks>li{
+	height: 55px;
+	line-height: 55px;
+	border-bottom: solid #ddd 1px;
+}
+.tasks>li:last-child{
+	border-bottom: none;
+}
+.tasks>li>label.checkbox{
+	padding:18px 21px;
+	vertical-align: top;
+	border-right: solid #ddd 1px;
+}
+.tasks>li>label>input[type="checkbox"]{
+	float: none;
+	margin: 0;
+}
+.tasks>li>.pull-right{
+	padding-right: 15px;
+}
+.tasks>li>input[type="checkbox"]{
+	vertical-align: text-top;
+	margin: 0;
+}
+.tasks>li>.tags{
+	color: #999;
+}
+.tasks>.disable{
+	color: #aaa;
+}
+.tasks>.disable .icon-time{
+	opacity: .3;
+}
+.tasks>.disable>.title{
+	text-decoration:line-through;
+	color: #aaa;
+}
+.tasks a.remove{
+	opacity: 0;
+	color: #fff;
+	text-decoration: none;
+	font-size: 10px;
+	background-color: #999;
+	-webkit-border-radius: 50% 50%;
+	-moz-border-radius: 50% 50%;
+	border-radius: 50% 50%;
+	height: inherit;
+	height: 19px;
+	line-height: 19px;
+	width: 19px;
+	text-align: center;
+	display: inline-block;
+}
+.tasks a.remove:hover{
+	background-color: #111;
+}
+.tasks li:hover a.remove{
+	opacity: 1;
+	color: #fff;
+
+	-webkit-transition: opacity .3s;
+	-moz-transition: opacity .3s;
+	-ms-transition: opacity .3s;
+	-o-transition: opacity .3s;
+	transition: opacity .3s;
+}
+
+
+.tags-statistics{ zoom:1; }
+.tags-statistics:after{ content: ""; clear: both; line-height: 0; display: table; }
+.tags-statistics>.box{
+	padding: 15px;
+}
+.tag-statistic{
+	color: #999;
+}
+.tag-statistic i{
+	opacity: .5;
+}
+.tag-chart{
+	float: left;
+	margin-right: 5px;
+}
+.tag-content{
+	zoom:1;
+	overflow: hidden;
+	padding: 10px 0 5px 0;
+}
+.tag-content>p:first-child{
+	margin-bottom: 5px;
+}
+
+.f-orange{
+	color: #f25204;
 }
