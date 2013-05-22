@@ -1,4 +1,15 @@
 jQuery(document).ready(function($) {
+
+	var taskModel = Backbone.Model.extend({
+		urlRoot:'/task/api'
+	});
+
+	var taskList = Backbone.Collection.extend({
+		model:taskModel,
+		url:'/task/api'
+	});
+
+	var tasks = new taskList;
 	
 	var taskView = Backbone.View.extend({
 		tagName: 'li',
@@ -12,18 +23,21 @@ jQuery(document).ready(function($) {
 
 		},
 		render: function() {
-			this.$el.html(this.template({
-				id:1,
-				name:'test',
-				content:'233',
-				tags:'1,2',
-				tags_name:'@test, @test2',
-				uid:1,
-				important:0,
-				complete:0,
-				spacing:1500,
-				time:0
-			}));
+			// this.$el.html(this.template({
+			// 	id:1,
+			// 	name:'test',
+			// 	content:'233',
+			// 	tags:'1,2',
+			// 	tags_name:'@test, @test2',
+			// 	uid:1,
+			// 	important:0,
+			// 	complete:0,
+			// 	spacing:1500,
+			// 	time:0
+			// }));
+			var data = this.model.toJSON();
+			data.tags_name = data.tags;
+			this.$el.html(this.template(data));
 			return this;
 		},
 		clear:function(){
@@ -45,7 +59,23 @@ jQuery(document).ready(function($) {
 
 	});
 
-	var taskItem = new taskView();
-	taskItem.render();
-	taskItem.$el.appendTo(".tasks");
+	var tasksView = Backbone.View.extend({
+		el:$('.tasks'),
+		initialize:function(){
+			this.listenTo(tasks,'add',this.add);
+			tasks.fetch();
+		},
+		add:function(task){
+			var view = new taskView({model:task});
+			this.$el.append(view.render().el);
+		}
+	});
+
+	var vtasks = new tasksView;
+
+	// var taskItem = new taskView();
+	// taskItem.render();
+	// taskItem.$el.appendTo(".tasks");
+	
+	
 });
