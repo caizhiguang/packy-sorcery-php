@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-04-23 16:44:12
+Date: 2013-05-22 15:17:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,6 +41,10 @@ CREATE TABLE `p_tags` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `ename` varchar(20) DEFAULT NULL,
+  `longest_time` int(20) NOT NULL COMMENT '最长耗时',
+  `avg_time` int(20) NOT NULL COMMENT '平均耗时',
+  `total_time` int(20) DEFAULT NULL COMMENT '总耗时',
+  `tasks_count` int(20) DEFAULT NULL COMMENT '任务总数',
   `uid` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
@@ -48,27 +52,27 @@ CREATE TABLE `p_tags` (
 -- ----------------------------
 -- Records of p_tags
 -- ----------------------------
-INSERT INTO p_tags VALUES ('2', 'cat', 'cat', null);
-INSERT INTO p_tags VALUES ('3', 'dog', 'dog', null);
-INSERT INTO p_tags VALUES ('4', '223', null, null);
-INSERT INTO p_tags VALUES ('5', '223', null, null);
-INSERT INTO p_tags VALUES ('6', '223', null, null);
-INSERT INTO p_tags VALUES ('7', '223', null, null);
-INSERT INTO p_tags VALUES ('8', '223', null, null);
-INSERT INTO p_tags VALUES ('9', '223', null, null);
-INSERT INTO p_tags VALUES ('10', '223', null, null);
-INSERT INTO p_tags VALUES ('11', '223', null, null);
-INSERT INTO p_tags VALUES ('12', '223', null, null);
-INSERT INTO p_tags VALUES ('13', '223', null, null);
-INSERT INTO p_tags VALUES ('14', '223', null, null);
-INSERT INTO p_tags VALUES ('15', '223', null, null);
-INSERT INTO p_tags VALUES ('16', '223', null, null);
-INSERT INTO p_tags VALUES ('17', '223', null, null);
-INSERT INTO p_tags VALUES ('18', '223', null, null);
-INSERT INTO p_tags VALUES ('19', '223', null, null);
-INSERT INTO p_tags VALUES ('20', '223', null, null);
-INSERT INTO p_tags VALUES ('21', '223', null, null);
-INSERT INTO p_tags VALUES ('22', '223', null, null);
+INSERT INTO p_tags VALUES ('2', 'cat', 'cat', '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('3', 'dog', 'dog', '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('4', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('5', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('6', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('7', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('8', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('9', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('10', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('11', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('12', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('13', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('14', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('15', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('16', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('17', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('18', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('19', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('20', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('21', '223', null, '0', '0', null, null, null);
+INSERT INTO p_tags VALUES ('22', '223', null, '0', '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for `p_tasks`
@@ -86,24 +90,26 @@ CREATE TABLE `p_tasks` (
   `important` int(1) NOT NULL COMMENT '0不重要，1重要',
   `complete` int(1) NOT NULL COMMENT '完成状态(0未完成，1完成',
   `priority` int(3) NOT NULL COMMENT '0~9优先级',
+  `spacing` int(20) DEFAULT NULL COMMENT '番茄钟时长',
+  `time` int(10) DEFAULT NULL COMMENT '番茄钟数量',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tasks
 -- ----------------------------
-INSERT INTO p_tasks VALUES ('53', '任务详细功能', '', null, '2013-02-27 15:21:13', '2013-02-27 15:21:13', null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('54', '右面日历页', '', null, '2013-02-27 15:30:01', '2013-02-27 15:30:01', null, '0', '0', '1', '0');
-INSERT INTO p_tasks VALUES ('55', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('56', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('57', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('58', '321', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('59', '321', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('60', '233', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('61', '233', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('62', '345', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('63', '345', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
-INSERT INTO p_tasks VALUES ('64', '111', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0');
+INSERT INTO p_tasks VALUES ('53', '任务详细功能', '', null, '2013-02-27 15:21:13', '2013-02-27 15:21:13', null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('54', '右面日历页', '', null, '2013-02-27 15:30:01', '2013-02-27 15:30:01', null, '0', '0', '1', '0', null, null);
+INSERT INTO p_tasks VALUES ('55', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('56', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('57', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('58', '321', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('59', '321', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('60', '233', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('61', '233', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('62', '345', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('63', '345', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('64', '111', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
 
 -- ----------------------------
 -- Table structure for `p_users`
