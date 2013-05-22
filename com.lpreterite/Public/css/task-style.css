@@ -113,26 +113,38 @@ footer{
 	line-height: 55px;
 	border-bottom: solid #ddd 1px;
 }
+.tasks>li>.editor{
+	display: none;
+	border: none;
+	height: 55px;
+	padding: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	text-indent: 1em;
+}
+.tasks>li.editing>.view{
+	display: none;
+}
+.tasks>li.editing>.editor{
+	display: inline-block;
+}
 .tasks>li:last-child{
 	border-bottom: none;
 }
-.tasks>li>label.checkbox{
+.tasks>li label.checkbox{
 	padding:18px 21px;
 	vertical-align: top;
 	border-right: solid #ddd 1px;
 }
-.tasks>li>label>input[type="checkbox"]{
+.tasks>li label>input[type="checkbox"]{
 	float: none;
 	margin: 0;
 }
-.tasks>li>.pull-right{
+.tasks>li .pull-right{
 	padding-right: 15px;
 }
-.tasks>li>input[type="checkbox"]{
-	vertical-align: text-top;
-	margin: 0;
-}
-.tasks>li>.tags{
+.tasks>li .tags{
 	color: #999;
 }
 .tasks>.disable{
@@ -141,7 +153,7 @@ footer{
 .tasks>.disable .icon-time{
 	opacity: .3;
 }
-.tasks>.disable>.title{
+.tasks>.disable .title{
 	text-decoration:line-through;
 	color: #aaa;
 }

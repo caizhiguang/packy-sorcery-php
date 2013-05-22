@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>index</title>
+	<title>TW任务清单</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<load href="__PUBLIC__/css/bootstrap.min.css"/>
 	<load href="__PUBLIC__/css/bootstrap-responsive.min.css"/>
@@ -15,6 +15,7 @@
 	<load href="__PUBLIC__/js/plug-in/bootstrap.min.js"/>
 	<load href="__PUBLIC__/js/plug-in/Chart.min.js"/>
 	<load href="__PUBLIC__/js/common.js"/>
+	<load href="__PUBLIC__/js/tasks.js"/>
 </head>
 <body class="task">
 	<div id="content">
@@ -47,41 +48,53 @@
 									<input type="text" class="span12" placeholder="在这输入你的工作内容">
 								</form>
 								<ul class="tasks">
-									<li>
-										<label class="checkbox inline"><input type="checkbox"></label>
-										<span class="title">测试内容</span>
-										<small class="tags">@test</small>
-										<span class="pull-right">
-											<i class="icon-time"></i><span class="time">x1</span>
-											<a class="remove" href="#"><i class="icon-remove"></i></a>
-										</span>
+									<li class="editing">
+										<div class="view">
+											<label class="checkbox inline"><input type="checkbox"></label>
+											<span class="title">测试内容</span>
+											<small class="tags">@test</small>
+											<span class="pull-right">
+												<i class="icon-time"></i><span class="time">x1</span>
+												<a class="remove" href="#"><i class="icon-remove"></i></a>
+											</span>
+										</div>
+										<input type="text" class="editor span12">
 									</li>
 									<li>
-										<label class="checkbox inline"><input type="checkbox"></label>
-										<span class="title">测试内容</span>
-										<small class="tags">@test</small>
-										<span class="pull-right">
-											<i class="icon-time"></i><span class="time">x1</span>
-											<a class="remove" href="#"><i class="icon-remove"></i></a>
-										</span>
+										<div class="view">
+											<label class="checkbox inline"><input type="checkbox"></label>
+											<span class="title">测试内容</span>
+											<small class="tags">@test</small>
+											<span class="pull-right">
+												<i class="icon-time"></i><span class="time">x1</span>
+												<a class="remove" href="#"><i class="icon-remove"></i></a>
+											</span>
+										</div>
+										<input type="text" class="editor">
 									</li>
 									<li>
-										<label class="checkbox inline"><input type="checkbox"></label>
-										<span class="title">测试内容</span>
-										<small class="tags">@test</small>
-										<span class="pull-right">
-											<i class="icon-time"></i><span class="time">x1</span>
-											<a class="remove" href="#"><i class="icon-remove"></i></a>
-										</span>
+										<div class="view">
+											<label class="checkbox inline"><input type="checkbox"></label>
+											<span class="title">测试内容</span>
+											<small class="tags">@test</small>
+											<span class="pull-right">
+												<i class="icon-time"></i><span class="time">x1</span>
+												<a class="remove" href="#"><i class="icon-remove"></i></a>
+											</span>
+										</div>
+										<input type="text" class="editor">
 									</li>
 									<li class="disable">
-										<label class="checkbox inline"><input type="checkbox"></label>
-										<span class="title">测试内容</span>
-										<small class="tags">@test</small>
-										<span class="pull-right">
-											<i class="icon-time"></i><span class="time">x1</span>
-											<a class="remove" href="#"><i class="icon-remove"></i></a>
-										</span>
+										<div class="view">
+											<label class="checkbox inline"><input type="checkbox"></label>
+											<span class="title">测试内容</span>
+											<small class="tags">@test</small>
+											<span class="pull-right">
+												<i class="icon-time"></i><span class="time">x1</span>
+												<a class="remove" href="#"><i class="icon-remove"></i></a>
+											</span>
+										</div>
+										<input type="text" class="editor">
 									</li>
 								</ul>
 							</div>
@@ -116,6 +129,30 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/template" id="task-item">
+		<div class="view">
+			<label class="checkbox inline"><input type="checkbox" <%= complete ? 'checked="checked"' : '' %>></label>
+			<span class="title"><%- name %></span>
+			<small class="tags"><%- tags_name %></small>
+			<span class="pull-right">
+				<i class="icon-time"></i><span class="time">x<%- time %></span>
+				<a class="remove" href="#"><i class="icon-remove"></i></a>
+			</span>
+		</div>
+		<input type="text" class="editor span12" value="<%- name %>">
+	</script>
+
+	<script id="tags-statistic-item" type="text/template">
+		<div class="tag-chart">
+			<canvas id="tag-chart" width="70" height="70" data-avg="<%- avg_time %>" data-longest="<%- longest_time %>"></canvas>
+		</div>
+		<div class="tag-content">
+			<p class="tag-name"><%- name %></p>
+			<p class="tag-statistic">最长 <i class="icon-time"></i><span class="long-time">x<%- longest_time %></span> <span class="f-orange">平均</span> <i class="icon-time"></i><span class="avg-time">x<%- avg_time %></span></p>
+		</div>
+	</script>
+
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			var ctx = $('#tag-chart').get(0).getContext("2d");
