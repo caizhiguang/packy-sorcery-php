@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-05-22 15:17:46
+Date: 2013-05-23 17:35:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -90,26 +90,22 @@ CREATE TABLE `p_tasks` (
   `important` int(1) NOT NULL COMMENT '0不重要，1重要',
   `complete` int(1) NOT NULL COMMENT '完成状态(0未完成，1完成',
   `priority` int(3) NOT NULL COMMENT '0~9优先级',
-  `spacing` int(20) DEFAULT NULL COMMENT '番茄钟时长',
+  `spacing` int(20) DEFAULT NULL COMMENT '番茄钟时长(s)',
   `time` int(10) DEFAULT NULL COMMENT '番茄钟数量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tasks
 -- ----------------------------
-INSERT INTO p_tasks VALUES ('53', '任务详细功能', '', null, '2013-02-27 15:21:13', '2013-02-27 15:21:13', null, '0', '0', '0', '0', null, null);
 INSERT INTO p_tasks VALUES ('54', '右面日历页', '', null, '2013-02-27 15:30:01', '2013-02-27 15:30:01', null, '0', '0', '1', '0', null, null);
-INSERT INTO p_tasks VALUES ('55', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('56', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('57', '322', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('58', '321', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('59', '321', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('60', '233', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('61', '233', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('62', '345', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('63', '345', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
-INSERT INTO p_tasks VALUES ('64', '111', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('63', '345', null, '', '0000-00-00 00:00:00', null, null, '0', '0', '1', '0', null, null);
+INSERT INTO p_tasks VALUES ('66', '修改一下，呵呵', '', null, '2013-05-23 14:42:30', null, null, '0', '0', '1', '0', null, null);
+INSERT INTO p_tasks VALUES ('67', '测试中文字', '', null, '2013-05-23 14:42:50', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('68', '呵呵', '', null, '2013-05-23 14:42:55', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('69', '输入工作内容测试', '', null, '2013-05-23 14:43:25', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('72', '新工作内容', '', null, '2013-05-23 14:58:27', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('73', '再添加内容，呵呵', '', null, '2013-05-23 15:21:46', null, null, '0', '0', '0', '0', null, null);
 
 -- ----------------------------
 -- Table structure for `p_users`
