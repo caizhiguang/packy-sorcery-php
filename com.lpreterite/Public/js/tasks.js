@@ -94,6 +94,7 @@ jQuery(document).ready(function($) {
 
 	//定义页面视图
 	var AppView = Backbone.View.extend({
+		el:$('#content'),
 		events:{
 			'submit form.task-input':'create'
 		},
