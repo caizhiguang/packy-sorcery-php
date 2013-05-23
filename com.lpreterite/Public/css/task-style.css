@@ -56,13 +56,74 @@ footer{
 
 /* UI Element */
 
+.btn-tag{
+	background: #9ab400;
+	color: #fff;
+	border:none;
+	text-shadow: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	margin-bottom:3px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	position: relative;
+	padding:4px 16px;
+}
+.btn-tag:before{
+	content: '';
+	display: inline-block;
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+	border-right: 5px solid #9ab400;
+	position: absolute;
+	top: 33%;
+	left: -5px;
+}
+.btn-tag:hover:before,.btn-tag:active:before,.btn-tag:focus:before{
+	border-right-color: #799401;
+}
+.btn-tag:hover,.btn-tag:active,.btn-tag:focus{
+	background-color: #799401;
+	color: #fff;
+}
+.btn-tag i.icon-remove{
+	position: absolute;
+	top:6px;
+	right: 6px;
+	visibility: hidden;
+	opacity: 0;
+}
+.btn-tag.editing:hover{
+	padding:4px 22px 4px 10px;
+	-webkit-transition: padding .3s;
+	-moz-transition: padding .3s;
+	-ms-transition: padding .3s;
+	-o-transition: padding .3s;
+	transition: padding .3s;
+}
+.btn-tag.editing:hover i.icon-remove{
+	visibility: visible;
+	right: 6px;
+	opacity: 1;
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-ms-transition: .3s;
+	-o-transition: .3s;
+	transition: .3s;
+}
+
 .box{
 	background-color: #fff;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	border:solid #ccc 1px;
+	padding: 15px;
+	zoom:1;
 }
+.box:after{ content: ""; clear: both; line-height: 0; display: table; }
 .box.gray{
 	background-image: url(../img/gray_box.png);
 	-webkit-border-radius: 5px;
@@ -87,6 +148,14 @@ footer{
 }
 .widget-head>.bar i{
 	margin: 0 4px;
+}
+.widget-content{
+	/*word-wrap:break-word;*/
+}
+
+
+.widget-tasks > .widget-content{
+	padding: 0;
 }
 
 .task-input{ margin:0; }
@@ -147,13 +216,13 @@ footer{
 .tasks>li .tags{
 	color: #999;
 }
-.tasks>.disable{
+.tasks .disable{
 	color: #aaa;
 }
-.tasks>.disable .icon-time{
+.tasks .disable .icon-time{
 	opacity: .3;
 }
-.tasks>.disable .title{
+.tasks .disable .title{
 	text-decoration:line-through;
 	color: #aaa;
 }
@@ -188,11 +257,6 @@ footer{
 }
 
 
-.tags-statistics{ zoom:1; }
-.tags-statistics:after{ content: ""; clear: both; line-height: 0; display: table; }
-.tags-statistics>.box{
-	padding: 15px;
-}
 .tag-statistic{
 	color: #999;
 }
