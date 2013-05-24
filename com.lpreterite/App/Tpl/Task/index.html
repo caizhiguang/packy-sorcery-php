@@ -12,6 +12,7 @@
 	<load href="__PUBLIC__/css/bootstrap-responsive.min.css"/>
 	<load href="__PUBLIC__/css/task-style.css"/>
 	<load href="__PUBLIC__/css/font-awesome.css"/>
+	<script type="text/javascript" data-main="__PUBLIC__/js/main" src="__PUBLIC__/js/plug-in/require.js" ></script>
 	<load href="__PUBLIC__/js/plug-in/json2.js"/>
 	<load href="__PUBLIC__/js/plug-in/jquery-1.8.2.min.js"/>
 	<load href="__PUBLIC__/js/plug-in/jquery.easing.1.3.js"/>
@@ -23,7 +24,7 @@
 	<load href="__PUBLIC__/js/tasks.js"/>
 </head>
 <body class="task">
-	<div id="content">
+	<div id="wrapper">
 		<div id="sidebar">
 			<div class="sidebar-inner">
 				<header class="container-fluid">
@@ -58,6 +59,26 @@
 					</div>
 					<div class="span4">
 
+						<div class="widget widget-user">
+							<div class="widget-head">
+								<i class="icon-user"></i> 你的信息
+								<span class="pull-right bar">
+									<a href="#" class="minimize"><i class="icon-chevron-up"></i></a>
+								</span>
+							</div>
+							<div class="widget-content">
+								<div class="media">
+									<a href="#" class="pull-left">
+										<img class="media-object" src="__PUBLIC__/img/default-user-avatar.png">
+									</a>
+									<div class="media-body">
+										<h4>XXX<small>，你好！</small></h4>
+										<a href="#" class="btn">登出</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<div class="widget widget-tags">
 							<div class="widget-head">
 								<i class="icon-tag"></i> 标签
@@ -66,15 +87,10 @@
 									<a href="#" class="minimize"><i class="icon-chevron-up"></i></a>
 								</span>
 							</div>
-							<div class="widget-content box gray b-none">
-								<a href="#" class="btn btn-tag editing">设计<i class="icon-remove"></i></a>
-								<a href="#" class="btn btn-tag editing">静态页制作<i class="icon-remove"></i></a>
-								<a href="#" class="btn btn-tag editing">后台功能<i class="icon-remove"></i></a>
-
-							</div>
+							<div class="widget-content box gray b-none"></div>
 						</div>
 
-						<div class="widget widget-statistic">
+						<div class="widget widget-statistic hide">
 							<div class="widget-head">
 								<i class="icon-signal"></i> 初步统计
 								<span class="pull-right bar">
@@ -106,6 +122,13 @@
 		</div>
 	</div>
 
+	<script id="alert" type="text/template">
+		<div class="alert">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>当前标签：</strong><%- name %>
+		</div>
+	</script>
+
 	<script id="msgbox" type="text/template">
 		<div id="msgboxModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
@@ -123,7 +146,7 @@
 	</script>
 
 	<script id="tag-item" type="text/template">
-
+		<a href="#tag-<%- id %>" class="btn btn-tag" data-toggle="tooltip" data-original-title="包含<%- tasks_count %>个任务"><%- name %><i class="icon-remove"></i></a>
 	</script>
 
 	<script type="text/template" id="task-item">
@@ -151,6 +174,9 @@
 
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
+
+			// $('.widget-tags>.widget-content>a').tooltip();
+
 			var ctx = $('#tag-chart').get(0).getContext("2d");
 			var tags_chart = new Chart(ctx).Doughnut([{
 				value:35,

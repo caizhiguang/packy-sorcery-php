@@ -7,7 +7,8 @@ jQuery(document).ready(function($) {
 	var TagList = Backbone.Collection.extend({
 		urlRoot:'/tag/api',
 		url:'/tag/api',
-		model:Tag
+		model:Tag,
+		comparator:'id'
 	});
 
 	//定义“任务”数据模型
@@ -28,6 +29,28 @@ jQuery(document).ready(function($) {
 	var tasks = new TaskList;//创建“任务”数据模型堆
 	var tags = new TagList;
 
+	var TagView = Backbone.View.extend({
+		template:_.template($('#tag-item').html()),
+		events:{
+			'click':'onClick'
+		},
+		initialize:function(){ //初始化
+			this.listenTo(this.model,'change',this.render);
+			this.listenTo(this.model,'destroy',this.remove);
+		},
+		render:function(){
+			this.setElement(this.template(this.model.toJSON()));
+			this.$el.tooltip();
+			return this;
+		},
+		onClick:function(){
+			if(this.isEdited)
+				this.model.destroy();
+			else
+				this.trigger('click',this.model);
+		}
+	});
+
 	//定义“任务”视图
 	var TaskView = Backbone.View.extend({
 		tagName: 'li',
@@ -37,7 +60,7 @@ jQuery(document).ready(function($) {
 			"dblclick .view"  : "edit",
 			"blur .editor":"update",
 			"keypress .editor":"update",
-			"click a.remove":'clear',
+			"click a.remove":'delete',
 			'click .checkbox':'toggle'
 		},
 		initialize:function(){ //初始化
@@ -51,7 +74,7 @@ jQuery(document).ready(function($) {
 			this.input = this.$el.find('.editor');
 			return this;
 		},
-		clear:function(){ //删除
+		delete:function(){ //删除
 			if($('#msgboxModal').length>0) return;
 
 			var that = this;
@@ -94,23 +117,32 @@ jQuery(document).ready(function($) {
 
 	//定义页面视图
 	var AppView = Backbone.View.extend({
-		el:$('#content'),
+		el:$('#wrapper'),
 		events:{
 			'submit form.task-input':'create'
 		},
 		initialize:function(){ //初始化
 			this.listenTo(tags,'add',this.renderByTag);
 			this.listenTo(tasks,'add',this.renderByTask);
-			// tags.fetch();
+			
+			tags.fetch();
 			tasks.fetch();
+
 			this.input = this.$('.task-input>input');
 		},
 		renderByTag:function(tag){
-			$('.widget-tags>.widget-content').append('<a href="javascript:;" data-tag-id="'+tag.get('id')+'">'+tag.get('name')+'</a> ');
+			var view = new TagView({model:tag});
+			this.listenTo(view,'click',this.taskFilterByTag)
+			$('.widget-tags .widget-content').append(view.render().el);
 		},
 		renderByTask:function(task){ //显示“任务”视图
 			var view = new TaskView({model:task});
 			$('.tasks').prepend(view.render().el);
+		},
+		taskFilterByTag:function(tag){
+			// this.$('.alert').show().find('.tag').text(tag.get('name'));
+			var temp = _.template($('#alert').html());
+			this.$('form.task-input').after(temp(tag.attributes));
 		},
 		create:function(){ //添加“任务”数据
 
