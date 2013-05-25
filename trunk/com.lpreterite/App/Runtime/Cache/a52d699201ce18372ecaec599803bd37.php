@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head>
 	<title>TW任务清单</title>
@@ -8,20 +8,20 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Tink-Work">
-	<load href="__PUBLIC__/css/bootstrap.min.css"/>
-	<load href="__PUBLIC__/css/bootstrap-responsive.min.css"/>
-	<load href="__PUBLIC__/css/task-style.css"/>
-	<load href="__PUBLIC__/css/font-awesome.css"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/task-style.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/font-awesome.css" />
 	<script type="text/javascript" data-main="__PUBLIC__/js/require.config" src="__PUBLIC__/js/plug-in/require.js" ></script>
-	<!-- <load href="__PUBLIC__/js/plug-in/json2.js"/>
-	<load href="__PUBLIC__/js/plug-in/jquery.min.js"/>
-	<load href="__PUBLIC__/js/plug-in/jquery.easing.js"/>
-	<load href="__PUBLIC__/js/plug-in/underscore.js"/>
-	<load href="__PUBLIC__/js/plug-in/backbone.js"/>
-	<load href="__PUBLIC__/js/plug-in/bootstrap.min.js"/>
-	<load href="__PUBLIC__/js/plug-in/Chart.min.js"/>
-	<load href="__PUBLIC__/js/common.js"/>
-	<load href="__PUBLIC__/js/tasks.js"/> -->
+	<!-- <script type="text/javascript" src="__PUBLIC__/js/plug-in/json2.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/jquery.easing.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/underscore.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/backbone.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plug-in/Chart.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/tasks.js"></script> -->
 </head>
 <body class="task">
 	<div id="wrapper">
