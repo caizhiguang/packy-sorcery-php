@@ -225,12 +225,12 @@ footer{
 .btn-tag:before{
 	content: '';
 	display: inline-block;
-	border-top: 4px solid transparent;
-	border-bottom: 4px solid transparent;
-	border-right: 5px solid #9ab400;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 4px solid #9ab400;
 	position: absolute;
 	top: 33%;
-	left: -5px;
+	left: -4px;
 }
 .btn-tag:hover:before,.btn-tag:active:before,.btn-tag:focus:before{
 	border-right-color: #799401;

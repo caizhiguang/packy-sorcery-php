@@ -1,64 +1,62 @@
-define(['jquery.min','backbone'],function(){
-	//定义“任务”视图
+define([
+	'view/task.item',
+	'model/task.list'
+],function(TaskItemView,tasks){
 	return Backbone.View.extend({
-		tagName: 'li',
-		template: _.template($('#task-item').html()),
-		msgbox:_.template($('#msgbox').html()),
-		events: {
-			"dblclick .view"  : "edit",
-			"blur .editor":"update",
-			"keypress .editor":"update",
-			"click a.remove":'delete',
-			'click .checkbox':'toggle'
+		el:$('.widget-tasks'),
+		events:{
+			'submit form.task-input':'create'
 		},
 		initialize:function(){ //初始化
-			this.listenTo(this.model,'change',this.render);
-			this.listenTo(this.model,'destroy',this.remove);
+			this.listenTo(tasks,'add',this.add);
+			this.input = this.$('.task-input>input');
+			this.render();
 		},
-		render: function() { //类似刷新
-			var data = this.model.toJSON();
-			data.tags_name = data.tags;
-			this.$el.html(this.template(data));
-			this.input = this.$el.find('.editor');
+		render:function(){
+			tasks.fetch();
 			return this;
 		},
-		delete:function(){ //删除
-			if($('#msgboxModal').length>0) return;
-
-			var that = this;
-			var msgboxTemp = this.msgbox({title:'提示', content:'确认删除 '+this.model.attributes.name+' 么？'});
-			$(msgboxTemp).appendTo(document).modal({
-				
-			}).on('hidden',function(){
-				$(this).remove();
-
-				if(that.$el.hasClass('editing')){
-					that.input.val(that.model.get('name'));
-					that.input.focus();
-				}
-			}).find('.btn-primary').on('click',function(){
-				that.model.destroy();
+		add:function(task){
+			var view = new TaskItemView({model:task});
+			this.$('.tasks').prepend(view.render().el);
+		},
+		create:function(){
+			var inputData = this.input.val();
+			tasks.create({
+				complete: "0",
+				content: "",
+				end_time: null,
+				important: "0",
+				name: inputData,
+				priority: "0",
+				spacing: null,
+				start_time: $.dateToString(new Date()),
+				tags: null,
+				time: null,
+				today: "0",
+				uid: null
 			});
+			this.input.val('');
+			return false;
 		},
-		edit:function(e){ //进入更新编辑模式
-			if(/label|input/.exec(e.target.nodeName.toLowerCase()) != null) return;
-			this.$el.addClass("editing");
-			this.input.focus();
-		},
-		update:function(e){ //编辑完成后
-			if(e.type=="keypress")
-				if(!(e.which==10 || e.which==13)) return;
+		filter:function(tag){
+			
+			var temp = _.template($('#alert').html());
+			if(this.alertBox!=undefined)
+				this.alertBox.alert('close');
+			this.alertBox = $(temp(tag.toJSON())).insertAfter(this.$('.task-input')).alert().bind('closed',this,this.unfilter);
 
-			var value = this.input.val();
-			if (!value) {
-				this.delete();
-			} else {
-				this.$el.removeClass("editing");
-				this.model.save({name:value});
-			}
+			this.$('.tasks').empty();
+			var list = tasks.where({complete:'1'});
+			for (var i = list.length - 1; i >= 0; i--) {
+				this.add(list[i]);
+			};
 		},
-		toggle:function(){ //设置为完成
-			this.model.toggle();
+		unfilter:function(e){
+			e.data.$('.tasks').empty();
+			tasks.each(e.data.add,e.data);
+			e.data.alertBox = null;
+			delete e.data.alertBox;
 		}
 	});
 });

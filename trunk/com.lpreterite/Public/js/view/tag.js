@@ -1,23 +1,33 @@
-define(['jquery.min','backbone'],function(){
+define([
+	'view/tag.item',
+	'model/tag.list'
+],function(TagItemView,tags){
 	return Backbone.View.extend({
-		template:_.template($('#tag-item').html()),
+		el:$('.widget-tags'),
+		_edited:false,
 		events:{
-			'click':'onClick'
+			'click .edit':'edit'
 		},
-		initialize:function(){ //初始化
-			this.listenTo(this.model,'change',this.render);
-			this.listenTo(this.model,'destroy',this.remove);
+		initialize:function(){
+			this.listenTo(tags,'add',this.add);
+			this.render();
 		},
 		render:function(){
-			this.setElement(this.template(this.model.toJSON()));
-			this.$el.tooltip();
+			tags.fetch();
 			return this;
 		},
-		onClick:function(){
-			if(this.isEdited)
-				this.model.destroy();
-			else
-				this.trigger('click',this.model);
+		add:function(tag){
+			var view = new TagItemView({model:tag});
+			this.listenTo(view,'click',this.onTagItemClick);
+			this.$('.widget-content').append(view.render().el);
+		},
+		edit:function(){
+			this._edited = !this._edited;
+			this.$el.toggleClass('editing',this._edited);
+		},
+		onTagItemClick:function(tag){
+			if(!this._edited)
+				this.trigger('itemClick',tag);
 		}
 	});
 });
