@@ -1,4 +1,4 @@
-define(['jquery.min','backbone'],function(){
+define(['backbone'],function(){
 	return Backbone.View.extend({
 		template:_.template($('#tag-item').html()),
 		events:{

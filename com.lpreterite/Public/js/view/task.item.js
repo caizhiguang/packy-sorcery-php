@@ -1,4 +1,6 @@
-define(['jquery.min','backbone'],function(){
+define([
+	'backbone'
+],function(){
 	//定义“任务”视图
 	return Backbone.View.extend({
 		tagName: 'li',
@@ -17,7 +19,6 @@ define(['jquery.min','backbone'],function(){
 		},
 		render: function() { //类似刷新
 			var data = this.model.toJSON();
-			data.tags_name = data.tags;
 			this.$el.html(this.template(data));
 			this.input = this.$el.find('.editor');
 			return this;

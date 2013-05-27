@@ -1,7 +1,8 @@
 define([
 	'view/task.item',
-	'model/task.list'
-],function(TaskItemView,tasks){
+	'model/task.list',
+	'model/tag.list'
+],function(TaskItemView,tasks,tags){
 	return Backbone.View.extend({
 		el:$('.widget-tasks'),
 		events:{
@@ -21,21 +22,43 @@ define([
 			this.$('.tasks').prepend(view.render().el);
 		},
 		create:function(){
-			var inputData = this.input.val();
+		
+			var taskName = /[^@\s]+/.exec(this.input.val())[0];
+			var tagName = /[^@]+/.exec(/@[^@\s]+/.exec(this.input.val())[0])[0];
+			var tag = tags.findWhere({name:tagName});
+			var tagId = null;
+			if(tag)
+				tagId = tag.id;
+			else
+				tags.create({
+					name:tagName,
+					tasks_count:1,
+					total_time:0,
+					avg_time:0,
+					longest_time:0,
+					uid:0
+				},{
+					wait: true,
+					success:function(model){
+						var task = tasks.findWhere({name:taskName});
+						task.save({tags:model.id});
+					}
+				});
+
 			tasks.create({
 				complete: "0",
 				content: "",
 				end_time: null,
 				important: "0",
-				name: inputData,
+				name:taskName,
 				priority: "0",
 				spacing: null,
 				start_time: $.dateToString(new Date()),
-				tags: null,
+				tags: tagId,
 				time: null,
 				today: "0",
 				uid: null
-			});
+			},{wait:true});
 			this.input.val('');
 			return false;
 		},
