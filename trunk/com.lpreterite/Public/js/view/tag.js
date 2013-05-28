@@ -9,8 +9,8 @@ define([
 			'click .edit':'edit'
 		},
 		initialize:function(){
+			this.list = tags;
 			this.listenTo(tags,'add',this.add);
-			this.render();
 		},
 		render:function(){
 			tags.fetch();

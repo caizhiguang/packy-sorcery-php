@@ -2,18 +2,25 @@
 class AccountsAction extends Action{
 	
 	var $user;
-	function __initialize(){
-		$this->user = new User();
+	function _initialize(){
+		$this->user = D('users');
 	}
 
-	public function sign(){
+	public function api(){
 
-		if(!$_GET['action']) return;
-		$this->display($_GET['action']);
+		$taskAction = new TaskAction();
+		$tagAction = new TagAction();
 
+		$this->ajaxReturn(array(
+			'tag'=>$tagAction->getAll(false),
+			'task'=>$taskAction->getAll(false)
+		));
 	}
 
 	public function signin(){
+
+		if(count($_POST)<=0){$this->display();return;}
+
 		$verification = $this->user->create();//检验数据有效性
         if(!$verification){$this->error($this->user->getError());return;}
         $verification = $this->user->where($verification)->select();//
@@ -41,6 +48,9 @@ class AccountsAction extends Action{
 	}
 
 	public function register(){
+
+		if(count($_POST)<=0){$this->display();return;}
+
 		$verification = $this->user->create($data);//检验数据有效性
         if(!$verification){$this->error($this->user->getError());return;}
         $verification = $this->user->add($verification);//能否于数据库中添加(修改、删除)数据

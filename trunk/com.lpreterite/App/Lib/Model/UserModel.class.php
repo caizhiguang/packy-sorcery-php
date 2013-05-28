@@ -1,4 +1,4 @@
 <?php
-class UserModel extends Model{
+class UsersModel extends Model{
 
 }
