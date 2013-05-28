@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-05-25 19:08:47
+Date: 2013-05-28 17:31:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `p_tags` (
   `tasks_count` int(20) NOT NULL COMMENT '任务总数',
   `uid` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tags
@@ -73,6 +73,9 @@ INSERT INTO p_tags VALUES ('19', '223', null, '0', '0', '0', '0', null);
 INSERT INTO p_tags VALUES ('20', '223', null, '0', '0', '0', '0', null);
 INSERT INTO p_tags VALUES ('21', '223', null, '0', '0', '0', '0', null);
 INSERT INTO p_tags VALUES ('22', '223', null, '0', '0', '0', '0', null);
+INSERT INTO p_tags VALUES ('26', '测试标签', null, '0', '0', '0', '1', '0');
+INSERT INTO p_tags VALUES ('27', '@测试标签', null, '0', '0', '0', '1', '0');
+INSERT INTO p_tags VALUES ('28', '测试标签2', null, '0', '0', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for `p_tasks`
@@ -93,7 +96,7 @@ CREATE TABLE `p_tasks` (
   `spacing` int(20) DEFAULT NULL COMMENT '番茄钟时长(s)',
   `time` int(10) DEFAULT NULL COMMENT '番茄钟数量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tasks
@@ -106,6 +109,9 @@ INSERT INTO p_tasks VALUES ('68', '设计登陆页面、注册页面', '', null,
 INSERT INTO p_tasks VALUES ('69', '完善标签统计功能', '', null, '2013-05-23 14:43:25', null, null, '0', '0', '0', '0', null, null);
 INSERT INTO p_tasks VALUES ('72', '让任务列表支持标签记录', '', null, '2013-05-23 14:58:27', null, null, '0', '0', '0', '0', null, null);
 INSERT INTO p_tasks VALUES ('75', '完成标签功能', '', null, '2013-05-25 18:51:30', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('81', '测试内容', '', '27', '2013-05-27 16:10:47', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('82', '测试内容2', '', '28', '2013-05-27 16:12:03', null, null, '0', '0', '0', '0', null, null);
+INSERT INTO p_tasks VALUES ('83', '测试内容3', '', '26', '2013-05-28 15:20:39', null, null, '0', '0', '0', '0', null, null);
 
 -- ----------------------------
 -- Table structure for `p_users`
