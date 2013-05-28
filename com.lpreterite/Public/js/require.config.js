@@ -1,6 +1,6 @@
 requirejs.config({
 	baseUrl:'/Public/js/plug-in',
-	// urlArgs: "bust=" + (new Date()).getTime(),
+	urlArgs: "bust=" + (new Date()).getTime(),
 	shim:{
 		'backbone':{
 			deps:['underscore'],

@@ -154,8 +154,8 @@
 			<label class="checkbox inline"><input type="checkbox" <%= complete!=0 ? 'checked="checked"' : '' %>></label>
 			<span class="title"><%- name %></span>
 			<small class="tags">
-				<% if(_.isObject(tags)){ %>
-				<a href="#tag-<%- id %>"><%- name %></a>
+				<% if(_.isObject(tag)){ %>
+				<a href="#tag-<%- tag.id %>">@<%- tag.name %></a>
 				<% } %>
 			</small>
 			<span class="pull-right">
@@ -163,7 +163,7 @@
 				<a class="remove" href="javascript:;"><i class="icon-remove"></i></a>
 			</span>
 		</div>
-		<input type="text" class="editor span12" value="<%- name %>">
+		<input type="text" class="editor span12" value="<%- name %> <% if(_.isObject(tag)){ %>@<%- tag.name %><% } %>">
 	</script>
 
 	<script id="tags-statistic-item" type="text/template">

@@ -142,6 +142,9 @@ footer{
 .tasks>li .tags{
 	color: #999;
 }
+.tasks>li .tags a{
+	color: inherit;
+}
 .tasks .disable{
 	color: #aaa;
 }

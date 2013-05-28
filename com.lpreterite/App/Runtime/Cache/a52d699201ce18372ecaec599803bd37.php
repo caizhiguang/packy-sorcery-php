@@ -153,13 +153,17 @@
 		<div class="view  <%= complete!=0 ? 'disable' : '' %>">
 			<label class="checkbox inline"><input type="checkbox" <%= complete!=0 ? 'checked="checked"' : '' %>></label>
 			<span class="title"><%- name %></span>
-			<small class="tags"><%- tags_name %></small>
+			<small class="tags">
+				<% if(_.isObject(tag)){ %>
+				<a href="#tag-<%- tag.id %>">@<%- tag.name %></a>
+				<% } %>
+			</small>
 			<span class="pull-right">
 				<% if(time){ %><i class="icon-time"></i><span class="time">x<%- time %></span><% } %>
 				<a class="remove" href="javascript:;"><i class="icon-remove"></i></a>
 			</span>
 		</div>
-		<input type="text" class="editor span12" value="<%- name %>">
+		<input type="text" class="editor span12" value="<%- name %> <% if(_.isObject(tag)){ %>@<%- tag.name %><% } %>">
 	</script>
 
 	<script id="tags-statistic-item" type="text/template">

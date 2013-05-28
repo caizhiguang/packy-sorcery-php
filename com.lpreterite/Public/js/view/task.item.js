@@ -1,6 +1,7 @@
 define([
+	'model/tag.list',
 	'backbone'
-],function(){
+],function(tags){
 	//定义“任务”视图
 	return Backbone.View.extend({
 		tagName: 'li',
@@ -50,12 +51,36 @@ define([
 			if(e.type=="keypress")
 				if(!(e.which==10 || e.which==13)) return;
 
-			var value = this.input.val();
+			var taskName = /[^@\s]+/.exec(this.input.val())[0];
+			var tagName = /@[^@\s]+/.exec(this.input.val());
+			if(tagName){
+				tagName=tagName[0];
+				var tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});
+				var tagId = null;
+				var that = this;
+				if(tag)
+					tagId = tag.id;
+				else
+					tags.create({
+						name:/[^@]+/.exec(tagName)[0],
+						tasks_count:1,
+						total_time:0,
+						avg_time:0,
+						longest_time:0,
+						uid:0
+					},{
+						wait: true,
+						success:function(model){
+							that.model.save({tags:model.id});
+						}
+					});
+			}
+			var value = taskName;
 			if (!value) {
 				this.delete();
 			} else {
 				this.$el.removeClass("editing");
-				this.model.save({name:value});
+				this.model.save({name:value},{wait: true});
 			}
 		},
 		toggle:function(){ //设置为完成
