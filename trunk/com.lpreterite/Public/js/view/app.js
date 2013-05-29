@@ -12,7 +12,7 @@ define([
 				task:new TaskView
 			};
 
-			this.listenTo(this.view.tag,'itemClick',this.taskfilter);
+			// this.listenTo(this.view.tag,'itemClick',this.taskfilter);
 
 			$.getJSON('/accounts/api',function(data){
 				
@@ -26,8 +26,8 @@ define([
 
 			});
 		},
-		taskfilter:function(tag){
-			this.view.task.filter(tag);
-		}
+		// taskfilter:function(tag){
+		// 	this.view.task.filter(tag);
+		// }
 	});
 });
