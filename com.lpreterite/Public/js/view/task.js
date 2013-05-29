@@ -31,7 +31,6 @@ define([
 			this.$('.tasks').prepend(view.render().el);
 		},
 		create:function(){
-			var taskName = /[^@\s]+/.exec(this.input.val())[0];
 			var tagName = /@[^@\s]+/.exec(this.input.val());
 			if(tagName){
 				tagName=tagName[0];
@@ -41,12 +40,7 @@ define([
 					tagId = tag.id;
 				else
 					tags.create({
-						name:/[^@]+/.exec(tagName)[0],
-						tasks_count:1,
-						total_time:0,
-						avg_time:0,
-						longest_time:0,
-						uid:0
+						name:/[^@]+/.exec(tagName)[0]
 					},{
 						wait: true,
 						success:function(model){
@@ -56,35 +50,26 @@ define([
 					});
 			}
 			tasks.create({
-				complete: "0",
-				content: "",
-				end_time: null,
-				important: "0",
-				name:taskName,
-				priority: "0",
-				spacing: null,
+				name:this.input.val(),
 				start_time: $.dateToString(new Date()),
-				tags: tagId,
-				time: null,
-				today: "0",
-				uid: null
+				tags: tagId
 			},{wait:true});
 			this.input.val('');
 			return false;
 		},
-		filter:function(tag){
+		// filter:function(tag){
 			
-			var temp = _.template($('#alert').html());
-			if(this.alertBox!=undefined)
-				this.alertBox.alert('close');
-			this.alertBox = $(temp(tag.toJSON())).insertAfter(this.$('.task-input')).alert().bind('closed',this,this.unfilter);
+		// 	var temp = _.template($('#alert').html());
+		// 	if(this.alertBox!=undefined)
+		// 		this.alertBox.alert('close');
+		// 	this.alertBox = $(temp(tag.toJSON())).insertAfter(this.$('.task-input')).alert().bind('closed',this,this.unfilter);
 
-			this.$('.tasks').empty();
-			var list = tasks.where({tags:tag.id});
-			for (var i = list.length - 1; i >= 0; i--) {
-				this.add(list[i]);
-			};
-		},
+		// 	this.$('.tasks').empty();
+		// 	var list = tasks.where({tags:tag.id});
+		// 	for (var i = list.length - 1; i >= 0; i--) {
+		// 		this.add(list[i]);
+		// 	};
+		// },
 		unfilter:function(e){
 			e.data.$('.tasks').empty();
 			tasks.each(e.data.add,e.data);

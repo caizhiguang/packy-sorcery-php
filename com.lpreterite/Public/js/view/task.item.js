@@ -15,7 +15,7 @@ define([
 			'click .checkbox':'toggle'
 		},
 		initialize:function(){ //初始化
-			this.listenTo(this.model,'change:complete',this.test);
+			this.listenTo(this.model,'change:name',this.name_changed);
 			this.listenTo(this.model,'change',this.render);
 			this.listenTo(this.model,'destroy',this.remove);
 		},
@@ -25,8 +25,12 @@ define([
 			this.input = this.$el.find('.editor');
 			return this;
 		},
-		test:function(model){
-			var d = model;
+		name_changed:function(model){
+			// var tagName = /@[^@\s]+/.exec(this.input.val());
+			// if(tagName){
+			// 	tagName=tagName[0];
+				
+			// }
 		},
 		delete:function(){ //删除
 			if($('#msgboxModal').length>0) return;
