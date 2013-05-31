@@ -1,7 +1,14 @@
 jQuery(document).ready(function($) {
 	
 	var User = Backbone.Model.extend({
-		urlRoot:'/test/api'
+		urlRoot:'/test/api',
+		save:function(attributes,options,localStorage){
+			if(arguments.length=2){
+				if(_.isBoolean(arguments[1])) var localStorage=arguments[1];
+			}
+			var options = _.extend({},options,{localStorage:localStorage});
+			Backbone.Model.prototype.save.apply(this,[attributes,options]);
+		}
 	});
 
 	var UserList = Backbone.Collection.extend({
@@ -10,8 +17,33 @@ jQuery(document).ready(function($) {
 		model:User,
 		localStorage:new Store('user'),
 		upload:function(){
+			// var users = [];
+			// this.each(function(user){
+			// 	users.push(user.toJSON());
+			// });
+
+			// $.ajax({
+			// 	url:'/test/upload',
+			// 	data:{
+			// 		users:users
+			// 	},
+			// 	type:'post',
+			// 	success:function(data){
+			// 		console.log(data);
+			// 	}
+			// });
+			
 			this.each(function(user){
-				user.save({id:undefined},{localStorage:false});
+
+				var data = _.extend({},user.toJSON(),{id:undefined,test:{a:1,b:2}});
+
+				user.sync('create',user,{
+					data:JSON.stringify(data),
+					localStorage:false,
+					success:function(data){
+						console.log(data);
+					}
+				});
 			});
 		}
 	});
