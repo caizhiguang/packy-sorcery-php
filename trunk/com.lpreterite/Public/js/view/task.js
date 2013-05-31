@@ -20,13 +20,6 @@ define([
 			return this;
 		},
 		add:function(task){
-
-			var tag = null;
-			if(task.get('tags'))
-				tag = tags.findWhere({id:task.get('tags')}).toJSON();
-
-			task.set('tag',tag);
-
 			var view = new TaskItemView({model:task});
 			this.$('.tasks').prepend(view.render().el);
 		},
@@ -35,24 +28,19 @@ define([
 			if(tagName){
 				tagName=tagName[0];
 				var tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});
-				var tagId = null;
-				if(tag)
-					tagId = tag.id;
-				else
-					tags.create({
+				if(!tag){
+					tag = tags.create({
 						name:/[^@]+/.exec(tagName)[0]
 					},{
 						wait: true,
-						success:function(model){
-							var task = tasks.findWhere({name:taskName});
-							task.save({tags:model.id});
-						}
+						async:false
 					});
+				}
 			}
 			tasks.create({
 				name:this.input.val(),
 				start_time: $.dateToString(new Date()),
-				tags: tagId
+				tags: tag.id
 			},{wait:true});
 			this.input.val('');
 			return false;

@@ -82,7 +82,7 @@ class TaskAction extends Action {
         $verification = $this->task->create($data);//检验数据有效性
         if(!$verification){$this->error($this->task->getError());return;}
         if(!$data['id']):
-                $verification = $this->task->add($verification);//能否于数据库中添加(修改、删除)数据
+                $data['id'] = $verification = $this->task->add($verification);//能否于数据库中添加(修改、删除)数据
                 $message = '添加';
             else:
                 $verification = $this->task->save($verification);//能否于数据库中添加(修改、删除)数据
@@ -90,8 +90,6 @@ class TaskAction extends Action {
         endif;
         
         if(!$verification){$this->error($this->task->getError());return;}
-        $data['id'] = $verification;
-
 
         //返回成功信息
         $message = $message.'完成！';

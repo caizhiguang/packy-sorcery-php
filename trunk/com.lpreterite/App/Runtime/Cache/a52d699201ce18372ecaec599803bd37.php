@@ -149,21 +149,24 @@
 		<a href="#tag-<%- id %>" class="btn btn-tag" data-toggle="tooltip" data-original-title="包含<%- tasks_count %>个任务"><%- name %><i class="icon-remove"></i></a>
 	</script>
 
-	<script type="text/template" id="task-item">
+	<script id="task-item" type="text/template">
 		<div class="view  <%= complete!=0 ? 'disable' : '' %>">
 			<label class="checkbox inline"><input type="checkbox" <%= complete!=0 ? 'checked="checked"' : '' %>></label>
-			<span class="title"><%- name %></span>
+			<span class="title"><%- view_name %></span>
 			<small class="tags">
 				<% if(_.isObject(tag)){ %>
 				<a href="#tag-<%- tag.id %>">@<%- tag.name %></a>
 				<% } %>
 			</small>
 			<span class="pull-right">
-				<% if(time){ %><i class="icon-time"></i><span class="time">x<%- time %></span><% } %>
+				<% if(Number(time)){ %><i class="icon-time"></i><span class="time">x<%- time %></span><% } %>
 				<a class="remove" href="javascript:;"><i class="icon-remove"></i></a>
 			</span>
 		</div>
-		<input type="text" class="editor span12" value="<%- name %> <% if(_.isObject(tag)){ %>@<%- tag.name %><% } %>">
+	</script>
+
+	<script id="task-item-editor" type="text/template">
+		<input type="text" class="editor span12" value="">
 	</script>
 
 	<script id="tags-statistic-item" type="text/template">

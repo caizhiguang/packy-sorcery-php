@@ -6,31 +6,30 @@ define([
 	return Backbone.View.extend({
 		tagName: 'li',
 		template: _.template($('#task-item').html()),
+		inputTemplate:_.template($('#task-item-editor').html()),
 		msgbox:_.template($('#msgbox').html()),
 		events: {
 			"dblclick .view"  : "edit",
-			"blur .editor":"update",
 			"keypress .editor":"update",
 			"click a.remove":'delete',
 			'click .checkbox':'toggle'
 		},
 		initialize:function(){ //初始化
-			this.listenTo(this.model,'change:name',this.name_changed);
+			// this.listenTo(this.model,'change:name',this.name_changed);
 			this.listenTo(this.model,'change',this.render);
 			this.listenTo(this.model,'destroy',this.remove);
+			this.$el.html(this.inputTemplate());
+			this.input = this.$el.find('.editor');
 		},
 		render: function() { //类似刷新
 			var data = this.model.toJSON();
-			this.$el.html(this.template(data));
-			this.input = this.$el.find('.editor');
+			data.view_name = /[^@\s]+/.exec(data.name)[0];
+			data.tag = tags.findWhere({id:data.tags});
+			data.tag = data.tag?data.tag.toJSON():null;
+
+			this.$('.view').remove();
+			this.$el.prepend(this.template(data));
 			return this;
-		},
-		name_changed:function(model){
-			// var tagName = /@[^@\s]+/.exec(this.input.val());
-			// if(tagName){
-			// 	tagName=tagName[0];
-				
-			// }
 		},
 		delete:function(){ //删除
 			if($('#msgboxModal').length>0) return;
@@ -54,41 +53,33 @@ define([
 			if(/label|input/.exec(e.target.nodeName.toLowerCase()) != null) return;
 			this.$el.addClass("editing");
 			this.input.focus();
+			this.input.val(this.model.get('name'));
 		},
 		update:function(e){ //编辑完成后
-			if(e.type=="keypress")
-				if(!(e.which==10 || e.which==13)) return;
+			if(!(e.which==10 || e.which==13)) return;
 
-			var taskName = /[^@\s]+/.exec(this.input.val())[0];
 			var tagName = /@[^@\s]+/.exec(this.input.val());
 			if(tagName){
 				tagName=tagName[0];
 				var tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});
-				var tagId = null;
-				var that = this;
-				if(tag)
-					tagId = tag.id;
-				else
-					tags.create({
-						name:/[^@]+/.exec(tagName)[0],
-						tasks_count:1,
-						total_time:0,
-						avg_time:0,
-						longest_time:0,
-						uid:0
+				if(!tag){
+					tag = tags.create({
+						name:/[^@]+/.exec(tagName)[0]
 					},{
 						wait: true,
-						success:function(model){
-							that.model.save({tags:model.id});
-						}
+						async:false
 					});
+				}
 			}
-			var value = taskName;
+			var value = this.input.val();
 			if (!value) {
 				this.delete();
 			} else {
 				this.$el.removeClass("editing");
-				this.model.save({name:value},{wait: true});
+				this.model.save({
+					name:value,
+					tags:tag.id
+				},{wait: true});
 			}
 		},
 		toggle:function(){ //设置为完成
