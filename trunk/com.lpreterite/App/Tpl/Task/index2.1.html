@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>TW任务清单</title>
@@ -8,11 +8,20 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Tink-Work">
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-responsive.min.css" />
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/task-style.css" />
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/font-awesome.css" />
+	<load href="__PUBLIC__/css/bootstrap.min.css"/>
+	<load href="__PUBLIC__/css/bootstrap-responsive.min.css"/>
+	<load href="__PUBLIC__/css/task-style.css"/>
+	<load href="__PUBLIC__/css/font-awesome.css"/>
 	<script type="text/javascript" data-main="__PUBLIC__/js/require.config" src="__PUBLIC__/js/plug-in/require.js" ></script>
+	<!-- <load href="__PUBLIC__/js/plug-in/json2.js"/>
+	<load href="__PUBLIC__/js/plug-in/jquery.min.js"/>
+	<load href="__PUBLIC__/js/plug-in/jquery.easing.js"/>
+	<load href="__PUBLIC__/js/plug-in/underscore.js"/>
+	<load href="__PUBLIC__/js/plug-in/backbone.js"/>
+	<load href="__PUBLIC__/js/plug-in/bootstrap.min.js"/>
+	<load href="__PUBLIC__/js/plug-in/Chart.min.js"/>
+	<load href="__PUBLIC__/js/common.js"/>
+	<load href="__PUBLIC__/js/tasks.js"/> -->
 </head>
 <body class="task">
 	<div id="wrapper">
@@ -70,11 +79,11 @@
 							</div>
 						</div>
 
-						<div class="widget widget-tags editing">
+						<div class="widget widget-tags">
 							<div class="widget-head">
 								<i class="icon-tag"></i> 标签
 								<span class="pull-right bar">
-									<a href="#" class="edit hide"><i class="icon-edit"></i>编辑</a>
+									<a href="#" class="edit"><i class="icon-edit"></i>编辑</a>
 									<a href="#" class="minimize"><i class="icon-chevron-up"></i></a>
 								</span>
 							</div>

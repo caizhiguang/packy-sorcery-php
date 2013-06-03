@@ -1,4 +1,5 @@
 !function($){
+
 	/**==jQuery.extend===================================================================**/
 	$.extend({
 		unique: function( array ) {

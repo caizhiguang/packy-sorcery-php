@@ -12,22 +12,21 @@ define([
 				task:new TaskView
 			};
 
-			// this.listenTo(this.view.tag,'itemClick',this.taskfilter);
+			this.listenTo(this.view.tag,'itemClick',this.taskfilter);
 
 			$.getJSON('/accounts/api',function(data){
 				
-				for (var i = 0; i < data.tag.length; i++) {
-					view.tag.list.add(data.tag[i]);
-				};
+				view.tag.source(data.tag);
 
-				for (var i = 0; i < data.task.length; i++) {
-					view.task.list.add(data.task[i]);
-				};
+				if(data.task)
+					for (var i = 0; i < data.task.length; i++) {
+						view.task.list.add(data.task[i]);
+					};
 
 			});
 		},
-		// taskfilter:function(tag){
-		// 	this.view.task.filter(tag);
-		// }
+		taskfilter:function(tag){
+			this.view.task.filter(tag);
+		}
 	});
 });

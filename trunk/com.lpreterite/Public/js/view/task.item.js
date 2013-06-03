@@ -8,6 +8,7 @@ define([
 		template: _.template($('#task-item').html()),
 		inputTemplate:_.template($('#task-item-editor').html()),
 		msgbox:_.template($('#msgbox').html()),
+		viewData:{},
 		events: {
 			"dblclick .view"  : "edit",
 			"keypress .editor":"update",
@@ -23,8 +24,8 @@ define([
 		},
 		render: function() { //类似刷新
 			var data = this.model.toJSON();
-			data.view_name = /[^@\s]+/.exec(data.name)[0];
-			data.tag = tags.findWhere({id:data.tags});
+			this.viewData.name = data.view_name = /[^@\s]+/.exec(data.name)[0];
+			this.viewData.tag = data.tag = tags.findWhere({id:data.tags});
 			data.tag = data.tag?data.tag.toJSON():null;
 
 			this.$('.view').remove();
@@ -32,22 +33,35 @@ define([
 			return this;
 		},
 		delete:function(){ //删除
-			if($('#msgboxModal').length>0) return;
 
-			var that = this;
-			var msgboxTemp = this.msgbox({title:'提示', content:'确认删除 '+this.model.attributes.name+' 么？'});
-			$(msgboxTemp).appendTo(document).modal({
-				
-			}).on('hidden',function(){
-				$(this).remove();
+			/**
+			 * has message box code
+			 */
+			 
+			// if($('#msgboxModal').length>0) return;
 
-				if(that.$el.hasClass('editing')){
-					that.input.val(that.model.get('name'));
-					that.input.focus();
-				}
-			}).find('.btn-primary').on('click',function(){
-				that.model.destroy();
-			});
+			// var that = this;
+			// var msgboxTemp = this.msgbox({title:'提示', content:'确认删除 '+this.viewData.name+' 么？'});
+			// $(msgboxTemp).appendTo(document).modal().on('hidden',function(){
+			// 	$(this).remove();
+
+			// 	if(that.$el.hasClass('editing')){
+			// 		that.input.val(that.model.get('name'));
+			// 		that.input.focus();
+			// 	}
+			// }).find('.btn-primary').on('click',function(){
+			// 	that.model.destroy();
+			// });
+			 
+			/**
+			 * not message box code
+			 */
+			if(this.viewData.tag){
+				this.viewData.tag.save({
+					'tasks_count':Number(this.viewData.tag.get('tasks_count'))-1
+				},{wait:true});
+			}
+			this.model.destroy();
 		},
 		edit:function(e){ //进入更新编辑模式
 			if(/label|input/.exec(e.target.nodeName.toLowerCase()) != null) return;
