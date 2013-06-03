@@ -45,19 +45,19 @@ define([
 			this.input.val('');
 			return false;
 		},
-		// filter:function(tag){
+		filter:function(tag){
 			
-		// 	var temp = _.template($('#alert').html());
-		// 	if(this.alertBox!=undefined)
-		// 		this.alertBox.alert('close');
-		// 	this.alertBox = $(temp(tag.toJSON())).insertAfter(this.$('.task-input')).alert().bind('closed',this,this.unfilter);
+			var temp = _.template($('#alert').html());
+			if(this.alertBox!=undefined)
+				this.alertBox.alert('close');
+			this.alertBox = $(temp(tag.toJSON())).insertAfter(this.$('.task-input')).alert().bind('closed',this,this.unfilter);
 
-		// 	this.$('.tasks').empty();
-		// 	var list = tasks.where({tags:tag.id});
-		// 	for (var i = list.length - 1; i >= 0; i--) {
-		// 		this.add(list[i]);
-		// 	};
-		// },
+			this.$('.tasks').empty();
+			var list = tasks.where({tags:tag.id});
+			for (var i = list.length - 1; i >= 0; i--) {
+				this.add(list[i]);
+			};
+		},
 		unfilter:function(e){
 			e.data.$('.tasks').empty();
 			tasks.each(e.data.add,e.data);
