@@ -10,6 +10,11 @@ define(['backbone'],function(){
 				longest_time:0,
 				uid:0
 			};
+		},
+		tasksCount:function(val){
+			var tasks_count = Number(this.get('tasks_count'));
+			tasks_count = tasks_count+val;
+			this.save({'tasks_count':tasks_count});
 		}
 	});
 });

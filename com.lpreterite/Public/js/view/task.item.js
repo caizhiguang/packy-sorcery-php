@@ -59,7 +59,7 @@ define([
 			if(this.viewData.tag){
 				this.viewData.tag.save({
 					'tasks_count':Number(this.viewData.tag.get('tasks_count'))-1
-				},{wait:true});
+				});
 			}
 			this.model.destroy();
 		},
@@ -72,10 +72,12 @@ define([
 		update:function(e){ //编辑完成后
 			if(!(e.which==10 || e.which==13)) return;
 
-			var tagName = /@[^@\s]+/.exec(this.input.val());
+			var tag,tagId,tagName,preTag;
+			tagName = /@[^@\s]+/.exec(this.input.val());
+
 			if(tagName){
 				tagName=tagName[0];
-				var tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});
+				tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});
 				if(!tag){
 					tag = tags.create({
 						name:/[^@]+/.exec(tagName)[0]
@@ -83,7 +85,12 @@ define([
 						wait: true,
 						async:false
 					});
+				}else{
+					preTag = tags.findWhere({id:this.model.get('tags')});
+					tag.tasksCount(1);
+					preTag.tasksCount(-1);
 				}
+				tagId = tag.id;
 			}
 			var value = this.input.val();
 			if (!value) {
@@ -92,8 +99,8 @@ define([
 				this.$el.removeClass("editing");
 				this.model.save({
 					name:value,
-					tags:tag.id
-				},{wait: true});
+					tags:tagId
+				});
 			}
 		},
 		toggle:function(){ //设置为完成
