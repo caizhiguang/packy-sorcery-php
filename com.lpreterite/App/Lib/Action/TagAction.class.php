@@ -74,7 +74,7 @@ class TagAction extends Action {
         $verification = $this->tag->create($data);//检验数据有效性
         if(!$verification){$this->error($this->tag->getError());return;}
         if(!$data['id']):
-                $verification = $this->tag->add($verification);//能否于数据库中添加(修改、删除)数据
+                $data['id'] = $this->tag->add($verification);//能否于数据库中添加(修改、删除)数据
                 $message = '添加';
             else:
                 $verification = $this->tag->save($verification);//能否于数据库中添加(修改、删除)数据
@@ -82,7 +82,6 @@ class TagAction extends Action {
         endif;
         
         if(!$verification){$this->error($this->tag->getError());return;}
-        $data['id'] = $verification;
 
 
         //返回成功信息
