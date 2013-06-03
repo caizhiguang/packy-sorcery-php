@@ -24,10 +24,10 @@ define([
 			this.$('.tasks').prepend(view.render().el);
 		},
 		create:function(){
-			var tagName = /@[^@\s]+/.exec(this.input.val());
+			var tag,tagId,tagName = /@[^@\s]+/.exec(this.input.val());
 			if(tagName){
 				tagName=tagName[0];
-				var tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});
+				tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});
 				if(!tag){
 					tag = tags.create({
 						name:/[^@]+/.exec(tagName)[0]
@@ -35,12 +35,15 @@ define([
 						wait: true,
 						async:false
 					});
+				}else{
+					tag.tasksCount(1);
 				}
+				tagId = tag.id;
 			}
 			tasks.create({
 				name:this.input.val(),
 				start_time: $.dateToString(new Date()),
-				tags: tag.id
+				tags: tagId
 			},{wait:true});
 			this.input.val('');
 			return false;

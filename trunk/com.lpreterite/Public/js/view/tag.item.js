@@ -1,5 +1,6 @@
 define(['backbone'],function(){
 	return Backbone.View.extend({
+		tagName:'span',
 		template:_.template($('#tag-item').html()),
 		msgbox:_.template($('#msgbox').html()),
 		events:{
@@ -11,8 +12,9 @@ define(['backbone'],function(){
 			this.listenTo(this.model,'destroy',this.remove);
 		},
 		render:function(){
-			this.setElement(this.template(this.model.toJSON()));
-			this.$el.tooltip();
+			// this.setElement(this.template(this.model.toJSON()));
+			this.$el.html(this.template(this.model.toJSON()));
+			this.$('a').tooltip();
 			return this;
 		},
 		delete:function(){
