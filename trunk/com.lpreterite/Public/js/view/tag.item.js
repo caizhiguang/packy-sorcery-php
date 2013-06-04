@@ -1,4 +1,7 @@
-define(['backbone'],function(){
+define([
+	'model/task.list',
+	'backbone'
+],function(tasks){
 	return Backbone.View.extend({
 		tagName:'span',
 		template:_.template($('#tag-item').html()),
@@ -41,6 +44,7 @@ define(['backbone'],function(){
 			/**
 			 * not message box code
 			 */
+			tasks.clearTag(this.model.id);
 			this.model.destroy();
 		},
 		onClick:function(){

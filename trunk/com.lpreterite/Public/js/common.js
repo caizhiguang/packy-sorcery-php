@@ -58,6 +58,22 @@
 }(jQuery);
 
 jQuery(document).ready(function($) {
+	$(".navi-menu > a").click(function(e){
+		e.preventDefault();
+		var menu_li = $(this).parent("li");
+		var menu_ul = $(this).next("ul");
+
+		if(menu_li.hasClass("open")){
+			menu_ul.slideUp(350);
+			menu_li.removeClass("open")
+		}
+		else{
+			$(".navi > li > ul").slideUp(350);
+			$(".navi > li").removeClass("open");
+			menu_ul.slideDown(350);
+			menu_li.addClass("open");
+		}
+	});
 	var div = document.createElement('div');
 	$(div).attr('id','debug-window-size').text($(window).width()+'px')
 	.css({
