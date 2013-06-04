@@ -23,6 +23,13 @@
 					<p><small>这是个提高你工作效率的工具</small></p>
 				</header>
 				<ul id="navi">
+					<li class="navi-menu">
+						<a href="#" data-toggle="navi-menu" data-target="#"><i class="icon-user icon-white"></i> 我<span class="pull-right"><b class="icon-angle-right"></b></span></a>
+						<ul class="sub-menu" role="menu" aria-labelledby="dropdownMenu">
+							<li><a tabindex="-1" href="#"><i class="icon-info-sign icon-white"></i> 个人信息</a></li>
+							<li><a tabindex="-1" href="#"><i class="icon-off icon-white"></i> 退出</a></li>
+						</ul>
+					</li>
 					<li class="active"><a href="#"><i class="icon-list icon-white"></i> 任务</a></li>
 					<li><a href="#"><i class="icon-signal icon-white"></i> 统计</a></li>
 					<li><a href="#"><i class="icon-info-sign icon-white"></i> 关于</a></li>
@@ -49,30 +56,9 @@
 						</div>
 					</div>
 					<div class="span4">
-
-						<div class="widget widget-user">
-							<div class="widget-head">
-								<i class="icon-user"></i> 你的信息
-								<span class="pull-right bar">
-									<a href="#" class="minimize"><i class="icon-chevron-up"></i></a>
-								</span>
-							</div>
-							<div class="widget-content">
-								<div class="media">
-									<a href="#" class="pull-left">
-										<img class="media-object" src="__PUBLIC__/img/default-user-avatar.png">
-									</a>
-									<div class="media-body">
-										<h4>XXX<small>，你好！</small></h4>
-										<a href="#" class="btn">登出</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
 						<div class="widget widget-tags editing">
 							<div class="widget-head">
-								<i class="icon-tag"></i> 标签
+								<i class="icon-tag"></i> 标签 <small class="muted">点击标签删除</small>
 								<span class="pull-right bar">
 									<a href="#" class="edit hide"><i class="icon-edit"></i>编辑</a>
 									<a href="#" class="minimize"><i class="icon-chevron-up"></i></a>

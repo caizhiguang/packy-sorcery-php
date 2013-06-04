@@ -24,7 +24,7 @@ define([
 			this.$('.tasks').prepend(view.render().el);
 		},
 		create:function(){
-			var tag,tagId,tagName = /@[^@\s]+/.exec(this.input.val());
+			var tag,tagId="",tagName = /@[^@\s]+/.exec(this.input.val());
 			if(tagName){
 				tagName=tagName[0];
 				tag = tags.findWhere({name:/[^@]+/.exec(tagName)[0]});

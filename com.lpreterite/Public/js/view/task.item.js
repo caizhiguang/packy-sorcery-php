@@ -72,7 +72,7 @@ define([
 		update:function(e){ //编辑完成后
 			if(!(e.which==10 || e.which==13)) return;
 
-			var tag,tagId,tagName,preTag;
+			var tag,tagId="",tagName,preTag;
 			tagName = /@[^@\s]+/.exec(this.input.val());
 
 			if(tagName){
@@ -87,8 +87,9 @@ define([
 					});
 				}else{
 					preTag = tags.findWhere({id:this.model.get('tags')});
+					if(preTag)
+						preTag.tasksCount(-1);
 					tag.tasksCount(1);
-					preTag.tasksCount(-1);
 				}
 				tagId = tag.id;
 			}

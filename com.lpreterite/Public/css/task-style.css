@@ -5,13 +5,16 @@ body{
 }
 header{
 	padding: 0 15px;
-	margin: 30px 0;
-	border-left: solid #ee7948 3px;
+	margin: 23px 0;
+	border-left: solid #ee7948 5px;
 	color: #aaa;
 }
 header .brand{
-	font-size: 24px;
+	font-size: 18px;
 	color: #fff;
+}
+header p{
+	margin: 0;
 }
 footer{
 	text-align: right;
@@ -35,22 +38,36 @@ footer{
 	/*min-height: 900px;*/
 }
 #navi{
+	border-top: solid #333 1px;
 	margin: 0;
 }
-#navi>li{
+#navi li{
 	list-style: none;
 }
-#navi>li>a{
+#navi li>a{
 	display: block;
 	color: #fff;
 	padding: 12px 20px;
 }
-#navi>li.active>a{
+#navi li.active>a{
 	background-color: #799401;
 }
-#navi>li>a:active,#navi>li>a:hover,#navi>li>a:focus{
+#navi li>a:active,#navi li>a:hover,#navi li>a:focus{
 	background-color: #9ab400;
 	text-decoration: none;
+}
+#navi .sub-menu{
+	display: none;
+	margin: 0;
+	font-size:12px;
+}
+#navi .sub-menu a{
+	padding-left:30px;
+	background: #222;
+	color: #ccc;
+}
+#navi .sub-menu a:active,#navi .sub-menu a:hover,#navi .sub-menu a:focus{
+	color: #fff;
 }
 
 
