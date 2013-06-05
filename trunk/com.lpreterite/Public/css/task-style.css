@@ -28,15 +28,16 @@ footer{
 #sidebar{
 	position: fixed;
 	top: 0;
-	right: 0;
+	left: 0;
 	height: 100%;
 	min-width: 230px;
 	background: #111;
 }
 #mainbar{
-	margin-right: 230px;
+	margin-left: 230px;
 	/*min-height: 900px;*/
 }
+#mainbar .container-fluid{ padding-top:10px; }
 #navi{
 	border-top: solid #333 1px;
 	margin: 0;
@@ -226,6 +227,9 @@ footer{
 	color: #f25204;
 }
 
+.p10{
+	padding:10px;
+}
 
 /* UI Element */
 
@@ -272,7 +276,7 @@ footer{
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	border:solid #ccc 1px;
+	border:solid #d9d9d9 1px;
 	padding: 15px;
 	zoom:1;
 }
@@ -302,6 +306,6 @@ footer{
 .widget-head>.bar i{
 	margin: 0 4px;
 }
-.widget-content{
-	/*word-wrap:break-word;*/
+.widget-content.well{
+	background-color: rgba(0,0,0,.0195313);
 }
