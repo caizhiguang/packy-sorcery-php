@@ -24,34 +24,39 @@
 </head>
 <body>
 
-	<header class="navbar navbar-inverse navbar-fixed-top">
+	<header class="navbar navbar-inverse navbar-static-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a href="#" class="brand">think task-list</a>
+				<button type="button" class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="pull-right navbar-text dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> Sign in <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#register">register</a></li>
+						<li><a href="#">Sign in with Twitter</a></li>
+						<li><a href="#">Sign in with Weibo</a></li>
+						<li><a href="#">Sign in with QQ</a></li>
+						<li><a href="#">Sign in with GoogleOpenApi</a></li>
+					</ul>
+				</div>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="#Tasks">Tasks</a></li>
 						<li><a href="#Statistic">Statistic</a></li>
 						<li><a href="#About">About</a></li>
 					</ul>
-					<div class="pull-right navbar-text dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> Sign in <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#register">register</a></li>
-							<li><a href="#">Sign in with Twitter</a></li>
-							<li><a href="#">Sign in with Weibo</a></li>
-							<li><a href="#">Sign in with QQ</a></li>
-							<li><a href="#">Sign in with GoogleOpenApi</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<section class="content">
+	<section id="wrapper">
 		
-		<div class="sidebar">
+		<div id="sidebar">
 			<aside class="bar">
 				<ul>
 					<li><a href="#time"><i class="icon-clock"></i></a></li>
@@ -126,10 +131,10 @@
 			</div>
 
 		</div>
-		<div class="mainbar">
+		<div id="mainbar">
 			<div class="widget widget-tasks">
 				<form action="#" class="widget-head task-input">
-					<input type="text" class="span12" placeholder="在这输入你的工作内容">
+					<input type="text" class="" placeholder="在这输入你的工作内容">
 				</form>
 				<ul class="tasks widget-content"></ul>
 			</div>
