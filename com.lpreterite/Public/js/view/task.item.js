@@ -9,6 +9,7 @@ define([
 		inputTemplate:_.template($('#task-item-editor').html()),
 		msgbox:_.template($('#msgbox').html()),
 		viewData:{},
+		_active:false,
 		events: {
 			"dblclick .view"  : "edit",
 			"keypress .editor":"update",
@@ -62,6 +63,7 @@ define([
 				});
 			}
 			this.model.destroy();
+			return false;
 		},
 		edit:function(e){ //进入更新编辑模式
 			if(/label|input/.exec(e.target.nodeName.toLowerCase()) != null) return;
@@ -104,8 +106,16 @@ define([
 				});
 			}
 		},
+		active:function(val){
+			if(!val){
+				this._active = val;
+				this.$el.toggleClass('active',val);
+			}
+			return this._active;
+		}
 		toggle:function(){ //设置为完成
 			this.model.toggle();
+			return false;
 		}
 	});
 });
