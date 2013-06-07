@@ -12,15 +12,15 @@
 	<load href="__PUBLIC__/css/bootstrap-responsive.min.css"/>
 	<load href="__PUBLIC__/css/task-style.css"/>
 	<load href="__PUBLIC__/css/font-awesome.css"/>
-	<!--<script type="text/javascript" data-main="__PUBLIC__/js/require.config" src="__PUBLIC__/js/plug-in/require.js" ></script>-->
-	<load href="__PUBLIC__/js/plug-in/json2.js"/>
+	<script type="text/javascript" data-main="__PUBLIC__/js/require.config" src="__PUBLIC__/js/plug-in/require.js" ></script>
+	<!-- <load href="__PUBLIC__/js/plug-in/json2.js"/>
 	<load href="__PUBLIC__/js/plug-in/jquery.min.js"/>
 	<load href="__PUBLIC__/js/plug-in/jquery.easing.js"/>
 	<load href="__PUBLIC__/js/plug-in/underscore.js"/>
 	<load href="__PUBLIC__/js/plug-in/backbone.js"/>
 	<load href="__PUBLIC__/js/plug-in/bootstrap.min.js"/>
 	<load href="__PUBLIC__/js/plug-in/Chart.min.js"/>
-	<load href="__PUBLIC__/js/common.js"/>
+	<load href="__PUBLIC__/js/common.js"/> -->
 </head>
 <body>
 
@@ -33,8 +33,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<div class="pull-right navbar-text dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> Sign in <b class="caret"></b></a>
+				<div class="dropdown pull-right" id="sign">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> 登录 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#register">register</a></li>
 						<li><a href="#">Sign in with Twitter</a></li>
@@ -45,9 +45,9 @@
 				</div>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a href="#Tasks">Tasks</a></li>
-						<li><a href="#Statistic">Statistic</a></li>
-						<li><a href="#About">About</a></li>
+						<li class="active"><a href="#Tasks">任务</a></li>
+						<li><a href="#Statistic">统计</a></li>
+						<li><a href="#About">关于</a></li>
 					</ul>
 				</div>
 			</div>
@@ -66,13 +66,13 @@
 
 			<div class="widget widget-time">
 				<div class="widget-content">
-					<p>25<small>.00</small></p>
-					<p>something tasks...</p>
+					<div class="time">25<small>.00</small></div>
+					<div class="work">something tasks...</div>
 				</div>
 				<div class="widget-foot">
-					<a href="#time?stop"><i class="icon-stop"></i></a>
 					<a href="#time?play"><i class="icon-play"></i></a>
 					<a href="#time?pause"><i class="icon-pause"></i></a>
+					<a href="#time?stop" class="pull-right"><i class="icon-stop"></i></a>
 				</div>
 			</div>
 	
@@ -132,11 +132,11 @@
 
 		</div>
 		<div id="mainbar">
-			<div class="widget widget-tasks">
-				<form action="#" class="widget-head task-input">
-					<input type="text" class="" placeholder="在这输入你的工作内容">
+			<div class="widget-tasks">
+				<form action="#" class="task-input row-fluid">
+					<input type="text" class="span12" placeholder="在这输入你的工作内容">
 				</form>
-				<ul class="tasks widget-content"></ul>
+				<ul class="tasks"></ul>
 			</div>
 		</div>
 
