@@ -45,9 +45,10 @@
 				</div>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a href="#Tasks">任务</a></li>
-						<li><a href="#Statistic">统计</a></li>
-						<li><a href="#About">关于</a></li>
+						<li class="active"><a href="#tasks">任务</a></li>
+						<li><a href="#plan">计划</a></li>
+						<li><a href="#statistic">统计</a></li>
+						<li><a href="#about">关于</a></li>
 					</ul>
 				</div>
 			</div>
@@ -77,11 +78,7 @@
 			</div>
 	
 			<div class="widget widget-tags">
-				<div class="widget-head">Tags:
-					<span class="pull-right bar">
-						<a href="#" class="minimize"><i class="icon-chevron-up"></i></a>
-					</span>
-				</div>
+				<div class="widget-head">Tags:</div>
 				<div class="widget-content">
 					<div class="tags">
 						<a href="#" class="tag">design</a><a href="#" class="tag">code</a><a href="#" class="tag">web</a><a href="#" class="tag">ui</a><a href="#" class="tag">icon</a><a href="#" class="tag">index</a><a href="#" class="tag">ui element</a>
@@ -92,12 +89,8 @@
 				</div>
 			</div>
 
-			<div class="widget widget-statistic">
-				<div class="widget-head">Statistic
-					<span class="pull-right bar">
-						<a href="#" class="minimize"><i class="icon-chevron-up"></i></a>
-					</span>
-				</div>
+			<div class="widget widget-statistic hide">
+				<div class="widget-head">Statistic</div>
 				<div class="widget-content">
 					<div>
 						<dl>
@@ -133,7 +126,7 @@
 		</div>
 		<div id="mainbar">
 			<div class="widget-tasks">
-				<form action="#" class="task-input row-fluid">
+				<form action="#" class="task-input">
 					<input type="text" class="span12" placeholder="在这输入你的工作内容">
 				</form>
 				<ul class="tasks"></ul>
@@ -174,9 +167,9 @@
 	</script>
 
 	<script id="task-item" type="text/template">
-		<div class="view  <%= complete!=0 ? 'disable' : '' %>">
+		<div class="view task-item-<%- id %> <%= complete!=0 ? 'disable' : '' %>">
 			<label class="checkbox inline"><input type="checkbox" <%= complete!=0 ? 'checked="checked"' : '' %>></label>
-			<span class="title"><%- view_name %></span>
+			<a href="#intimer/<%- id %>" class="title"><%- view_name %></a>
 			<small class="tags">
 				<% if(_.isObject(tag)){ %>
 				<a href="#tag-<%- tag.id %>">@<%- tag.name %></a>

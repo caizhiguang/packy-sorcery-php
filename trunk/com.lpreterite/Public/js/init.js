@@ -9,16 +9,16 @@ require([
 
 		var app = new AppView;
 
-		var ctx = $('#tag-chart').get(0).getContext("2d");
-		var tags_chart = new Chart(ctx).Doughnut([{
-			value:35,
-			color:"#f25204"
-		},{
-			value:65,
-			color:"#e5e5e5"
-		}],{
-			segmentShowStroke:false
-		});
+		// var ctx = $('#tag-chart').get(0).getContext("2d");
+		// var tags_chart = new Chart(ctx).Doughnut([{
+		// 	value:35,
+		// 	color:"#f25204"
+		// },{
+		// 	value:65,
+		// 	color:"#e5e5e5"
+		// }],{
+		// 	segmentShowStroke:false
+		// });
 
 		$(".widget .bar>.minimize").click(function(){
 			var parent = $(this).parents('.widget');

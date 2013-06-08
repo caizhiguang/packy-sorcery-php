@@ -1,7 +1,9 @@
 define([
 	'view/tag',
-	'view/task'
-],function(TagView,TaskView){
+	'view/task',
+	'view/timer',
+	'controllor/router'
+],function(TagView,TaskView,TimerView,router){
 
 	//定义页面视图
 	return Backbone.View.extend({
@@ -9,10 +11,14 @@ define([
 		initialize:function(){ //初始化
 			var view = this.view = {
 				tag:new TagView,
-				task:new TaskView
+				task:new TaskView,
+				timer:new TimerView
 			};
 
-			this.listenTo(this.view.tag,'itemClick',this.taskfilter);
+			this.router = router;
+			router.on('route:intimer',view.timer.in);//注册路由跳转
+
+			this.listenTo(view.tag,'itemClick',this.taskfilter);
 
 			$.getJSON('/accounts/api',function(data){
 				
@@ -24,6 +30,13 @@ define([
 					};
 
 			});
+
+			/**
+			 * 设置{pushState: true}后，路由就不需要用#做前缀。
+			 * 但是没设置默认要加#
+			 */
+			Backbone.history.start();//初始化浏览器路由
+
 		},
 		taskfilter:function(tag){
 			this.view.task.filter(tag);

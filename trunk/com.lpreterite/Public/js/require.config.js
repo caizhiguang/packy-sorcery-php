@@ -12,7 +12,8 @@ requirejs.config({
 	},
 	paths:{
 		'view':'../view',
-		'model':'../model'
+		'model':'../model',
+		'controllor':'../controllor'
 	}
 });
 
