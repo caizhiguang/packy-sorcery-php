@@ -10,29 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-06-04 17:43:42
+Date: 2013-06-08 17:24:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `p_system_setting`
--- ----------------------------
-DROP TABLE IF EXISTS `p_system_setting`;
-CREATE TABLE `p_system_setting` (
-  `key` varchar(50) NOT NULL,
-  `val` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of p_system_setting
--- ----------------------------
-INSERT INTO p_system_setting VALUES ('tomato_clock', '1500');
-INSERT INTO p_system_setting VALUES ('rest_clock', '300');
-INSERT INTO p_system_setting VALUES ('website_title', '番茄钟');
-INSERT INTO p_system_setting VALUES ('website_description', '根据番茄工作法而制作的工具');
-INSERT INTO p_system_setting VALUES ('website_url', '');
-INSERT INTO p_system_setting VALUES ('website_keywords', '');
-
 -- ----------------------------
 -- Table structure for `p_tags`
 -- ----------------------------
@@ -47,12 +28,13 @@ CREATE TABLE `p_tags` (
   `tasks_count` int(20) NOT NULL COMMENT '任务总数',
   `uid` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tags
 -- ----------------------------
-INSERT INTO p_tags VALUES ('48', '任务清单', null, '0', '0', '0', '6', '0');
+INSERT INTO p_tags VALUES ('48', '任务清单', null, '0', '0', '0', '7', '0');
+INSERT INTO p_tags VALUES ('49', '设计', null, '0', '0', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for `p_tasks`
@@ -73,7 +55,7 @@ CREATE TABLE `p_tasks` (
   `spacing` int(20) DEFAULT NULL COMMENT '番茄钟时长(s)',
   `time` int(10) NOT NULL COMMENT '番茄钟数量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_tasks
@@ -84,6 +66,8 @@ INSERT INTO p_tasks VALUES ('69', '完善标签统计功能@任务清单', '', '
 INSERT INTO p_tasks VALUES ('72', '让任务列表支持标签记录@任务清单', '', '48', '2013-05-23 14:58:27', null, null, '0', '0', '1', '0', '1500', '0');
 INSERT INTO p_tasks VALUES ('75', '完成标签功能@任务清单', '', '48', '2013-05-25 18:51:30', null, null, '0', '0', '1', '0', '1500', '0');
 INSERT INTO p_tasks VALUES ('76', '计时器设计@任务清单', '', '48', '2013-06-04 17:42:44', null, null, '0', '0', '0', '0', '1500', '0');
+INSERT INTO p_tasks VALUES ('77', '界面重新设计 @设计', '', '49', '2013-06-07 16:20:24', null, null, '0', '0', '1', '0', '1500', '0');
+INSERT INTO p_tasks VALUES ('78', '利用backbone.js的router控制器来做计时器的功能@任务清单', '', '48', '2013-06-08 17:23:48', null, null, '0', '0', '0', '0', '1500', '0');
 
 -- ----------------------------
 -- Table structure for `p_users`

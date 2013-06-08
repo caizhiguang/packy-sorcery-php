@@ -14,7 +14,8 @@ define([
 			"dblclick .view"  : "edit",
 			"keypress .editor":"update",
 			"click a.remove":'delete',
-			'click .checkbox':'toggle'
+			'click .checkbox':'toggle',
+			'click':'active'
 		},
 		initialize:function(){ //初始化
 			// this.listenTo(this.model,'change:name',this.name_changed);
@@ -106,13 +107,13 @@ define([
 				});
 			}
 		},
-		active:function(val){
-			if(!val){
-				this._active = val;
-				this.$el.toggleClass('active',val);
-			}
-			return this._active;
-		}
+		active:function(e){
+			this.$el.parent().find('.view:not(.task-item-'+this.model.id+')').removeClass('active');
+			this.$('.view').toggleClass('active');
+			var isActive = this.$('.view').hasClass('active');
+			window.location.href = isActive?this.$('.title').attr('href'):'#';
+			if(e.target.tagName.toLowerCase()=='a') return false;
+		},
 		toggle:function(){ //设置为完成
 			this.model.toggle();
 			return false;
