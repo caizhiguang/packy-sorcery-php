@@ -55,6 +55,62 @@
 			return d;
 		}
 	});
+
+	$.fn.extend({
+		//计时器
+		timer:function(options){
+			var options = $.extend({},{
+				minute:'.minute',
+				second:'.second',
+				play:'.btn-play',
+				pause:'.btn-pause',
+				stop:'.btn-stop',
+				initTime:1500
+			},options);
+			var that = this;
+
+			var timer = {
+				i:0,
+				isPause:false,
+				time:0,
+				run:function(){
+					var modal = that.data('modal');
+					if(modal.time<0) modal.stop();
+					if(modal.isPause) return;
+					modal.display();
+					modal.time--;
+				},
+				play:function(){
+					if(this.i) this.stop();
+					this.time = options.initTime;
+					this.isPause = false;
+					this.i = setInterval(this.run,1000);
+					that.trigger('play',[this]);
+				},
+				pause:function(){
+					this.isPause = true;
+					that.trigger('pause',[this]);
+				},
+				stop:function(){
+					clearInterval(this.i);
+					this.time = options.initTime;
+					this.display();
+					that.trigger('stop',[this]);
+				},
+				display:function(){
+					var minute = Math.floor(this.time/60);
+					that.find(options.minute).text(String(minute).replace(/^(\d{1})$/,'0$1'));
+					that.find(options.second).text(String(this.time-minute*60).replace(/^(\d{1})$/,'0$1'))
+				}
+			}
+
+			this.find(options.play).click(function(){ timer.play(); });
+			this.find(options.pause).click(function(){ timer.pause(); });
+			this.find(options.stop).click(function(){ timer.stop(); });
+			this.data('modal',timer);
+		}
+	});
+
 }(jQuery);
 
 jQuery(document).ready(function($) {

@@ -19,6 +19,12 @@ define([
 			tasks.fetch();
 			return this;
 		},
+		source:function(data){
+			if(!data) return false;
+			for (var i = 0; i < data.length; i++) {
+				tasks.add(data[i]);
+			};
+		},
 		add:function(task){
 			var view = new TaskItemView({model:task});
 			this.$('.tasks').prepend(view.render().el);

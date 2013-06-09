@@ -66,14 +66,22 @@
 			</aside>
 
 			<div class="widget widget-time">
-				<div class="widget-content">
-					<div class="time">25<small>.00</small></div>
-					<div class="work">something tasks...</div>
+				<div class="timer">
+					<div class="widget-content">
+						<div class="time"><span class="minute">25</span><small>.</small><small class="second">00</small></div>
+						<div class="work">选择你的任务，开始工作！</div>
+					</div>
+					<div class="widget-foot">
+						<a href="javascript:;" class="btn-play"><i class="icon-play"></i></a>
+						<a href="javascript:;" class="btn-pause"><i class="icon-pause"></i></a>
+						<a href="javascript:;" class="btn-stop pull-right"><i class="icon-stop"></i></a>
+					</div>
 				</div>
-				<div class="widget-foot">
-					<a href="#time?play"><i class="icon-play"></i></a>
-					<a href="#time?pause"><i class="icon-pause"></i></a>
-					<a href="#time?stop" class="pull-right"><i class="icon-stop"></i></a>
+				<div class="complete">
+					<div class="widget-content">
+						<h5>你已经努力工作了一个番茄钟！</h5>
+						<div class="work">计时器设计</div>
+					</div>
 				</div>
 			</div>
 	

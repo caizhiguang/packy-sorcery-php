@@ -255,6 +255,16 @@ footer p>a{
 }
 
 .widget-time{
+	padding: 0;
+	position: relative;
+}
+
+.widget-time .complete{
+	/*position: absolute;*/
+	height: 199px;
+}
+
+.widget-time .timer{
 	background-color: #e35f48;
 	color: #eeeded;
 	padding: 0;
@@ -262,7 +272,7 @@ footer p>a{
 }
 
 .widget-time .work{
-	font-size: 18px;
+	font-size: 14px;
 }
 .widget-time .time{
 	font-size: 60px;
@@ -277,16 +287,16 @@ footer p>a{
 	height: 65px;
 	padding: 0 10px;
 }
-.widget-time .widget-foot a{
+.widget-time .timer .widget-foot a{
 	color: #eeeded;
 	padding: 25.5px 20px;
 	font-size: 12px;
 	line-height: 100%;
 }
-.widget-time .widget-content{
+.widget-time .timer .widget-content{
 	padding: 25px 40px;
 }
-.widget-time .widget-content:after{
+.widget-time .timer .widget-content:after{
 	background-image: url(../img/tasks/widget-time-bg.png);
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -297,10 +307,10 @@ footer p>a{
 	right: 30px;
 	top: 15px;
 }
-.widget-time .widget-content>div{
+.widget-time .timer .widget-content>div{
 	line-height: 100%;
 }
-.widget-time .widget-foot a:hover,.widget-time .widget-foot a:active,.widget-time .widget-foot a:focus{
+.widget-time .timer .widget-foot a:hover,.widget-time .timer .widget-foot a:active,.widget-time .timer .widget-foot a:focus{
 	text-decoration: none;
 	color: rgba(0,0,0,.35);
 }

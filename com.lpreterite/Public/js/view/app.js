@@ -16,27 +16,22 @@ define([
 			};
 
 			this.router = router;
-			router.on('route:intimer',view.timer.in);//注册路由跳转
+			view.timer.listenTo(router,'route:intimer',view.timer.in);//注册路由跳转
+			view.timer.listenTo(router,'route:initTimer',view.timer.init);
 
 			this.listenTo(view.tag,'itemClick',this.taskfilter);
 
 			$.getJSON('/accounts/api',function(data){
 				
 				view.tag.source(data.tag);
+				view.task.source(data.task);
 
-				if(data.task)
-					for (var i = 0; i < data.task.length; i++) {
-						view.task.list.add(data.task[i]);
-					};
-
+				/**
+				 * 设置{pushState: true}后，路由就不需要用#做前缀。
+				 * 但是没设置默认要加#
+				 */
+				Backbone.history.start();//初始化浏览器路由
 			});
-
-			/**
-			 * 设置{pushState: true}后，路由就不需要用#做前缀。
-			 * 但是没设置默认要加#
-			 */
-			Backbone.history.start();//初始化浏览器路由
-
 		},
 		taskfilter:function(tag){
 			this.view.task.filter(tag);
