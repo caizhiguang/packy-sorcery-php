@@ -6,6 +6,8 @@ require([
 ],function(AppView){
 
 	jQuery(document).ready(function($) {
+		
+		$('.widget-time').timer({initTime:30});
 
 		var app = new AppView;
 
