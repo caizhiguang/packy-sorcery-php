@@ -25,7 +25,6 @@ define(['backbone','backbone.localStorage'],function(){
 			var time = Number(this.get('time'));
 			time++;
 			this.save({time:time});
-		},
-		localStorage: new Store("task")
+		}
 	});
 });

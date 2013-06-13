@@ -12,7 +12,8 @@ define(['backbone','model/task'],function(Backbone,Task){
 					tags:''
 				});
 			};
-		}
+		},
+		localStorage: new Store("task")
 	});
 
 	return new tasks;

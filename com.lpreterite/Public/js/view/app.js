@@ -21,7 +21,7 @@ define([
 			this.listenTo(router,'route:initTimer',this.initTimer);
 			this.listenTo(view.tag,'itemClick',this.taskfilter);
 
-			if(!this.isLocalStorage)
+			if(!this.isLocalStorage){
 				$.getJSON('/accounts/api',function(data){
 					
 					view.tag.source(data.tag);
@@ -33,6 +33,11 @@ define([
 					 */
 					Backbone.history.start();//初始化浏览器路由
 				});
+			}else{
+				view.tag.render();
+				view.task.render();
+				Backbone.history.start();//初始化浏览器路由
+			}
 		},
 		initTimer:function(){
 			this.view.task.$('li').removeClass('active');
