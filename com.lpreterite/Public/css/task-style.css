@@ -41,10 +41,11 @@ a:hover,a:active,a:focus{
 	line-height: 55px;
 	border-bottom: solid #ddd 1px;
 }
-.tasks>li .view.active{
+.tasks>li.active{
 	background-color: #eeeded;
 }
 .tasks>li>.editor{
+	width: 100%;
 	display: none;
 	border: none;
 	height: 55px;
@@ -164,7 +165,7 @@ a:hover,a:active,a:focus{
  */
 
 #wrapper{
-	background-color: #1f282d;
+	background-color: #111;
 	zoom:1;
 }
 #wrapper:after{ content: ""; clear: both; line-height: 0; display: table; }
@@ -256,47 +257,68 @@ footer p>a{
 
 .widget-time{
 	padding: 0;
+	height: 205px;
+	overflow: hidden;
 	position: relative;
 }
+.widget-time .widget-content{
+	position: absolute;
+	width: 100%;
+}
 
-.widget-time .complete{
-	/*position: absolute;*/
-	height: 199px;
+.widget-time .content{
+	position: relative;
+	height: 60px;
+	padding: 35px 50px 50px 50px;
+}
+.widget-time .content:after{
+	background-repeat: no-repeat;
+	background-position: center center;
+	position: absolute;
+	width: 83px;
+	height: 83px;
+	content: '';
+	right: 30px;
+	top: 25px;
+}
+.widget-time .content>div{
+	line-height: 100%;
+}
+.widget-time .content .work{
+	font-size: 14px;
+}
+.widget-time .content .time{
+	font-size: 60px;
+}
+.widget-time .content .time>small{
+	font-size: 30px;
+	color: rgba(0,0,0,.20);
+}
+.widget-time .foot{
+	height: 60px;
+	line-height: 60px;
+}
+.widget-time .foot>a{
+	height: 60px;
+	color: #eeeded;
+	display: inline-block;
+}
+.widget-time .foot>a:hover,.widget-time .foot>a:active,.widget-time .foot>a:focus{
+	text-decoration: none;
+	color: rgba(0,0,0,.45);
+	background-color: rgba(0,0,0,.03845);
 }
 
 .widget-time .timer{
 	background-color: #e35f48;
-	color: #eeeded;
-	padding: 0;
-	position: relative;
 }
-
-.widget-time .work{
-	font-size: 14px;
-}
-.widget-time .time{
-	font-size: 60px;
-}
-.widget-time .time>small{
-	font-size: 30px;
-	color: #c54632;
-}
-.widget-time .widget-foot{
+.widget-time .timer .foot{
 	background-color: #d85640;
-	line-height: 65px;
-	height: 65px;
-	padding: 0 10px;
 }
-.widget-time .timer .widget-foot a{
-	color: #eeeded;
-	padding: 25.5px 20px;
-	font-size: 12px;
-	line-height: 100%;
+.widget-time .timer .foot>a{
+	padding:0 25px;
 }
-.widget-time .timer .widget-content{
-	padding: 25px 40px;
-}
-.widget-time .timer .widget-content:after{
+.timer .content:after{
 	background-image: url(../img/tasks/widget-time-bg.png);
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -305,14 +327,42 @@ footer p>a{
 	height: 83px;
 	content: '';
 	right: 30px;
-	top: 15px;
+	top: 25px;
 }
-.widget-time .timer .widget-content>div{
+
+
+.widget-time .complete{
+	background-color: #2eb398;
+}
+.complete .content>h5{
 	line-height: 100%;
+	font-size: 30px;
+	color: rgba(0,0,0,.55);
+	font-weight: normal;
 }
-.widget-time .timer .widget-foot a:hover,.widget-time .timer .widget-foot a:active,.widget-time .timer .widget-foot a:focus{
-	text-decoration: none;
-	color: rgba(0,0,0,.35);
+.complete .content:after{
+	background-image: url(../img/tasks/widget-complete-bg.png);
+}
+.complete .foot>a{
+	text-align: center;
+}
+.widget-time .complete .foot{
+	background-color: #1d9079;
+}
+
+.widget-time .rest{
+	background-color: #58a7d0;
+}
+.rest .content:after{
+	background-image: url(../img/tasks/widget-rest-bg.png);
+	width: 85px;
+}
+.widget-time .rest .foot{
+	background-color: #349ed1;
+}
+.rest .foot>a{
+	display: block;
+	text-align: center;
 }
 
 .widget-tags .btn-tag:hover{

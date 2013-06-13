@@ -8,6 +8,7 @@ define([
 	//定义页面视图
 	return Backbone.View.extend({
 		el:$('#wrapper'),
+		isLocalStorage:true,
 		initialize:function(){ //初始化
 			var view = this.view = {
 				tag:new TagView,
@@ -16,22 +17,31 @@ define([
 			};
 
 			this.router = router;
-			view.timer.listenTo(router,'route:intimer',view.timer.in);//注册路由跳转
-			view.timer.listenTo(router,'route:initTimer',view.timer.init);
-
+			this.listenTo(router,'route:intimer',this.intimer);//注册路由跳转
+			this.listenTo(router,'route:initTimer',this.initTimer);
 			this.listenTo(view.tag,'itemClick',this.taskfilter);
 
-			$.getJSON('/accounts/api',function(data){
-				
-				view.tag.source(data.tag);
-				view.task.source(data.task);
+			if(!this.isLocalStorage)
+				$.getJSON('/accounts/api',function(data){
+					
+					view.tag.source(data.tag);
+					view.task.source(data.task);
 
-				/**
-				 * 设置{pushState: true}后，路由就不需要用#做前缀。
-				 * 但是没设置默认要加#
-				 */
-				Backbone.history.start();//初始化浏览器路由
-			});
+					/**
+					 * 设置{pushState: true}后，路由就不需要用#做前缀。
+					 * 但是没设置默认要加#
+					 */
+					Backbone.history.start();//初始化浏览器路由
+				});
+		},
+		initTimer:function(){
+			this.view.task.$('li').removeClass('active');
+			this.view.timer.init();
+		},
+		intimer:function(taskId){
+			this.view.task.$('li:not(.task-item-'+taskId+')').removeClass('active');
+			this.view.task.$('.task-item-'+taskId).parent().toggleClass('active');
+			this.view.timer.in(taskId);
 		},
 		taskfilter:function(tag){
 			this.view.task.filter(tag);
