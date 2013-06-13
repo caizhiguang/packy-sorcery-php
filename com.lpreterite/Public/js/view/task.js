@@ -13,7 +13,10 @@ define([
 			this.list = tasks;
 
 			this.listenTo(tasks,'add',this.add);
+			this.listenTo(tasks,'remove',this.remove);
 			this.input = this.$('.task-input>input');
+
+			this.$('.tasks').append('<li class="empty"><span style="padding-left:10px;">还没有工作！</span></li>');
 		},
 		render:function(){
 			tasks.fetch();
@@ -26,8 +29,13 @@ define([
 			};
 		},
 		add:function(task){
+			if (this.$('.tasks').has('.empty')) this.$('.tasks .empty').remove();
 			var view = new TaskItemView({model:task});
 			this.$('.tasks').prepend(view.render().el);
+		},
+		remove:function(){
+			if(tasks.length>=0)
+				this.$('.tasks').append('<li class="empty"><span style="padding-left:10px;">还没有工作！</span></li>');
 		},
 		create:function(){
 			var tag,tagId="",tagName = /@[^@\s]+/.exec(this.input.val());
