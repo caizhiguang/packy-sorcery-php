@@ -66,21 +66,36 @@
 			</aside>
 
 			<div class="widget widget-time">
-				<div class="timer">
-					<div class="widget-content">
-						<div class="time"><span class="minute">25</span><small>.</small><small class="second">00</small></div>
-						<div class="work">选择你的任务，开始工作！</div>
+				<div class="widget-content">
+					<div class="timer">
+						<div class="timer-content content">
+							<div class="time"><span class="minute">25</span><small>.</small><small class="second">00</small></div>
+							<div class="work">选择你的任务，开始工作！</div>
+						</div>
+						<div class="timer-foot foot">
+							<a href="javascript:;" class="btn-play"><i class="icon-play"></i></a>
+							<a href="javascript:;" class="btn-pause"><i class="icon-pause"></i></a>
+							<a href="javascript:;" class="btn-stop pull-right"><i class="icon-stop"></i></a>
+						</div>
 					</div>
-					<div class="widget-foot">
-						<a href="javascript:;" class="btn-play"><i class="icon-play"></i></a>
-						<a href="javascript:;" class="btn-pause"><i class="icon-pause"></i></a>
-						<a href="javascript:;" class="btn-stop pull-right"><i class="icon-stop"></i></a>
+					<div class="complete">
+						<div class="complete-content content">
+							<h5>计时器设计</h5>
+							<div>完成一个番茄钟！</div>
+						</div>
+						<div class="complete-foot foot row-fluid">
+							<a href="javascript:;" class="btn-rest span6">休息<span class="rest-time">5</span>分钟</a>
+							<a href="javascript:;" class="btn-complete span6"><i class="icon-ok"></i> 完成</a>
+						</div>
 					</div>
-				</div>
-				<div class="complete">
-					<div class="widget-content">
-						<h5>你已经努力工作了一个番茄钟！</h5>
-						<div class="work">计时器设计</div>
+					<div class="rest">
+						<div class="rest-content content">
+							<div class="time"><span class="minute">05</span><small>.</small><small class="second">00</small></div>
+							<div>休息ing...</div>
+						</div>
+						<div class="rest-foot foot">
+							<a href="javascript:;" class="btn-next">继续工作</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -191,7 +206,7 @@
 	</script>
 
 	<script id="task-item-editor" type="text/template">
-		<input type="text" class="editor span12" value="">
+		<input type="text" class="editor" value="">
 	</script>
 
 	<script id="tags-statistic-item" type="text/template">

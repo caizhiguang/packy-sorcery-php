@@ -1,4 +1,4 @@
-define(['backbone'],function(){
+define(['backbone','backbone.localStorage'],function(){
 	return Backbone.Model.extend({
 		urlRoot:'/tag/api',
 		defaults:function(){
@@ -15,6 +15,7 @@ define(['backbone'],function(){
 			var tasks_count = Number(this.get('tasks_count'));
 			tasks_count = tasks_count+val;
 			this.save({'tasks_count':tasks_count});
-		}
+		},
+		localStorage: new Store("tag")
 	});
 });

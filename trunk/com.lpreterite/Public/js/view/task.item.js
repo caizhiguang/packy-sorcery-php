@@ -108,10 +108,8 @@ define([
 			}
 		},
 		active:function(e){
-			this.$el.parent().find('.view:not(.task-item-'+this.model.id+')').removeClass('active');
-			this.$('.view').toggleClass('active');
-			var isActive = this.$('.view').hasClass('active');
-			window.location.href = isActive?this.$('.title').attr('href'):'#intimer';
+			var isActive = this.$el.hasClass('active');
+			window.location.href = !isActive?this.$('.title').attr('href'):'#intimer';
 			if(e.target.tagName.toLowerCase()=='a') return false;
 		},
 		toggle:function(){ //设置为完成

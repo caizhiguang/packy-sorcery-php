@@ -6,6 +6,9 @@ requirejs.config({
 			deps:['underscore'],
 			exports:'Backbone'
 		},
+		'backbone.localStorage':{
+			deps:['backbone']
+		},
 		'bootstrap.min':['jquery.min'],
 		'jquery.easing':['jquery.min'],
 		'../common':['jquery.easing']

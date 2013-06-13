@@ -73,29 +73,45 @@
 				i:0,
 				isPause:false,
 				time:0,
+				defaults:{
+					time:0
+				},
+				disabled:function(val){
+					if(val==undefined){
+						return that.hasClass('disabled');
+					}
+					that.toggleClass('disabled',val);
+				},
+				init:function(time){
+					this.time = this.defaults.time = time;
+				},
 				run:function(){
 					var modal = that.data('modal');
-					if(modal.time<0) modal.stop();
+					if(modal.time<=0) modal.stop();
 					if(modal.isPause) return;
-					modal.display();
 					modal.time--;
+					modal.display();
 				},
-				play:function(){
-					if(this.i) this.stop();
-					this.time = options.initTime;
+				play:function(timer){
+					if(this.disabled()) return;
+					if(this.i) this.stop(true);
+					this.time = timer?timer:this.defaults.time;
 					this.isPause = false;
 					this.i = setInterval(this.run,1000);
 					that.trigger('play',[this]);
 				},
 				pause:function(){
+					if(this.disabled()) return;
 					this.isPause = true;
 					that.trigger('pause',[this]);
 				},
-				stop:function(){
+				stop:function(changeEvent){
+					if(this.disabled()) return;
 					clearInterval(this.i);
-					this.time = options.initTime;
+					this.time = this.defaults.time;
 					this.display();
-					that.trigger('stop',[this]);
+					if(!changeEvent)
+						that.trigger('stop',[this]);
 				},
 				display:function(){
 					var minute = Math.floor(this.time/60);
@@ -103,6 +119,7 @@
 					that.find(options.second).text(String(this.time-minute*60).replace(/^(\d{1})$/,'0$1'))
 				}
 			}
+			timer.init(options.initTime);
 
 			this.find(options.play).click(function(){ timer.play(); });
 			this.find(options.pause).click(function(){ timer.pause(); });
