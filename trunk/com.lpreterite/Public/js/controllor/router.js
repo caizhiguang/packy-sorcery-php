@@ -2,7 +2,7 @@ define(['backbone'],function(){
 	var Router = Backbone.Router.extend({
 		routes:{
 			'intimer':'initTimer',
-			'intimer/:id': 'intimer',
+			'intimer/*id': 'intimer',
 			'about':'about'
 		}
 	});

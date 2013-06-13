@@ -4,7 +4,8 @@ define(['backbone','model/tag'],function(Backbone,Tag){
 		url:'/tag/api',
 		urlRoot:'/tag/api',
 		model:Tag,
-		comparator:'id'
+		comparator:'id',
+		localStorage: new Store("tag")
 	});
 
 	return new tags;

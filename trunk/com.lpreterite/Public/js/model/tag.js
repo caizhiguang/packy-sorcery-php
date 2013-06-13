@@ -15,7 +15,6 @@ define(['backbone','backbone.localStorage'],function(){
 			var tasks_count = Number(this.get('tasks_count'));
 			tasks_count = tasks_count+val;
 			this.save({'tasks_count':tasks_count});
-		},
-		localStorage: new Store("tag")
+		}
 	});
 });
