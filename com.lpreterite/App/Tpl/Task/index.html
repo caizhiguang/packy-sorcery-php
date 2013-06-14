@@ -195,7 +195,7 @@
 			<a href="#intimer/<%- id %>" class="title"><%- view_name %></a>
 			<small class="tags">
 				<% if(_.isObject(tag)){ %>
-				<a href="#tag-<%- tag.id %>">@<%- tag.name %></a>
+				<a href="#tag/<%- tag.id %>">@<%- tag.name %></a>
 				<% } %>
 			</small>
 			<span class="pull-right">
