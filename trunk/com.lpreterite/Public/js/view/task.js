@@ -62,12 +62,22 @@ define([
 			this.input.val('');
 			return false;
 		},
-		filter:function(tag){
+		filter:function(tagId){
+
+			var tag = tags.findWhere({id:tagId});
+			if(!tag) return;
 			
 			var temp = _.template($('#alert').html());
 			if(this.alertBox!=undefined)
 				this.alertBox.alert('close');
-			this.alertBox = $(temp(tag.toJSON())).insertAfter(this.$('.task-input')).alert().bind('closed',this,this.unfilter);
+
+			var that = this;
+			this.alertBox = $(temp(tag.toJSON())).insertAfter(this.$('.task-input')).alert().click(function(){
+				window.location.href = '#tag';
+			});
+			// .bind('closed',function(){
+			// 	that.unfilter();
+			// });
 
 			this.$('.tasks').empty();
 			var list = tasks.where({tags:tag.id});
@@ -75,11 +85,11 @@ define([
 				this.add(list[i]);
 			};
 		},
-		unfilter:function(e){
-			e.data.$('.tasks').empty();
-			tasks.each(e.data.add,e.data);
-			e.data.alertBox = null;
-			delete e.data.alertBox;
+		unfilter:function(){
+			this.$('.tasks').empty();
+			tasks.each(this.add,this);
+			this.alertBox = null;
+			delete this.alertBox;
 		}
 	});
 });

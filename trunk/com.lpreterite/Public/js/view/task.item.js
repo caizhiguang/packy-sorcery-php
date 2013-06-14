@@ -108,9 +108,11 @@ define([
 			}
 		},
 		active:function(e){
+			if(e.target.tagName.toLowerCase()=='a') return true;
+			if($(e.target).parent('li.editing').length>0) return;
 			var isActive = this.$el.hasClass('active');
 			window.location.href = !isActive?this.$('.title').attr('href'):'#intimer';
-			if(e.target.tagName.toLowerCase()=='a') return false;
+			
 		},
 		toggle:function(){ //设置为完成
 			this.model.toggle();

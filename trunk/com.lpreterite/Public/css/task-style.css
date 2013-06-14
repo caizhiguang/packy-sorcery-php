@@ -254,6 +254,9 @@ footer p>a{
 	border-bottom:none;
 	padding: 0;
 }
+.widget-tasks .alert{
+	margin: 0;
+}
 
 .widget-time{
 	padding: 0;

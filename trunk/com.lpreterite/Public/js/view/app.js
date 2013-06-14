@@ -19,7 +19,8 @@ define([
 			this.router = router;
 			this.listenTo(router,'route:intimer',this.intimer);//注册路由跳转
 			this.listenTo(router,'route:initTimer',this.initTimer);
-			this.listenTo(view.tag,'itemClick',this.taskfilter);
+			this.listenTo(router,'route:taskfilter',this.taskfilter);
+			this.listenTo(router,'route:taskunfilter',this.taskunfilter);
 
 			if(!this.isLocalStorage){
 				$.getJSON('/accounts/api',function(data){
@@ -48,8 +49,11 @@ define([
 			this.view.task.$('.task-item-'+taskId).parent().toggleClass('active');
 			this.view.timer.in(taskId);
 		},
-		taskfilter:function(tag){
-			this.view.task.filter(tag);
+		taskfilter:function(tagId){
+			this.view.task.filter(tagId);
+		},
+		taskunfilter:function(){
+			this.view.task.unfilter();
 		}
 	});
 });
