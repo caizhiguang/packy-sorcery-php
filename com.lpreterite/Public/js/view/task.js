@@ -34,7 +34,7 @@ define([
 			this.$('.tasks').prepend(view.render().el);
 		},
 		remove:function(){
-			if(tasks.length>=0)
+			if(tasks.length<=0)
 				this.$('.tasks').append('<li class="empty"><span style="padding-left:10px;">还没有工作！</span></li>');
 		},
 		create:function(){
