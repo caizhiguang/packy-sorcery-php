@@ -26,7 +26,7 @@ define([
 		},
 		render: function() { //类似刷新
 			var data = this.model.toJSON();
-			this.viewData.name = data.view_name = /[^@\s]+/.exec(data.name)[0];
+			this.viewData.name = data.view_name = /[^@]+/.exec(data.name)[0];
 			this.viewData.tag = data.tag = tags.findWhere({id:data.tags});
 			data.tag = data.tag?data.tag.toJSON():null;
 
