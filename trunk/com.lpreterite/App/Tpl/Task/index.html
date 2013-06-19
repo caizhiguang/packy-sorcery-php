@@ -106,7 +106,7 @@
 					<div class="tags">
 						<a href="#" class="tag">design</a><a href="#" class="tag">code</a><a href="#" class="tag">web</a><a href="#" class="tag">ui</a><a href="#" class="tag">icon</a><a href="#" class="tag">index</a><a href="#" class="tag">ui element</a>
 					</div>
-					<form action="" class="tag-input">
+					<form action="" class="tag-input hide">
 						<input type="text" name="tag">
 					</form>
 				</div>
@@ -159,7 +159,7 @@
 	</section>
 
 	<footer>
-		<p>&copy 2013 <a href="#">Think-Work</a> All Rights Reserved.</p>
+		<p>&copy 2013 <a href="#">Think-Work</a> All Rights Reserved. | <script src="http://s21.cnzz.com/stat.php?id=3477190&web_id=3477190" language="JavaScript"></script></p>
 	</footer>
 
 	<script id="alert" type="text/template">

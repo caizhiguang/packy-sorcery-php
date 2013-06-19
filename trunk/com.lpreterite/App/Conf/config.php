@@ -11,6 +11,15 @@ return array(
     'DB_PORT'		=>	'3306',
     'DB_PREFIX'		=>	'p_',
 
+    // 'DB_TYPE'       =>  'mysql',
+    // 'DB_HOST'       =>  'localhost',
+    // 'DB_NAME'       =>  'lprete_app',
+    // 'DB_USER'       =>  'lprete',
+    // 'DB_PWD'        =>  '310died666lp',
+    // 'DB_PORT'       =>  '3306',
+    // 'DB_PREFIX'     =>  'p_',
+
+
     //模板设置
     'TMPL_L_DELIM'=>'{',//模板引擎普通标签开始标记
 	'TMPL_R_DELIM'=>'}',//模板引擎普通标签结束标记
