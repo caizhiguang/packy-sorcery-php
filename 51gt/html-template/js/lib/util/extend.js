@@ -53,15 +53,17 @@
 			var d = new Date(r[1], r[3]-1,r[4],r[5],r[6],r[7],r[9]==undefined?"0":r[9]);
 			return d;
 		},
-		selectionText:function(){
-			var userSelection, text;
+		selection:function(){
 			if (window.getSelection) { 
 				//现代浏览器
-				userSelection = window.getSelection();
+				return window.getSelection();
 			} else if (document.selection) { 
 				//IE浏览器 考虑到Opera，应该放在后面
-				userSelection = document.selection.createRange();
+				return document.selection.createRange();
 			}
+		},
+		selectionText:function(){
+			var userSelection = this.selection(), text;
 			if (!(text = userSelection.text)) {
 				text = userSelection;
 			}

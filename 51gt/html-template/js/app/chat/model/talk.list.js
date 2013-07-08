@@ -1,7 +1,7 @@
 !function($,Backbone){
 
 	$.lib('app.chat.model.talk.list',Backbone.Collection.extend({
-		model:$.lib('app.answer.model.talk'),
+		model:$.lib('app.chat.model.talk'),
 		localStorage: new Store("talk")
 	}));
 

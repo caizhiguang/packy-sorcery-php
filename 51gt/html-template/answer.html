@@ -161,9 +161,7 @@
 						</div>
 						<footer class="widget-foot">
 							<form action="#" class="chat-input">
-								<div id="editor" class="editor" contenteditable="true">
-									
-								</div>
+								<div id="editor" class="editor" contenteditable="true"></div>
 								<div class="funbar">
 									<span class="pull-left">还可以输入400</span>
 									<span>回车 直接发送</span>
@@ -272,25 +270,36 @@
 
 	<script id="talk-item" type="text/template">
 		<div class="tip">
-			<span class="name"><%- sender_name ></span>
-			<span class="designation"><%= sender_type==2?'老师':''; ></span>
-			<span class="time"><%- time ></span>
+			<span class="name"><%- sender_name %></span>
+			<span class="designation"><%= sender_type==2?'老师':'' %></span>
+			<span class="time"><%- time %></span>
 		</div>
-		<div class="infor"><%- content ></div>
+		<div class="infor"><%= content %></div>
 		<div class="funbar">
 			<a href="#" class="btn btn-circle btn-quote"><i class="icon-share-alt icon-white"></i></a>
 			<% if(user.state==2){ %>
-			<a href="#" class="btn btn-circle btn-add"><i class="icon-plus icon-white"></i></a>
-			<a href="#" class="btn btn-circle btn-delete"><i class="icon-remove icon-white"></i></a>
+				<a href="#" class="btn btn-circle btn-add"><i class="icon-plus icon-white"></i></a>
+				<a href="#" class="btn btn-circle btn-delete"><i class="icon-remove icon-white"></i></a>
 			<% } %>
 		</div>
+	</script>
+
+	<script id="talk-item-quote" type="text/template">
+		<blockquote>
+			<p><%= content %></p>
+			<small><%- sender_name %>(<%- sender_id %>)</small>
+		</blockquote>
 	</script>
 
 	<script src="./js/app/chat/config.js" type="text/javascript"></script>
 	<script src="./js/app/chat/model/question.js" type="text/javascript"></script>
 	<script src="./js/app/chat/model/question.list.js" type="text/javascript"></script>
+	<script src="./js/app/chat/model/talk.js" type="text/javascript"></script>
+	<script src="./js/app/chat/model/talk.list.js" type="text/javascript"></script>
 	<script src="./js/app/chat/view/question.js" type="text/javascript"></script>
 	<script src="./js/app/chat/view/questions.js" type="text/javascript"></script>
+	<script src="./js/app/chat/view/talk.js" type="text/javascript"></script>
+	<script src="./js/app/chat/view/chat.js" type="text/javascript"></script>
 	<script src="./js/app/chat/app.js" type="text/javascript"></script>
 
 </body>
