@@ -40,7 +40,7 @@
 				sender_type:config.user.status,//寄件人身份
 				time:_.dateToString(new Date()),//邮寄时间
 				complete:0,//是否已回答
-				number:questions.length+1,//序号
+				number:questions.length+1//序号
 			}
 
 			questions.create(data,{wait:true});

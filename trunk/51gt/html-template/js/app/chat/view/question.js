@@ -7,7 +7,7 @@
 		template:_.template($('#question-item').html()),
 		events:{
 			'click .btn-complete':'complete',
-			'click .btn-delete':'delete'
+			'click .btn-delete':'destroy'
 		},
 		initialize:function(){
 			this.listenTo(this.model,'change',this.render);
@@ -22,7 +22,7 @@
 			this.model.complete();
 			this.remove();
 		},
-		delete:function(){
+		destroy:function(){
 			this.model.destroy();
 		}
 	}));

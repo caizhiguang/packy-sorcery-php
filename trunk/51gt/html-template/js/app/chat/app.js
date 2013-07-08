@@ -35,6 +35,9 @@
 		var questions = new Questions;
 		questions.render();
 
+		var Chat = $.lib('app.chat.view.chat');
+		var chat = new Chat;
+		chat.render();
 
 		/**
 		 * 初始化输入框
