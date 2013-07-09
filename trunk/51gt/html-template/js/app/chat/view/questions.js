@@ -43,6 +43,7 @@
 				number:questions.length+1//序号
 			}
 
+			if($.trim(data.content).length<=0) return;
 			questions.create(data,{wait:true});
 			this.input.val('');
 			return false;
