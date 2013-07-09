@@ -68,6 +68,18 @@
 				text = userSelection;
 			}
 			return text;
+		},
+		selectionTo:function(start,end){
+			var selection = _.selection();
+			var rang = selection.getRangeAt(0);
+			rang.setStart(start,end);
+			try {
+				selection.removeAllRanges();
+			} catch (ex) {
+				document.body.createTextRange().select();
+				document.selection.empty();
+			}
+			selection.addRange(rang);
 		}
 	};
 	var _ = window._;

@@ -11,7 +11,10 @@
 		events:{
 			'submit .chat-input':'create',
 			'mouseover .widget-content':'notSlide',
-			'mouseout .widget-content':'canSlide'
+			'mouseout .widget-content':'canSlide',
+			'keypress .editor':'editor_keypress',
+			'click [data-hotkeys]':'setHotkeys',
+			'paste .editor':'editor_paste'
 		},
 		initialize:function(){
 			this.input = this.$('.editor');
@@ -41,7 +44,7 @@
 				type:'authority'//信件所属
 			};
 
-			if(data.content.length<=0) return false;
+			if($.trim(data.content).length<=0) return false;
 			talks.create(data,{wait:true});
 			$('#editor').empty();
 
@@ -50,16 +53,7 @@
 		quote:function(quoteHtml){
 			this.input.html(quoteHtml+'<div>&nbsp</div>');
 			this.input.focus();
-			var selection = _.selection();
-			var rang = selection.getRangeAt(0);
-			rang.setStart(this.input[0],this.input[0].childNodes.length);
-			try {
-				selection.removeAllRanges();
-			} catch (ex) {
-				document.body.createTextRange().select();
-				document.selection.empty();
-			}
-			selection.addRange(rang);
+			_.selectionTo(this.input[0],this.input[0].childNodes.length);
 		},
 		contentScroll:function(){
 			if(canSlide){
@@ -73,6 +67,43 @@
 		notSlide:function(){
 			canSlide = false;
 			// console.log(canSlide);
+		},
+		editor_keypress:function(e){
+			if(!(e.which==10 || e.which==13)) return;
+
+			var toSend = false;
+			switch(config.hotkeys.send)
+			{
+				default:
+				case "enter":
+					toSend = true;
+					break;
+				case "ctrl+enter":
+					toSend = e.ctrlKey;
+					break;
+			}
+			
+			if(!(toSend || (e.which==115 && e.altKey))) return;
+
+			this.create();
+
+			return false;
+		},
+		setHotkeys:function(e){
+			var keyArr = $(e.target).data('hotkeys').split(' '),
+				key = keyArr.shift(),
+				args = keyArr.join(' ');
+			config.hotkeys.set(key,args,true);
+		},
+		editor_paste:function(e){
+			var that = this;
+			this.$('.editor').css('opacity',.1);
+			setTimeout(function(){
+				var html = that.$('.editor').html().replace(/(<\/?(?!blockquote|small|p|div|img)[^>]*)\/?>/gi,'');
+				that.$('.editor').html(html).find('div').wrapInner('<div />').children('div').unwrap();
+				that.$('.editor').css('opacity',1);
+				_.selectionTo(that.input[0],that.input[0].childNodes.length);
+			},100);
 		}
 	}));
 
