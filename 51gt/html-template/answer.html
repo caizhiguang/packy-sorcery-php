@@ -38,15 +38,13 @@
 					<span id="title">家庭教育资讯平台</span>
 					<div class="pull-right sign">
 						<span><img class="avatar img-circle" src="img/avatar/default.png" alt=""></span>
-						<span>
-							<div class="btn-group">
-								<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">王老五<span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">个人中心</a></li>
-									<li><a href="#">退出</a></li>
-								</ul>
-							</div>
-						</span>
+						<div class="btn-group">
+							<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">王老五<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">个人中心</a></li>
+								<li><a href="#">退出</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -140,8 +138,8 @@
 									<span class="pull-left">还可以输入400</span>
 									<span>回车 直接发送</span>
 									<span class="btn-group dropup">
-										<input type="submit" class="btn btn-sent" value="发送">
-										<button class="btn btn-sent dropdown-toggle" data-toggle="dropdown">
+										<input type="submit" class="btn btn-s1 btn-sent" value="发送">
+										<button class="btn btn-s1 btn-sent dropdown-toggle" data-toggle="dropdown">
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu">
@@ -158,7 +156,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<span id="history-head">历史记录</span>
 							<span class="btn-group">
-								<a href="#" class="btn btn-history green dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar"></i> <span class="caret"></span></a>
+								<a href="#" class="btn btn-s1 btn-history green dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar"></i> <span class="caret"></span></a>
 								<div class="dropdown-menu">
 								123
 								</div>
@@ -173,9 +171,9 @@
 								</div>
 								<div class="infor">给孩子一个健康快乐的暑假</div>
 								<div class="funbar">
-									<a href="#" class="btn btn-circle"><i class="icon-share-alt icon-white"></i></a>
-									<a href="#" class="btn btn-circle"><i class="icon-plus icon-white"></i></a>
-									<a href="#" class="btn btn-circle"><i class="icon-remove icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-share-alt icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-plus icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-remove icon-white"></i></a>
 								</div>
 							</div>
 							<div class="talk">
@@ -186,14 +184,14 @@
 								</div>
 								<div class="infor">给孩子一个健康快乐的暑假</div>
 								<div class="funbar">
-									<a href="#" class="btn btn-circle"><i class="icon-share-alt icon-white"></i></a>
-									<a href="#" class="btn btn-circle"><i class="icon-plus icon-white"></i></a>
-									<a href="#" class="btn btn-circle"><i class="icon-remove icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-share-alt icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-plus icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-remove icon-white"></i></a>
 								</div>
 							</div>
 						</div>
 						<div class="widget-foot text-right">
-							<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+							<button class="btn btn-s1" data-dismiss="modal" aria-hidden="true">关闭</button>
 						</div>
 					</div>
 				</div>
@@ -205,7 +203,7 @@
 						</ul>
 						<form action="#" class="input-append input">
 							<input type="text" placeholder="在这提交你的问题">
-							<button class="btn btn-ask orange">提问</button>
+							<button class="btn btn-s1 btn-ask orange">提问</button>
 						</form>
 						<div class="widget-content">
 							<div class="tab-content">
@@ -236,8 +234,8 @@
 		</a>
 		<% if(user.state==2){ %>
 		<div class="funbar">
-			<% if(!complete){ %><a href="#" class="btn btn-circle btn-complete"><span class="icon-ok"></span></a><% } %>
-			<a href="#" class="btn btn-circle btn-delete"><span class="icon-remove"></span></a>
+			<% if(!complete){ %><a href="#" class="btn btn-s1 btn-circle btn-complete"><span class="icon-ok"></span></a><% } %>
+			<a href="#" class="btn btn-s1 btn-circle btn-delete"><span class="icon-remove"></span></a>
 		</div>
 		<% } %>
 	</script>
@@ -250,10 +248,10 @@
 		</div>
 		<div class="infor"><%= content %></div>
 		<div class="funbar">
-			<a href="#" class="btn btn-circle btn-quote"><i class="icon-share-alt icon-white"></i></a>
+			<a href="#" class="btn btn-s1 btn-circle btn-quote"><i class="icon-share-alt icon-white"></i></a>
 			<% if(user.state==2){ %>
-				<a href="#" class="btn btn-circle btn-add"><i class="icon-plus icon-white"></i></a>
-				<a href="#" class="btn btn-circle btn-delete"><i class="icon-remove icon-white"></i></a>
+				<a href="#" class="btn btn-s1 btn-circle btn-add"><i class="icon-plus icon-white"></i></a>
+				<a href="#" class="btn btn-s1 btn-circle btn-delete"><i class="icon-remove icon-white"></i></a>
 			<% } %>
 		</div>
 	</script>
