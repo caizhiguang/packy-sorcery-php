@@ -10,10 +10,14 @@
 	<meta name="author" content="packy">
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-responsive.min.css"/>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.editor.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<script src="./js/jquery-1.9.0.js" type="text/javascript"></script>
 	<script src="./js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="./js/jquery.hotkeys.js" type="text/javascript"></script>
+	<script src="./js/jquery.pin.js" type="text/javascript"></script>
+	<script src="./js/bootstrap-wysiwyg.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -23,14 +27,14 @@
 				<div class="container">
 					<a href="" id="logo"></a>
 					<span id="title">家庭教育问答平台</span>
-					<button type="button" class="btn btn-s1 btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<button type="button" class="btn btn-s1 btn-s1 btn-s1 btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<div class="btn-group pull-right sign">
-						<a href="signin.html" class="btn-signin btn btn-s1">登录</a>
-						<a href="register.html" class="btn-register btn btn-s1">注册</a>
+						<a href="signin.html" class="btn-signin btn btn-s1 btn-s1">登录</a>
+						<a href="register.html" class="btn-register btn btn-s1 btn-s1">注册</a>
 					</div>
 				</div>
 			</div>
@@ -43,12 +47,11 @@
 					</ul>
 					<form action="" class="navbar-form form-search nav-text pull-right">
 						<div class="input-append">
-							<input type="text" class="span2 search-query">
-							<button type="submit" class="btn btn-s1">
+							<input type="text" class="span2 search-query" placeholder="搜索话题、问题和人...">
+							<button type="submit" class="btn btn-s1 btn-s1">
 								<i class="icon-search"></i>
 							</button>
-						</div>
-						<button class="btn btn-s1">提问</button>
+						</div><button class="btn btn-s1 btn-s1">提问</button>
 					</form>
 				</div>
 			</div>
@@ -56,9 +59,304 @@
 	</header>
 
 	<div class="container question">
-		<section class="main">
-			
-		</section>
+		<div class="row">
+			<div class="question span8">
+				<section id="question">
+					<header>
+						<h3>我叫 MT Online 的成功对于手游创业公司有哪些启示？</h3>
+						<p>话题：<a href="#" class="btn btn-s1 btn-mini green">创业公司</a> <a href="#" class="btn btn-s1 btn-mini green">手机游戏</a> <a href="#" class="btn btn-s1 btn-mini green">我叫 MT Online</a> <small class="hidden"><a href="#"><i class="icon-pencil"></i> 编辑</a></small></p>
+					</header>
+					<article>
+						<blockquote>今年最火的手机游戏当属《我叫MTOnline》，目前注册用户已经超过了2300万，月流水超过3000万元。这款游戏的开发商乐动卓越，去年窘迫到裁员度日，今年却估值超过10亿元。一夜暴富的神话，激励着无数的年轻人在手游行业里日夜奋战。从游戏设计、产品推广及运营、商业模式等角度看，《我叫MT》有哪些成功的经验值得借鉴呢？</blockquote>
+					</article>
+					<footer class="line">
+						<p><small><span class="pull-right"><a href="#"><i class="icon-flag"></i> 举报</a></span><a href="#">某某</a> 于2013.07.08 11:25:23提问 ，<a href="#"><i class="icon-share-alt"></i> 分享</a></small></p>
+					</footer>
+				</section>
+				<div class="answer-container">
+					<div class="line answer-bar">
+						<ul class="nav nav-pills pull-right">
+							<li class="active">
+								<a href="#"><small>投票顺序</small></a>
+							</li>
+							<li><a href="#"><small>时间顺序</small></a></li>
+							<li><a href="#"><small>只显示专家</small></a></li>
+						</ul>
+						<h5>2个回答</h5>
+					</div>
+
+					<ol class="answer unstyled">
+						<li class="answer-item media">
+							<div class="bar pull-left">
+								<ul class="unstyled article-list">
+									<li>
+										<a href="#" class="btn btn-s1 btn-circle btn-small" data-toggle="tooltip" data-placement="right" title="赞一个">7</a>
+									</li>
+									<li>
+										<a href="#" class="btn btn-s1 btn-circle btn-small green" data-toggle="tooltip" data-placement="right" title="最佳回答"><i class="icon-leaf"></i></a>
+									</li>
+								</ul>
+							</div>
+							<section class="media-body">
+								<header class="media answer-head">
+									<div class="pull-right">
+										<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+									</div>
+									<div class="media-body">
+										<p><a href="#">帕奇式</a><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
+									</div>
+								</header>
+								<article class="answer-content">
+									<p>MT上线的时候，很多人对MT的运营团队评价很差，乱送符石到了令人发指的程度，极大的挫伤了付费用户的付费热情，送的比冲的还多，于是一批批的游戏体验玩家流失了，走的时候留了一句话，这游戏会被运营搞死的。</p>
+									<p>要说MT的运营团队没听到过这种评价，那是不可能的，可结果仍然无动于衷，该送继续送，你走了只说明你不是目标用户，我养起来免费玩家，培养好了付费习惯，自然有人付费的，君不见拉斯维加斯的赌场里，都有送筹码给你玩的么，我们走的就是把免费用户拉下水的节奏。</p>
+									<p>快半年过去了，MT还是畅销榜的第一。</p>
+									<p>作为产品发行方而言，我们从MT的游戏运营理念上，着实学到了很多，也在注重免费用户的利益方面做了更多工作。如果说中国页游、手游产品有他自己的游戏规则，就是为了洗钱而存在的，那我们也可以努力的把洗钱的过程做的温柔一些，尽可能的让不花钱的玩家，感受到游戏的纯乐趣。而且，这个理念现在应该也慢慢被更多人认同了，看看近期的大掌门，连续两三周畅销榜稳居第三，这个和近期的几个给屌丝送金币的活动有间接的关系。</p>
+								</article>
+								<footer class="media-foot answer-foot">
+									<p><small><span class="pull-right"><a href="#"><i class="icon-flag"></i> 举报</a></span><a href="#">某某</a> 于2013.07.08 11:25:23提问 ，<a href="#"><i class="icon-share-alt"></i> 分享</a>，<a href="#"><i class="icon-comment"></i> 评论</a></small></p>
+									<section class="well comment">
+										<ul class="comment-list list-line unstyled">
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+										</ul>
+										<form action="" class="row-fluid">
+											<p>
+												<input class="span12" id="comment" type="text">
+											</p>
+											<div class="text-right">
+												<button type="button" class="btn btn-s1 grey btn-small hover-orange" onclick="$('.comment-list').alert('close')">取消</button>
+												<button class="btn btn-s1 btn-small" type="button">发表评论</button>
+											</div>
+										</form>
+									</section>
+								</footer>
+							</section>
+						</li>
+						<li class="answer-item media">
+							<div class="bar pull-left">
+								<ul class="unstyled article-list">
+									<li>
+										<a href="#" class="btn btn-s1 btn-circle btn-small" data-toggle="tooltip" data-placement="right" title="赞一个">7</a>
+									</li>
+									<li>
+										<a href="#" class="btn btn-s1 btn-circle btn-small orange" data-toggle="tooltip" data-placement="right" title="专家回答"><i class="icon-star"></i></a>
+									</li>
+								</ul>
+							</div>
+							<section class="media-body">
+								<header class="media">
+									<div class="pull-right">
+										<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+									</div>
+									<div class="media-body">
+										<p><a href="#">帕奇式</a><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
+									</div>
+								</header>
+								<article>
+									<p>MT上线的时候，很多人对MT的运营团队评价很差，乱送符石到了令人发指的程度，极大的挫伤了付费用户的付费热情，送的比冲的还多，于是一批批的游戏体验玩家流失了，走的时候留了一句话，这游戏会被运营搞死的。</p>
+									<p>要说MT的运营团队没听到过这种评价，那是不可能的，可结果仍然无动于衷，该送继续送，你走了只说明你不是目标用户，我养起来免费玩家，培养好了付费习惯，自然有人付费的，君不见拉斯维加斯的赌场里，都有送筹码给你玩的么，我们走的就是把免费用户拉下水的节奏。</p>
+									<p>快半年过去了，MT还是畅销榜的第一。</p>
+									<p>作为产品发行方而言，我们从MT的游戏运营理念上，着实学到了很多，也在注重免费用户的利益方面做了更多工作。如果说中国页游、手游产品有他自己的游戏规则，就是为了洗钱而存在的，那我们也可以努力的把洗钱的过程做的温柔一些，尽可能的让不花钱的玩家，感受到游戏的纯乐趣。而且，这个理念现在应该也慢慢被更多人认同了，看看近期的大掌门，连续两三周畅销榜稳居第三，这个和近期的几个给屌丝送金币的活动有间接的关系。</p>
+								</article>
+								<footer class="media-foot">
+									<p><small><span class="pull-right"><a href="#"><i class="icon-flag"></i> 举报</a></span><a href="#">某某</a> 于2013.07.08 11:25:23提问 ，<a href="#"><i class="icon-share-alt"></i> 分享</a>，<a href="#"><i class="icon-comment"></i> 评论</a></small></p>
+									<section class="well comment hide">
+										<button type="button" class="close" data-dismiss="alert">&times;</button>
+										<ul class="comment-list list-line unstyled">
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+											<li class="media">
+												<div class="pull-left">
+													<a href="#"><img src="./img/avatar/default.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
+												</div>
+												<div class="media-body">
+													<p><a href="#"><small>帕奇式</small></a> <i class="icon-star vip"></i></p>
+													<p>随便说几句好了！！！</p>
+												</div>
+											</li>
+										</ul>
+										<form action="" class="row-fluid">
+											<p>
+												<input class="span12" id="comment" type="text">
+											</p>
+											<div class="text-right">
+												<button class="btn btn-s1 btn-small" type="button">发表评论</button>
+											</div>
+										</form>
+									</section>
+								</footer>
+							</section>
+						</li>
+					</ol>
+				</div>
+				<div class="answerForm">
+					<div id="editor-bar" data-role="editor-toolbar" class="editor-bar">
+						<div class="btn-group">
+							<a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-text-height"></i> <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="javascript:;" data-edit="fontSize 5"><font size="5">大</font></a></li>
+								<li><a href="javascript:;" data-edit="fontSize 3"><font size="3">正常</font></a></li>
+								<li><a href="javascript:;" data-edit="fontSize 1"><font size="1">小</font></a></li>
+							</ul>
+						</div>
+						<div class="btn-group">
+							<a href="javascript:;" class="btn dropdown-toggle color" data-edit="color" data-toggle="dropdown"><i class="icon-th-large"></i> <span class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-color">
+								<li>
+									<a href="javascript:;" class="btn-black" data-edit="ForeColor black"><i></i> 黑色</a>
+								</li>
+								<li>
+									<a href="javascript:;" class="btn-red" data-edit="ForeColor red"><i></i> 红色</a>
+								</li>
+								<li>
+									<a href="javascript:;" class="btn-blue" data-edit="ForeColor blue"><i></i> 蓝色</a>
+								</li>
+								<li>
+									<a href="javascript:;" class="btn-green" data-edit="ForeColor green"><i></i> 绿色</a>
+								</li>
+							</ul>
+						</div>
+						<div class="btn-group">
+							<a href="javascript:;" class="btn" data-edit="bold"><i class="icon-bold"></i></a>
+							<a href="javascript:;" class="btn" data-edit="italic"><i class="icon-italic"></i></a>
+							<a href="javascript:;" class="btn" data-edit="underline"><i class="icon-underline"></i></a>
+						</div>
+						
+						<div class="btn-group">
+							<a href="javascript:;" class="btn dropdown-toggle smiley" data-toggle="dropdown"><i class="icon-smiley"></i> <span class="caret"></span></a>
+							<div class="dropdown-menu">
+								<a href="javascript:;" data-edit="insertimage ./img/faces/没问题.png"><img src="./img/faces/没问题.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/拍掌.png"><img src="./img/faces/拍掌.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/表扬.png"><img src="./img/faces/表扬.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/鄙视.png"><img src="./img/faces/鄙视.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/握手.png"><img src="./img/faces/握手.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/鲜花.png"><img src="./img/faces/鲜花.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/支持.png"><img src="./img/faces/支持.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/反对.png"><img src="./img/faces/反对.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/偷笑.png"><img src="./img/faces/偷笑.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/委屈.png"><img src="./img/faces/委屈.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/闭嘴.png"><img src="./img/faces/闭嘴.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/不是吧.png"><img src="./img/faces/不是吧.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/擦汗.png"><img src="./img/faces/擦汗.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/大笑.png"><img src="./img/faces/大笑.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/发怒.png"><img src="./img/faces/发怒.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/汗.png"><img src="./img/faces/汗.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/惊吓.png"><img src="./img/faces/惊吓.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/惊讶.png"><img src="./img/faces/惊讶.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/可怜.png"><img src="./img/faces/可怜.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/哭.png"><img src="./img/faces/哭.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/衰.png"><img src="./img/faces/衰.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/无奈.png"><img src="./img/faces/无奈.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/无语.png"><img src="./img/faces/无语.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/疑惑.png"><img src="./img/faces/疑惑.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/晕.png"><img src="./img/faces/晕.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/哼.png"><img src="./img/faces/哼.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/奸笑.png"><img src="./img/faces/奸笑.png"></a>
+								<a href="javascript:;" data-edit="insertimage ./img/faces/亲亲.png"><img src="./img/faces/亲亲.png"></a>
+							</div>
+						</div>
+						
+						<a href="javascript:;" class="btn" data-edit="face"><i class="icon-picture"></i></a>
+					</div>
+					<div id="editor" class="editor" contenteditable="true"></div>
+					<p class="text-right"><a href="#" class="btn btn-s1">提交回答</a></p>
+				</div>
+			</div>
+			<aside class="side span4">
+				<p>
+					<a href="#" class="btn btn-s1"><i class="icon-plus"></i> 关注</a><br><small>23人关注此问题</small>
+				</p>
+				<div class="widget unstyled">
+					<div class="widget-head">
+						<h5>相关问题</h5>
+					</div>
+					<ul class="widget-content article-list unstyled">
+						<li><a href="#">iPhone 游戏「我叫 MT Online」的优秀之处体现在哪？</a><small>19 个回答</small></li>
+						<li><a href="#">我叫MT Online 算是近期最成功手游，这种火热程度能维持多久？</a><small>19 个回答</small></li>
+						<li><a href="#">《我叫MT Online》这种玩半天不知道玩的是啥的游戏凭啥进Top10？</a><small>19 个回答</small></li>
+						<li><a href="#">为什么《我叫 MT》能超越那些精心设计的 3D 手机网游？</a><small>19 个回答</small></li>
+						<li><a href="#">iPhone 游戏《我是 MT》的主流玩家究竟是因为什么在玩什么？</a><small>19 个回答</small></li>
+					</ul>
+				</div>
+			</aside>
+		</div>
 		
 		<footer id="footer">
 			<p>
@@ -68,5 +366,13 @@
 		</footer>
 	</div>
 	
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			$('.bar>ul').pin({containerSelector:'.media'});
+			$('[data-toggle="tooltip"]').tooltip();
+			$('#editor').wysiwyg();
+		});
+	</script>
+
 </body>
 </html>

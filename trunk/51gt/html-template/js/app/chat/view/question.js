@@ -14,8 +14,7 @@
 			this.listenTo(this.model,'destroy',this.remove);
 		},
 		render:function(){
-			this.$el.html(this.template(_.extend({},this.model.toJSON(),config)))
-			.addClass(this.model.get('complete')||this.model.get('number')<4?'strong':'');
+			this.$el.html(this.template(_.extend({},this.model.toJSON(),config)));
 			return this;
 		},
 		complete:function(){

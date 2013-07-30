@@ -126,8 +126,6 @@
 							</div>
 							
 							<a href="#" class="btn btn-link" data-edit="face"><i class="icon-picture"></i></a>
-
-							
 							
 							<a href="#history" class="pull-right" data-toggle="modal" role="button"><i class="icon-calendar"></i> 历史记录</a>
 						</div>
@@ -171,9 +169,9 @@
 								</div>
 								<div class="infor">给孩子一个健康快乐的暑假</div>
 								<div class="funbar">
-									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-share-alt icon-white"></i></a>
-									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-plus icon-white"></i></a>
-									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-remove icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle grey btn-small hover-orange"><i class="icon-share-alt icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle grey btn-small hover-green"><i class="icon-plus icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle grey btn-small hover-purple"><i class="icon-remove icon-white"></i></a>
 								</div>
 							</div>
 							<div class="talk">
@@ -184,9 +182,9 @@
 								</div>
 								<div class="infor">给孩子一个健康快乐的暑假</div>
 								<div class="funbar">
-									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-share-alt icon-white"></i></a>
-									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-plus icon-white"></i></a>
-									<a href="#" class="btn btn-s1 btn-circle"><i class="icon-remove icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle grey btn-small hover-orange"><i class="icon-share-alt icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle grey btn-small hover-green"><i class="icon-plus icon-white"></i></a>
+									<a href="#" class="btn btn-s1 btn-circle grey btn-small hover-purple"><i class="icon-remove icon-white"></i></a>
 								</div>
 							</div>
 						</div>
@@ -230,12 +228,12 @@
 
 	<script id="question-item" type="text/template">
 		<a class="view" href="javascript:;">
-			<% if(complete){ %><i class="icon icon-ok"></i><% }else{ %><i class="icon"><%- number %></i><% } %><%- content %>
+			<% if(complete){ %><span class="badge circle success"><i class="icon icon-ok"></i></span><% }else{ %><span class="badge circle <%= number<=3?'hot':'' %>"><%- number %></span><% } %><%- content %>
 		</a>
 		<% if(user.state==2){ %>
 		<div class="funbar">
-			<% if(!complete){ %><a href="#" class="btn btn-s1 btn-circle btn-complete"><span class="icon-ok"></span></a><% } %>
-			<a href="#" class="btn btn-s1 btn-circle btn-delete"><span class="icon-remove"></span></a>
+			<% if(!complete){ %><a href="#" class="btn btn-s1 btn-circle grey btn-complete hover-green btn-small"><span class="icon-ok"></span></a><% } %>
+			<a href="#" class="btn btn-s1 btn-circle grey btn-delete hover-purple btn-small"><span class="icon-remove"></span></a>
 		</div>
 		<% } %>
 	</script>
@@ -248,10 +246,10 @@
 		</div>
 		<div class="infor"><%= content %></div>
 		<div class="funbar">
-			<a href="#" class="btn btn-s1 btn-circle btn-quote"><i class="icon-share-alt icon-white"></i></a>
+			<a href="#" class="btn btn-s1 btn-circle grey btn-quote hover-orange btn-small"><i class="icon-share-alt icon-white"></i></a>
 			<% if(user.state==2){ %>
-				<a href="#" class="btn btn-s1 btn-circle btn-add"><i class="icon-plus icon-white"></i></a>
-				<a href="#" class="btn btn-s1 btn-circle btn-delete"><i class="icon-remove icon-white"></i></a>
+				<a href="#" class="btn btn-s1 btn-circle grey btn-add hover-green btn-small"><i class="icon-plus icon-white"></i></a>
+				<a href="#" class="btn btn-s1 btn-circle grey btn-delete hover-purple btn-small"><i class="icon-remove icon-white"></i></a>
 			<% } %>
 		</div>
 	</script>
