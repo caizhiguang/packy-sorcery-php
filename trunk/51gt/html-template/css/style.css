@@ -9,6 +9,7 @@ h1,h2,h3,h4,h5,h6{
 	color: #c14988;
 }
 body{
+	/*background: url(../img/bg.png);*/
 	min-width: 460px;
 }
 
@@ -484,6 +485,14 @@ body{
 	background-color: #9bc058;
 }
 
+ul.inline>li,ol.inline>li{
+	padding:0 2px 4px 2px;
+}
+
+.subbar{
+	margin: 0;
+}
+
 /**
  * index style
  */
@@ -497,9 +506,10 @@ body{
 	line-height: 42px;
 	height: 42px;
 	vertical-align: top;
-	color: #ccc;
+	color: #aaa;
 	border-left: solid 1px #ddd;
 	padding-left:15px;
+	text-shadow: 0 1px 0 #fff;
 }
 #logo{
 	background-image: url(../img/logo.png);
@@ -855,7 +865,15 @@ body{
 /**
  * question style
  */
-
+.pin-wrapper{
+	position: absolute;
+}
+.answer>.answer-item>.bar{
+	
+}
+.answer>.answer-item>.media-body{
+	margin-left: 40px;
+}
 .answer>.answer-item .answer-foot{
 	border-bottom:solid 1px #fff;
 }
