@@ -33,7 +33,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<div class="btn-group pull-right sign">
-						<a href="signin.html" class="btn-signin btn btn-s1 btn-s1">登录</a>
+						<a href="signin.html" class="btn-signin btn btn-s1">登录</a>
 						<a href="register.html" class="btn-register btn btn-s1 btn-s1">注册</a>
 					</div>
 				</div>
@@ -48,11 +48,98 @@
 					<form action="" class="navbar-form form-search nav-text pull-right">
 						<div class="input-append">
 							<input type="text" class="span2 search-query" placeholder="搜索话题、问题和人...">
-							<button type="submit" class="btn btn-s1 btn-s1">
+							<button type="submit" class="btn btn-s1 btn-s2">
 								<i class="icon-search"></i>
 							</button>
-						</div><button class="btn btn-s1 btn-s1">提问</button>
+						</div><button id="btn-question" href="#question-form" class="btn btn-s1 btn-s2" data-toggle="modal">提问</button>
 					</form>
+					<div id="question-form" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h5 id="myModalLabel">提问</h5>
+						</div>
+						<div class="modal-body">
+							<form action="" class="row-fluid">
+								<input type="text" name="title" class="span12" placeholder="标题">
+								<label for="">内容：</label>
+								<div id="editor-bar" data-role="editor-toolbar" class="editor-bar">
+									<div class="btn-group">
+										<a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-text-height"></i> <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="javascript:;" data-edit="fontSize 5"><font size="5">大</font></a></li>
+											<li><a href="javascript:;" data-edit="fontSize 3"><font size="3">正常</font></a></li>
+											<li><a href="javascript:;" data-edit="fontSize 1"><font size="1">小</font></a></li>
+										</ul>
+									</div>
+									<div class="btn-group">
+										<a href="javascript:;" class="btn dropdown-toggle color" data-edit="color" data-toggle="dropdown"><i class="icon-th-large"></i> <span class="caret"></span></a>
+										<ul class="dropdown-menu dropdown-color">
+											<li>
+												<a href="javascript:;" class="btn-black" data-edit="ForeColor black"><i></i> 黑色</a>
+											</li>
+											<li>
+												<a href="javascript:;" class="btn-red" data-edit="ForeColor red"><i></i> 红色</a>
+											</li>
+											<li>
+												<a href="javascript:;" class="btn-blue" data-edit="ForeColor blue"><i></i> 蓝色</a>
+											</li>
+											<li>
+												<a href="javascript:;" class="btn-green" data-edit="ForeColor green"><i></i> 绿色</a>
+											</li>
+										</ul>
+									</div>
+									<div class="btn-group">
+										<a href="javascript:;" class="btn" data-edit="bold"><i class="icon-bold"></i></a>
+										<a href="javascript:;" class="btn" data-edit="italic"><i class="icon-italic"></i></a>
+										<a href="javascript:;" class="btn" data-edit="underline"><i class="icon-underline"></i></a>
+									</div>
+									
+									<div class="btn-group">
+										<a href="javascript:;" class="btn dropdown-toggle smiley" data-toggle="dropdown"><i class="icon-smiley"></i> <span class="caret"></span></a>
+										<div class="dropdown-menu">
+											<a href="javascript:;" data-edit="insertimage ./img/faces/没问题.png"><img src="./img/faces/没问题.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/拍掌.png"><img src="./img/faces/拍掌.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/表扬.png"><img src="./img/faces/表扬.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/鄙视.png"><img src="./img/faces/鄙视.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/握手.png"><img src="./img/faces/握手.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/鲜花.png"><img src="./img/faces/鲜花.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/支持.png"><img src="./img/faces/支持.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/反对.png"><img src="./img/faces/反对.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/偷笑.png"><img src="./img/faces/偷笑.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/委屈.png"><img src="./img/faces/委屈.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/闭嘴.png"><img src="./img/faces/闭嘴.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/不是吧.png"><img src="./img/faces/不是吧.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/擦汗.png"><img src="./img/faces/擦汗.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/大笑.png"><img src="./img/faces/大笑.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/发怒.png"><img src="./img/faces/发怒.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/汗.png"><img src="./img/faces/汗.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/惊吓.png"><img src="./img/faces/惊吓.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/惊讶.png"><img src="./img/faces/惊讶.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/可怜.png"><img src="./img/faces/可怜.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/哭.png"><img src="./img/faces/哭.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/衰.png"><img src="./img/faces/衰.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/无奈.png"><img src="./img/faces/无奈.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/无语.png"><img src="./img/faces/无语.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/疑惑.png"><img src="./img/faces/疑惑.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/晕.png"><img src="./img/faces/晕.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/哼.png"><img src="./img/faces/哼.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/奸笑.png"><img src="./img/faces/奸笑.png"></a>
+											<a href="javascript:;" data-edit="insertimage ./img/faces/亲亲.png"><img src="./img/faces/亲亲.png"></a>
+										</div>
+									</div>
+									
+									<a href="javascript:;" class="btn" data-edit="face"><i class="icon-picture"></i></a>
+								</div>
+								<div id="editor" class="editor" contenteditable="true"></div>
+								<label for="">话题：</label>
+								<input type="text" name="_topic" class="span12" placeholder="搜索话题">
+							</form>
+						</div>
+						<div class="modal-footer">
+							<a href="#" class="btn btn-s1 btn-small hover-orange grey" data-dismiss="modal" aria-hidden="true">取消</a>
+							<a href="#" class="btn btn-s1 btn-small">提问</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -82,7 +169,7 @@
 							<li><a href="#"><small>时间顺序</small></a></li>
 							<li><a href="#"><small>只显示专家</small></a></li>
 						</ul>
-						<h5>2个回答</h5>
+						<strong>2个回答</strong>
 					</div>
 
 					<ol class="answer unstyled">
