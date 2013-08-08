@@ -23,7 +23,7 @@
 	<load href="__PUBLIC__/js/test.js"/>
 </head>
 <body>
-	<form action="#" id="testform">
+	<!-- form action="#" id="testform">
 		<label>姓名</label>
 		<input type="text" name="name">
 		<label>性别</label>
@@ -36,11 +36,32 @@
 
 	<button id="btn_upload" class="btn">上传</button>
 
-	<ul id="users"></ul>
+	<ul id="users"></ul> -->
 
 	<script type="text/template" id="user-item">
 		<span class="name"><%- name %></span>
 		<span class="sex"><%= Number(sex)? '男':'女' %></span>
+	</script>
+
+	<canvas id="myChart" width="320" height="320"></canvas>
+
+	<script>
+	
+	var data = {
+		labels : ["设计","交互","经验","代码","分享"],
+		datasets : [
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [8,16,11,18,12]
+			}
+		]
+	}
+	var ctx = $('#myChart')[0].getContext("2d");
+	var chart = new Chart(ctx).Radar(data);
+
 	</script>
 
 </body>

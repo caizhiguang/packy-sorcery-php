@@ -1,0 +1,89 @@
+body{
+	background-image: url('../img/pblog/bg.png');
+	background-color: #eaedf1;
+	background-position: top center;
+	background-repeat: no-repeat;
+	color: #707d85;
+}
+
+h1,h2,h3,h4,h5,h6{
+	color: #40505a;
+}
+
+a{
+	color: #40505a;
+}
+a:hover,a:focus{
+	color: #2eb398;
+}
+
+.body{
+	
+}
+
+
+.posts{
+	position: relative;
+}
+.posts:before{
+	border-right: solid 1px #2eb398;
+	-webkit-box-shadow: inset -2px 0 0 #2eb398;
+	-moz-box-shadow: inset -2px 0 0 #2eb398;
+	box-shadow: inset -2px 0 0 #2eb398;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 50%;
+	display: block;
+	content: "";
+}
+.post{
+	float: left;
+	margin: 0;
+	width: 47%;
+	position: relative;
+	clear: left;
+	padding-right: 3%;
+}
+.post>.flag{
+	position: absolute;
+	border: solid 3px #2eb398;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	height: 6px;
+	width: 6px;
+	right: -7px;
+	top: 0;
+	background-color: #eaedf1;
+}
+.post>.time{
+	
+}
+.post>footer{
+
+}
+.post>article{
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+	-moz-box-shadow: 0 0 5px rgba(0,0,0,.3);
+	box-shadow: 0 0 5px rgba(0,0,0,.3);
+	padding: 5px;
+	margin: 10px 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.post img{
+}
+.post:nth-child(even){
+	margin-top:35px;
+	float: right;
+	clear: right;
+	padding-left: 3%;
+	padding-right: 0;
+}
+.post:nth-child(even)>.flag{
+	left: -6px;
+	right: auto;
+}
