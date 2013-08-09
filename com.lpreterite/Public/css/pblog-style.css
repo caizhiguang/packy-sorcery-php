@@ -24,26 +24,120 @@ a:hover,a:focus{
 	padding: 0;
 }
 
+#header{
+	position: relative;
+	background-color: #e2e7ee;
+}
+.header .nav{
+	position: absolute;
+	bottom: 0;
+}
+.header .nav .active>a{
+	background-color: #eaedf1;
+	color: #40505a;
+}
+.header .nav a:hover,.header .nav a:focus{
+	background-color: #eaedf1;
+}
+.header>.container{
+	position: relative;
+	z-index: 1;
+	height: 80px;
+}
+.header-bg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 113px;
+	overflow: hidden;
+	width: 100%;
+	z-index: 0;
+}
+.header-bg>img{
+	width: 100%;
+	max-height: auto;
+	position: absolute;
+}
 
+.media{
+	position: absolute;
+	right: 0;
+	bottom: 20px;
+	margin: 0;
+}
+.media>li{
+	float: left;
+	list-style: none;
+	margin-left:10px;
+}
+.media>li>.btn.btn-circle{
+	background: #eaedf1;
+	color: #40505a;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	border: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.media>li>.btn.btn-circle:hover,.media>li>.btn.btn-circle:focus{
+	color: #1d9079;
+}
+
+#brand{
+	position: relative;
+	margin: 0 auto;
+	width: 113px;
+	bottom:-25px;
+}
+#brand .brand{
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: inline-block;
+	border: solid 10px #eaedf1;
+	overflow: hidden;
+	background-color: #2eb398;
+	padding: 5px;
+	text-align: center;
+}
+#brand .brand img{
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
 
 #footer{
 	background-color: #1e1e1e;
-	-webkit-box-shadow: inset 0 5px 0 rgba(0,0,0,.3);
-	-moz-box-shadow: inset 0 5px 0 rgba(0,0,0,.3);
-	box-shadow: inset 0 5px 0 rgba(0,0,0,.3);
+	-webkit-box-shadow: inset 0 5px 2px rgba(0,0,0,.3);
+	-moz-box-shadow: inset 0 5px 2px rgba(0,0,0,.3);
+	box-shadow: inset 0 5px 2px rgba(0,0,0,.3);
+}
+#footer .widget{
+	margin: 25px 0 45px;
+}
+#footer .widget h4{
+	color: #707d85;
 }
 
 .body{
 	position: relative;
+	margin-top:45px;
+	z-index: 2;
 }
-.body>.bar{
+.body>.container{
+	position: relative;
+	padding-top:20px;
+}
+.body>.container>.bar{
 	width: 47%;
 	float: right;
 	position: relative;
 	padding-left: 3%;
 	margin-bottom: 15px;
 }
-.body>.bar>.btn.btn-circle{
+.body>.container>.bar>.btn.btn-circle{
 	width: 32px;
 	height: 32px;
 	line-height: 32px;
@@ -55,8 +149,21 @@ a:hover,a:focus{
 	color: #fff;
 	text-shadow: none;
 }
-.body>.bar>.btn.btn-circle:hover,.body>.bar>.btn.btn-circle:focus{
+.body>.container>.bar>.btn.btn-circle:hover,.body>.container>.bar>.btn.btn-circle:focus{
 	background:#e76049;
+}
+.body .title{
+	background: url(../img/pblog/title.png) center center no-repeat;
+	height: 42px;
+	line-height: 32px;
+	color: #fff;
+	text-align: center;
+	z-index: 2;
+	position: relative;
+	margin:5px 0 15px;
+}
+.body .title>a{
+	color: #fff;
 }
 
 .posts:before{
@@ -138,15 +245,13 @@ a:hover,a:focus{
 .post>.time>a{
 	color: #fff;
 }
-.post>footer{
-
-}
 
 .post>.content{
 	background-color: #fff;
-	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
-	-moz-box-shadow: 0 0 5px rgba(0,0,0,.3);
-	box-shadow: 0 0 5px rgba(0,0,0,.3);
+	border: solid 3px rgba(0,0,0,.125);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding-box;
+	background-clip: padding-box;
 	padding: 5px;
 	margin: 10px 0;
 	-webkit-border-radius: 5px;
@@ -156,11 +261,25 @@ a:hover,a:focus{
 .post>.content>*:last-child{
 	margin-bottom:0;
 }
-.post.article>.content,.post.link>.content{
+.post.article>.content>.content-inner,.post.link>.content{
 	padding: 5px 15px;
 }
+.post.article>.content>.bar{
+	text-align: center;
+	background: rgba(0,0,0,.05);
+	line-height: 35px;
+}
 
-.post img{
+.post.link>.content{
+	padding: 10px;
+	color: #fff;
+	background: #e76049;
+}
+.post.link blockquote small{
+	color: #fff;
+}
+.post.link>.content a{
+	color: #fff;
 }
 
 
