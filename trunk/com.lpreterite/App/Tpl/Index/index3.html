@@ -16,12 +16,26 @@
 	<load href="__PUBLIC__/js/common.js"/>
 </head>
 <body>
-	<div class="container">
-		<header id="header">
-			<div class="brand"><img src="" alt=""></div>
-		</header>
-		<div class="body clearfix">
-			<header></header>
+	<header id="header" class="header">
+		<div class="container">
+			<div id="brand">
+				<a class="brand"><img src="./Public/photo/avatar.png" alt=""></a>
+			</div>
+			<ul class="nav nav-pills">
+				<li class="active"><a href="#"><i class="icon-home"></i></a></li>
+				<li><a href="#">Tags</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+			<ul class="media">
+				<li><a href="#" class="btn btn-circle"><i class="icon-google-plus"></i></a></li>
+				<li><a href="#" class="btn btn-circle"><i class="icon-facebook"></i></a></li>
+				<li><a href="#" class="btn btn-circle"><i class="icon-twitter"></i></a></li>
+			</ul>
+		</div>
+	</header>
+	<div class="body clearfix">
+		<div class="container">
+			<header class="title"><a href="#">Photo</a></header>
 			<ul class="posts row-fluid unstyled">
 				<li class="post-wrap">
 					<article class="post photo">					
@@ -29,7 +43,7 @@
 							<a href="#">2013.12.3</a>
 						</div>
 						<div class="content">
-							<img src="./Public/photo/design.png" alt="photo-title">
+							<a href="#"><img src="./Public/photo/design.png" alt="photo-title"></a>
 						</div>
 						<footer>
 							<a href="#"><i class="icon-comment"></i> 还没有评论</a>
@@ -40,11 +54,13 @@
 					<article class="post article">					
 						<div class="time"><a href="#">2013.12.3</a></div>
 						<div class="content">
-							<h3><a href="#">Selection 浏览器的光标的操作</a></h3>
-							<p>由于最近公司网站更新，在线聊天室也跟着一并更新，对于以前那弱爆了的输入框重新调教才发现这东西。</p>
-							<p>说真的，操作光标什么的需求真TM的少，就刚好我要做富文本编辑器才会看到。</p>
-							<p>好了现在入正题吧！\(-ω – )</p>
-							<p>要在浏览器中操作光标要先取得光标的对象，而因为这个对象会根据不同的浏览器而不同。</p>
+							<div class="content-inner">
+								<h3><a href="#">Selection 浏览器的光标的操作</a></h3>
+								<p>由于最近公司网站更新，在线聊天室也跟着一并更新，对于以前那弱爆了的输入框重新调教才发现这东西。</p>
+								<p>说真的，操作光标什么的需求真TM的少，就刚好我要做富文本编辑器才会看到。</p>
+								<p>好了现在入正题吧！\(-ω – )</p>
+								<p>要在浏览器中操作光标要先取得光标的对象，而因为这个对象会根据不同的浏览器而不同。</p>
+							</div>
 							<div class="bar">
 								<a href="#">more</a>
 							</div>
@@ -98,22 +114,32 @@
 		</div>		
 	</div>
 	<footer id="footer">
-		<div class="container">
-			<dl>
-				<dt>分享：</dt>
-				<dd></dd>
-			</dl>
-			<dl>
-				<dt>联系我：</dt>
-				<dd></dd>
-			</dl>
-			<dl>
-				<dt>关于</dt>
-				<dd>
-					<p>&copy 2013 帕奇式's博客</p>
-					<p>Design and Themed @帕奇式</p>
-				</dd>
-			</dl>
+		<div class="container clearfix">
+			<div class="row-fluid">
+				<dl class="widget span3 widget-tag">
+					<dt><h4>标签</h4></dt>
+					<dd></dd>
+				</dl>
+				<dl class="widget span3">
+					<dt><h4>分享</h4></dt>
+					<dd></dd>
+				</dl>
+				<dl class="widget span3">
+					<dt><h4>联系我</h4></dt>
+					<dd>
+						<address>
+							<a href="#">lpreterite@gmail.com</a>
+						</address>
+					</dd>
+				</dl>
+				<dl class="widget span3">
+					<dt><h4>关于</h4></dt>
+					<dd>
+						<div>&copy 2013 <a href="#">帕奇式's博客</a></div>
+						<div>Design and Themed <a href="#">@帕奇式</a></div>
+					</dd>
+				</dl>
+			</div>
 		</div>
 	</footer>
 </body>
