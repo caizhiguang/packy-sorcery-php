@@ -261,6 +261,11 @@ a:hover,a:focus{
 .post>.content>*:last-child{
 	margin-bottom:0;
 }
+
+
+.post.photo>.content>.content-inner{
+	position: relative;
+}
 .post.article>.content>.content-inner,.post.link>.content{
 	padding: 5px 15px;
 }
@@ -280,6 +285,24 @@ a:hover,a:focus{
 }
 .post.link>.content a{
 	color: #fff;
+}
+
+.caption{
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0,0,0,.2);
+	color: #fff;
+}
+.caption>*{
+	margin: 0 10px;
+}
+.caption>*:first-child{
+	margin-top:10px;
+}
+.caption>*:last-child{
+	margin-bottom:10px;
 }
 
 
