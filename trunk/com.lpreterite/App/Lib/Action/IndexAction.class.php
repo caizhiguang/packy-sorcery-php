@@ -4,4 +4,7 @@ class IndexAction extends Action {
     public function index(){
 		$this->display('index3');
     }
+    public function detail(){
+    	$this->display('detail');
+    }
 }

@@ -29,5 +29,6 @@ return array(
     
     //路由
     'URL_CASE_INSENSITIVE' =>true,//路由没有大小写规范
+    'URL_MODEL' => 2,
 );
 ?>
