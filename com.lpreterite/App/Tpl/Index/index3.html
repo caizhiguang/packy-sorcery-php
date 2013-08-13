@@ -15,22 +15,22 @@
 	<load href="__PUBLIC__/css/font-awesome.css"/>
 	<load href="__PUBLIC__/js/common.js"/>
 </head>
-<body>
+<body class="index">
 	<header id="header" class="header">
 		<div class="container">
-			<div id="brand">
-				<a class="brand"><img src="./Public/photo/avatar.png" alt=""></a>
-			</div>
-			<ul class="nav nav-pills">
-				<li class="active"><a href="#"><i class="icon-home"></i></a></li>
-				<li><a href="#">Tags</a></li>
-				<li><a href="#">About</a></li>
-			</ul>
-			<ul class="media">
+			<ul class="social pull-right">
 				<li><a href="#" class="btn btn-circle"><i class="icon-google-plus"></i></a></li>
 				<li><a href="#" class="btn btn-circle"><i class="icon-facebook"></i></a></li>
 				<li><a href="#" class="btn btn-circle"><i class="icon-twitter"></i></a></li>
 			</ul>
+			<ul class="nav nav-pills">
+				<li class="active"><a href="{:U('index')}"><i class="icon-home"></i></a></li>
+				<li><a href="#">Tags</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</div>
+		<div id="brand">
+			<a class="brand"><img src="__PUBLIC__/photo/avatar.png" alt=""></a>
 		</div>
 	</header>
 	<div class="body clearfix">
@@ -44,7 +44,7 @@
 						</div>
 						<div class="content">
 							<div class="content-inner">
-								<a href="#"><img src="./Public/photo/design.png" alt="photo-title"></a>
+								<a href="#"><img src="__PUBLIC__/photo/design.png" alt="photo-title"></a>
 								<div class="caption">
 									<blockquote>
 										<h4>博客设计</h4>
@@ -62,13 +62,13 @@
 						<div class="time"><a href="#">2013.12.3</a></div>
 						<div class="content">
 							<div class="content-inner">
-								<h3><a href="#">Selection 浏览器的光标的操作</a></h3>
+								<h3><a href="{:U('index/detail')}">Selection 浏览器的光标的操作</a></h3>
 								<p>由于最近公司网站更新，在线聊天室也跟着一并更新，对于以前那弱爆了的输入框重新调教才发现这东西。</p>
 								<p>说真的，操作光标什么的需求真TM的少，就刚好我要做富文本编辑器才会看到。</p>
 								<p>好了现在入正题吧！\(-ω – )</p>
 								<p>要在浏览器中操作光标要先取得光标的对象，而因为这个对象会根据不同的浏览器而不同。</p>
 							</div>
-							<div class="bar">
+							<div class="bar text-center">
 								<a href="#">more</a>
 							</div>
 						</div>
@@ -92,7 +92,7 @@
 					<article class="post article">					
 						<div class="time"><a href="#">2013.12.3</a></div>
 						<div class="content">
-							<a href="#"><img src="./Public/photo/design.png" alt="photo-title"></a>
+							<a href="#"><img src="__PUBLIC__/photo/design.png" alt="photo-title"></a>
 							<div class="content-inner">
 								<h3><a href="#">Selection 浏览器的光标的操作</a></h3>
 								<p>由于最近公司网站更新，在线聊天室也跟着一并更新，对于以前那弱爆了的输入框重新调教才发现这东西。</p>
@@ -100,7 +100,7 @@
 								<p>好了现在入正题吧！\(-ω – )</p>
 								<p>要在浏览器中操作光标要先取得光标的对象，而因为这个对象会根据不同的浏览器而不同。</p>
 							</div>
-							<div class="bar">
+							<div class="bar text-center">
 								<a href="#">more</a>
 							</div>
 						</div>
