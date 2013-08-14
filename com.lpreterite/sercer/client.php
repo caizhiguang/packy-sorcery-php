@@ -78,7 +78,7 @@ class OpenDrive
 		$http->user_agent = "OpenDrive/2.3";
 		$this->_http      = & $http;
 
-		$host = 'https://api.opendrive.com';//http://lpreterite.com:8081/sercer/
+		$host = 'http://api.opendrive.com';//http://lpreterite.com:8081/sercer/
 		$path_url = $host.'/od_get_path.php';
 		$args = $this->prepareRequest("POST", $path_url, array('version'=>'1.3.14.4'));
 		$body = $this->processRequest($args);

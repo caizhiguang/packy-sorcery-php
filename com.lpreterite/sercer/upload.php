@@ -25,7 +25,6 @@ $url = $c->getUploadURL();
  * 
  */
  ?>
-
 <html>
     <head>
         <title>Testing uploader</title>
@@ -37,17 +36,18 @@ $url = $c->getUploadURL();
         <script type="text/javascript">
             $(function () {
                 $('#fileupload').fileupload({
-                    url: "http://lpreterite.com:8081/sercer/index.php/session_id=1376465715053601003&level=10&format=json",//<?php echo $url ?>
-                    dataType: 'json',
-                    formData:{
-                        //其实数据在这添加
-                        folder_id:$('#folder_id').val(),
-                        lang:$('#lang').val()
-                    },
-                    crossDomain:true,
-                    xhrFields: {
-                        withCredentials: true
-                    },
+                    url: "http://testcenter.com:8081/jsonp.php",//<?php echo $url ?>
+                    // dataType: 'jsonp',
+                    // type:'POST',
+                    // formData:{
+                    //     //其实数据在这添加
+                    //     folder_id:$('#folder_id').val(),
+                    //     lang:$('#lang').val()
+                    // },
+                    // crossDomain:true,
+                    // xhrFields: {
+                    //     withCredentials: true
+                    // },
                     paramName:'file[]',
                     done: function (e, data) {
                         for(var pro in data){
@@ -69,24 +69,33 @@ $url = $c->getUploadURL();
                 });
                 // .prop('disabled', !$.support.fileInput)
                 //     .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+
+                var index = 1;
+                $('.btn-addUploadFile').click(function(){
+                    index++
+                    $('.upload-file-table tr:last-child').before('<tr><td><input type="file" name="file'+index+'" /><button type="button" class="btn-remove">remove</button></td></tr>');
+                });
+                $('.upload-file-table').on('click','.btn-remove',function(e){
+                    $(e.target).parents('tr').remove();
+                });
+                var checkUploadFile = function(){
+                    //$('#uploadfile').
+                }
             });
         </script>
     </head>
     <body>
-        <form action="<?php echo $url ?>" method="POST" enctype="multipart/form-data">
-        <table>
+        <form action="<?php echo $url ?>" target="uploadfile" method="POST" enctype="multipart/form-data">
+        <table class="upload-file-table">
             <tr>
-                <td colspan=2>
-                    <input type="file" name="file1" />
+                <td>
+                    <input type="file" name="file1" /><button type="button" class="btn-remove">remove</button>
                 </td>
             </tr>
             <tr>
-                <td colspan=2>
-                    <input type="file" name="file2" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan=2>
+                <td>
+                    <button type="button" class="btn-addUploadFile">add upload file</button>
                     <input type="submit" value="Upload file" />
                 </td>
             </tr>
@@ -97,6 +106,8 @@ $url = $c->getUploadURL();
         <input type="hidden" name="custom3" value="ccc333">
 		<input id="lang" type="hidden" name="lang" value="en" />
         </form>
+
+        <iframe id="uploadfile"></iframe>
 
         <div id="ajaxUpload">
             <input id="fileupload" type="file" name="file[]" multiple>
