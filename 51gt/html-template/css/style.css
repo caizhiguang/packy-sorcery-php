@@ -133,29 +133,47 @@ body{
 	padding: 0;
 }
 
-.nav-pills{
+.nav-range{
 	margin-bottom: 1.25em;
+	zoom:1;
 }
-.nav-pills>li>a{
+.nav-range:after{
+	content: "";
+	display: table;
+	clear: both;
+	line-height: 0;
+	font-size: 0;
+}
+.nav-range>li{
+	float: left;
+}
+.nav-range>li>a{
 	padding: 0;
 	margin: 0;
 	color: #666;
 }
-.nav-pills>li>a:after{
+.nav-range>li>a:hover,.nav-range>li>a:focus{
+	color: #2e2e2e;
+}
+.nav-range>li>a:after{
 	margin:0 1em;
 	content: '';
 	border-right: solid 1px #ddd;
 }
-.nav-pills>li:last-child>a:after{
+.nav-range>li:last-child>a:after{
 	display: none;
 }
-.nav-pills>.active>a, .nav-pills>.active>a:hover, .nav-pills>.active>a:focus{
+.nav-range>.active>a, .nav-range>.active>a:hover, .nav-range>.active>a:focus{
 	background-color: transparent;
 	font-weight: bold;
 	color: #c14988;
 }
-.nav-pills>li>a:hover,.nav-pills>li>a:active{
+.nav-range>li>a:hover,.nav-range>li>a:active{
 	background-color: transparent;
+}
+
+.nav-pills.nav-stacked .active a,.nav-pills.nav-stacked .active a:hover,.nav-pills.nav-stacked .active a:focus{
+	background-color: #d15f9b;
 }
 
 .line{
@@ -513,6 +531,38 @@ ul.inline>li,ol.inline>li{
 
 #question-form .editor{
 	height: 150px;
+}
+
+.pagination>div{
+	display: inline-block;
+	zoom:1;
+}
+.pagination>div>*{
+	float: left;
+	padding: 4px 12px;
+	line-height: 20px;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-left-width: 0;
+}
+.pagination>div>.active{
+	font-weight: bold;
+}
+.pagination>div>[disabled],.pagination>div>[disabled]:hover,.pagination>div>[disabled]:focus{
+	color: #999;
+	text-decoration: none;
+}
+.pagination>div>*:first-child{
+	border-left-width:1px;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
+}
+.pagination>div>*:last-child{
+	-webkit-border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0;
 }
 
 /**
@@ -984,6 +1034,10 @@ body{
 
 .container.question .editor{
 	margin-bottom:.65em;
+}
+
+.widget.question-side{
+	padding-left:12px;
 }
 
 /**
