@@ -23,14 +23,14 @@
 				<div class="container">
 					<a href="" id="logo"></a>
 					<span id="title">家庭教育问答平台</span>
-					<button type="button" class="btn btn-s1 btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<button type="button" class="btn btn-s1 btn-s1 btn-s1 btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<div class="btn-group pull-right sign">
 						<a href="signin.html" class="btn-signin btn btn-s1">登录</a>
-						<a href="register.html" class="btn-register btn btn-s1">注册</a>
+						<a href="register.html" class="btn-register btn btn-s1 btn-s1">注册</a>
 					</div>
 				</div>
 			</div>
@@ -144,38 +144,15 @@
 	<div class="container topic">
 		<section class="main row">
 			<div class="span8">
-				<div class="media page-header">
-					<div class="bar pull-right">
-						<a href="#" class="btn btn-s1 btn-small"><i class="icon-plus"></i> 关注</a><br><small>30人关注</small>
-					</div>
-					<a class="pull-left" href="#">
-						<img class="media-object img-rounded" data-src="holder.js/64x64" src="./photo/50x50.jpg">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">家教</h4>
-						<p>学校教育不全面，所以就需要请家教了</p>
-					</div>
-				</div>
-
-				<ul class="nav nav-range line">
-					<li class="active"><a href="#">动态</a></li>
-					<li>
-						<a href="#">新问题</a>
-					</li>
-				</ul>
-
-				<div class="line clearfix">
-					<ul class="nav nav-range pull-right subbar">
-						<li class="active">
-							<a href="#"><small>热门顺列</small></a>
-						</li>
-						<li><a href="#"><small>时间顺序</small></a></li>
-					</ul>
-					<strong>12个问题</strong>
-				</div>
-
+				<h4 class="main-title">最新动态</h4>
 				<ul class="question-list list-line article-list unstyled">
 					<li>
+						<div class="media">
+							<div class="pull-left">
+								<img src="./img/avatar/monster_24.png" alt="" class="img-rounded">
+								<small>回复了问题</small>
+							</div>
+						</div>
 						<div class="pull-right"><small>2013.04.25</small></div>
 						<h5 class="media-heading"><a href="#">如何利用 iPad 高效学习？</a></h5>
 						<ol class="answer unstyled">
@@ -189,24 +166,27 @@
 								</div>
 								<section class="media-body">
 									<header class="media">
-										<div class="pull-right">
-											<a href="#"><img src="./img/avatar/boy_50.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
-										</div>
 										<div class="media-body">
-											<p><a href="#">帕奇式</a><br><small class="media-foot">获得 7 次赞同</small></p>
+											<p><a href="#">帕奇式</a><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
 										</div>
 									</header>
 									<article class="answer-content">
 										<p>MT上线的时候，很多人对MT的运营团队评价很差，乱送符石到了令人发指的程度，极大的挫伤了付费用户的付费热情，送的比冲的还多，于是一批批的游戏体验玩家流失了，走的时候留了一句话，这游戏会被运营搞死的。</p>
 									</article>
 									<footer class="media-foot">
-										<p><small><span class="pull-right"><a href="#"><i class="icon-flag"></i> 举报</a></span><a href="#">某某</a> 于2013.07.08 11:25:23提问 ，<a href="#"><i class="icon-share-alt"></i> 分享</a>, <a href="#">关注问题</a></small></p>
+										<p><small><span class="pull-right"><a href="#"><i class="icon-flag"></i> 举报</a></span><a href="#">某某</a> 于2013.07.08 11:25:23提问 ，<a href="#"><i class="icon-share-alt"></i> 分享</a>，<a href="#"><i class="icon-comment"></i> 评论</a></small></p>
 									</footer>
 								</section>
 							</li>
 						</ol>
 					</li>
 					<li>
+						<div class="media">
+							<div class="pull-left">
+								<img src="./img/avatar/monster_24.png" alt="" class="img-rounded">
+								<small>提问了问题</small>
+							</div>
+						</div>
 						<p class="pull-right"><small>2013.04.25</small></p>
 						<h5 class="media-heading"><a href="#">如何利用 iPad 高效学习？</a></h5>
 						<p class="media-foot">
@@ -214,6 +194,12 @@
 						</p>
 					</li>
 					<li>
+						<div class="media">
+							<div class="pull-left">
+								<img src="./img/avatar/monster_24.png" alt="" class="img-rounded">
+								<small>关注了问题</small>
+							</div>
+						</div>
 						<p class="pull-right"><small>2013.04.25</small></p>
 						<h5 class="media-heading"><a href="#">如何利用 iPad 高效学习？</a></h5>
 						<p class="media-foot">
@@ -221,7 +207,6 @@
 						</p>
 					</li>
 				</ul>
-
 				<div class="pagination text-center">
 					<ul>
 						<li><a href="#">上一页</a></li>
@@ -235,90 +220,78 @@
 				</div>
 			</div>
 			<div class="span4">
-				<div class="widget unstyled question-side">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active"><a href="#">最新动态</a></li>
+					<li><a href="#">我关注的问题</a></li>
+					<li><a href="#">所有问题</a></li>
+					<li><a href="#">话题广场</a></li>
+				</ul>
+				<div class="widget unstyled question-side widget-topic">
 					<div class="widget-head">
-						<h5>推荐话题</h5>
+						<h5>专题</h5>
 					</div>
-					<div class="widget-content">
-						<div class="media">
-							<div class="pull-left">
-								<a href="#">
-									<img class="media-object img-rounded" data-src="holder.js/64x64" src="./photo/50x50.jpg">
-								</a>
-							</div>
-							<div class="media-body">
-								<h5 class="media-heading"><a href="#">家教</a></h5>
-								<p>学校教育不全面，所以就需要请家教了<br><small class="media-foot">12个问题，30人关注，<a href="#">关注</a></small></p>
-							</div>
-						</div>
-						<div class="media">
-							<div class="pull-left">
-								<a href="#">
-									<img class="media-object img-rounded" data-src="holder.js/64x64" src="./photo/50x50.jpg">
-								</a>
-							</div>
-							<div class="media-body">
-								<h5 class="media-heading"><a href="#">家教</a></h5>
-								<p>学校教育不全面，所以就需要请家教了<br><small class="media-foot">12个问题，30人关注，<a href="#">关注</a></small></p>
-							</div>
-						</div>
-						<div class="media">
-							<div class="pull-left">
-								<a href="#">
-									<img class="media-object img-rounded" data-src="holder.js/64x64" src="./photo/50x50.jpg">
-								</a>
-							</div>
-							<div class="media-body">
-								<h5 class="media-heading"><a href="#">家教</a></h5>
-								<p>学校教育不全面，所以就需要请家教了<br><small class="media-foot">12个问题，30人关注，<a href="#">关注</a></small></p>
-							</div>
-						</div>
+					<div class="topic-model">
+						<h4>标题</h4>
+						<p>一些内容...</p>
+					</div>
+					<div class="topic-model y">
+						<h4>标题</h4>
+						<p>一些内容...</p>
+					</div>
+					<div class="topic-model gy">
+						<h4>标题</h4>
+						<p>一些内容...</p>
 					</div>
 				</div>
 				<div class="widget unstyled question-side">
 					<div class="widget-head">
-						<h5>最佳回复者</h5>
+						<h5>热门问题</h5>
 					</div>
 					<div class="widget-content">
-						<ol class="unstyled">
+						<ol class="unstyled article-list">
 							<li class="media">
-								<div class="pull-left">
-									<a href="#"><img src="./img/avatar/boy_50.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
-								</div>
+								<span class="badge circle hot pull-left">1</span>
 								<div class="media-body">
-									<p><a href="#">帕奇式</a> <i class="icon-star vip"></i><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
+									<a href="#">如何利用 iPad 高效学习？</a>
+									<p>
+										<small>还没有回答, 3人关注</small>
+									</p>
 								</div>
 							</li>
 							<li class="media">
-								<div class="pull-left">
-									<a href="#"><img src="./img/avatar/boy_50.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
-								</div>
+								<span class="badge circle hot pull-left">2</span>
 								<div class="media-body">
-									<p><a href="#">帕奇式</a> <i class="icon-star vip"></i><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
+									<a href="#">如何利用 iPad 高效学习？</a>
+									<p>
+										<small>还没有回答, 3人关注</small>
+									</p>
 								</div>
 							</li>
 							<li class="media">
-								<div class="pull-left">
-									<a href="#"><img src="./img/avatar/boy_50.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
-								</div>
+								<span class="badge circle hot pull-left">3</span>
 								<div class="media-body">
-									<p><a href="#">帕奇式</a><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
+									<a href="#">如何利用 iPad 高效学习？</a>
+									<p>
+										<small>还没有回答, 3人关注</small>
+									</p>
 								</div>
 							</li>
 							<li class="media">
-								<div class="pull-left">
-									<a href="#"><img src="./img/avatar/boy_50.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
-								</div>
+								<span class="badge circle pull-left">4</span>
 								<div class="media-body">
-									<p><a href="#">帕奇式</a><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
+									<a href="#">如何利用 iPad 高效学习？</a>
+									<p>
+										<small>还没有回答, 3人关注</small>
+									</p>
 								</div>
 							</li>
 							<li class="media">
-								<div class="pull-left">
-									<a href="#"><img src="./img/avatar/boy_50.png" class="media-object img-circle" data-src="holder.js/64x64"></a>
-								</div>
+								<span class="badge circle pull-left">5</span>
 								<div class="media-body">
-									<p><a href="#">帕奇式</a><br><small class="media-foot">获得 5 次赞同, 3 次感谢</small></p>
+									<a href="#">如何利用 iPad 高效学习？</a>
+									<p>
+										<small>还没有回答, 3人关注</small>
+									</p>
 								</div>
 							</li>
 						</ol>
